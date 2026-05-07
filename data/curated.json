@@ -1,0 +1,542 @@
+[
+  {
+    "id": "eecs-183",
+    "code": "EECS 183",
+    "title": "Elementary Programming Concepts",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Introductory programming for non-CS majors and first-time programmers. Python, with a heavy assignment cadence and a final project.",
+    "prereqs": [],
+    "fulfills": ["LSA QR/2", "Engineering Intro"],
+    "workloadHoursPerWeek": 12,
+    "difficulty": 3,
+    "studentRating": 4.0,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 50, "bPercent": 38, "cOrLowerPercent": 12 },
+    "sections": [
+      { "id": "eecs-183-001", "number": "001", "professor": "Mary Lou Dorf", "meetings": [{ "days": ["T", "Th"], "start": "11:30", "end": "13:00" }], "enrolled": 350, "capacity": 400 }
+    ],
+    "tags": ["programming", "python", "intro"]
+  },
+  {
+    "id": "eecs-280",
+    "code": "EECS 280",
+    "title": "Programming and Introductory Data Structures",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Recursion, references and pointers, abstraction, polymorphism, and inheritance. Stacks, queues, linked lists, and trees in C++.",
+    "prereqs": ["EECS 183 or ENGR 101"],
+    "fulfills": ["CS Major Core"],
+    "workloadHoursPerWeek": 18,
+    "difficulty": 4,
+    "studentRating": 3.9,
+    "grades": { "median": "B+", "mean": 3.3, "aPercent": 38, "bPercent": 42, "cOrLowerPercent": 20 },
+    "sections": [
+      { "id": "eecs-280-001", "number": "001", "professor": "Andrew DeOrio", "meetings": [{ "days": ["M", "W", "F"], "start": "10:00", "end": "11:00" }], "enrolled": 280, "capacity": 300 }
+    ],
+    "tags": ["programming", "c++", "data structures", "core"]
+  },
+  {
+    "id": "eecs-281",
+    "code": "EECS 281",
+    "title": "Data Structures and Algorithms",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Hash tables, heaps, balanced trees, graphs. Sorting, dynamic programming, greedy algorithms, NP-completeness.",
+    "prereqs": ["EECS 280", "EECS 203"],
+    "fulfills": ["CS Major Core"],
+    "workloadHoursPerWeek": 20,
+    "difficulty": 5,
+    "studentRating": 3.7,
+    "grades": { "median": "B", "mean": 3.1, "aPercent": 30, "bPercent": 45, "cOrLowerPercent": 25 },
+    "sections": [
+      { "id": "eecs-281-001", "number": "001", "professor": "Marcus Darden", "meetings": [{ "days": ["M", "W", "F"], "start": "11:00", "end": "12:00" }], "enrolled": 240, "capacity": 250 }
+    ],
+    "tags": ["algorithms", "data structures", "c++", "core"]
+  },
+  {
+    "id": "eecs-370",
+    "code": "EECS 370",
+    "title": "Introduction to Computer Organization",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Computer architecture: ISA, assembly, processors, memory hierarchy, and the hardware-software interface.",
+    "prereqs": ["EECS 280", "EECS 203"],
+    "fulfills": ["CS Major Core"],
+    "workloadHoursPerWeek": 15,
+    "difficulty": 4,
+    "studentRating": 3.6,
+    "grades": { "median": "B", "mean": 3.1, "aPercent": 30, "bPercent": 45, "cOrLowerPercent": 25 },
+    "sections": [
+      { "id": "eecs-370-001", "number": "001", "professor": "Satish Narayanasamy", "meetings": [{ "days": ["T", "Th"], "start": "13:30", "end": "15:00" }], "enrolled": 200, "capacity": 220 }
+    ],
+    "tags": ["systems", "architecture", "core"]
+  },
+  {
+    "id": "eecs-376",
+    "code": "EECS 376",
+    "title": "Foundations of Computer Science",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Computability, decidability, complexity, NP-completeness. Models of computation including finite automata and Turing machines.",
+    "prereqs": ["EECS 281", "EECS 203"],
+    "fulfills": ["CS Major Core"],
+    "workloadHoursPerWeek": 12,
+    "difficulty": 4,
+    "studentRating": 3.5,
+    "grades": { "median": "B+", "mean": 3.2, "aPercent": 33, "bPercent": 44, "cOrLowerPercent": 23 },
+    "sections": [
+      { "id": "eecs-376-001", "number": "001", "professor": "Chris Peikert", "meetings": [{ "days": ["T", "Th"], "start": "10:30", "end": "12:00" }], "enrolled": 180, "capacity": 200 }
+    ],
+    "tags": ["theory", "complexity", "automata"]
+  },
+  {
+    "id": "eecs-482",
+    "code": "EECS 482",
+    "title": "Introduction to Operating Systems",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Synchronization, virtual memory, file systems, scheduling. Build core OS components in a teaching kernel.",
+    "prereqs": ["EECS 281", "EECS 370"],
+    "fulfills": ["CS Major Elective"],
+    "workloadHoursPerWeek": 22,
+    "difficulty": 5,
+    "studentRating": 4.2,
+    "grades": { "median": "B+", "mean": 3.3, "aPercent": 40, "bPercent": 42, "cOrLowerPercent": 18 },
+    "sections": [
+      { "id": "eecs-482-001", "number": "001", "professor": "Manos Kapritsos", "meetings": [{ "days": ["T", "Th"], "start": "15:00", "end": "16:30" }], "enrolled": 165, "capacity": 180 }
+    ],
+    "tags": ["systems", "c++", "os", "concurrency"]
+  },
+  {
+    "id": "eecs-485",
+    "code": "EECS 485",
+    "title": "Web Systems",
+    "department": "EECS",
+    "credits": 4,
+    "description": "Build scalable web applications with databases, MVC, JavaScript, async, and distributed systems.",
+    "prereqs": ["EECS 281"],
+    "fulfills": ["CS Major Elective"],
+    "workloadHoursPerWeek": 15,
+    "difficulty": 4,
+    "studentRating": 4.5,
+    "grades": { "median": "A-", "mean": 3.6, "aPercent": 55, "bPercent": 35, "cOrLowerPercent": 10 },
+    "sections": [
+      { "id": "eecs-485-001", "number": "001", "professor": "Andrew DeOrio", "meetings": [{ "days": ["M", "W"], "start": "13:30", "end": "15:00" }], "enrolled": 220, "capacity": 250 }
+    ],
+    "tags": ["web", "javascript", "databases", "project-based"]
+  },
+  {
+    "id": "math-115",
+    "code": "MATH 115",
+    "title": "Calculus I",
+    "department": "MATH",
+    "credits": 4,
+    "description": "Functions, limits, derivatives, integrals, and applications. Standard first-semester calculus.",
+    "prereqs": [],
+    "fulfills": ["LSA QR/1", "Engineering Math"],
+    "workloadHoursPerWeek": 9,
+    "difficulty": 3,
+    "studentRating": 3.4,
+    "grades": { "median": "B", "mean": 3.0, "aPercent": 28, "bPercent": 44, "cOrLowerPercent": 28 },
+    "sections": [
+      { "id": "math-115-040", "number": "040", "professor": "Hanna Bennett", "meetings": [{ "days": ["M", "W", "F"], "start": "09:00", "end": "10:00" }], "enrolled": 30, "capacity": 32 }
+    ],
+    "tags": ["calculus", "math", "qr"]
+  },
+  {
+    "id": "math-116",
+    "code": "MATH 116",
+    "title": "Calculus II",
+    "department": "MATH",
+    "credits": 4,
+    "description": "Techniques of integration, sequences, series, and Taylor expansion.",
+    "prereqs": ["MATH 115"],
+    "fulfills": ["LSA QR/1", "Engineering Math"],
+    "workloadHoursPerWeek": 10,
+    "difficulty": 3,
+    "studentRating": 3.3,
+    "grades": { "median": "B", "mean": 3.0, "aPercent": 27, "bPercent": 45, "cOrLowerPercent": 28 },
+    "sections": [
+      { "id": "math-116-020", "number": "020", "professor": "Beth Wolf", "meetings": [{ "days": ["M", "W", "F"], "start": "10:00", "end": "11:00" }], "enrolled": 30, "capacity": 32 }
+    ],
+    "tags": ["calculus", "math", "qr"]
+  },
+  {
+    "id": "math-215",
+    "code": "MATH 215",
+    "title": "Calculus III",
+    "department": "MATH",
+    "credits": 4,
+    "description": "Vectors, partial derivatives, multiple integrals, and an introduction to vector calculus.",
+    "prereqs": ["MATH 116"],
+    "fulfills": ["LSA QR/1", "Engineering Math"],
+    "workloadHoursPerWeek": 10,
+    "difficulty": 3,
+    "studentRating": 3.4,
+    "grades": { "median": "B", "mean": 3.1, "aPercent": 30, "bPercent": 44, "cOrLowerPercent": 26 },
+    "sections": [
+      { "id": "math-215-010", "number": "010", "professor": "Sarah Koch", "meetings": [{ "days": ["M", "W", "F"], "start": "11:00", "end": "12:00" }], "enrolled": 32, "capacity": 32 }
+    ],
+    "tags": ["calculus", "math", "multivariable", "qr"]
+  },
+  {
+    "id": "math-217",
+    "code": "MATH 217",
+    "title": "Linear Algebra",
+    "department": "MATH",
+    "credits": 4,
+    "description": "Proof-based introduction to linear algebra: vector spaces, linear transformations, eigenvalues, inner products.",
+    "prereqs": ["MATH 215"],
+    "fulfills": ["Math Major", "CS Theory"],
+    "workloadHoursPerWeek": 11,
+    "difficulty": 4,
+    "studentRating": 3.8,
+    "grades": { "median": "B+", "mean": 3.2, "aPercent": 34, "bPercent": 44, "cOrLowerPercent": 22 },
+    "sections": [
+      { "id": "math-217-001", "number": "001", "professor": "Bhargav Bhatt", "meetings": [{ "days": ["T", "Th"], "start": "11:30", "end": "13:00" }], "enrolled": 28, "capacity": 30 }
+    ],
+    "tags": ["math", "linear algebra", "proofs"]
+  },
+  {
+    "id": "stats-250",
+    "code": "STATS 250",
+    "title": "Introduction to Statistics and Data Analysis",
+    "department": "STATS",
+    "credits": 4,
+    "description": "Hypothesis testing, confidence intervals, regression, statistical reasoning. R-based.",
+    "prereqs": [],
+    "fulfills": ["LSA QR/1", "Data Science Core"],
+    "workloadHoursPerWeek": 8,
+    "difficulty": 2,
+    "studentRating": 3.6,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 50, "bPercent": 38, "cOrLowerPercent": 12 },
+    "sections": [
+      { "id": "stats-250-001", "number": "001", "professor": "Brenda Gunderson", "meetings": [{ "days": ["M", "W"], "start": "08:30", "end": "10:00" }], "enrolled": 360, "capacity": 400 }
+    ],
+    "tags": ["statistics", "data", "r", "qr"]
+  },
+  {
+    "id": "econ-101",
+    "code": "ECON 101",
+    "title": "Principles of Microeconomics",
+    "department": "ECON",
+    "credits": 4,
+    "description": "Supply and demand, market structures, externalities, game theory basics.",
+    "prereqs": [],
+    "fulfills": ["LSA Social Science", "Econ Major"],
+    "workloadHoursPerWeek": 7,
+    "difficulty": 2,
+    "studentRating": 3.7,
+    "grades": { "median": "B+", "mean": 3.3, "aPercent": 36, "bPercent": 44, "cOrLowerPercent": 20 },
+    "sections": [
+      { "id": "econ-101-100", "number": "100", "professor": "Adam Stevenson", "meetings": [{ "days": ["T", "Th"], "start": "10:00", "end": "11:30" }], "enrolled": 380, "capacity": 400 }
+    ],
+    "tags": ["economics", "social science"]
+  },
+  {
+    "id": "econ-102",
+    "code": "ECON 102",
+    "title": "Principles of Macroeconomics",
+    "department": "ECON",
+    "credits": 4,
+    "description": "GDP, inflation, unemployment, monetary and fiscal policy, growth.",
+    "prereqs": ["ECON 101"],
+    "fulfills": ["LSA Social Science", "Econ Major"],
+    "workloadHoursPerWeek": 7,
+    "difficulty": 2,
+    "studentRating": 3.6,
+    "grades": { "median": "B+", "mean": 3.2, "aPercent": 34, "bPercent": 45, "cOrLowerPercent": 21 },
+    "sections": [
+      { "id": "econ-102-100", "number": "100", "professor": "Daniel Ackerberg", "meetings": [{ "days": ["M", "W"], "start": "11:30", "end": "13:00" }], "enrolled": 360, "capacity": 400 }
+    ],
+    "tags": ["economics", "social science"]
+  },
+  {
+    "id": "psych-111",
+    "code": "PSYCH 111",
+    "title": "Introduction to Psychology",
+    "department": "PSYCH",
+    "credits": 4,
+    "description": "Survey of psychology: perception, learning, memory, social behavior, mental disorders.",
+    "prereqs": [],
+    "fulfills": ["LSA Social Science"],
+    "workloadHoursPerWeek": 6,
+    "difficulty": 2,
+    "studentRating": 4.1,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 48, "bPercent": 40, "cOrLowerPercent": 12 },
+    "sections": [
+      { "id": "psych-111-100", "number": "100", "professor": "Joshua Berke", "meetings": [{ "days": ["M", "W"], "start": "11:30", "end": "13:00" }], "enrolled": 420, "capacity": 450 }
+    ],
+    "tags": ["psychology", "social science", "intro"]
+  },
+  {
+    "id": "psych-230",
+    "code": "PSYCH 230",
+    "title": "Introduction to Biopsychology",
+    "department": "PSYCH",
+    "credits": 4,
+    "description": "Neuroscience foundations of behavior: neurons, brain structure, sensory systems, motivation.",
+    "prereqs": ["PSYCH 111"],
+    "fulfills": ["LSA Natural Science", "Psychology Major"],
+    "workloadHoursPerWeek": 8,
+    "difficulty": 3,
+    "studentRating": 3.8,
+    "grades": { "median": "B+", "mean": 3.3, "aPercent": 38, "bPercent": 44, "cOrLowerPercent": 18 },
+    "sections": [
+      { "id": "psych-230-001", "number": "001", "professor": "Jacqueline Mogle", "meetings": [{ "days": ["T", "Th"], "start": "13:00", "end": "14:30" }], "enrolled": 240, "capacity": 250 }
+    ],
+    "tags": ["psychology", "neuroscience"]
+  },
+  {
+    "id": "polsci-111",
+    "code": "POLSCI 111",
+    "title": "Introduction to American Politics",
+    "department": "POLSCI",
+    "credits": 4,
+    "description": "Institutions, elections, parties, public opinion, and policy in American government.",
+    "prereqs": [],
+    "fulfills": ["LSA Social Science"],
+    "workloadHoursPerWeek": 6,
+    "difficulty": 2,
+    "studentRating": 3.9,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 50, "bPercent": 40, "cOrLowerPercent": 10 },
+    "sections": [
+      { "id": "polsci-111-001", "number": "001", "professor": "Jonathan Hanson", "meetings": [{ "days": ["T", "Th"], "start": "11:30", "end": "13:00" }], "enrolled": 280, "capacity": 300 }
+    ],
+    "tags": ["political science", "social science"]
+  },
+  {
+    "id": "polsci-140",
+    "code": "POLSCI 140",
+    "title": "Introduction to Comparative Politics",
+    "department": "POLSCI",
+    "credits": 4,
+    "description": "Cross-country comparison of democratic and authoritarian regimes, parties, and political development.",
+    "prereqs": [],
+    "fulfills": ["LSA Social Science"],
+    "workloadHoursPerWeek": 7,
+    "difficulty": 3,
+    "studentRating": 3.7,
+    "grades": { "median": "B+", "mean": 3.3, "aPercent": 36, "bPercent": 44, "cOrLowerPercent": 20 },
+    "sections": [
+      { "id": "polsci-140-001", "number": "001", "professor": "Anna Grzymala-Busse", "meetings": [{ "days": ["M", "W"], "start": "14:30", "end": "16:00" }], "enrolled": 200, "capacity": 220 }
+    ],
+    "tags": ["political science", "international"]
+  },
+  {
+    "id": "english-124",
+    "code": "ENGLISH 124",
+    "title": "Academic Writing and Literature",
+    "department": "ENGLISH",
+    "credits": 4,
+    "description": "First-year writing emphasizing literary analysis and argument.",
+    "prereqs": [],
+    "fulfills": ["LSA First-Year Writing"],
+    "workloadHoursPerWeek": 7,
+    "difficulty": 2,
+    "studentRating": 3.7,
+    "grades": { "median": "A-", "mean": 3.6, "aPercent": 55, "bPercent": 38, "cOrLowerPercent": 7 },
+    "sections": [
+      { "id": "english-124-014", "number": "014", "professor": "Scotti Parrish", "meetings": [{ "days": ["T", "Th"], "start": "09:00", "end": "10:30" }], "enrolled": 18, "capacity": 18 }
+    ],
+    "tags": ["writing", "humanities", "first-year"]
+  },
+  {
+    "id": "english-125",
+    "code": "ENGLISH 125",
+    "title": "Writing and Academic Inquiry",
+    "department": "ENGLISH",
+    "credits": 4,
+    "description": "First-year writing requirement. Argument, evidence, revision, and academic writing across disciplines.",
+    "prereqs": [],
+    "fulfills": ["LSA First-Year Writing"],
+    "workloadHoursPerWeek": 8,
+    "difficulty": 2,
+    "studentRating": 3.8,
+    "grades": { "median": "A-", "mean": 3.6, "aPercent": 55, "bPercent": 38, "cOrLowerPercent": 7 },
+    "sections": [
+      { "id": "english-125-021", "number": "021", "professor": "Aric Knuth", "meetings": [{ "days": ["T", "Th"], "start": "13:00", "end": "14:30" }], "enrolled": 18, "capacity": 18 }
+    ],
+    "tags": ["writing", "humanities", "first-year"]
+  },
+  {
+    "id": "physics-140",
+    "code": "PHYSICS 140",
+    "title": "General Physics I",
+    "department": "PHYSICS",
+    "credits": 4,
+    "description": "Mechanics: kinematics, forces, energy, momentum, rotation, gravity, oscillations.",
+    "prereqs": ["MATH 115 (concurrent OK)"],
+    "fulfills": ["Engineering Core", "Pre-Med"],
+    "workloadHoursPerWeek": 10,
+    "difficulty": 4,
+    "studentRating": 3.2,
+    "grades": { "median": "B", "mean": 3.0, "aPercent": 26, "bPercent": 46, "cOrLowerPercent": 28 },
+    "sections": [
+      { "id": "physics-140-100", "number": "100", "professor": "Tim Chupp", "meetings": [{ "days": ["M", "W", "F"], "start": "10:00", "end": "11:00" }], "enrolled": 320, "capacity": 350 }
+    ],
+    "tags": ["physics", "mechanics", "natural science"]
+  },
+  {
+    "id": "physics-240",
+    "code": "PHYSICS 240",
+    "title": "General Physics II",
+    "department": "PHYSICS",
+    "credits": 4,
+    "description": "Electricity, magnetism, circuits, optics, and an introduction to modern physics.",
+    "prereqs": ["PHYSICS 140"],
+    "fulfills": ["Engineering Core", "Pre-Med"],
+    "workloadHoursPerWeek": 11,
+    "difficulty": 4,
+    "studentRating": 3.3,
+    "grades": { "median": "B", "mean": 3.0, "aPercent": 28, "bPercent": 44, "cOrLowerPercent": 28 },
+    "sections": [
+      { "id": "physics-240-100", "number": "100", "professor": "Georg Raithel", "meetings": [{ "days": ["M", "W", "F"], "start": "13:00", "end": "14:00" }], "enrolled": 300, "capacity": 320 }
+    ],
+    "tags": ["physics", "electromagnetism", "natural science"]
+  },
+  {
+    "id": "chem-130",
+    "code": "CHEM 130",
+    "title": "General Chemistry: Macroscopic Investigations",
+    "department": "CHEM",
+    "credits": 3,
+    "description": "Foundational chemistry: bonding, thermodynamics, kinetics, equilibrium.",
+    "prereqs": [],
+    "fulfills": ["LSA Natural Science", "Pre-Med"],
+    "workloadHoursPerWeek": 9,
+    "difficulty": 3,
+    "studentRating": 3.4,
+    "grades": { "median": "B", "mean": 3.0, "aPercent": 28, "bPercent": 44, "cOrLowerPercent": 28 },
+    "sections": [
+      { "id": "chem-130-100", "number": "100", "professor": "Kathleen Nolta", "meetings": [{ "days": ["M", "W", "F"], "start": "11:00", "end": "12:00" }], "enrolled": 480, "capacity": 500 }
+    ],
+    "tags": ["chemistry", "natural science", "pre-med"]
+  },
+  {
+    "id": "chem-210",
+    "code": "CHEM 210",
+    "title": "Structure and Reactivity I (Organic Chemistry)",
+    "department": "CHEM",
+    "credits": 3,
+    "description": "Organic chemistry foundations: bonding, stereochemistry, reactions, and reaction mechanisms.",
+    "prereqs": ["CHEM 130"],
+    "fulfills": ["LSA Natural Science", "Pre-Med"],
+    "workloadHoursPerWeek": 13,
+    "difficulty": 4,
+    "studentRating": 3.3,
+    "grades": { "median": "B", "mean": 3.0, "aPercent": 26, "bPercent": 46, "cOrLowerPercent": 28 },
+    "sections": [
+      { "id": "chem-210-001", "number": "001", "professor": "Kathleen Nolta", "meetings": [{ "days": ["M", "W", "F"], "start": "09:00", "end": "10:00" }], "enrolled": 350, "capacity": 380 }
+    ],
+    "tags": ["chemistry", "organic", "pre-med"]
+  },
+  {
+    "id": "biology-171",
+    "code": "BIOLOGY 171",
+    "title": "Introductory Biology: Ecology and Evolution",
+    "department": "BIOLOGY",
+    "credits": 4,
+    "description": "Ecology, evolution, biodiversity, and the diversity of life on Earth.",
+    "prereqs": [],
+    "fulfills": ["LSA Natural Science", "Pre-Med"],
+    "workloadHoursPerWeek": 10,
+    "difficulty": 3,
+    "studentRating": 3.5,
+    "grades": { "median": "B+", "mean": 3.2, "aPercent": 33, "bPercent": 44, "cOrLowerPercent": 23 },
+    "sections": [
+      { "id": "biology-171-100", "number": "100", "professor": "Patricia Wittkopp", "meetings": [{ "days": ["T", "Th"], "start": "10:00", "end": "11:30" }], "enrolled": 400, "capacity": 450 }
+    ],
+    "tags": ["biology", "ecology", "natural science"]
+  },
+  {
+    "id": "history-197",
+    "code": "HISTORY 197",
+    "title": "First-Year Seminar in History",
+    "department": "HISTORY",
+    "credits": 3,
+    "description": "Writing-intensive seminar on a focused historical topic; small class size.",
+    "prereqs": [],
+    "fulfills": ["LSA First-Year Writing", "LSA Humanities"],
+    "workloadHoursPerWeek": 7,
+    "difficulty": 2,
+    "studentRating": 3.9,
+    "grades": { "median": "A-", "mean": 3.6, "aPercent": 55, "bPercent": 38, "cOrLowerPercent": 7 },
+    "sections": [
+      { "id": "history-197-001", "number": "001", "professor": "Helmut Puff", "meetings": [{ "days": ["T", "Th"], "start": "14:30", "end": "16:00" }], "enrolled": 18, "capacity": 18 }
+    ],
+    "tags": ["history", "writing", "humanities"]
+  },
+  {
+    "id": "phil-232",
+    "code": "PHIL 232",
+    "title": "Problems of Philosophy",
+    "department": "PHIL",
+    "credits": 3,
+    "description": "Major problems in philosophy: knowledge, mind, free will, ethics, and existence.",
+    "prereqs": [],
+    "fulfills": ["LSA Humanities"],
+    "workloadHoursPerWeek": 7,
+    "difficulty": 2,
+    "studentRating": 4.0,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 50, "bPercent": 40, "cOrLowerPercent": 10 },
+    "sections": [
+      { "id": "phil-232-001", "number": "001", "professor": "Eric Swanson", "meetings": [{ "days": ["T", "Th"], "start": "16:00", "end": "17:30" }], "enrolled": 60, "capacity": 80 }
+    ],
+    "tags": ["philosophy", "humanities"]
+  },
+  {
+    "id": "astro-101",
+    "code": "ASTRO 101",
+    "title": "Introduction to the Universe",
+    "department": "ASTRO",
+    "credits": 3,
+    "description": "Stars, galaxies, planets, cosmology — non-major introduction.",
+    "prereqs": [],
+    "fulfills": ["LSA Natural Science"],
+    "workloadHoursPerWeek": 5,
+    "difficulty": 1,
+    "studentRating": 4.2,
+    "grades": { "median": "A-", "mean": 3.6, "aPercent": 58, "bPercent": 35, "cOrLowerPercent": 7 },
+    "sections": [
+      { "id": "astro-101-001", "number": "001", "professor": "Sally Oey", "meetings": [{ "days": ["T", "Th"], "start": "11:30", "end": "13:00" }], "enrolled": 280, "capacity": 320 }
+    ],
+    "tags": ["astronomy", "natural science", "easy a"]
+  },
+  {
+    "id": "anthro-101",
+    "code": "ANTHRO 101",
+    "title": "Introduction to Cultural Anthropology",
+    "department": "ANTHRO",
+    "credits": 4,
+    "description": "Cross-cultural comparison: kinship, ritual, exchange, and the politics of culture.",
+    "prereqs": [],
+    "fulfills": ["LSA Social Science", "LSA Race & Ethnicity"],
+    "workloadHoursPerWeek": 6,
+    "difficulty": 2,
+    "studentRating": 3.8,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 50, "bPercent": 40, "cOrLowerPercent": 10 },
+    "sections": [
+      { "id": "anthro-101-001", "number": "001", "professor": "Krisztina Fehervary", "meetings": [{ "days": ["M", "W", "F"], "start": "13:00", "end": "14:00" }], "enrolled": 200, "capacity": 240 }
+    ],
+    "tags": ["anthropology", "social science"]
+  },
+  {
+    "id": "strategy-290",
+    "code": "STRATEGY 290",
+    "title": "The World Economy",
+    "department": "STRATEGY",
+    "credits": 3,
+    "description": "Globalization, trade, and the strategic environment for firms competing in international markets.",
+    "prereqs": ["ECON 101"],
+    "fulfills": ["Ross BBA Core"],
+    "workloadHoursPerWeek": 9,
+    "difficulty": 3,
+    "studentRating": 4.1,
+    "grades": { "median": "A-", "mean": 3.5, "aPercent": 50, "bPercent": 40, "cOrLowerPercent": 10 },
+    "sections": [
+      { "id": "strategy-290-001", "number": "001", "professor": "Jordan Siegel", "meetings": [{ "days": ["T", "Th"], "start": "14:30", "end": "16:00" }], "enrolled": 80, "capacity": 90 }
+    ],
+    "tags": ["business", "strategy", "ross"]
+  }
+]

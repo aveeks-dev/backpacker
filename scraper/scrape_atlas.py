@@ -3,19 +3,16 @@
 Scrape the UMich course catalog from Atlas's public API.
 
 Atlas (atlas.ai.umich.edu) exposes a public JSON endpoint at /api/courses
-that returns up to 100 courses per request, filtered by `?search=<term>`.
-This script enumerates a hardcoded list of UMich subject codes and unions
-the results, deduping by course code.
-
-Output schema matches Backpacker's data/courses.json shape, with stub
-values for fields the public API doesn't expose (descriptions, grades,
-workload, sections). Those come from the authenticated v2 scraper.
+that returns up to 100 courses per `?search=<term>` request, ranked by
+some opaque relevance signal. To get past the 100-cap for large subjects
+(e.g. EECS, MUSPERF), this scraper makes multiple narrower passes per
+subject — bare DEPT, then DEPT + each digit 0–9 — and unions the results,
+deduping by course code.
 
 Usage
 -----
-    python3 scrape_atlas.py                     # writes to ../data/courses-scraped.json
-    python3 scrape_atlas.py --output foo.json   # custom path
-    python3 scrape_atlas.py --departments EECS  # limit to one or more departments
+    python3 scrape_atlas.py                     # full sweep -> ../data/scraped.json
+    python3 scrape_atlas.py --departments EECS  # one subject only
 
 No external dependencies — uses only the Python standard library.
 """
@@ -32,11 +29,11 @@ from pathlib import Path
 
 ATLAS_BASE = "https://atlas.ai.umich.edu/api/courses"
 USER_AGENT = "Mozilla/5.0 (compatible; Backpacker scraper; +https://github.com/aveeks-dev/backpacker)"
-RATE_LIMIT_SLEEP_SEC = 0.25
+RATE_LIMIT_SLEEP_SEC = 0.15
 PAGE_CAP = 100  # Atlas hard-caps results per query
 
 DEPARTMENTS: list[str] = [
-    # LSA (Literature, Science & the Arts)
+    # LSA
     "AAAS", "AAS", "AMCULT", "ANTHRARC", "ANTHRBIO", "ANTHRCUL",
     "APTIS", "ARABIC", "ARMENIAN", "ASIAN", "ASIANLAN", "ASIANPAM",
     "ASTRO", "BIOLOGY", "BIOPHYS", "CHEM", "CICS", "CLARCH",
@@ -59,9 +56,9 @@ DEPARTMENTS: list[str] = [
     # Ross School of Business
     "ACC", "BBA", "BCOM", "BL", "ES", "FIN", "MKT", "MO",
     "OMS", "STRATEGY", "TO",
-    # Stamps School of Art & Design
+    # Stamps Art & Design
     "ART", "ARTDES",
-    # School of Music, Theatre & Dance
+    # Music, Theatre & Dance
     "BASSOON", "CARILLON", "CELLO", "CLARINET", "DANCE", "EUPHON",
     "FLUTE", "FRENCHHORN", "GUITAR", "HARP", "HARPSICH", "JAZZIMP",
     "MUSED", "MUSIC", "MUSPERF", "MUSTHRY", "OBOE", "ORGAN", "PIANO",
@@ -70,7 +67,7 @@ DEPARTMENTS: list[str] = [
     # Schools / professional
     "ARCH", "DENT", "EDUC", "INFO", "KINESLGY", "MOVESCI", "NURS",
     "PHARM", "PUBPOL", "PUBHLTH", "SOCWORK", "URP",
-    # Public Health (codes vary by program)
+    # Public Health
     "BIOSTAT", "ENVHLTH", "EPID", "HMP", "NUTR",
 ]
 
@@ -84,50 +81,49 @@ def fetch_search(term: str) -> list[dict]:
     return data if isinstance(data, list) else []
 
 
+def scrape_department(dept: str) -> tuple[list[dict], int]:
+    """Multi-pass scrape of one subject. Returns (courses, total_query_count)."""
+    seen: dict[str, dict] = {}
+    queries = [dept] + [f"{dept} {d}" for d in "0123456789"]
+    queries_made = 0
+    for q in queries:
+        try:
+            data = fetch_search(q)
+            queries_made += 1
+        except Exception as exc:
+            print(f"      query '{q}' failed: {exc}", file=sys.stderr)
+            time.sleep(RATE_LIMIT_SLEEP_SEC)
+            continue
+        for course in data:
+            code = course.get("course_code")
+            if not code or not code.startswith(dept):
+                continue
+            if code not in seen:
+                seen[code] = course
+        time.sleep(RATE_LIMIT_SLEEP_SEC)
+    return list(seen.values()), queries_made
+
+
 def scrape_all(departments: list[str]) -> list[dict]:
     seen: dict[str, dict] = {}
-    capped: list[str] = []
     for i, dept in enumerate(departments, 1):
         try:
-            data = fetch_search(dept)
+            results, queries = scrape_department(dept)
         except Exception as exc:
             print(f"  [{i:>3}/{len(departments)}] {dept}: ERROR {exc}", file=sys.stderr)
             continue
-
         added = 0
-        for course in data:
-            code = course.get("course_code")
-            if not code:
-                continue
-            # Filter to courses whose canonical prefix matches this department,
-            # since fuzzy search may return unrelated hits.
-            if not code.startswith(dept):
-                continue
-            if code in seen:
-                continue
-            seen[code] = course
-            added += 1
-
-        marker = " (cap hit)" if len(data) >= PAGE_CAP else ""
-        if len(data) >= PAGE_CAP:
-            capped.append(dept)
-        print(f"  [{i:>3}/{len(departments)}] {dept}: +{added}{marker}")
-        time.sleep(RATE_LIMIT_SLEEP_SEC)
-
-    if capped:
-        print(
-            "\nWARNING: these subjects hit the 100-result cap and may be missing courses:",
-            file=sys.stderr,
-        )
-        print("  " + ", ".join(capped), file=sys.stderr)
-        print(
-            "Use the authenticated Playwright scraper (v2) for full coverage.",
-            file=sys.stderr,
-        )
+        for course in results:
+            code = course["course_code"]
+            if code not in seen:
+                seen[code] = course
+                added += 1
+        print(f"  [{i:>3}/{len(departments)}] {dept}: +{added} ({queries} queries, {len(results)} unique results)")
     return list(seen.values())
 
 
-def to_backpacker_schema(courses: list[dict]) -> list[dict]:
+def to_intermediate(courses: list[dict]) -> list[dict]:
+    """Convert raw Atlas API records to our intermediate format."""
     out: list[dict] = []
     for c in sorted(courses, key=lambda x: x.get("course_code_spaced", "")):
         spaced = c.get("course_code_spaced", "")
@@ -140,23 +136,8 @@ def to_backpacker_schema(courses: list[dict]) -> list[dict]:
             "code": spaced,
             "title": c.get("title", ""),
             "department": dept,
-            "credits": 3,
-            "description": "",
-            "prereqs": [],
-            "fulfills": [],
-            "workloadHoursPerWeek": 0,
-            "difficulty": 3,
-            "studentRating": 0,
-            "grades": {
-                "median": "—", "mean": 0,
-                "aPercent": 0, "bPercent": 0, "cOrLowerPercent": 0,
-            },
-            "sections": [],
-            "tags": [],
-            "_meta": {
-                "source": "atlas-public-api",
-                "offered_terms": c.get("offered_terms", []),
-            },
+            "number": num,
+            "offered_terms": c.get("offered_terms", []),
         })
     return out
 
@@ -165,33 +146,30 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument(
         "--output",
-        default=str(Path(__file__).parent.parent / "data" / "courses-scraped.json"),
-        help="Output path (default: ../data/courses-scraped.json)",
+        default=str(Path(__file__).parent.parent / "data" / "scraped.json"),
+        help="Output path (default: ../data/scraped.json)",
     )
     p.add_argument(
         "--departments",
         nargs="*",
         default=None,
-        help="Limit scrape to specific subject codes (default: full list)",
+        help="Limit to specific subject codes (default: full list)",
     )
     args = p.parse_args()
 
     depts = args.departments or DEPARTMENTS
-    print(f"Scraping UMich Atlas catalog ({len(depts)} subjects)…\n")
+    print(f"Scraping UMich Atlas catalog ({len(depts)} subjects, ~{len(depts)*11} queries)…\n")
 
     raw = scrape_all(depts)
     print(f"\nUnique courses scraped: {len(raw)}")
 
-    converted = to_backpacker_schema(raw)
+    converted = to_intermediate(raw)
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(converted, indent=2))
 
     print(f"Wrote {len(converted)} courses to {out_path}")
-    print("\nNote: This catalog only contains course code, title, and offered terms.")
-    print("Workload, grades, descriptions, and sections require the authenticated")
-    print("Playwright scraper (planned v2). For now, hand-curated metrics in")
-    print("data/courses.json provide demo values.")
+    print("\nNext: run build_dataset.py to merge with curated data.")
     return 0
 
 

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { getAllCourses } from "@/lib/courses";
+import { getAllCourses, getDepartments } from "@/lib/courses";
 
 export default function Home() {
   const total = getAllCourses().length;
+  const deptCount = getDepartments().length;
 
   return (
     <div className="flex min-h-full flex-col bg-white text-slate-900">
@@ -22,12 +23,15 @@ export default function Home() {
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           Plan your semester at Michigan.
         </h1>
-        <p className="mt-3 text-slate-600">Workload, grades, and ratings — straight to the point.</p>
+        <p className="mt-3 text-slate-600">
+          Workload, granular grade distributions, and side-by-side comparison —
+          all in one place.
+        </p>
 
         <form action="/courses" className="mt-8 flex w-full max-w-xl gap-2">
           <input
             name="q"
-            placeholder="Search by code, title, or topic"
+            placeholder="Find a course (e.g. EECS 280, ANTHRO 101)"
             className="flex-1 rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
           />
           <button
@@ -38,7 +42,7 @@ export default function Home() {
           </button>
         </form>
         <Link href="/courses" className="mt-3 text-sm text-slate-500 hover:text-slate-900">
-          or browse all {total} courses →
+          or browse all {total.toLocaleString()} courses across {deptCount} subjects →
         </Link>
       </main>
 

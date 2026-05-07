@@ -9,9 +9,10 @@ const SORT_OPTIONS = Object.keys(SORT_LABELS) as SortKey[];
 type Props = {
   departments: string[];
   fulfillsGroups: FulfillsGroup[];
+  curatedCount: number;
 };
 
-export function Filters({ departments, fulfillsGroups }: Props) {
+export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -21,12 +22,14 @@ export function Filters({ departments, fulfillsGroups }: Props) {
   const credits = params.get("credits") ?? "";
   const maxWorkload = params.get("maxWorkload") ?? "";
   const sort = params.get("sort") ?? "code-asc";
+  const hasData = params.get("hasData") ?? "";
 
   useEffect(() => {
     const handle = setTimeout(() => {
       const next = new URLSearchParams(params.toString());
       if (q) next.set("q", q);
       else next.delete("q");
+      next.delete("page");
       const queryString = next.toString();
       router.replace(queryString ? `/courses?${queryString}` : "/courses", { scroll: false });
     }, 200);
@@ -38,6 +41,7 @@ export function Filters({ departments, fulfillsGroups }: Props) {
     const next = new URLSearchParams(params.toString());
     if (value) next.set(key, value);
     else next.delete(key);
+    next.delete("page");
     const queryString = next.toString();
     router.replace(queryString ? `/courses?${queryString}` : "/courses", { scroll: false });
   }
@@ -47,7 +51,8 @@ export function Filters({ departments, fulfillsGroups }: Props) {
     router.replace("/courses", { scroll: false });
   }
 
-  const hasFilters = q || department || credits || maxWorkload || fulfills || sort !== "code-asc";
+  const hasFilters =
+    q || department || credits || maxWorkload || fulfills || hasData || sort !== "code-asc";
 
   return (
     <div className="space-y-3">
@@ -55,7 +60,7 @@ export function Filters({ departments, fulfillsGroups }: Props) {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search by code, title, or topic"
+          placeholder="Find a course (e.g. EECS 280, ANTHRO 101)"
           className="min-w-[260px] flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
         />
         <Select
@@ -122,6 +127,15 @@ export function Filters({ departments, fulfillsGroups }: Props) {
             <option key={w} value={String(w)}>{`≤ ${w} hrs/wk`}</option>
           ))}
         </Select>
+        <label className="ml-1 inline-flex items-center gap-1.5 text-xs text-slate-600">
+          <input
+            type="checkbox"
+            checked={hasData === "curated"}
+            onChange={(e) => setParam("hasData", e.target.checked ? "curated" : "")}
+            className="h-3.5 w-3.5 rounded border-slate-300"
+          />
+          Only fully reviewed ({curatedCount})
+        </label>
       </div>
     </div>
   );

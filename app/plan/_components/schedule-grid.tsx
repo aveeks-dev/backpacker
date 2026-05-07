@@ -1,6 +1,6 @@
 "use client";
 
-import { DAYS, DAY_LABELS, type Course, type Day, type Meeting } from "@/lib/courses";
+import { DAYS, DAY_LABELS, type Course, type Day } from "@/lib/courses";
 
 const START_HOUR = 8;
 const END_HOUR = 21;
