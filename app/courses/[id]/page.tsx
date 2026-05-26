@@ -3,15 +3,20 @@ import { notFound } from "next/navigation";
 import {
   getAllCourses,
   getCourse,
+  getCourseLevel,
   getDepartmentAverages,
+  getSimilarCourses,
+  aGradePercent,
   GRADE_LETTERS,
   gradeLetterColor,
   difficultyLabel,
+  levelLabel,
   type GradeLetter,
   type Section,
 } from "@/lib/courses";
 import { SiteHeader } from "@/components/site-header";
 import { AddToPlanButton } from "./_components/add-to-plan";
+import { SimilarCourses } from "./_components/similar-courses";
 
 // Only prerender curated courses; estimated/catalog-only render dynamically
 export function generateStaticParams() {
@@ -32,6 +37,9 @@ export default async function CourseDetailPage({
   const deptAvg = getDepartmentAverages()[course.department];
   const isCurated = course.dataQuality === "curated";
   const isEstimated = course.dataQuality === "estimated";
+  const level = getCourseLevel(course);
+  const similar = getSimilarCourses(course, 6);
+  const aPct = course.grades ? aGradePercent(course.grades.buckets) : null;
 
   return (
     <div className="flex min-h-full flex-col bg-white">
@@ -52,6 +60,8 @@ export default async function CourseDetailPage({
               <span className="text-slate-500">{course.department}</span>
               <span className="text-slate-400">·</span>
               <span className="text-slate-500">{course.credits} credits</span>
+              <span className="text-slate-400">·</span>
+              <span className="text-slate-500">{levelLabel(level)}</span>
               {isEstimated && (
                 <span className="ml-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-800">
                   Estimated metrics
@@ -60,7 +70,15 @@ export default async function CourseDetailPage({
             </div>
             <h1 className="mt-1 text-2xl font-semibold tracking-tight">{course.title}</h1>
           </div>
-          <AddToPlanButton courseId={course.id} />
+          <div className="flex items-center gap-2">
+            <Link
+              href={`/compare?ids=${course.id}`}
+              className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+            >
+              Compare
+            </Link>
+            <AddToPlanButton courseId={course.id} />
+          </div>
         </div>
 
         {course.description && (
@@ -89,7 +107,7 @@ export default async function CourseDetailPage({
           </div>
         )}
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <BigStat
             label="Workload"
             value={course.workloadHoursPerWeek > 0 ? course.workloadHoursPerWeek.toString() : "—"}
@@ -121,9 +139,9 @@ export default async function CourseDetailPage({
             }
           />
           <BigStat
-            label="Student rating"
-            value={course.studentRating > 0 ? course.studentRating.toFixed(1) : "—"}
-            unit={course.studentRating > 0 ? "of 5" : "no data"}
+            label="% earning A"
+            value={aPct !== null ? `${Math.round(aPct)}%` : "—"}
+            unit={aPct !== null ? "A+, A, or A−" : "no data"}
           />
         </div>
 
@@ -158,8 +176,8 @@ export default async function CourseDetailPage({
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
               Sections
             </h2>
-            <div className="overflow-hidden rounded-md border border-slate-200">
-              <table className="w-full text-sm">
+            <div className="overflow-x-auto rounded-md border border-slate-200">
+              <table className="w-full min-w-[480px] text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
                     <th className="px-4 py-3 font-medium">Section</th>
@@ -182,24 +200,37 @@ export default async function CourseDetailPage({
           </section>
         )}
 
-        <section className="mt-10">
+        <SimilarCourses similar={similar} />
+
+        <section className="mt-10 rounded-md border border-slate-200 bg-slate-50 p-5">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
             How to read these numbers
           </h2>
           <ul className="space-y-1.5 text-sm text-slate-600">
             <li>
-              <strong>Workload</strong> is hours/week including lecture, problem
-              sets, projects, and exam prep — not just class time.
+              <strong>Workload</strong> is total hours/week — lecture, problem
+              sets, projects, and exam prep. A 3-credit lecture at 5 hrs/wk is
+              light; 15+ is heavy.
             </li>
             <li>
-              <strong>Difficulty (1–5)</strong> reflects conceptual rigor and
-              pace, not just workload. A heavy class can still be a 2 if the
-              concepts are familiar.
+              <strong>Difficulty (1–5)</strong> is conceptual rigor and pace,
+              not just workload. A heavy class can still be a 2 if the concepts
+              are familiar.
             </li>
             <li>
               <strong>Median grade</strong> is the middle student&apos;s final
               letter; <strong>mean GPA</strong> averages all students&apos;
               grade points.
+            </li>
+            <li>
+              <strong>% earning A</strong> is the share of students who got
+              A+, A, or A−. Better signal than median for &ldquo;is this an
+              easy A?&rdquo;.
+            </li>
+            <li>
+              <strong>Comparisons</strong> are against this subject&apos;s
+              average — context that helps you decide whether a number is
+              actually high or low for the discipline.
             </li>
           </ul>
         </section>
@@ -265,8 +296,7 @@ function compareLine(
   const absPct = avg === 0 ? 0 : Math.round((Math.abs(diff) / avg) * 100);
   if (Math.abs(diff) < 0.05 || absPct < 3) return `≈ ${dept} avg`;
   const direction = diff > 0 ? "above" : "below";
-  // Color implied via direction word; prefix with dept avg value
-  const _ = higherIsBetter; // reserved for future styling
+  const _ = higherIsBetter;
   return `${direction} ${dept} avg (${avg.toFixed(unit === "GPA" ? 2 : 1)}${unit ? " " + unit : ""})`;
 }
 

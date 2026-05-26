@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  aGradePercent,
   filterCourses,
   getAllCourses,
   getDepartments,
@@ -23,6 +24,7 @@ type SearchParams = Promise<{
   sort?: string;
   page?: string;
   hasData?: string;
+  level?: string;
 }>;
 
 export default async function CoursesPage({ searchParams }: { searchParams: SearchParams }) {
@@ -39,6 +41,7 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
 
   const activeBits: string[] = [];
   if (sp.department) activeBits.push(sp.department);
+  if (sp.level) activeBits.push(`${sp.level} level`);
   if (sp.fulfills) activeBits.push(sp.fulfills);
 
   const curatedCount = all.filter((c) => c.dataQuality === "curated").length;
@@ -67,8 +70,8 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
           </div>
         ) : (
           <>
-            <div className="mt-6 overflow-hidden rounded-md border border-slate-200">
-              <table className="w-full text-sm">
+            <div className="mt-6 overflow-x-auto rounded-md border border-slate-200">
+              <table className="w-full min-w-[640px] text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
                     <th className="px-4 py-3 font-medium">Course</th>
@@ -81,6 +84,9 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
                     </ColHeader>
                     <ColHeader sp={sp} sortKey={sortKey} asc="median-asc" desc="median-desc">
                       Median
+                    </ColHeader>
+                    <ColHeader sp={sp} sortKey={sortKey} asc="a-percent-asc" desc="a-percent-desc">
+                      % A
                     </ColHeader>
                     <ColHeader sp={sp} sortKey={sortKey} desc="rating-desc">
                       Rating
@@ -101,8 +107,8 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
 
         <p className="mt-6 text-xs text-slate-400">
           {curatedCount} courses have full hand-reviewed data; the rest of the catalog shows
-          estimated metrics derived from course level. Real grade distributions and
-          sections will populate as the authenticated scraper runs.
+          estimated metrics derived from course level. Click any column header to sort.
+          Tip: press <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd> anywhere to jump to the search bar.
         </p>
       </main>
     </div>
@@ -152,6 +158,7 @@ function ColHeader({
 
 function CourseRow({ course }: { course: Course }) {
   const isEstimated = course.dataQuality === "estimated";
+  const aPct = course.grades ? aGradePercent(course.grades.buckets) : null;
   return (
     <tr className="hover:bg-slate-50">
       <td className="px-4 py-3">
@@ -202,6 +209,9 @@ function CourseRow({ course }: { course: Course }) {
         ) : (
           <span className="text-slate-400">—</span>
         )}
+      </td>
+      <td className="px-4 py-3 text-right tabular-nums text-slate-700">
+        {aPct !== null ? `${Math.round(aPct)}%` : <span className="text-slate-400">—</span>}
       </td>
       <td className="px-4 py-3 text-right tabular-nums text-slate-700">
         {course.studentRating > 0 ? course.studentRating.toFixed(1) : "—"}

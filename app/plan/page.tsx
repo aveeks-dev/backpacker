@@ -1,24 +1,56 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { getAllCourses, type Course, type Meeting } from "@/lib/courses";
 import { SiteHeader } from "@/components/site-header";
 import { ScheduleGrid, getConflictCount } from "./_components/schedule-grid";
 import { usePlan } from "./_components/use-plan";
+import { GpaForecast } from "./_components/gpa-forecast";
+import { DistributionCoverage } from "./_components/distribution-coverage";
+import { ShareButton } from "./_components/share-button";
 
 const allCourses = getAllCourses();
 
 export default function PlanPage() {
-  const { ids, mounted, add, remove, clear } = usePlan();
+  return (
+    <Suspense fallback={null}>
+      <PlanPageInner />
+    </Suspense>
+  );
+}
+
+function PlanPageInner() {
+  const { ids: savedIds, mounted, add, remove, clear, replace } = usePlan();
+  const params = useSearchParams();
+
+  // If `?ids=` is in the URL, the user is viewing a *shared* plan. Show that
+  // instead of (or alongside, with a banner to import) the local one.
+  const sharedIdsRaw = params.get("ids");
+  const sharedIds = useMemo<string[] | null>(() => {
+    if (!sharedIdsRaw) return null;
+    return Array.from(
+      new Set(sharedIdsRaw.split(",").map((s) => s.trim()).filter(Boolean)),
+    );
+  }, [sharedIdsRaw]);
+
+  const isViewingShared = sharedIds !== null;
+  const ids = isViewingShared ? sharedIds! : savedIds;
 
   const planCourses = useMemo<Course[]>(
-    () => ids.map((id) => allCourses.find((c) => c.id === id)).filter(Boolean) as Course[],
+    () =>
+      ids
+        .map((id) => allCourses.find((c) => c.id === id))
+        .filter((c): c is Course => Boolean(c)),
     [ids],
   );
 
   const totalCredits = planCourses.reduce((sum, c) => sum + c.credits, 0);
-  const totalWorkload = planCourses.reduce((sum, c) => sum + c.workloadHoursPerWeek, 0);
+  const totalWorkload = planCourses.reduce(
+    (sum, c) => sum + c.workloadHoursPerWeek,
+    0,
+  );
   const conflicts = getConflictCount(planCourses);
   const avgDifficulty =
     planCourses.length > 0
@@ -29,26 +61,35 @@ export default function PlanPage() {
     <div className="flex min-h-full flex-col bg-white">
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
+        {isViewingShared && (
+          <SharedBanner sharedIds={sharedIds!} savedIds={savedIds} onImport={replace} />
+        )}
+
         <div className="mb-6 flex items-baseline justify-between">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">My plan</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              {isViewingShared ? "Shared plan" : "My plan"}
+            </h1>
             <p className="mt-1 text-sm text-slate-500">
-              {mounted
+              {mounted || isViewingShared
                 ? `${planCourses.length} course${planCourses.length === 1 ? "" : "s"} · ${totalCredits} credits · ${totalWorkload} hrs/wk`
                 : "Loading…"}
             </p>
           </div>
-          {planCourses.length > 0 && (
-            <button
-              onClick={clear}
-              className="text-sm text-slate-500 hover:text-slate-900"
-            >
-              Clear plan
-            </button>
-          )}
+          <div className="flex items-center gap-2">
+            {!isViewingShared && <ShareButton ids={savedIds} />}
+            {!isViewingShared && planCourses.length > 0 && (
+              <button
+                onClick={clear}
+                className="text-sm text-slate-500 hover:text-slate-900"
+              >
+                Clear plan
+              </button>
+            )}
+          </div>
         </div>
 
-        {mounted && planCourses.length === 0 ? (
+        {(mounted || isViewingShared) && planCourses.length === 0 ? (
           <EmptyState onAdd={add} />
         ) : (
           <>
@@ -59,11 +100,28 @@ export default function PlanPage() {
               conflicts={conflicts}
             />
 
-            <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
-              <ScheduleGrid courses={planCourses} />
-              <div>
-                <CoursePicker existing={ids} onAdd={add} />
-                <PlanList courses={planCourses} onRemove={remove} />
+            <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
+              <div className="space-y-6">
+                <ScheduleGrid courses={planCourses} />
+                {planCourses.length > 1 && (
+                  <Link
+                    href={`/compare?ids=${planCourses.map((c) => c.id).join(",")}`}
+                    className="inline-flex items-center text-sm text-slate-500 hover:text-slate-900"
+                  >
+                    → Compare these courses side-by-side
+                  </Link>
+                )}
+              </div>
+              <div className="space-y-4">
+                {!isViewingShared && (
+                  <CoursePicker existing={savedIds} onAdd={add} />
+                )}
+                <GpaForecast courses={planCourses} />
+                <DistributionCoverage courses={planCourses} />
+                <PlanList
+                  courses={planCourses}
+                  onRemove={isViewingShared ? undefined : remove}
+                />
               </div>
             </div>
           </>
@@ -73,18 +131,62 @@ export default function PlanPage() {
   );
 }
 
+function SharedBanner({
+  sharedIds,
+  savedIds,
+  onImport,
+}: {
+  sharedIds: string[];
+  savedIds: string[];
+  onImport: (next: string[]) => void;
+}) {
+  const same =
+    sharedIds.length === savedIds.length &&
+    sharedIds.every((id) => savedIds.includes(id));
+
+  return (
+    <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 p-3 text-sm">
+      <span className="text-slate-700">
+        Viewing a <strong>shared plan</strong> from someone else.
+        {same && " It matches your saved plan."}
+      </span>
+      {!same && (
+        <div className="flex gap-2">
+          <button
+            onClick={() => onImport(sharedIds)}
+            className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800"
+          >
+            Save as my plan
+          </button>
+          <Link
+            href="/plan"
+            className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50"
+          >
+            Back to mine
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function EmptyState({ onAdd }: { onAdd: (id: string) => void }) {
   return (
     <div className="rounded-md border border-slate-200 bg-white p-10">
       <h2 className="text-lg font-medium">Start by adding a course.</h2>
       <p className="mt-1 text-sm text-slate-500">
-        Add 3–6 courses to see your weekly schedule, total workload, and any time conflicts.
+        Add 3–6 courses to see your weekly schedule, projected GPA, distribution
+        coverage, and any time conflicts.
       </p>
       <div className="mt-6 max-w-sm">
         <CoursePicker existing={[]} onAdd={onAdd} autoFocus />
       </div>
       <p className="mt-6 text-sm text-slate-500">
-        Or <Link href="/courses" className="underline hover:text-slate-900">browse all courses</Link> and use the &ldquo;Add to plan&rdquo; button.
+        Or{" "}
+        <Link href="/courses" className="underline hover:text-slate-900">
+          browse all courses
+        </Link>{" "}
+        and use the &ldquo;Add to plan&rdquo; button.
       </p>
     </div>
   );
@@ -102,10 +204,18 @@ function SummaryCards({
   conflicts: number;
 }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-4">
-      <Stat label="Credits" value={credits.toString()} />
-      <Stat label="Workload" value={`${workload}`} unit="hrs/wk" />
-      <Stat label="Avg difficulty" value={avgDifficulty ? avgDifficulty.toFixed(1) : "—"} unit="of 5" />
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <Stat label="Credits" value={credits.toString()} unit={credits >= 12 ? "full-time" : credits >= 18 ? "overload" : "—"} />
+      <Stat
+        label="Workload"
+        value={`${workload}`}
+        unit={`hrs/wk · ${workloadVerdict(workload)}`}
+      />
+      <Stat
+        label="Avg difficulty"
+        value={avgDifficulty ? avgDifficulty.toFixed(1) : "—"}
+        unit="of 5"
+      />
       <Stat
         label="Conflicts"
         value={conflicts.toString()}
@@ -114,6 +224,14 @@ function SummaryCards({
       />
     </div>
   );
+}
+
+function workloadVerdict(hrs: number): string {
+  if (hrs === 0) return "—";
+  if (hrs < 30) return "light";
+  if (hrs < 45) return "moderate";
+  if (hrs < 55) return "heavy";
+  return "very heavy";
 }
 
 function Stat({
@@ -153,15 +271,17 @@ function CoursePicker({
 
   const matches = useMemo(() => {
     if (!query) return [];
-    const q = query.toLowerCase();
+    const q = query.toLowerCase().replace(/\s+/g, "");
     return allCourses
       .filter((c) => !existing.includes(c.id))
-      .filter((c) => `${c.code} ${c.title}`.toLowerCase().includes(q))
+      .filter((c) =>
+        `${c.code} ${c.title}`.toLowerCase().replace(/\s+/g, "").includes(q),
+      )
       .slice(0, 8);
   }, [query, existing]);
 
   return (
-    <div ref={wrapperRef} className="relative mb-4">
+    <div ref={wrapperRef} className="relative">
       <input
         autoFocus={autoFocus}
         value={query}
@@ -196,7 +316,13 @@ function CoursePicker({
   );
 }
 
-function PlanList({ courses, onRemove }: { courses: Course[]; onRemove: (id: string) => void }) {
+function PlanList({
+  courses,
+  onRemove,
+}: {
+  courses: Course[];
+  onRemove?: (id: string) => void;
+}) {
   if (courses.length === 0) return null;
   return (
     <ul className="divide-y divide-slate-100 rounded-md border border-slate-200 bg-white">
@@ -211,18 +337,24 @@ function PlanList({ courses, onRemove }: { courses: Course[]; onRemove: (id: str
                 {c.code}
               </Link>
               <span className="text-xs text-slate-400">·</span>
-              <span className="text-xs text-slate-500">{c.credits} cr · {c.workloadHoursPerWeek} hrs/wk</span>
+              <span className="text-xs text-slate-500">
+                {c.credits} cr · {c.workloadHoursPerWeek || "—"} hrs/wk
+              </span>
             </div>
             <div className="truncate text-sm text-slate-700">{c.title}</div>
-            <div className="text-xs text-slate-500">{describeMeetings(c.sections[0]?.meetings ?? [])}</div>
+            <div className="text-xs text-slate-500">
+              {describeMeetings(c.sections[0]?.meetings ?? [])}
+            </div>
           </div>
-          <button
-            onClick={() => onRemove(c.id)}
-            className="ml-2 text-xs text-slate-400 hover:text-rose-600"
-            aria-label={`Remove ${c.code}`}
-          >
-            Remove
-          </button>
+          {onRemove && (
+            <button
+              onClick={() => onRemove(c.id)}
+              className="ml-2 text-xs text-slate-400 hover:text-rose-600"
+              aria-label={`Remove ${c.code}`}
+            >
+              Remove
+            </button>
+          )}
         </li>
       ))}
     </ul>
@@ -230,5 +362,8 @@ function PlanList({ courses, onRemove }: { courses: Course[]; onRemove: (id: str
 }
 
 function describeMeetings(meetings: Meeting[]): string {
-  return meetings.map((m) => `${m.days.join("")} ${m.start}–${m.end}`).join(", ");
+  if (meetings.length === 0) return "Schedule TBD";
+  return meetings
+    .map((m) => `${m.days.join("")} ${m.start}–${m.end}`)
+    .join(", ");
 }

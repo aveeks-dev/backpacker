@@ -47,5 +47,9 @@ export function usePlan() {
     update([]);
   }
 
-  return { ids, mounted, add, remove, clear };
+  function replace(next: string[]) {
+    update(Array.from(new Set(next)));
+  }
+
+  return { ids, mounted, add, remove, clear, replace };
 }

@@ -111,6 +111,7 @@ export type CourseFilters = {
   maxWorkload?: string;
   fulfills?: string;
   hasData?: string;
+  level?: string;
 };
 
 export function filterCourses(all: Course[], filters: CourseFilters): Course[] {
@@ -120,6 +121,15 @@ export function filterCourses(all: Course[], filters: CourseFilters): Course[] {
     if (filters.maxWorkload && c.workloadHoursPerWeek > Number(filters.maxWorkload)) return false;
     if (filters.fulfills && !c.fulfills.includes(filters.fulfills)) return false;
     if (filters.hasData === "curated" && c.dataQuality !== "curated") return false;
+    if (filters.level) {
+      const target = parseInt(filters.level, 10);
+      const lvl = getCourseLevelGroup(c);
+      if (target >= 600) {
+        if (lvl < 600) return false;
+      } else if (lvl !== target) {
+        return false;
+      }
+    }
     if (filters.q) {
       const q = filters.q.toLowerCase().replace(/\s+/g, "");
       const haystack = `${c.code} ${c.title} ${c.tags.join(" ")}`.toLowerCase().replace(/\s+/g, "");
@@ -137,7 +147,9 @@ export type SortKey =
   | "difficulty-desc"
   | "median-desc"
   | "median-asc"
-  | "rating-desc";
+  | "rating-desc"
+  | "a-percent-desc"
+  | "a-percent-asc";
 
 export const SORT_LABELS: Record<SortKey, string> = {
   "code-asc": "Course code (A→Z)",
@@ -148,6 +160,8 @@ export const SORT_LABELS: Record<SortKey, string> = {
   "median-desc": "Median grade — high first",
   "median-asc": "Median grade — low first",
   "rating-desc": "Rating — high first",
+  "a-percent-desc": "% A grades — high first",
+  "a-percent-asc": "% A grades — low first",
 };
 
 export function sortCourses(list: Course[], key: SortKey): Course[] {
@@ -161,6 +175,10 @@ export function sortCourses(list: Course[], key: SortKey): Course[] {
       case "median-desc": return (b.grades?.mean ?? 0) - (a.grades?.mean ?? 0);
       case "median-asc": return (a.grades?.mean ?? 0) - (b.grades?.mean ?? 0);
       case "rating-desc": return b.studentRating - a.studentRating;
+      case "a-percent-desc":
+        return aGradePercent(b.grades?.buckets ?? {}) - aGradePercent(a.grades?.buckets ?? {});
+      case "a-percent-asc":
+        return aGradePercent(a.grades?.buckets ?? {}) - aGradePercent(b.grades?.buckets ?? {});
       case "code-asc":
       default: return a.code.localeCompare(b.code);
     }
@@ -230,4 +248,63 @@ export function difficultyLabel(d: number): string {
   if (d <= 3) return "Moderate";
   if (d <= 4) return "Hard";
   return "Very hard";
+}
+
+// ---------------------------------------------------------------------
+// Course level / number helpers
+// ---------------------------------------------------------------------
+
+export function getCourseLevel(course: Course): number {
+  const m = course.code.match(/\b(\d{2,4})/);
+  if (!m) return 0;
+  return Math.floor(parseInt(m[1], 10) / 100) * 100;
+}
+
+export function getCourseLevelGroup(course: Course): number {
+  const lvl = getCourseLevel(course);
+  return lvl >= 600 ? 600 : lvl;
+}
+
+export function levelLabel(level: number): string {
+  if (level === 0) return "Unnumbered";
+  if (level <= 100) return "100 — Introductory";
+  if (level <= 200) return "200 — Lower division";
+  if (level <= 300) return "300 — Upper division";
+  if (level <= 400) return "400 — Advanced undergrad";
+  if (level <= 500) return "500 — Capstone / Grad";
+  return "600+ — Graduate";
+}
+
+export const LEVEL_OPTIONS: Array<{ value: string; label: string }> = [
+  { value: "100", label: "100 — Intro" },
+  { value: "200", label: "200 — Lower" },
+  { value: "300", label: "300 — Upper" },
+  { value: "400", label: "400 — Upper" },
+  { value: "500", label: "500 — Capstone / Grad" },
+  { value: "600", label: "600+ — Graduate" },
+];
+
+// ---------------------------------------------------------------------
+// A-grade percentage and similar courses
+// ---------------------------------------------------------------------
+
+export function aGradePercent(buckets: Partial<Record<GradeLetter, number>>): number {
+  return (buckets["A+"] ?? 0) + (buckets["A"] ?? 0) + (buckets["A-"] ?? 0);
+}
+
+export function getSimilarCourses(course: Course, n = 6): Course[] {
+  const target = getCourseLevel(course);
+  return courses
+    .filter((c) => c.id !== course.id && c.department === course.department)
+    .map((c) => ({ c, d: Math.abs(getCourseLevel(c) - target) }))
+    .sort((a, b) => {
+      if (a.d !== b.d) return a.d - b.d;
+      return a.c.code.localeCompare(b.c.code);
+    })
+    .slice(0, n)
+    .map((x) => x.c);
+}
+
+export function getCoursesById(ids: string[]): Course[] {
+  return ids.map((id) => getCourse(id)).filter((c): c is Course => !!c);
 }

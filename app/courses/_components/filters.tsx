@@ -2,7 +2,12 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SORT_LABELS, type FulfillsGroup, type SortKey } from "@/lib/courses";
+import {
+  LEVEL_OPTIONS,
+  SORT_LABELS,
+  type FulfillsGroup,
+  type SortKey,
+} from "@/lib/courses";
 
 const SORT_OPTIONS = Object.keys(SORT_LABELS) as SortKey[];
 
@@ -21,6 +26,7 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
   const fulfills = params.get("fulfills") ?? "";
   const credits = params.get("credits") ?? "";
   const maxWorkload = params.get("maxWorkload") ?? "";
+  const level = params.get("level") ?? "";
   const sort = params.get("sort") ?? "code-asc";
   const hasData = params.get("hasData") ?? "";
 
@@ -52,7 +58,7 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
   }
 
   const hasFilters =
-    q || department || credits || maxWorkload || fulfills || hasData || sort !== "code-asc";
+    q || department || credits || maxWorkload || fulfills || hasData || level || sort !== "code-asc";
 
   return (
     <div className="space-y-3">
@@ -91,6 +97,16 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
           <option value="">All subjects</option>
           {departments.map((d) => (
             <option key={d} value={d}>{d}</option>
+          ))}
+        </Select>
+        <Select
+          value={level}
+          onChange={(v) => setParam("level", v)}
+          ariaLabel="Course level"
+        >
+          <option value="">All levels</option>
+          {LEVEL_OPTIONS.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </Select>
         <Select
