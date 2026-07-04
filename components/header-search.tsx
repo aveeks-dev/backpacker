@@ -22,8 +22,8 @@ export function HeaderSearch() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // On /courses the page has its own (richer) search; hide this one.
-  if (pathname === "/courses") return <div className="flex-1" />;
+  // The homepage and /courses have their own, more prominent search inputs.
+  if (pathname === "/" || pathname === "/courses") return <div className="flex-1" />;
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,7 +37,8 @@ export function HeaderSearch() {
         type="search"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Quick find: EECS 280, ANTHRO 101 …  (press /)"
+        placeholder="Find a course — press /"
+        aria-label="Search courses"
         className="w-full rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
       />
     </form>

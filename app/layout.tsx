@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Backpacker — Smarter UMich course planning",
+  title: {
+    default: "Backpacker — UMich course planning",
+    template: "%s · Backpacker",
+  },
   description:
-    "Workload data, grade distributions, and professor reviews for UMich courses. Build your semester in minutes.",
+    "Compare University of Michigan courses on workload, difficulty, and grade distributions. Build a conflict-free semester and forecast your GPA.",
 };
 
 export default function RootLayout({
@@ -28,7 +33,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col bg-white text-slate-900">
+        <SiteHeader />
+        <div className="flex flex-1 flex-col">{children}</div>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

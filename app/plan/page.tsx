@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import { getAllCourses, type Course, type Meeting } from "@/lib/courses";
-import { SiteHeader } from "@/components/site-header";
 import { ScheduleGrid, getConflictCount } from "./_components/schedule-grid";
-import { usePlan } from "./_components/use-plan";
+import { usePlan } from "@/lib/use-plan";
 import { GpaForecast } from "./_components/gpa-forecast";
 import { DistributionCoverage } from "./_components/distribution-coverage";
 import { ShareButton } from "./_components/share-button";
@@ -58,9 +57,7 @@ function PlanPageInner() {
       : 0;
 
   return (
-    <div className="flex min-h-full flex-col bg-white">
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
+    <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
         {isViewingShared && (
           <SharedBanner sharedIds={sharedIds!} savedIds={savedIds} onImport={replace} />
         )}
@@ -126,8 +123,7 @@ function PlanPageInner() {
             </div>
           </>
         )}
-      </main>
-    </div>
+    </main>
   );
 }
 
@@ -205,7 +201,11 @@ function SummaryCards({
 }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      <Stat label="Credits" value={credits.toString()} unit={credits >= 12 ? "full-time" : credits >= 18 ? "overload" : "—"} />
+      <Stat
+        label="Credits"
+        value={credits.toString()}
+        unit={credits >= 18 ? "overload" : credits >= 12 ? "full-time" : "below full-time"}
+      />
       <Stat
         label="Workload"
         value={`${workload}`}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getAllCourses,
@@ -14,7 +15,6 @@ import {
   type GradeLetter,
   type Section,
 } from "@/lib/courses";
-import { SiteHeader } from "@/components/site-header";
 import { AddToPlanButton } from "./_components/add-to-plan";
 import { SimilarCourses } from "./_components/similar-courses";
 
@@ -23,6 +23,22 @@ export function generateStaticParams() {
   return getAllCourses()
     .filter((c) => c.dataQuality === "curated")
     .map((c) => ({ id: c.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const course = getCourse(id);
+  if (!course) return { title: "Course not found" };
+  return {
+    title: `${course.code} — ${course.title}`,
+    description:
+      course.description ||
+      `Workload, difficulty, and grade outcomes for ${course.code} (${course.title}) at the University of Michigan.`,
+  };
 }
 
 export default async function CourseDetailPage({
@@ -42,200 +58,193 @@ export default async function CourseDetailPage({
   const aPct = course.grades ? aGradePercent(course.grades.buckets) : null;
 
   return (
-    <div className="flex min-h-full flex-col bg-white">
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-10">
-        <Link
-          href="/courses"
-          className="mb-6 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900"
-        >
-          ← All courses
-        </Link>
+    <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-10">
+      <Link
+        href="/courses"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900"
+      >
+        ← All courses
+      </Link>
 
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 text-sm">
-              <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
-              <span className="text-slate-400">·</span>
-              <span className="text-slate-500">{course.department}</span>
-              <span className="text-slate-400">·</span>
-              <span className="text-slate-500">{course.credits} credits</span>
-              <span className="text-slate-400">·</span>
-              <span className="text-slate-500">{levelLabel(level)}</span>
-              {isEstimated && (
-                <span className="ml-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-800">
-                  Estimated metrics
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
+            <span className="text-slate-400">·</span>
+            <span className="text-slate-500">{course.credits} credits</span>
+            <span className="text-slate-400">·</span>
+            <span className="text-slate-500">{levelLabel(level)}</span>
+            {course.studentRating > 0 && (
+              <>
+                <span className="text-slate-400">·</span>
+                <span className="text-slate-700" title="Average student rating">
+                  ★ {course.studentRating.toFixed(1)}
                 </span>
-              )}
-            </div>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">{course.title}</h1>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link
-              href={`/compare?ids=${course.id}`}
-              className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
-            >
-              Compare
-            </Link>
-            <AddToPlanButton courseId={course.id} />
-          </div>
-        </div>
-
-        {course.description && (
-          <p className="mt-4 max-w-2xl text-slate-600">{course.description}</p>
-        )}
-
-        {course.fulfills.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {course.fulfills.map((f) => (
-              <span
-                key={f}
-                className="rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600"
-              >
-                {f}
+              </>
+            )}
+            {isEstimated && (
+              <span className="ml-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-800">
+                Estimated metrics
               </span>
-            ))}
+            )}
           </div>
-        )}
-
-        {isEstimated && (
-          <div className="mt-6 rounded-md border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
-            <strong>Estimated data.</strong> Workload, difficulty, and grade
-            distribution shown below are derived from course level + subject
-            heuristics, not real student responses. Real metrics will populate
-            once the authenticated Atlas scraper runs (planned).
-          </div>
-        )}
-
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <BigStat
-            label="Workload"
-            value={course.workloadHoursPerWeek > 0 ? course.workloadHoursPerWeek.toString() : "—"}
-            unit="hrs / week"
-            comparison={
-              deptAvg && course.workloadHoursPerWeek > 0
-                ? compareLine(course.workloadHoursPerWeek, deptAvg.workload, course.department, "hrs", false)
-                : undefined
-            }
-          />
-          <BigStat
-            label="Difficulty"
-            value={`${course.difficulty}/5`}
-            unit={difficultyLabel(course.difficulty)}
-            comparison={
-              deptAvg
-                ? compareLine(course.difficulty, deptAvg.difficulty, course.department, "", false)
-                : undefined
-            }
-          />
-          <BigStat
-            label="Median grade"
-            value={course.grades?.median ?? "—"}
-            unit={course.grades ? `mean ${course.grades.mean.toFixed(1)} GPA` : "no data"}
-            comparison={
-              deptAvg && course.grades
-                ? compareLine(course.grades.mean, deptAvg.meanGpa, course.department, "GPA", true)
-                : undefined
-            }
-          />
-          <BigStat
-            label="% earning A"
-            value={aPct !== null ? `${Math.round(aPct)}%` : "—"}
-            unit={aPct !== null ? "A+, A, or A−" : "no data"}
-          />
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight">{course.title}</h1>
         </div>
+        <div className="flex items-center gap-2">
+          <Link
+            href={`/compare?ids=${course.id}`}
+            className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+          >
+            Compare
+          </Link>
+          <AddToPlanButton courseId={course.id} />
+        </div>
+      </div>
 
-        {course.grades && (
-          <section className="mt-10">
-            <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Grade distribution
-            </h2>
-            <p className="mb-4 text-xs text-slate-500">
-              Median {course.grades.median} · Mean {course.grades.mean.toFixed(2)} GPA
-              {!isCurated && " · Estimated"}
-            </p>
-            <GradeChart buckets={course.grades.buckets} median={course.grades.median} />
-          </section>
-        )}
+      {course.description && (
+        <p className="mt-4 max-w-2xl text-slate-600">{course.description}</p>
+      )}
 
-        {course.prereqs.length > 0 && (
-          <section className="mt-8">
-            <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Prerequisites
-            </h2>
-            <ul className="text-sm text-slate-700">
-              {course.prereqs.map((p) => (
-                <li key={p}>· {p}</li>
-              ))}
-            </ul>
-          </section>
-        )}
+      {course.fulfills.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {course.fulfills.map((f) => (
+            <span
+              key={f}
+              className="rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600"
+            >
+              {f}
+            </span>
+          ))}
+        </div>
+      )}
 
-        {course.sections.length > 0 ? (
-          <section className="mt-10">
-            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Sections
-            </h2>
-            <div className="overflow-x-auto rounded-md border border-slate-200">
-              <table className="w-full min-w-[480px] text-sm">
-                <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-                    <th className="px-4 py-3 font-medium">Section</th>
-                    <th className="px-4 py-3 font-medium">Professor</th>
-                    <th className="px-4 py-3 font-medium">Meets</th>
-                    <th className="px-4 py-3 font-medium">Enrollment</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {course.sections.map((s) => (
-                    <SectionRow key={s.id} section={s} />
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        ) : (
-          <section className="mt-10 rounded-md border border-dashed border-slate-200 p-6 text-center text-sm text-slate-500">
-            Section schedule will appear here once the authenticated scraper runs.
-          </section>
-        )}
+      {isEstimated && (
+        <div className="mt-6 rounded-md border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
+          <strong>Estimated data.</strong> The metrics below are derived from
+          this course&apos;s level and subject, not from verified student
+          outcomes. Treat them as a starting point, not a promise.
+        </div>
+      )}
 
-        <SimilarCourses similar={similar} />
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <BigStat
+          label="Workload"
+          value={course.workloadHoursPerWeek > 0 ? course.workloadHoursPerWeek.toString() : "—"}
+          unit="hrs / week"
+          comparison={
+            deptAvg && course.workloadHoursPerWeek > 0
+              ? compareLine(course.workloadHoursPerWeek, deptAvg.workload, course.department, "hrs")
+              : undefined
+          }
+        />
+        <BigStat
+          label="Difficulty"
+          value={`${course.difficulty}/5`}
+          unit={difficultyLabel(course.difficulty)}
+          comparison={
+            deptAvg
+              ? compareLine(course.difficulty, deptAvg.difficulty, course.department, "")
+              : undefined
+          }
+        />
+        <BigStat
+          label="Median grade"
+          value={course.grades?.median ?? "—"}
+          unit={course.grades ? `mean ${course.grades.mean.toFixed(1)} GPA` : "no data yet"}
+          comparison={
+            deptAvg && course.grades
+              ? compareLine(course.grades.mean, deptAvg.meanGpa, course.department, "GPA")
+              : undefined
+          }
+        />
+        <BigStat
+          label="% earning A"
+          value={aPct !== null ? `${Math.round(aPct)}%` : "—"}
+          unit={aPct !== null ? "A+, A, or A−" : "no data yet"}
+        />
+      </div>
 
-        <section className="mt-10 rounded-md border border-slate-200 bg-slate-50 p-5">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            How to read these numbers
+      {course.grades && (
+        <section className="mt-10">
+          <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Grade distribution
           </h2>
-          <ul className="space-y-1.5 text-sm text-slate-600">
-            <li>
-              <strong>Workload</strong> is total hours/week — lecture, problem
-              sets, projects, and exam prep. A 3-credit lecture at 5 hrs/wk is
-              light; 15+ is heavy.
-            </li>
-            <li>
-              <strong>Difficulty (1–5)</strong> is conceptual rigor and pace,
-              not just workload. A heavy class can still be a 2 if the concepts
-              are familiar.
-            </li>
-            <li>
-              <strong>Median grade</strong> is the middle student&apos;s final
-              letter; <strong>mean GPA</strong> averages all students&apos;
-              grade points.
-            </li>
-            <li>
-              <strong>% earning A</strong> is the share of students who got
-              A+, A, or A−. Better signal than median for &ldquo;is this an
-              easy A?&rdquo;.
-            </li>
-            <li>
-              <strong>Comparisons</strong> are against this subject&apos;s
-              average — context that helps you decide whether a number is
-              actually high or low for the discipline.
-            </li>
+          <p className="mb-4 text-xs text-slate-500">
+            Median {course.grades.median} · Mean {course.grades.mean.toFixed(2)} GPA
+            {!isCurated && " · Estimated"}
+          </p>
+          <GradeChart buckets={course.grades.buckets} median={course.grades.median} />
+        </section>
+      )}
+
+      {course.prereqs.length > 0 && (
+        <section className="mt-8">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Prerequisites
+          </h2>
+          <ul className="text-sm text-slate-700">
+            {course.prereqs.map((p) => (
+              <li key={p}>· {p}</li>
+            ))}
           </ul>
         </section>
-      </main>
-    </div>
+      )}
+
+      {course.sections.length > 0 && (
+        <section className="mt-10">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Sections
+          </h2>
+          <div className="overflow-x-auto rounded-md border border-slate-200">
+            <table className="w-full min-w-[480px] text-sm">
+              <thead>
+                <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+                  <th className="px-4 py-3 font-medium">Section</th>
+                  <th className="px-4 py-3 font-medium">Professor</th>
+                  <th className="px-4 py-3 font-medium">Meets</th>
+                  <th className="px-4 py-3 font-medium">Enrollment</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {course.sections.map((s) => (
+                  <SectionRow key={s.id} section={s} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      <SimilarCourses similar={similar} />
+
+      <details className="group mt-10 rounded-md border border-slate-200 p-4">
+        <summary className="cursor-pointer select-none text-sm font-medium text-slate-700 marker:text-slate-400">
+          How to read these numbers
+        </summary>
+        <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
+          <li>
+            <strong>Workload</strong> — total hours/week including lecture,
+            assignments, and exam prep.
+          </li>
+          <li>
+            <strong>Difficulty (1–5)</strong> — conceptual rigor and pace, not
+            just hours.
+          </li>
+          <li>
+            <strong>Median grade</strong> — the middle student&apos;s final letter;{" "}
+            <strong>mean GPA</strong> averages everyone&apos;s grade points.
+          </li>
+          <li>
+            <strong>% earning A</strong> — share of students finishing with A+,
+            A, or A−.
+          </li>
+          <li>
+            Comparisons are against this subject&apos;s average, so you can tell
+            whether a number is high <em>for the discipline</em>.
+          </li>
+        </ul>
+      </details>
+    </main>
   );
 }
 
@@ -285,18 +294,11 @@ function GradeChart({
   );
 }
 
-function compareLine(
-  value: number,
-  avg: number,
-  dept: string,
-  unit: string,
-  higherIsBetter: boolean,
-): string {
+function compareLine(value: number, avg: number, dept: string, unit: string): string {
   const diff = value - avg;
   const absPct = avg === 0 ? 0 : Math.round((Math.abs(diff) / avg) * 100);
   if (Math.abs(diff) < 0.05 || absPct < 3) return `≈ ${dept} avg`;
   const direction = diff > 0 ? "above" : "below";
-  const _ = higherIsBetter;
   return `${direction} ${dept} avg (${avg.toFixed(unit === "GPA" ? 2 : 1)}${unit ? " " + unit : ""})`;
 }
 

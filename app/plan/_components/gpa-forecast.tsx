@@ -73,8 +73,7 @@ export function GpaForecast({ courses }: { courses: Course[] }) {
       </div>
 
       <p className="mt-3 text-[11px] text-slate-500">
-        Estimated by sampling each course&apos;s grade distribution 2,000 times.
-        Real GPA depends on instructor, section, and your performance.
+        Simulated from each course&apos;s historical grade distribution, weighted by credits.
       </p>
     </div>
   );

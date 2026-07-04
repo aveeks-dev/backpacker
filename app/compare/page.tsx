@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   aGradePercent,
   difficultyLabel,
@@ -12,8 +13,13 @@ import {
   type GradeLetter,
 } from "@/lib/courses";
 import { expectedGpaForCourse } from "@/lib/gpa";
-import { SiteHeader } from "@/components/site-header";
 import { AddCoursePicker } from "./_components/add-course-picker";
+
+export const metadata: Metadata = {
+  title: "Compare courses",
+  description:
+    "Compare University of Michigan courses side-by-side on workload, difficulty, grade distributions, and expected GPA.",
+};
 
 const MAX_COMPARE = 4;
 
@@ -31,42 +37,39 @@ export default async function ComparePage({ searchParams }: { searchParams: Sear
   }));
 
   return (
-    <div className="flex min-h-full flex-col bg-white">
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
-        <div className="mb-4 flex items-baseline justify-between">
-          <h1 className="text-2xl font-semibold tracking-tight">Compare</h1>
+    <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
+      <div className="mb-4 flex items-baseline justify-between">
+        <h1 className="text-2xl font-semibold tracking-tight">Compare</h1>
+        {courses.length > 0 && (
           <span className="text-sm text-slate-500">
-            {courses.length} of {MAX_COMPARE} slots used
+            {courses.length} of {MAX_COMPARE} courses
           </span>
-        </div>
-        <p className="mb-6 max-w-2xl text-sm text-slate-600">
-          Put courses side-by-side to weigh workload against grades, difficulty
-          against rating. Useful when picking between two electives or
-          choosing the lighter alternative to a heavy core class. The cell that
-          &ldquo;wins&rdquo; each row is highlighted.
-        </p>
-
-        <div className="mb-6 flex items-center gap-3">
-          <AddCoursePicker
-            existing={ids}
-            allCourses={allCoursesLite}
-            disabled={courses.length >= MAX_COMPARE}
-          />
-          {courses.length > 0 && (
-            <Link href="/compare" className="text-sm text-slate-500 hover:text-slate-900">
-              Clear
-            </Link>
-          )}
-        </div>
-
-        {courses.length === 0 ? (
-          <EmptyState allCourses={allCoursesLite} />
-        ) : (
-          <CompareTable courses={courses} />
         )}
-      </main>
-    </div>
+      </div>
+      <p className="mb-6 max-w-2xl text-sm text-slate-600">
+        Weigh up to four courses side-by-side. The better value in each row is
+        highlighted, so trade-offs are visible at a glance.
+      </p>
+
+      <div className="mb-6 flex items-center gap-3">
+        <AddCoursePicker
+          existing={ids}
+          allCourses={allCoursesLite}
+          disabled={courses.length >= MAX_COMPARE}
+        />
+        {courses.length > 0 && (
+          <Link href="/compare" className="text-sm text-slate-500 hover:text-slate-900">
+            Clear
+          </Link>
+        )}
+      </div>
+
+      {courses.length === 0 ? (
+        <EmptyState allCourses={allCoursesLite} />
+      ) : (
+        <CompareTable courses={courses} />
+      )}
+    </main>
   );
 }
 
@@ -216,12 +219,14 @@ function CompareTable({ courses }: { courses: Course[] }) {
               return e !== null ? e.toFixed(2) : "—";
             }}
           />
-          <Row
-            label="Student rating"
-            courses={courses}
-            highlight={extremes(courses, (c) => c.studentRating, "high")}
-            cell={(c) => (c.studentRating > 0 ? c.studentRating.toFixed(1) : "—")}
-          />
+          {courses.some((c) => c.studentRating > 0) && (
+            <Row
+              label="Student rating"
+              courses={courses}
+              highlight={extremes(courses, (c) => c.studentRating, "high")}
+              cell={(c) => (c.studentRating > 0 ? c.studentRating.toFixed(1) : "—")}
+            />
+          )}
           <Row
             label="Distributions"
             courses={courses}

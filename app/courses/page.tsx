@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   aGradePercent,
   filterCourses,
@@ -11,7 +12,12 @@ import {
   type SortKey,
 } from "@/lib/courses";
 import { Filters } from "./_components/filters";
-import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  title: "Courses",
+  description:
+    "Browse and filter every University of Michigan course by subject, level, credits, workload, and grade outcomes.",
+};
 
 const PAGE_SIZE = 50;
 
@@ -47,71 +53,68 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
   const curatedCount = all.filter((c) => c.dataQuality === "curated").length;
 
   return (
-    <div className="flex min-h-full flex-col bg-white">
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
-        <div className="mb-6 flex items-baseline justify-between">
-          <h1 className="text-2xl font-semibold tracking-tight">Courses</h1>
-          <span className="text-sm text-slate-500">
-            {sorted.length.toLocaleString()} of {all.length.toLocaleString()}
-            {activeBits.length ? ` · ${activeBits.join(" · ")}` : ""}
-          </span>
+    <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
+      <div className="mb-6 flex items-baseline justify-between">
+        <h1 className="text-2xl font-semibold tracking-tight">Courses</h1>
+        <span className="text-sm text-slate-500">
+          {sorted.length.toLocaleString()} of {all.length.toLocaleString()}
+          {activeBits.length ? ` · ${activeBits.join(" · ")}` : ""}
+        </span>
+      </div>
+
+      <Filters
+        departments={departments}
+        fulfillsGroups={fulfillsGroups}
+        curatedCount={curatedCount}
+      />
+
+      {sorted.length === 0 ? (
+        <div className="mt-6 rounded-md border border-slate-200 bg-white p-12 text-center text-sm text-slate-500">
+          No courses match. Try clearing some filters.
         </div>
-
-        <Filters
-          departments={departments}
-          fulfillsGroups={fulfillsGroups}
-          curatedCount={curatedCount}
-        />
-
-        {sorted.length === 0 ? (
-          <div className="mt-6 rounded-md border border-slate-200 bg-white p-12 text-center text-sm text-slate-500">
-            No courses match. Try clearing some filters.
+      ) : (
+        <>
+          <div className="mt-6 overflow-x-auto rounded-md border border-slate-200">
+            <table className="w-full min-w-[600px] text-sm">
+              <thead>
+                <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+                  <th className="px-4 py-3 font-medium">Course</th>
+                  <th className="px-4 py-3 font-medium">Cr</th>
+                  <ColHeader sp={sp} sortKey={sortKey} asc="workload-asc" desc="workload-desc">
+                    Hrs/wk
+                  </ColHeader>
+                  <ColHeader sp={sp} sortKey={sortKey} asc="difficulty-asc" desc="difficulty-desc">
+                    Diff
+                  </ColHeader>
+                  <ColHeader sp={sp} sortKey={sortKey} asc="median-asc" desc="median-desc">
+                    Median
+                  </ColHeader>
+                  <ColHeader sp={sp} sortKey={sortKey} asc="a-percent-asc" desc="a-percent-desc">
+                    % A
+                  </ColHeader>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {visible.map((c) => (
+                  <CourseRow key={c.id} course={c} />
+                ))}
+              </tbody>
+            </table>
           </div>
-        ) : (
-          <>
-            <div className="mt-6 overflow-x-auto rounded-md border border-slate-200">
-              <table className="w-full min-w-[640px] text-sm">
-                <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-                    <th className="px-4 py-3 font-medium">Course</th>
-                    <th className="px-4 py-3 font-medium">Cr</th>
-                    <ColHeader sp={sp} sortKey={sortKey} asc="workload-asc" desc="workload-desc">
-                      Hrs/wk
-                    </ColHeader>
-                    <ColHeader sp={sp} sortKey={sortKey} asc="difficulty-asc" desc="difficulty-desc">
-                      Diff
-                    </ColHeader>
-                    <ColHeader sp={sp} sortKey={sortKey} asc="median-asc" desc="median-desc">
-                      Median
-                    </ColHeader>
-                    <ColHeader sp={sp} sortKey={sortKey} asc="a-percent-asc" desc="a-percent-desc">
-                      % A
-                    </ColHeader>
-                    <ColHeader sp={sp} sortKey={sortKey} desc="rating-desc">
-                      Rating
-                    </ColHeader>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {visible.map((c) => (
-                    <CourseRow key={c.id} course={c} />
-                  ))}
-                </tbody>
-              </table>
-            </div>
 
-            {totalPages > 1 && <Pagination sp={sp} page={page} totalPages={totalPages} />}
-          </>
-        )}
+          {totalPages > 1 && <Pagination sp={sp} page={page} totalPages={totalPages} />}
+        </>
+      )}
 
-        <p className="mt-6 text-xs text-slate-400">
-          {curatedCount} courses have full hand-reviewed data; the rest of the catalog shows
-          estimated metrics derived from course level. Click any column header to sort.
-          Tip: press <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd> anywhere to jump to the search bar.
-        </p>
-      </main>
-    </div>
+      <p className="mt-6 text-xs text-slate-400">
+        Courses marked{" "}
+        <span className="text-amber-700">est.</span> show estimates derived from
+        course level and subject; {curatedCount} courses have fully reviewed data.
+        Click a column header to sort, or press{" "}
+        <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd>{" "}
+        to search from anywhere.
+      </p>
+    </main>
   );
 }
 
@@ -165,8 +168,6 @@ function CourseRow({ course }: { course: Course }) {
         <Link href={`/courses/${course.id}`} className="block group">
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
-            <span className="text-slate-400">·</span>
-            <span className="text-xs text-slate-500">{course.department}</span>
             {isEstimated && (
               <span
                 className="text-[10px] text-amber-700"
@@ -212,9 +213,6 @@ function CourseRow({ course }: { course: Course }) {
       </td>
       <td className="px-4 py-3 text-right tabular-nums text-slate-700">
         {aPct !== null ? `${Math.round(aPct)}%` : <span className="text-slate-400">—</span>}
-      </td>
-      <td className="px-4 py-3 text-right tabular-nums text-slate-700">
-        {course.studentRating > 0 ? course.studentRating.toFixed(1) : "—"}
       </td>
     </tr>
   );

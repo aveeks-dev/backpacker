@@ -147,7 +147,6 @@ export type SortKey =
   | "difficulty-desc"
   | "median-desc"
   | "median-asc"
-  | "rating-desc"
   | "a-percent-desc"
   | "a-percent-asc";
 
@@ -159,7 +158,6 @@ export const SORT_LABELS: Record<SortKey, string> = {
   "difficulty-desc": "Difficulty — hard first",
   "median-desc": "Median grade — high first",
   "median-asc": "Median grade — low first",
-  "rating-desc": "Rating — high first",
   "a-percent-desc": "% A grades — high first",
   "a-percent-asc": "% A grades — low first",
 };
@@ -174,7 +172,6 @@ export function sortCourses(list: Course[], key: SortKey): Course[] {
       case "difficulty-desc": return b.difficulty - a.difficulty;
       case "median-desc": return (b.grades?.mean ?? 0) - (a.grades?.mean ?? 0);
       case "median-asc": return (a.grades?.mean ?? 0) - (b.grades?.mean ?? 0);
-      case "rating-desc": return b.studentRating - a.studentRating;
       case "a-percent-desc":
         return aGradePercent(b.grades?.buckets ?? {}) - aGradePercent(a.grades?.buckets ?? {});
       case "a-percent-asc":
