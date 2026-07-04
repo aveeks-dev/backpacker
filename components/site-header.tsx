@@ -3,18 +3,28 @@ import { HeaderSearch } from "./header-search";
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-slate-200 bg-white">
+    <header className="bg-michigan">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-4 px-6">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
+        <Link href="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight text-white">
+          <span className="grid h-6 w-6 place-items-center rounded bg-maize text-xs font-bold text-michigan">
+            B
+          </span>
           Backpacker
         </Link>
         <HeaderSearch />
         <nav className="flex items-center gap-5 text-sm">
-          <Link href="/courses" className="text-slate-600 hover:text-slate-900">Courses</Link>
-          <Link href="/compare" className="text-slate-600 hover:text-slate-900">Compare</Link>
-          <Link href="/plan" className="text-slate-600 hover:text-slate-900">Plan</Link>
+          <Link href="/courses" className="text-slate-300 transition-colors hover:text-maize">
+            Courses
+          </Link>
+          <Link href="/compare" className="text-slate-300 transition-colors hover:text-maize">
+            Compare
+          </Link>
+          <Link href="/plan" className="text-slate-300 transition-colors hover:text-maize">
+            Plan
+          </Link>
         </nav>
       </div>
+      <div className="h-0.5 bg-maize" />
     </header>
   );
 }

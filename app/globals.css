@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  /* University of Michigan palette */
+  --color-michigan: #00274c; /* UMich blue */
+  --color-michigan-light: #0d3a66; /* hover state */
+  --color-maize: #ffcb05; /* UMich maize */
+  --color-maize-dark: #edbc00; /* hover state */
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -8,6 +16,11 @@
 html,
 body {
   background: #ffffff;
-  color: #0f172a;
+  color: #00274c;
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background: #ffcb05;
+  color: #00274c;
 }

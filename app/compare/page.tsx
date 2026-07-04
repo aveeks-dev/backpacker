@@ -58,7 +58,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Sear
           disabled={courses.length >= MAX_COMPARE}
         />
         {courses.length > 0 && (
-          <Link href="/compare" className="text-sm text-slate-500 hover:text-slate-900">
+          <Link href="/compare" className="text-sm text-slate-500 hover:text-michigan">
             Clear
           </Link>
         )}
@@ -158,7 +158,7 @@ function CompareTable({ courses }: { courses: Course[] }) {
                         </span>
                       )}
                     </div>
-                    <div className="mt-0.5 text-sm font-medium text-slate-900">
+                    <div className="mt-0.5 text-sm font-medium text-michigan">
                       {c.title}
                     </div>
                   </div>
@@ -296,7 +296,7 @@ function Row({
           key={c.id}
           className={`px-4 py-3 align-top text-sm ${
             highlight?.has(c.id)
-              ? "bg-emerald-50 font-medium text-emerald-900"
+              ? "bg-maize/15 font-medium text-michigan"
               : "text-slate-700"
           }`}
         >
@@ -326,7 +326,7 @@ function MiniGradeChart({
             <div
               key={letter}
               className={`flex-1 rounded-sm ${gradeLetterColor(letter)} ${
-                isMedian ? "ring-1 ring-slate-900" : ""
+                isMedian ? "ring-1 ring-michigan" : ""
               }`}
               style={{
                 height: pct > 0 ? `${Math.max(2, heightPct)}%` : "2px",
@@ -342,7 +342,7 @@ function MiniGradeChart({
           <div
             key={letter}
             className={`flex-1 text-center text-[8px] tabular-nums ${
-              letter === median ? "font-semibold text-slate-900" : "text-slate-400"
+              letter === median ? "font-semibold text-michigan" : "text-slate-400"
             }`}
           >
             {letter}

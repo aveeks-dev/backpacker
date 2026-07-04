@@ -39,7 +39,7 @@ export function HeaderSearch() {
         onChange={(e) => setQ(e.target.value)}
         placeholder="Find a course — press /"
         aria-label="Search courses"
-        className="w-full rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+        className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-1.5 text-sm text-white placeholder:text-slate-400 focus:border-maize focus:outline-none"
       />
     </form>
   );

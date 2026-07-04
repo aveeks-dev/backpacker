@@ -30,7 +30,7 @@ export function AddToPlanButton({ courseId }: { courseId: string }) {
         </button>
         <Link
           href="/plan"
-          className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
+          className="rounded-md bg-michigan px-3 py-1.5 text-sm font-medium text-white hover:bg-michigan-light"
         >
           View plan →
         </Link>
@@ -41,7 +41,7 @@ export function AddToPlanButton({ courseId }: { courseId: string }) {
   return (
     <button
       onClick={() => add(courseId)}
-      className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
+      className="rounded-md bg-michigan px-3 py-1.5 text-sm font-medium text-white hover:bg-michigan-light"
     >
       Add to plan
     </button>

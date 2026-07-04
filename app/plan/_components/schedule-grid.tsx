@@ -131,12 +131,12 @@ export function ScheduleGrid({ courses }: { courses: Course[] }) {
                       className={`absolute left-1 right-1 overflow-hidden rounded border px-2 py-1 ${
                         isConflict
                           ? "border-rose-300 bg-rose-50"
-                          : "border-slate-300 bg-slate-50"
+                          : "border-michigan/25 bg-michigan/5"
                       }`}
                       style={{ top, height }}
                       title={`${b.code} · ${b.professor}`}
                     >
-                      <div className="font-mono text-[10px] font-semibold text-slate-900">
+                      <div className="font-mono text-[10px] font-semibold text-michigan">
                         {b.code}
                       </div>
                       <div className="line-clamp-2 text-[11px] leading-tight text-slate-600">

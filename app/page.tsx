@@ -19,16 +19,16 @@ export default function Home() {
           name="q"
           placeholder="Find a course (e.g. EECS 280, ANTHRO 101)"
           aria-label="Search courses"
-          className="flex-1 rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+          className="flex-1 rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm placeholder:text-slate-400 focus:border-michigan focus:outline-none"
         />
         <button
           type="submit"
-          className="rounded-md bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
+          className="rounded-md bg-maize px-4 py-2.5 text-sm font-semibold text-michigan hover:bg-maize-dark"
         >
           Search
         </button>
       </form>
-      <Link href="/courses" className="mt-3 text-sm text-slate-500 hover:text-slate-900">
+      <Link href="/courses" className="mt-3 text-sm text-slate-500 hover:text-michigan">
         or browse all {total.toLocaleString()} courses across {deptCount} subjects →
       </Link>
 
@@ -56,7 +56,7 @@ export default function Home() {
 function FeatureLink({ href, title, body }: { href: string; title: string; body: string }) {
   return (
     <Link href={href} className="group bg-white p-5 transition-colors hover:bg-slate-50">
-      <span className="text-sm font-semibold text-slate-900 group-hover:underline">
+      <span className="text-sm font-semibold text-michigan group-hover:underline">
         {title} →
       </span>
       <p className="mt-1 text-xs leading-relaxed text-slate-500">{body}</p>

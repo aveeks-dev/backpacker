@@ -78,7 +78,7 @@ function PlanPageInner() {
             {!isViewingShared && planCourses.length > 0 && (
               <button
                 onClick={clear}
-                className="text-sm text-slate-500 hover:text-slate-900"
+                className="text-sm text-slate-500 hover:text-michigan"
               >
                 Clear plan
               </button>
@@ -103,7 +103,7 @@ function PlanPageInner() {
                 {planCourses.length > 1 && (
                   <Link
                     href={`/compare?ids=${planCourses.map((c) => c.id).join(",")}`}
-                    className="inline-flex items-center text-sm text-slate-500 hover:text-slate-900"
+                    className="inline-flex items-center text-sm text-slate-500 hover:text-michigan"
                   >
                     → Compare these courses side-by-side
                   </Link>
@@ -150,7 +150,7 @@ function SharedBanner({
         <div className="flex gap-2">
           <button
             onClick={() => onImport(sharedIds)}
-            className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800"
+            className="rounded-md bg-michigan px-3 py-1.5 text-xs font-medium text-white hover:bg-michigan-light"
           >
             Save as my plan
           </button>
@@ -179,7 +179,7 @@ function EmptyState({ onAdd }: { onAdd: (id: string) => void }) {
       </div>
       <p className="mt-6 text-sm text-slate-500">
         Or{" "}
-        <Link href="/courses" className="underline hover:text-slate-900">
+        <Link href="/courses" className="underline hover:text-michigan">
           browse all courses
         </Link>{" "}
         and use the &ldquo;Add to plan&rdquo; button.
@@ -292,7 +292,7 @@ function CoursePicker({
         onFocus={() => setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 150)}
         placeholder="Add a course…"
-        className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+        className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-michigan focus:outline-none"
       />
       {open && matches.length > 0 && (
         <ul className="absolute z-10 mt-1 max-h-72 w-full overflow-auto rounded-md border border-slate-200 bg-white shadow-md">

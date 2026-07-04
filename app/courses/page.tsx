@@ -149,7 +149,7 @@ function ColHeader({
     <th className="px-4 py-3 text-right font-medium">
       <Link
         href={`/courses?${params.toString()}`}
-        className="inline-flex items-center hover:text-slate-900"
+        className="inline-flex items-center hover:text-michigan"
         scroll={false}
       >
         {children}
@@ -177,7 +177,7 @@ function CourseRow({ course }: { course: Course }) {
               </span>
             )}
           </div>
-          <div className="mt-0.5 font-medium text-slate-900 group-hover:underline">
+          <div className="mt-0.5 font-medium text-michigan group-hover:underline">
             {course.title}
           </div>
           {course.fulfills.length > 0 && (
@@ -204,7 +204,7 @@ function CourseRow({ course }: { course: Course }) {
       <td className="px-4 py-3 text-right tabular-nums">
         {course.grades ? (
           <>
-            <span className="font-medium text-slate-900">{course.grades.median}</span>
+            <span className="font-medium text-michigan">{course.grades.median}</span>
             <span className="ml-1 text-xs text-slate-400">{course.grades.mean.toFixed(1)}</span>
           </>
         ) : (
@@ -224,7 +224,7 @@ function DifficultyDots({ level }: { level: number }) {
       {[1, 2, 3, 4, 5].map((i) => (
         <span
           key={i}
-          className={`h-1.5 w-1.5 rounded-full ${i <= level ? "bg-slate-900" : "bg-slate-200"}`}
+          className={`h-1.5 w-1.5 rounded-full ${i <= level ? "bg-michigan" : "bg-slate-200"}`}
         />
       ))}
     </span>

@@ -38,7 +38,7 @@ export function GpaForecast({ courses }: { courses: Course[] }) {
         )}
       </div>
       <div className="mt-3 flex items-baseline gap-2">
-        <span className="text-3xl font-semibold tabular-nums text-slate-900">
+        <span className="text-3xl font-semibold tabular-nums text-michigan">
           {expected.toFixed(2)}
         </span>
         <span className="text-sm text-slate-500">expected · ≈ {gpaToLetter(expected)}</span>
@@ -49,7 +49,7 @@ export function GpaForecast({ courses }: { courses: Course[] }) {
 
       <div className="relative mt-4 h-2 rounded-full bg-slate-100">
         <div
-          className="absolute top-0 bottom-0 rounded-full bg-emerald-200"
+          className="absolute top-0 bottom-0 rounded-full bg-maize/60"
           style={{
             left: `${Math.max(0, p25Pct)}%`,
             width: `${Math.min(100 - p25Pct, p75Pct - p25Pct)}%`,
@@ -61,7 +61,7 @@ export function GpaForecast({ courses }: { courses: Course[] }) {
           style={{ left: `${expectedPct}%` }}
           title={`Expected: ${expected.toFixed(2)}`}
         >
-          <div className="h-3 w-3 rounded-full border-2 border-white bg-emerald-600 shadow-sm" />
+          <div className="h-3 w-3 rounded-full border-2 border-white bg-michigan shadow-sm" />
         </div>
       </div>
       <div className="mt-1 flex justify-between text-[10px] tabular-nums text-slate-400">

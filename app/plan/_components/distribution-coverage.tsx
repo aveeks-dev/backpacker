@@ -34,7 +34,7 @@ export function DistributionCoverage({ courses }: { courses: Course[] }) {
             key={row.label}
             className="flex items-center justify-between gap-2 text-sm"
           >
-            <span className={row.count > 0 ? "text-slate-900" : "text-slate-400"}>
+            <span className={row.count > 0 ? "text-michigan" : "text-slate-400"}>
               {row.count > 0 ? "✓" : "○"} {row.label}
             </span>
             <span className="text-xs tabular-nums text-slate-500">

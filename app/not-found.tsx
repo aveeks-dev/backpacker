@@ -13,7 +13,7 @@ export default function NotFound() {
       <div className="mt-6 flex gap-3">
         <Link
           href="/courses"
-          className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+          className="rounded-md bg-michigan px-4 py-2 text-sm font-medium text-white hover:bg-michigan-light"
         >
           Browse courses
         </Link>

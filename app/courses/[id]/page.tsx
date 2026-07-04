@@ -61,7 +61,7 @@ export default async function CourseDetailPage({
     <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-10">
       <Link
         href="/courses"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-michigan"
       >
         ← All courses
       </Link>
@@ -270,7 +270,7 @@ function GradeChart({
               </span>
               <div
                 className={`w-full rounded-t ${gradeLetterColor(letter)} ${
-                  isMedian ? "ring-2 ring-offset-2 ring-slate-900" : ""
+                  isMedian ? "ring-2 ring-offset-2 ring-michigan" : ""
                 }`}
                 style={{ height: pct > 0 ? `${Math.max(2, heightPct)}%` : "2px", opacity: pct > 0 ? 1 : 0.2 }}
               />
@@ -283,7 +283,7 @@ function GradeChart({
           <div
             key={letter}
             className={`flex-1 text-center text-[10px] tabular-nums ${
-              letter === median ? "font-semibold text-slate-900" : "text-slate-500"
+              letter === median ? "font-semibold text-michigan" : "text-slate-500"
             }`}
           >
             {letter}

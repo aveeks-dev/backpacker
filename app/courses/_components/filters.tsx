@@ -67,7 +67,7 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Find a course (e.g. EECS 280, ANTHRO 101)"
-          className="min-w-[260px] flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+          className="min-w-[260px] flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-michigan focus:outline-none"
         />
         <Select
           value={sort}
@@ -81,7 +81,7 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
         {hasFilters && (
           <button
             onClick={clearAll}
-            className="rounded-md px-3 py-2 text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+            className="rounded-md px-3 py-2 text-sm text-slate-500 hover:bg-slate-100 hover:text-michigan"
           >
             Clear
           </button>
@@ -173,7 +173,7 @@ function Select({
       aria-label={ariaLabel}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:border-slate-900 focus:outline-none"
+      className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:border-michigan focus:outline-none"
     >
       {children}
     </select>

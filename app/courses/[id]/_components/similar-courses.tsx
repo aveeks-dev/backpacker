@@ -43,7 +43,7 @@ export function SimilarCourses({ similar }: { similar: Course[] }) {
 function Cell({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex w-12 flex-col items-end leading-tight">
-      <span className="text-slate-900">{value}</span>
+      <span className="text-michigan">{value}</span>
       <span className="text-[10px] text-slate-400">{label}</span>
     </div>
   );
