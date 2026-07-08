@@ -49,26 +49,34 @@ DEPARTMENTS: list[str] = [
     "SOC", "SPANISH", "STATS", "STDABRD", "SWAHILI", "TURKISH",
     "UC", "UKR", "URDU", "VIETNAM", "WGS", "WOMENSTD", "YIDDISH",
     # College of Engineering
-    "AERO", "AEROSP", "AOSS", "AUTO", "BIOMEDE", "CEE", "CHE",
+    "AERO", "AEROSP", "AOSS", "APPPHYS", "AUTO", "BIOMEDE", "CEE", "CHE",
     "CLIMATE", "EAS", "EECS", "ENGR", "ENTR", "ESENG", "IOE",
-    "MATSCI", "MECHENG", "NAME", "NAVSCI", "NERS", "PHYSED",
-    "ROB", "SI", "TCHNCLCM",
+    "MATSCI", "MECHENG", "NAVARCH", "NAVSCI", "NERS", "PHYSED",
+    "ROB", "SI", "SPACE", "TCHNCLCM",
     # Ross School of Business
     "ACC", "BBA", "BCOM", "BL", "ES", "FIN", "MKT", "MO",
     "OMS", "STRATEGY", "TO",
     # Stamps Art & Design
     "ART", "ARTDES",
     # Music, Theatre & Dance
-    "BASSOON", "CARILLON", "CELLO", "CLARINET", "DANCE", "EUPHON",
-    "FLUTE", "FRENCHHORN", "GUITAR", "HARP", "HARPSICH", "JAZZIMP",
-    "MUSED", "MUSIC", "MUSPERF", "MUSTHRY", "OBOE", "ORGAN", "PIANO",
-    "PERCUSS", "SAXOPHN", "TUBA", "THEATRE", "TRUMPET", "TROMBONE",
+    "BASSOON", "CARILLON", "CELLO", "CLARINET", "COMP", "CONDUCT",
+    "DANCE", "EUPHON", "FLUTE", "FRENCHHORN", "GUITAR", "HARP",
+    "HARPSICH", "JAZZ", "JAZZIMP", "MUSED", "MUSIC", "MUSMETH",
+    "MUSPERF", "MUSTHRY", "MUSTHTRE", "OBOE", "ORGAN", "PAT", "PIANO",
+    "PERCUSS", "SAXOPHN", "TUBA", "THTREMUS", "TRUMPET", "TROMBONE",
     "VIOLA", "VIOLIN", "VOICE",
     # Schools / professional
-    "ARCH", "DENT", "EDUC", "INFO", "KINESLGY", "MOVESCI", "NURS",
-    "PHARM", "PUBPOL", "PUBHLTH", "SOCWORK", "URP",
+    "ARCH", "DENT", "DENTHYG", "EDUC", "HS", "IHS", "KINESLGY",
+    "MOVESCI", "AT", "SM", "NURS", "PHARMACY", "PHARMSCI", "PHRMACOL",
+    "MEDCHEM", "PUBPOL", "PUBHLTH", "SEAS", "SW", "URP", "MILSCI",
     # Public Health
-    "BIOSTAT", "ENVHLTH", "EPID", "HMP", "NUTR",
+    "BIOSTAT", "ENVHLTH", "EPID", "EHS", "HBEHED", "HMP", "NUTR",
+    # Medical School / graduate
+    "CDB", "MICRBIOL", "PATH", "PHYSIOL", "PIBS", "PSYCHIAT", "RACKHAM",
+    # LSA additions
+    "ALA", "AMAS", "BIO", "CMPLXSYS", "COGSCI", "DIGITAL", "GEOG",
+    "GTBOOKS", "INTLSTD", "ISLAM", "MENAS", "ORGSTUDY", "PPE", "QMSS",
+    "RCIDIV", "REEES", "SSEA", "UARTS",
 ]
 
 

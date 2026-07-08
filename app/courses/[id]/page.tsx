@@ -15,6 +15,7 @@ import {
   type GradeLetter,
   type Section,
 } from "@/lib/courses";
+import { getDeptName, getSubjectResources } from "@/lib/resources";
 import { AddToPlanButton } from "./_components/add-to-plan";
 import { SimilarCourses } from "./_components/similar-courses";
 
@@ -70,6 +71,13 @@ export default async function CourseDetailPage({
         <div>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
+            <span className="text-slate-400">·</span>
+            <Link
+              href={`/subjects/${course.department}`}
+              className="text-slate-500 underline-offset-2 hover:text-michigan hover:underline"
+            >
+              {getDeptName(course.department)}
+            </Link>
             <span className="text-slate-400">·</span>
             <span className="text-slate-500">{course.credits} credits</span>
             <span className="text-slate-400">·</span>
@@ -216,6 +224,32 @@ export default async function CourseDetailPage({
       )}
 
       <SimilarCourses similar={similar} />
+
+      <section className="mt-10">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          Resources for {course.department} students
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {getSubjectResources(course.department).map((r) => (
+            <a
+              key={r.url}
+              href={r.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={r.description}
+              className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-700 transition-colors hover:border-michigan/40 hover:bg-slate-50"
+            >
+              {r.name} ↗
+            </a>
+          ))}
+          <Link
+            href={`/subjects/${course.department}`}
+            className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-michigan hover:bg-slate-50"
+          >
+            All {course.department} resources →
+          </Link>
+        </div>
+      </section>
 
       <details className="group mt-10 rounded-md border border-slate-200 p-4">
         <summary className="cursor-pointer select-none text-sm font-medium text-slate-700 marker:text-slate-400">

@@ -32,11 +32,16 @@ export default function Home() {
         or browse all {total.toLocaleString()} courses across {deptCount} subjects →
       </Link>
 
-      <div className="mt-16 grid w-full gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 text-left sm:grid-cols-3">
+      <div className="mt-16 grid w-full gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 text-left sm:grid-cols-2 lg:grid-cols-4">
         <FeatureLink
           href="/courses"
           title="Browse"
           body="Filter by subject, level, credits, and requirements. Sort by workload, difficulty, or grades."
+        />
+        <FeatureLink
+          href="/subjects"
+          title="Subjects"
+          body="Every subject on campus with study resources, advising links, and popular courses."
         />
         <FeatureLink
           href="/compare"

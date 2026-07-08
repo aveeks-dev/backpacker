@@ -16,6 +16,9 @@ export function SiteHeader() {
           <Link href="/courses" className="text-slate-300 transition-colors hover:text-maize">
             Courses
           </Link>
+          <Link href="/subjects" className="text-slate-300 transition-colors hover:text-maize">
+            Subjects
+          </Link>
           <Link href="/compare" className="text-slate-300 transition-colors hover:text-maize">
             Compare
           </Link>
