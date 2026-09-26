@@ -44,7 +44,7 @@ export function GpaForecast({ courses }: { courses: Course[] }) {
         <span className="text-sm text-slate-500">expected · ≈ {gpaToLetter(expected)}</span>
       </div>
       <p className="mt-1 text-xs text-slate-500">
-        Likely range {p25.toFixed(2)}–{p75.toFixed(2)} GPA · weighted by credits
+        Simulated middle 50% {p25.toFixed(2)}–{p75.toFixed(2)} GPA · weighted by credits
       </p>
 
       <div className="relative mt-4 h-2 rounded-full bg-slate-100">
@@ -73,7 +73,7 @@ export function GpaForecast({ courses }: { courses: Course[] }) {
       </div>
 
       <p className="mt-3 text-[11px] text-slate-500">
-        Simulated from each course&apos;s historical grade distribution, weighted by credits.
+        Uses the available grade distributions, including estimates, weighted by credits. This is a planning illustration, not a prediction of your grades.
       </p>
     </div>
   );
