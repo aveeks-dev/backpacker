@@ -64,6 +64,8 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
         <input
+          aria-label="Search courses"
+          type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Find a course (e.g. EECS 280, ANTHRO 101)"
