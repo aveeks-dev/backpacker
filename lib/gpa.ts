@@ -44,7 +44,7 @@ export type SemesterForecast = {
 };
 
 export function semesterGpaForecast(coursesIn: Course[]): SemesterForecast | null {
-  const valid = coursesIn.filter((c) => c.grades && c.credits > 0);
+  const valid = coursesIn.filter((c) => c.grades && c.credits > 0 && expectedGpaForCourse(c) !== null);
   if (valid.length === 0) return null;
   const totalCredits = valid.reduce((s, c) => s + c.credits, 0);
   if (totalCredits === 0) return null;

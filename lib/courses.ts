@@ -118,7 +118,7 @@ export function filterCourses(all: Course[], filters: CourseFilters): Course[] {
   return all.filter((c) => {
     if (filters.department && c.department !== filters.department) return false;
     if (filters.credits && c.credits !== Number(filters.credits)) return false;
-    if (filters.maxWorkload && c.workloadHoursPerWeek > Number(filters.maxWorkload)) return false;
+    if (filters.maxWorkload && (c.workloadHoursPerWeek <= 0 || c.workloadHoursPerWeek > Number(filters.maxWorkload))) return false;
     if (filters.fulfills && !c.fulfills.includes(filters.fulfills)) return false;
     if (filters.hasData === "curated" && c.dataQuality !== "curated") return false;
     if (filters.level) {
@@ -165,6 +165,9 @@ export const SORT_LABELS: Record<SortKey, string> = {
 export function sortCourses(list: Course[], key: SortKey): Course[] {
   const sorted = [...list];
   sorted.sort((a, b) => {
+    // Missing observations belong last in either direction, never at zero.
+    const metric = (c: Course) => key.startsWith("workload") ? c.workloadHoursPerWeek > 0 : key.startsWith("difficulty") ? c.difficulty > 0 : c.grades !== null;
+    if (key !== "code-asc" && metric(a) !== metric(b)) return metric(a) ? -1 : 1;
     switch (key) {
       case "workload-asc": return a.workloadHoursPerWeek - b.workloadHoursPerWeek;
       case "workload-desc": return b.workloadHoursPerWeek - a.workloadHoursPerWeek;
@@ -184,7 +187,7 @@ export function sortCourses(list: Course[], key: SortKey): Course[] {
 }
 
 export function isSortKey(value: string | undefined): value is SortKey {
-  return !!value && value in SORT_LABELS;
+  return !!value && Object.hasOwn(SORT_LABELS, value);
 }
 
 // ---------------------------------------------------------------------
@@ -203,13 +206,13 @@ let _deptAvgsCache: Record<string, DeptAverages> | null = null;
 
 export function getDepartmentAverages(): Record<string, DeptAverages> {
   if (_deptAvgsCache) return _deptAvgsCache;
-  const acc: Record<string, { wSum: number; dSum: number; gSum: number; rSum: number; n: number }> = {};
+  const acc: Record<string, { wSum: number; dSum: number; gSum: number; rSum: number; n: number; gN: number }> = {};
   for (const c of courses) {
     const k = c.department;
-    if (!acc[k]) acc[k] = { wSum: 0, dSum: 0, gSum: 0, rSum: 0, n: 0 };
+    if (!acc[k]) acc[k] = { wSum: 0, dSum: 0, gSum: 0, rSum: 0, n: 0, gN: 0 };
     acc[k].wSum += c.workloadHoursPerWeek;
     acc[k].dSum += c.difficulty;
-    if (c.grades) acc[k].gSum += c.grades.mean;
+    if (c.grades) { acc[k].gSum += c.grades.mean; acc[k].gN += 1; }
     acc[k].rSum += c.studentRating;
     acc[k].n += 1;
   }
@@ -218,7 +221,7 @@ export function getDepartmentAverages(): Record<string, DeptAverages> {
     out[k] = {
       workload: v.wSum / v.n,
       difficulty: v.dSum / v.n,
-      meanGpa: v.gSum / v.n,
+      meanGpa: v.gN ? v.gSum / v.gN : 0,
       rating: v.rSum / v.n,
       count: v.n,
     };
