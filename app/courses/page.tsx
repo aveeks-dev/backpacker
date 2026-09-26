@@ -41,8 +41,8 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
   const filtered = filterCourses(all, sp);
   const sortKey: SortKey = isSortKey(sp.sort) ? sp.sort : "code-asc";
   const sorted = sortCourses(filtered, sortKey);
-  const page = Math.max(1, parseInt(sp.page ?? "1", 10) || 1);
   const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const page = Math.min(totalPages, Math.max(1, parseInt(sp.page ?? "1", 10) || 1));
   const visible = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const activeBits: string[] = [];
