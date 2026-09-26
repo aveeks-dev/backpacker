@@ -51,6 +51,7 @@ function PlanPageInner() {
     0,
   );
   const conflicts = getConflictCount(planCourses);
+  const missingSchedules = planCourses.filter(c => !c.sections[0]?.meetings.length).length;
   const avgDifficulty =
     planCourses.length > 0
       ? planCourses.reduce((s, c) => s + c.difficulty, 0) / planCourses.length
@@ -62,7 +63,7 @@ function PlanPageInner() {
           <SharedBanner sharedIds={sharedIds!} savedIds={savedIds} onImport={replace} />
         )}
 
-        <div className="mb-6 flex items-baseline justify-between">
+        <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">
               {isViewingShared ? "Shared plan" : "My plan"}
@@ -97,7 +98,12 @@ function PlanPageInner() {
               conflicts={conflicts}
             />
 
-            <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
+            <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950">
+              Planning preview: times use the first listed section, not live registration data.
+              {missingSchedules > 0 && ` ${missingSchedules} course${missingSchedules === 1 ? " has" : "s have"} no meeting times and cannot be checked for conflicts.`}
+              {" "}Confirm sections and availability before registering.
+            </p>
+            <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
               <div className="space-y-6">
                 <ScheduleGrid courses={planCourses} />
                 {planCourses.length > 1 && (
@@ -219,7 +225,7 @@ function SummaryCards({
       <Stat
         label="Conflicts"
         value={conflicts.toString()}
-        unit={conflicts > 0 ? "see schedule" : "none"}
+        unit={conflicts > 0 ? "overlapping meetings" : "none in listed times"}
         warn={conflicts > 0}
       />
     </div>
@@ -283,6 +289,7 @@ function CoursePicker({
   return (
     <div ref={wrapperRef} className="relative">
       <input
+        aria-label="Add a course to your plan"
         autoFocus={autoFocus}
         value={query}
         onChange={(e) => {
@@ -290,7 +297,8 @@ function CoursePicker({
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
-        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        onBlur={(e) => { if (!e.currentTarget.parentElement?.contains(e.relatedTarget)) setOpen(false); }}
+        onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}
         placeholder="Add a course…"
         className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-michigan focus:outline-none"
       />

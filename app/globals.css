@@ -24,3 +24,9 @@ body {
   background: #ffcb05;
   color: #00274c;
 }
+
+:focus-visible { outline: 3px solid #0075b0; outline-offset: 3px; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 100; transform: translateY(-150%); background: #ffcb05; color: #00274c; padding: 12px 20px; border-radius: 8px; }
+.skip-link:focus { transform: translateY(0); }

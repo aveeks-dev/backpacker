@@ -15,7 +15,7 @@ export function HeaderSearch() {
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
       e.preventDefault();
-      const el = document.getElementById("header-search-input");
+      const el = document.querySelector<HTMLInputElement>('input[aria-label="Search courses"]');
       el?.focus();
     }
     window.addEventListener("keydown", onKey);

@@ -34,8 +34,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-michigan">
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <SiteHeader />
-        <div className="flex flex-1 flex-col">{children}</div>
+        <div id="main-content" tabIndex={-1} className="flex flex-1 flex-col">{children}</div>
         <SiteFooter />
       </body>
     </html>

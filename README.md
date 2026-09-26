@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Backpacker
 
-## Getting Started
+Backpacker helps University of Michigan students put together a semester that fits their workload and schedule. Search the course catalog, compare classes, and keep a plan in one place.
 
-First, run the development server:
+## What you can do
 
-```bash
+- Search nearly 9,000 courses across 128 subjects, with filters for level, credits, and requirements.
+- Compare up to four courses by workload, difficulty, and grade distribution.
+- Add courses to a weekly planner and see overlaps in the listed meeting times.
+- Share a plan with a link, or save a shared plan in your own browser.
+- Find subject-specific advising, tutoring, and study resources.
+
+## About the data
+
+Course codes and titles come from the public Michigan Atlas catalog. The dataset combines manually curated preview records with estimated workload and grade figures derived from course level and subject. Estimates are labeled in the app; they are not official student outcomes.
+
+The planner currently uses the first listed section for each course. It does not check live availability, register you for classes, or verify every prerequisite. Courses without meeting times cannot be checked for conflicts. Confirm current information with the university before registering.
+
+Plans are saved locally in your browser. There is no account system or cloud sync. Anyone with a shared plan link can see the courses in that link.
+
+Backpacker is an independent project and is not affiliated with the University of Michigan.
+
+## Run locally
+
+Requires Node.js 20.9 or newer and npm.
+
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. To check a production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
+Import this repository into Vercel as a Next.js project. Use `npm ci` to install and `npm run build` to build; leave the output directory at its default. The app currently needs no environment variables or database.
 
-To learn more about Next.js, take a look at the following resources:
+To use your own web address, add a domain you own in the project's domain settings and apply the DNS records Vercel provides. Domain registration is separate from hosting.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Built with
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 16, TypeScript, React 19, and Tailwind CSS 4. The `app/` directory contains the pages, `lib/` holds course and planning logic, and `data/` holds the catalog. The `scraper/` directory contains the catalog import scripts.
