@@ -9,6 +9,9 @@
 
 import type { Day, ScheduleCourse, ScheduleMeeting, ScheduleSection } from "./registrar.ts";
 
+// The generator only needs a course's id and sections.
+export type SchedulableCourse = Pick<ScheduleCourse, "id" | "sections">;
+
 // Components that are not regular class meetings (exam slots, independent
 // study placeholders) and should not be scheduled.
 const SKIPPED_COMPONENTS = new Set(["MID", "IND"]);
@@ -110,7 +113,7 @@ function belongsTo(sectionNumber: string, group: string): boolean {
 }
 
 /** Every valid combination of one section per component, before merging. */
-function sectionCombos(course: ScheduleCourse, allowed?: string[]): ScheduleSection[][] {
+function sectionCombos(course: SchedulableCourse, allowed?: string[]): ScheduleSection[][] {
   const sections = course.sections.filter(
     (s) => !SKIPPED_COMPONENTS.has(s.component) && (!allowed || allowed.includes(s.number)),
   );
@@ -167,7 +170,7 @@ function intervalKey(intervals: Interval[]): string {
 
 /** All distinct ways to take one course, merged by identical meeting times. */
 export function buildBundles(
-  course: ScheduleCourse,
+  course: SchedulableCourse,
   prefs: Preferences = {},
   allowed?: string[],
 ): Bundle[] {
@@ -228,7 +231,7 @@ function scoreSchedule(stats: GeneratedSchedule["stats"], bundles: Bundle[], pre
   return score;
 }
 
-export function generateSchedules(courses: ScheduleCourse[], options: GenerateOptions = {}): GenerateResult {
+export function generateSchedules(courses: SchedulableCourse[], options: GenerateOptions = {}): GenerateResult {
   const prefs = options.preferences ?? {};
   const maxExplored = options.maxExplored ?? 500_000;
   const limit = options.limit ?? 50;

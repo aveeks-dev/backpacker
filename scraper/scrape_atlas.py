@@ -11,7 +11,7 @@ deduping by course code.
 
 Usage
 -----
-    python3 scrape_atlas.py                     # full sweep -> ../data/scraped.json
+    python3 scrape_atlas.py                     # full sweep -> ../data/catalog.json
     python3 scrape_atlas.py --departments EECS  # one subject only
 
 No external dependencies — uses only the Python standard library.
@@ -144,8 +144,6 @@ def to_intermediate(courses: list[dict]) -> list[dict]:
             "code": spaced,
             "title": c.get("title", ""),
             "department": dept,
-            "number": num,
-            "offered_terms": c.get("offered_terms", []),
         })
     return out
 
@@ -154,8 +152,8 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument(
         "--output",
-        default=str(Path(__file__).parent.parent / "data" / "scraped.json"),
-        help="Output path (default: ../data/scraped.json)",
+        default=str(Path(__file__).parent.parent / "data" / "catalog.json"),
+        help="Output path (default: ../data/catalog.json)",
     )
     p.add_argument(
         "--departments",
@@ -174,10 +172,9 @@ def main() -> int:
     converted = to_intermediate(raw)
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(converted, indent=2))
+    out_path.write_text(json.dumps(converted) + "\n")
 
     print(f"Wrote {len(converted)} courses to {out_path}")
-    print("\nNext: run build_dataset.py to merge with curated data.")
     return 0
 
 

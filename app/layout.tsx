@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · Backpacker",
   },
   description:
-    "Compare University of Michigan courses on workload, difficulty, and grade distributions. Build a conflict-free semester and forecast your GPA.",
+    "Plan your University of Michigan semester: pick courses and see every conflict-free schedule from the Registrar's real section times, ranked by your preferences.",
 };
 
 export default function RootLayout({

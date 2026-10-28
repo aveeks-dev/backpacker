@@ -1,22 +1,20 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  aGradePercent,
+  CURRENT_TERM,
   filterCourses,
   getAllCourses,
   getDepartments,
-  getFulfillsGroups,
-  isSortKey,
-  sortCourses,
+  getInstructors,
+  isOffered,
   type Course,
-  type SortKey,
 } from "@/lib/courses";
+import { sectionSummary } from "@/lib/format";
 import { Filters } from "./_components/filters";
 
 export const metadata: Metadata = {
   title: "Courses",
-  description:
-    "Browse and filter every University of Michigan course by subject, level, credits, workload, and grade outcomes.",
+  description: `Browse every University of Michigan course, with ${CURRENT_TERM.label} sections, times, and instructors.`,
 };
 
 const PAGE_SIZE = 50;
@@ -25,50 +23,38 @@ type SearchParams = Promise<{
   q?: string;
   department?: string;
   credits?: string;
-  maxWorkload?: string;
-  fulfills?: string;
-  sort?: string;
-  page?: string;
-  hasData?: string;
   level?: string;
+  offered?: string;
+  page?: string;
 }>;
 
 export default async function CoursesPage({ searchParams }: { searchParams: SearchParams }) {
   const sp = await searchParams;
   const all = getAllCourses();
-  const departments = getDepartments();
-  const fulfillsGroups = getFulfillsGroups();
   const filtered = filterCourses(all, sp);
-  const sortKey: SortKey = isSortKey(sp.sort) ? sp.sort : "code-asc";
-  const sorted = sortCourses(filtered, sortKey);
-  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const page = Math.min(totalPages, Math.max(1, parseInt(sp.page ?? "1", 10) || 1));
-  const visible = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const visible = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const offeredCount = all.filter(isOffered).length;
 
   const activeBits: string[] = [];
+  if (sp.offered === "1") activeBits.push(CURRENT_TERM.label);
   if (sp.department) activeBits.push(sp.department);
   if (sp.level) activeBits.push(`${sp.level} level`);
-  if (sp.fulfills) activeBits.push(sp.fulfills);
-
-  const curatedCount = all.filter((c) => c.dataQuality === "curated").length;
 
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
       <div className="mb-6 flex items-baseline justify-between">
         <h1 className="text-2xl font-semibold tracking-tight">Courses</h1>
         <span className="text-sm text-slate-500">
-          {sorted.length.toLocaleString()} of {all.length.toLocaleString()}
+          {filtered.length.toLocaleString()} of {all.length.toLocaleString()}
           {activeBits.length ? ` · ${activeBits.join(" · ")}` : ""}
         </span>
       </div>
 
-      <Filters
-        departments={departments}
-        fulfillsGroups={fulfillsGroups}
-        curatedCount={curatedCount}
-      />
+      <Filters departments={getDepartments()} offeredCount={offeredCount} termLabel={CURRENT_TERM.label} />
 
-      {sorted.length === 0 ? (
+      {filtered.length === 0 ? (
         <div className="mt-6 rounded-md border border-slate-200 bg-white p-12 text-center text-sm text-slate-500">
           No courses match. Try clearing some filters.
         </div>
@@ -79,19 +65,8 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
                   <th className="px-4 py-3 font-medium">Course</th>
-                  <th className="px-4 py-3 font-medium">Cr</th>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="workload-asc" desc="workload-desc">
-                    Hrs/wk
-                  </ColHeader>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="difficulty-asc" desc="difficulty-desc">
-                    Diff
-                  </ColHeader>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="median-asc" desc="median-desc">
-                    Median
-                  </ColHeader>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="a-percent-asc" desc="a-percent-desc">
-                    % A
-                  </ColHeader>
+                  <th className="px-4 py-3 font-medium">Credits</th>
+                  <th className="px-4 py-3 font-medium">{CURRENT_TERM.label}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -107,127 +82,42 @@ export default async function CoursesPage({ searchParams }: { searchParams: Sear
       )}
 
       <p className="mt-6 text-xs text-slate-400">
-        Courses marked{" "}
-        <span className="text-amber-700">est.</span> show estimates derived from
-        course level and subject; {curatedCount} courses have fully reviewed data.
-        Click a column header to sort, or press{" "}
-        <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd>{" "}
-        to search from anywhere.
+        Course titles come from the U-M Atlas catalog; sections, times, and instructors from the
+        Registrar&apos;s {CURRENT_TERM.label} schedule. Press{" "}
+        <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd> to search from anywhere.
       </p>
     </main>
   );
 }
 
-function ColHeader({
-  children,
-  sp,
-  sortKey,
-  asc,
-  desc,
-}: {
-  children: React.ReactNode;
-  sp: Record<string, string | undefined>;
-  sortKey: SortKey;
-  asc?: SortKey;
-  desc?: SortKey;
-}) {
-  const next: SortKey = (() => {
-    if (desc && sortKey !== desc && sortKey !== asc) return desc;
-    if (desc && sortKey === desc && asc) return asc;
-    if (asc && sortKey === asc && desc) return desc;
-    return desc || asc || "code-asc";
-  })();
-  const params = new URLSearchParams();
-  for (const [k, v] of Object.entries(sp)) {
-    if (typeof v === "string" && v) params.set(k, v);
-  }
-  params.set("sort", next);
-  params.delete("page");
-  const indicator =
-    sortKey === asc ? " ↑" : sortKey === desc ? " ↓" : "";
-  return (
-    <th className="px-4 py-3 text-right font-medium">
-      <Link
-        href={`/courses?${params.toString()}`}
-        className="inline-flex items-center hover:text-michigan"
-        scroll={false}
-      >
-        {children}
-        <span className="ml-0.5 tabular-nums">{indicator || "  "}</span>
-      </Link>
-    </th>
-  );
-}
-
 function CourseRow({ course }: { course: Course }) {
-  const isEstimated = course.dataQuality === "estimated";
-  const aPct = course.grades ? aGradePercent(course.grades.buckets) : null;
+  const offered = isOffered(course);
+  const instructors = getInstructors(course);
   return (
     <tr className="hover:bg-slate-50">
       <td className="px-4 py-3">
-        <Link href={`/courses/${course.id}`} className="block group">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
-            {isEstimated && (
-              <span
-                className="text-[10px] text-amber-700"
-                title="Workload, difficulty, and grades estimated from course level"
-              >
-                est.
-              </span>
-            )}
-          </div>
-          <div className="mt-0.5 font-medium text-michigan group-hover:underline">
-            {course.title}
-          </div>
-          {course.fulfills.length > 0 && (
-            <div className="mt-1 flex flex-wrap gap-1">
-              {course.fulfills.slice(0, 4).map((f) => (
-                <span
-                  key={f}
-                  className="rounded border border-slate-200 px-1.5 py-0.5 text-[10px] text-slate-500"
-                >
-                  {f}
-                </span>
-              ))}
-            </div>
-          )}
+        <Link href={`/courses/${course.id}`} className="group block">
+          <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
+          <div className="mt-0.5 font-medium text-michigan group-hover:underline">{course.title}</div>
         </Link>
       </td>
-      <td className="px-4 py-3 tabular-nums text-slate-700">{course.credits}</td>
-      <td className="px-4 py-3 text-right tabular-nums text-slate-700">
-        {course.workloadHoursPerWeek || "—"}
-      </td>
-      <td className="px-4 py-3 text-right">
-        <DifficultyDots level={course.difficulty} />
-      </td>
-      <td className="px-4 py-3 text-right tabular-nums">
-        {course.grades ? (
+      <td className="px-4 py-3 tabular-nums text-slate-700">{course.credits ?? "—"}</td>
+      <td className="px-4 py-3 text-xs text-slate-600">
+        {offered ? (
           <>
-            <span className="font-medium text-michigan">{course.grades.median}</span>
-            <span className="ml-1 text-xs text-slate-400">{course.grades.mean.toFixed(1)}</span>
+            <div>{sectionSummary(course.sections)}</div>
+            {instructors.length > 0 && (
+              <div className="mt-0.5 truncate text-slate-400" title={instructors.join(", ")}>
+                {instructors.slice(0, 3).join(", ")}
+                {instructors.length > 3 && ` +${instructors.length - 3}`}
+              </div>
+            )}
           </>
         ) : (
-          <span className="text-slate-400">—</span>
+          <span className="text-slate-400">Not offered</span>
         )}
       </td>
-      <td className="px-4 py-3 text-right tabular-nums text-slate-700">
-        {aPct !== null ? `${Math.round(aPct)}%` : <span className="text-slate-400">—</span>}
-      </td>
     </tr>
-  );
-}
-
-function DifficultyDots({ level }: { level: number }) {
-  return (
-    <span className="inline-flex gap-0.5" aria-label={`Difficulty ${level} of 5`}>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <span
-          key={i}
-          className={`h-1.5 w-1.5 rounded-full ${i <= level ? "bg-michigan" : "bg-slate-200"}`}
-        />
-      ))}
-    </span>
   );
 }
 

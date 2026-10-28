@@ -1,24 +1,21 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  aGradePercent,
-  difficultyLabel,
-  getAllCourses,
+  CURRENT_TERM,
+  getCourse,
   getCourseLevel,
   getCoursesById,
-  GRADE_LETTERS,
-  gradeLetterColor,
+  getInstructors,
+  isOffered,
   levelLabel,
   type Course,
-  type GradeLetter,
 } from "@/lib/courses";
-import { expectedGpaForCourse } from "@/lib/gpa";
-import { AddCoursePicker } from "./_components/add-course-picker";
+import { formatMeetings, rateMyProfessorsUrl, sectionSummary } from "@/lib/format";
+import { CompareSearch } from "./_components/compare-search";
 
 export const metadata: Metadata = {
   title: "Compare courses",
-  description:
-    "Compare University of Michigan courses side-by-side on workload, difficulty, grade distributions, and expected GPA.",
+  description: `Compare University of Michigan courses side-by-side: credits, ${CURRENT_TERM.label} sections, lecture times, and instructors.`,
 };
 
 const MAX_COMPARE = 4;
@@ -29,12 +26,6 @@ export default async function ComparePage({ searchParams }: { searchParams: Sear
   const sp = await searchParams;
   const ids = parseIds(sp.ids);
   const courses = getCoursesById(ids).slice(0, MAX_COMPARE);
-
-  const allCoursesLite = getAllCourses().map((c) => ({
-    id: c.id,
-    code: c.code,
-    title: c.title,
-  }));
 
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
@@ -47,16 +38,14 @@ export default async function ComparePage({ searchParams }: { searchParams: Sear
         )}
       </div>
       <p className="mb-6 max-w-2xl text-sm text-slate-600">
-        Weigh up to four courses side-by-side. The better value in each row is
-        highlighted, so trade-offs are visible at a glance.
+        Line up to four courses side-by-side: credits, when the lectures meet in{" "}
+        {CURRENT_TERM.label}, and who teaches them.
       </p>
 
       <div className="mb-6 flex items-center gap-3">
-        <AddCoursePicker
-          existing={ids}
-          allCourses={allCoursesLite}
-          disabled={courses.length >= MAX_COMPARE}
-        />
+        <div className="w-full max-w-sm">
+          <CompareSearch existing={courses.map((c) => c.id)} disabled={courses.length >= MAX_COMPARE} />
+        </div>
         {courses.length > 0 && (
           <Link href="/compare" className="text-sm text-slate-500 hover:text-michigan">
             Clear
@@ -64,65 +53,41 @@ export default async function ComparePage({ searchParams }: { searchParams: Sear
         )}
       </div>
 
-      {courses.length === 0 ? (
-        <EmptyState allCourses={allCoursesLite} />
-      ) : (
-        <CompareTable courses={courses} />
-      )}
+      {courses.length === 0 ? <EmptyState /> : <CompareTable courses={courses} />}
     </main>
   );
 }
 
 function parseIds(raw: string | undefined): string[] {
   if (!raw) return [];
-  return Array.from(
-    new Set(
-      raw
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean),
-    ),
-  );
+  return Array.from(new Set(raw.split(",").map((s) => s.trim()).filter(Boolean)));
 }
 
-function EmptyState({
-  allCourses,
-}: {
-  allCourses: { id: string; code: string; title: string }[];
-}) {
+function EmptyState() {
   const examples = [
     ["eecs-280", "eecs-281"],
     ["eecs-281", "eecs-370"],
     ["math-217", "math-215"],
     ["psych-111", "psych-230"],
-  ]
-    .map((pair) => pair.filter((id) => allCourses.find((c) => c.id === id)))
-    .filter((pair) => pair.length === 2);
+  ].filter((pair) => pair.every((id) => getCourse(id)));
 
   return (
     <div className="rounded-md border border-slate-200 bg-white p-8">
       <h2 className="text-lg font-medium">No courses to compare yet.</h2>
-      <p className="mt-1 text-sm text-slate-600">
-        Add up to 4 courses with the picker above to see every metric — workload,
-        difficulty, grade distribution, %A — lined up side-by-side.
-      </p>
+      <p className="mt-1 text-sm text-slate-600">Add up to 4 courses with the search box above.</p>
       {examples.length > 0 && (
         <div className="mt-5">
           <p className="text-xs uppercase tracking-wide text-slate-500">Try one of these</p>
           <div className="mt-2 flex flex-wrap gap-2">
-            {examples.map((pair) => {
-              const a = allCourses.find((c) => c.id === pair[0])!;
-              const b = allCourses.find((c) => c.id === pair[1])!;
-              return (
-                <Link
-                  key={pair.join("-")}
-                  href={`/compare?ids=${pair.join(",")}`}
-                  className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm hover:border-slate-400"
-                >
-                  {a.code} vs {b.code}
-                </Link>
-              );
-            })}
+            {examples.map((pair) => (
+              <Link
+                key={pair.join("-")}
+                href={`/compare?ids=${pair.join(",")}`}
+                className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm hover:border-slate-400"
+              >
+                {getCourse(pair[0])!.code} vs {getCourse(pair[1])!.code}
+              </Link>
+            ))}
           </div>
         </div>
       )}
@@ -142,25 +107,13 @@ function CompareTable({ courses }: { courses: Course[] }) {
               <th key={c.id} className="px-4 py-4 text-left align-top">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <Link
-                        href={`/courses/${c.id}`}
-                        className="font-mono text-xs font-semibold text-slate-700 hover:underline"
-                      >
-                        {c.code}
-                      </Link>
-                      {c.dataQuality === "estimated" && (
-                        <span
-                          className="text-[10px] text-amber-700"
-                          title="Estimated metrics"
-                        >
-                          est.
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-0.5 text-sm font-medium text-michigan">
-                      {c.title}
-                    </div>
+                    <Link
+                      href={`/courses/${c.id}`}
+                      className="font-mono text-xs font-semibold text-slate-700 hover:underline"
+                    >
+                      {c.code}
+                    </Link>
+                    <div className="mt-0.5 text-sm font-medium text-michigan">{c.title}</div>
                   </div>
                   <RemoveLink id={c.id} existing={courses.map((x) => x.id)} />
                 </div>
@@ -169,105 +122,53 @@ function CompareTable({ courses }: { courses: Course[] }) {
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
-          <Row label="Department" courses={courses} cell={(c) => c.department} />
-          <Row label="Credits" courses={courses} cell={(c) => `${c.credits}`} />
+          <Row label="Subject" courses={courses} cell={(c) => c.department} />
+          <Row label="Credits" courses={courses} cell={(c) => c.credits ?? "—"} />
+          <Row label="Level" courses={courses} cell={(c) => levelLabel(getCourseLevel(c))} />
           <Row
-            label="Level"
+            label={`${CURRENT_TERM.label} sections`}
             courses={courses}
-            cell={(c) => levelLabel(getCourseLevel(c))}
+            cell={(c) => (isOffered(c) ? sectionSummary(c.sections) : "Not offered")}
           />
           <Row
-            label="Workload"
+            label="Lecture times"
             courses={courses}
-            highlight={extremes(courses, (c) => c.workloadHoursPerWeek, "low")}
-            cell={(c) =>
-              c.workloadHoursPerWeek > 0 ? `${c.workloadHoursPerWeek} hrs/wk` : "—"
-            }
-          />
-          <Row
-            label="Difficulty"
-            courses={courses}
-            highlight={extremes(courses, (c) => c.difficulty, "low")}
-            cell={(c) => `${c.difficulty}/5 · ${difficultyLabel(c.difficulty)}`}
-          />
-          <Row
-            label="Median grade"
-            courses={courses}
-            highlight={extremes(courses, (c) => c.grades?.mean ?? 0, "high")}
-            cell={(c) =>
-              c.grades ? `${c.grades.median} · mean ${c.grades.mean.toFixed(2)}` : "—"
-            }
-          />
-          <Row
-            label="% earning A"
-            courses={courses}
-            highlight={extremes(
-              courses,
-              (c) => (c.grades ? aGradePercent(c.grades.buckets) : 0),
-              "high",
-            )}
-            cell={(c) =>
-              c.grades ? `${Math.round(aGradePercent(c.grades.buckets))}%` : "—"
-            }
-          />
-          <Row
-            label="Expected GPA"
-            courses={courses}
-            highlight={extremes(courses, (c) => expectedGpaForCourse(c) ?? 0, "high")}
             cell={(c) => {
-              const e = expectedGpaForCourse(c);
-              return e !== null ? e.toFixed(2) : "—";
+              const lectures = c.sections.filter((s) => s.component === "LEC");
+              if (lectures.length === 0) return "—";
+              return (
+                <ul className="space-y-0.5 text-xs">
+                  {lectures.map((s) => (
+                    <li key={s.classNumber}>
+                      <span className="font-mono text-slate-500">{s.number}</span> {formatMeetings(s)}
+                    </li>
+                  ))}
+                </ul>
+              );
             }}
           />
-          {courses.some((c) => c.studentRating > 0) && (
-            <Row
-              label="Student rating"
-              courses={courses}
-              highlight={extremes(courses, (c) => c.studentRating, "high")}
-              cell={(c) => (c.studentRating > 0 ? c.studentRating.toFixed(1) : "—")}
-            />
-          )}
           <Row
-            label="Distributions"
+            label="Instructors"
             courses={courses}
-            cell={(c) =>
-              c.fulfills.length > 0 ? (
-                <div className="flex flex-wrap gap-1">
-                  {c.fulfills.map((f) => (
-                    <span
-                      key={f}
-                      className="rounded border border-slate-200 px-1.5 py-0.5 text-[10px] text-slate-600"
+            cell={(c) => {
+              const names = getInstructors(c);
+              if (names.length === 0) return "—";
+              return (
+                <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-xs">
+                  {names.map((name) => (
+                    <a
+                      key={name}
+                      href={rateMyProfessorsUrl(name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-slate-300 underline-offset-2 hover:text-michigan"
                     >
-                      {f}
-                    </span>
+                      {name}
+                    </a>
                   ))}
                 </div>
-              ) : (
-                "—"
-              )
-            }
-          />
-          <Row
-            label="Grade distribution"
-            courses={courses}
-            cell={(c) =>
-              c.grades ? (
-                <MiniGradeChart buckets={c.grades.buckets} median={c.grades.median} />
-              ) : (
-                "—"
-              )
-            }
-          />
-          <Row
-            label="Description"
-            courses={courses}
-            cell={(c) =>
-              c.description ? (
-                <span className="text-xs text-slate-600">{c.description}</span>
-              ) : (
-                "—"
-              )
-            }
+              );
+            }}
           />
         </tbody>
       </table>
@@ -279,12 +180,10 @@ function Row({
   label,
   courses,
   cell,
-  highlight,
 }: {
   label: string;
   courses: Course[];
   cell: (c: Course) => React.ReactNode;
-  highlight?: Set<string>;
 }) {
   return (
     <tr>
@@ -292,14 +191,7 @@ function Row({
         {label}
       </th>
       {courses.map((c) => (
-        <td
-          key={c.id}
-          className={`px-4 py-3 align-top text-sm ${
-            highlight?.has(c.id)
-              ? "bg-maize/15 font-medium text-michigan"
-              : "text-slate-700"
-          }`}
-        >
+        <td key={c.id} className="px-4 py-3 align-top text-sm text-slate-700">
           {cell(c)}
         </td>
       ))}
@@ -307,76 +199,12 @@ function Row({
   );
 }
 
-function MiniGradeChart({
-  buckets,
-  median,
-}: {
-  buckets: Partial<Record<GradeLetter, number>>;
-  median: string;
-}) {
-  const max = Math.max(1, ...GRADE_LETTERS.map((l) => buckets[l] ?? 0));
-  return (
-    <div>
-      <div className="flex h-14 items-end gap-0.5">
-        {GRADE_LETTERS.map((letter) => {
-          const pct = buckets[letter] ?? 0;
-          const isMedian = letter === median;
-          const heightPct = (pct / max) * 100;
-          return (
-            <div
-              key={letter}
-              className={`flex-1 rounded-sm ${gradeLetterColor(letter)} ${
-                isMedian ? "ring-1 ring-michigan" : ""
-              }`}
-              style={{
-                height: pct > 0 ? `${Math.max(2, heightPct)}%` : "2px",
-                opacity: pct > 0 ? 1 : 0.2,
-              }}
-              title={`${letter}: ${pct}%`}
-            />
-          );
-        })}
-      </div>
-      <div className="mt-1 flex gap-0.5">
-        {GRADE_LETTERS.map((letter) => (
-          <div
-            key={letter}
-            className={`flex-1 text-center text-[8px] tabular-nums ${
-              letter === median ? "font-semibold text-michigan" : "text-slate-400"
-            }`}
-          >
-            {letter}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function RemoveLink({ id, existing }: { id: string; existing: string[] }) {
   const next = existing.filter((x) => x !== id);
   const href = next.length > 0 ? `/compare?ids=${next.join(",")}` : "/compare";
   return (
-    <Link
-      href={href}
-      aria-label="Remove from comparison"
-      className="text-xs text-slate-400 hover:text-rose-600"
-    >
+    <Link href={href} aria-label="Remove from comparison" className="text-xs text-slate-400 hover:text-rose-600">
       ✕
     </Link>
   );
-}
-
-function extremes(
-  courses: Course[],
-  accessor: (c: Course) => number,
-  dir: "low" | "high",
-): Set<string> {
-  const valid = courses.filter((c) => accessor(c) > 0);
-  if (valid.length < 2) return new Set();
-  const target =
-    dir === "low"
-      ? Math.min(...valid.map(accessor))
-      : Math.max(...valid.map(accessor));
-  return new Set(valid.filter((c) => accessor(c) === target).map((c) => c.id));
 }

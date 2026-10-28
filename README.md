@@ -1,20 +1,24 @@
 # Backpacker
 
-Backpacker helps University of Michigan students put together a semester that fits their workload and schedule. Search the course catalog, compare classes, and keep a plan in one place.
+Backpacker helps University of Michigan students build a semester schedule. Pick your courses and it shows every conflict-free combination of lectures, labs, and discussions, ranked by what you care about.
 
 ## What you can do
 
-- Search nearly 9,000 courses across 128 subjects, with filters for level, credits, and requirements.
-- Compare up to four courses by workload, difficulty, and grade distribution.
-- Add courses to a weekly planner and see overlaps in the listed meeting times.
+- Generate every conflict-free Winter 2027 schedule for up to 8 courses, ranked by later starts, fewer gaps, or fewer days on campus, with hard limits like "no class before 10am" or "Fridays off".
+- Lock the sections you want and let the generator fill in the rest; each result lists the class numbers to put in your Wolverine Access backpack.
+- Browse about 12,000 courses across the catalog, with each Winter 2027 course's sections, times, rooms, and instructors.
+- Look up instructors on Rate My Professors and compare up to four courses side by side.
 - Share a plan with a link, or save a shared plan in your own browser.
-- Find subject-specific advising, tutoring, and study resources.
+
+## How the schedule generator works
+
+`lib/scheduler.ts` builds every valid way to take each course: one section per component (lecture, lab, discussion), following U-M's section numbering, where lecture 010 owns labs 011–019 and lecture 100 owns discussions 101–199. Options that meet at identical times are merged. A backtracking search then picks one option per course, trying the most constrained course first and rejecting time conflicts with a per-day bitset in 5-minute slots. Only the best 50 schedules are kept while it searches. For EECS 281, EECS 370, MATH 215, and ECON 101, it checks all ~120,000 valid schedules in about 150 ms.
 
 ## About the data
 
-Course codes and titles come from the public Michigan Atlas catalog. The dataset combines manually curated preview records with estimated workload and grade figures derived from course level and subject. Estimates are labeled in the app; they are not official student outcomes.
+Course codes and titles come from the public U-M Atlas catalog. Sections, meeting times, rooms, instructors, and credits come from the Registrar's Winter 2027 schedule of classes; see `scraper/README.md` for how both are imported. The Registrar lists instructors by last name only.
 
-The planner currently uses the first listed section for each course. It does not check live availability, register you for classes, or verify every prerequisite. Courses without meeting times cannot be checked for conflicts. Confirm current information with the university before registering.
+Backpacker does not check seat availability, enrollment restrictions, or prerequisites, and it does not register you for classes. Confirm everything in Wolverine Access before registering.
 
 Plans are saved locally in your browser. There is no account system or cloud sync. Anyone with a shared plan link can see the courses in that link.
 
