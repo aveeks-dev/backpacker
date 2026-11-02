@@ -77,5 +77,5 @@ test("credits come from the lecture even when a 0-unit lab row is first", () => 
 });
 
 test("parseScheduleCsv names missing columns", () => {
-  assert.throws(() => parseScheduleCsv("Subject,Title\nEECS,Foo\n"), /missing columns: Class Nbr/);
+  assert.throws(() => parseScheduleCsv("Subject,Title\nEECS,Foo\n"), /missing columns: Acad Group, Class Nbr/);
 });

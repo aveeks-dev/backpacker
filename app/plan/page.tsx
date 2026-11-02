@@ -6,9 +6,10 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 import type { Course } from "@/lib/courses";
 import type { Day, ScheduleSection } from "@/lib/registrar";
 import { generateSchedules, type GenerateResult, type Preferences } from "@/lib/scheduler";
-import { DAY_LABELS, WEEKDAYS, componentLabel, formatMeetings, formatMinutes, rateMyProfessorsUrl } from "@/lib/format";
+import { DAY_LABELS, WEEKDAYS, componentLabel, formatMeetings, formatMinutes } from "@/lib/format";
 import { usePlan } from "@/lib/use-plan";
 import { CourseSearch } from "@/components/course-search";
+import { InstructorLinks } from "@/components/instructor-links";
 import { ScheduleGrid, type GridBlock } from "./_components/schedule-grid";
 import { ShareButton } from "./_components/share-button";
 
@@ -475,22 +476,7 @@ function ChosenSections({
                       {s.meetings[0]?.location && ` · ${s.meetings[0].location}`}
                     </div>
                     {s.instructors.length > 0 && (
-                      <div>
-                        {s.instructors.map((name, i) => (
-                          <span key={name}>
-                            {i > 0 && ", "}
-                            <a
-                              href={rateMyProfessorsUrl(name)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="underline decoration-slate-300 underline-offset-2 hover:text-michigan"
-                              title={`Search Rate My Professors for ${name} at UMich`}
-                            >
-                              {name}
-                            </a>
-                          </span>
-                        ))}
-                      </div>
+                      <div className="mt-0.5"><InstructorLinks names={s.instructors} /></div>
                     )}
                   </li>
                 ))}
@@ -553,11 +539,11 @@ function EmptyState({ onAdd }: { onAdd: (id: string) => void }) {
         <CourseSearch label="Add a course to your plan" offeredOnly autoFocus onPick={(c) => onAdd(c.id)} />
       </div>
       <p className="mt-6 text-sm text-slate-500">
-        Or{" "}
-        <Link href="/courses?offered=1" className="underline hover:text-michigan">
-          browse {TERM_LABEL} courses
+        Not sure what to take?{" "}
+        <Link href="/degree" className="font-medium underline hover:text-michigan">
+          Start with your major
         </Link>{" "}
-        and use the &ldquo;Add to plan&rdquo; button.
+        and we&apos;ll suggest courses.
       </p>
     </div>
   );

@@ -5,13 +5,17 @@ import {
   CURRENT_TERM,
   getCourse,
   getCourseLevel,
+  getInstructors,
   getSimilarCourses,
   isOffered,
   levelLabel,
 } from "@/lib/courses";
-import { componentLabel, formatMeeting, rateMyProfessorsUrl, sectionSummary } from "@/lib/format";
+import { InstructorLinks } from "@/components/instructor-links";
+import { componentLabel, formatMeeting, sectionSummary } from "@/lib/format";
+import { describePrereqs, PREREQ_SOURCE } from "@/lib/prereqs";
 import type { ScheduleSection } from "@/lib/registrar";
 import { getDeptName, getSubjectResources } from "@/lib/resources";
+import { SaveCourseButton } from "@/components/save-course-button";
 import { AddToPlanButton } from "./_components/add-to-plan";
 import { SimilarCourses } from "./_components/similar-courses";
 
@@ -82,7 +86,8 @@ export default async function CourseDetailPage({
           </div>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">{course.title}</h1>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <SaveCourseButton courseId={course.id} withLabel />
           <Link
             href={`/compare?ids=${course.id}`}
             className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
@@ -92,6 +97,47 @@ export default async function CourseDetailPage({
           {offered && <AddToPlanButton courseId={course.id} />}
         </div>
       </div>
+
+      <section className="mt-8 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-md border border-slate-200 bg-white p-5">
+          <h2 className="font-display text-base font-semibold">Prerequisites</h2>
+          {describePrereqs(course.id) ? (
+            <>
+              <p className="mt-1 text-sm">{describePrereqs(course.id)}</p>
+              <p className="mt-1 text-xs text-slate-500">
+                Enforced, usually with a C or better.{" "}
+                <a href={PREREQ_SOURCE} target="_blank" rel="noopener noreferrer" className="underline">Engineering Bulletin ↗</a>
+              </p>
+            </>
+          ) : (
+            <p className="mt-1 text-sm text-slate-600">Not listed on Backpacker yet. Check Wolverine Access or Atlas before registering.</p>
+          )}
+        </div>
+        <div className="rounded-md border border-slate-200 bg-white p-5">
+          <h2 className="font-display text-base font-semibold">Student evaluations and grades</h2>
+          <p className="mt-1 text-sm text-slate-600">See workload, how much students learned, and past grades on Atlas. Requires a U-M login.</p>
+          <a
+            href={`https://atlas.ai.umich.edu/courses/${course.code.replace(/\s+/g, "")}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block rounded-md bg-michigan px-3 py-1.5 text-sm font-medium text-white hover:bg-michigan-light"
+          >
+            See evaluations on Atlas ↗
+          </a>
+        </div>
+      </section>
+
+      {getInstructors(course).length > 0 && (
+        <section className="mt-8 rounded-md border border-slate-200 bg-white p-5">
+          <h2 className="font-display text-base font-semibold">Who&apos;s teaching in {CURRENT_TERM.label}</h2>
+          <p className="mt-0.5 text-xs text-slate-500">
+            Reviews open on Rate My Professors. The Registrar lists last names only, so check it&apos;s the right person.
+          </p>
+          <div className="mt-3 text-sm font-medium">
+            <InstructorLinks names={getInstructors(course)} />
+          </div>
+        </section>
+      )}
 
       <section className="mt-10">
         <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
@@ -133,11 +179,7 @@ export default async function CourseDetailPage({
                 </div>
               </div>
             ))}
-            <p className="text-xs text-slate-500">
-              Instructor names link to a Rate My Professors search at U-M; the Registrar lists last
-              names only, so check you have the right person.
-            </p>
-          </div>
+                      </div>
         )}
       </section>
 
@@ -188,23 +230,7 @@ function SectionRow({ section }: { section: ScheduleSection }) {
         {section.meetings.map((m, i) => <div key={i}>{m.location || "—"}</div>)}
       </td>
       <td className="px-4 py-2.5 text-slate-700">
-        {section.instructors.length === 0 ? (
-          <span className="text-slate-400">—</span>
-        ) : (
-          section.instructors.map((name, i) => (
-            <span key={name}>
-              {i > 0 && ", "}
-              <a
-                href={rateMyProfessorsUrl(name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline decoration-slate-300 underline-offset-2 hover:text-michigan"
-              >
-                {name}
-              </a>
-            </span>
-          ))
-        )}
+        <InstructorLinks names={section.instructors} />
       </td>
     </tr>
   );

@@ -13,6 +13,7 @@ export type Course = {
   code: string;
   title: string;
   department: string;
+  school: string | null; // null when the course isn't offered this term
   credits: string | null; // null when the course isn't offered this term
   sections: ScheduleSection[]; // this term's sections; empty if not offered
 };
@@ -28,16 +29,17 @@ function compareCodes(a: Course, b: Course): number {
 function buildCourses(): Course[] {
   const byId = new Map<string, Course>();
   for (const c of catalogData as CatalogEntry[]) {
-    byId.set(c.id, { ...c, credits: null, sections: [] });
+    byId.set(c.id, { ...c, school: null, credits: null, sections: [] });
   }
   for (const s of (scheduleData as { courses: ScheduleCourse[] }).courses) {
     const existing = byId.get(s.id);
     if (existing) {
       // Keep the catalog title; the Registrar abbreviates ("Data Struct&Algor").
+      existing.school = s.school;
       existing.credits = s.credits;
       existing.sections = s.sections;
     } else {
-      byId.set(s.id, { id: s.id, code: s.code, title: s.title, department: s.department, credits: s.credits, sections: s.sections });
+      byId.set(s.id, { id: s.id, code: s.code, title: s.title, department: s.department, school: s.school, credits: s.credits, sections: s.sections });
     }
   }
   return [...byId.values()].sort(compareCodes);
@@ -70,8 +72,13 @@ export function getDepartments(): string[] {
   return Array.from(new Set(courses.map((c) => c.department))).sort();
 }
 
+export function getSchools(): string[] {
+  return Array.from(new Set(courses.flatMap((c) => (c.school ? [c.school] : [])))).sort();
+}
+
 export type CourseFilters = {
   q?: string;
+  school?: string;
   department?: string;
   credits?: string;
   level?: string;
@@ -91,6 +98,7 @@ export function filterCourses(all: Course[], filters: CourseFilters): Course[] {
   const level = filters.level ? parseInt(filters.level, 10) : null;
   return all.filter((c) => {
     if (filters.offered === "1" && !isOffered(c)) return false;
+    if (filters.school && c.school !== filters.school) return false;
     if (filters.department && c.department !== filters.department) return false;
     if (filters.credits && c.credits !== filters.credits) return false;
     if (level !== null) {

@@ -1,9 +1,12 @@
 # Backpacker
 
-Backpacker helps University of Michigan students build a semester schedule. Pick your courses and it shows every conflict-free combination of lectures, labs, and discussions, ranked by what you care about.
+Backpacker helps University of Michigan students figure out what to take and when. Start with your major to see what's left and a four-year roadmap, then build a conflict-free schedule from the Registrar's real sections.
 
 ## What you can do
 
+- Choose a major (CS in Engineering or LSA, Data Science, or Economics), mark what you've taken, and see remaining requirements and next-term suggestions that respect published EECS prerequisites.
+- Rearrange a four-year roadmap, with status by year and an optional fifth year. CS-Engineering starts from the department's official sample schedule; the others start from a clearly labeled suggested order.
+- Browse courses as cards, filter by school, and save the ones you like. Each course links to its Rate My Professors searches and its Atlas evaluations.
 - Generate every conflict-free Winter 2027 schedule for up to 8 courses, ranked by later starts, fewer gaps, or fewer days on campus, with hard limits like "no class before 10am" or "Fridays off".
 - Lock the sections you want and let the generator fill in the rest; each result lists the class numbers to put in your Wolverine Access backpack.
 - Browse about 12,000 courses across the catalog, with each Winter 2027 course's sections, times, rooms, and instructors.
@@ -16,9 +19,9 @@ Backpacker helps University of Michigan students build a semester schedule. Pick
 
 ## About the data
 
-Course codes and titles come from the public U-M Atlas catalog. Sections, meeting times, rooms, instructors, and credits come from the Registrar's Winter 2027 schedule of classes; see `scraper/README.md` for how both are imported. The Registrar lists instructors by last name only.
+Major requirements come from official U-M pages linked in `lib/majors.ts`, and EECS prerequisites from the public Engineering Bulletin (`lib/prereqs.ts`). Prerequisites in other subjects aren't modeled. Atlas's login-only evaluations and grades are linked, not copied. Course codes and titles come from the public U-M Atlas catalog. Sections, meeting times, rooms, instructors, and credits come from the Registrar's Winter 2027 schedule of classes; see `scraper/README.md` for how both are imported. The Registrar lists instructors by last name only.
 
-Backpacker does not check seat availability, enrollment restrictions, or prerequisites, and it does not register you for classes. Confirm everything in Wolverine Access before registering.
+Backpacker does not check seat availability, enrollment restrictions, or prerequisites beyond the EECS courses it lists, and it does not register you for classes. Confirm everything in Wolverine Access before registering.
 
 Plans are saved locally in your browser. There is no account system or cloud sync. Anyone with a shared plan link can see the courses in that link.
 

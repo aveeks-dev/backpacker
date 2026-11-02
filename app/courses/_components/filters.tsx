@@ -5,16 +5,18 @@ import { useEffect, useState } from "react";
 import { LEVEL_OPTIONS } from "@/lib/format";
 
 type Props = {
+  schools: string[];
   departments: string[];
   offeredCount: number;
   termLabel: string;
 };
 
-export function Filters({ departments, offeredCount, termLabel }: Props) {
+export function Filters({ schools, departments, offeredCount, termLabel }: Props) {
   const router = useRouter();
   const params = useSearchParams();
 
   const [q, setQ] = useState(params.get("q") ?? "");
+  const school = params.get("school") ?? "";
   const department = params.get("department") ?? "";
   const credits = params.get("credits") ?? "";
   const level = params.get("level") ?? "";
@@ -47,7 +49,7 @@ export function Filters({ departments, offeredCount, termLabel }: Props) {
     router.replace("/courses", { scroll: false });
   }
 
-  const hasFilters = q || department || credits || level || offered;
+  const hasFilters = q || school || department || credits || level || offered;
 
   return (
     <div className="space-y-3">
@@ -71,6 +73,12 @@ export function Filters({ departments, offeredCount, termLabel }: Props) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
+        <Select value={school} onChange={(v) => setParam("school", v)} ariaLabel="School">
+          <option value="">All schools</option>
+          {schools.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </Select>
         <Select value={department} onChange={(v) => setParam("department", v)} ariaLabel="Subject">
           <option value="">All subjects</option>
           {departments.map((d) => (

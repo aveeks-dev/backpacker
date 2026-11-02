@@ -24,6 +24,7 @@ export type ScheduleCourse = {
   code: string; // "EECS 281"
   title: string;
   department: string;
+  school: string; // Registrar's academic group: "Engineering", "LSA", ...
   credits: string; // "4", "1-3"
   sections: ScheduleSection[];
 };
@@ -34,7 +35,7 @@ const DAY_COLUMNS: Array<[string, Day]> = [
 
 // Columns we depend on. Matched case-insensitively after trimming.
 const REQUIRED_COLUMNS = [
-  "Class Nbr", "Subject", "Catalog Nbr", "Section", "Course Title",
+  "Acad Group", "Class Nbr", "Subject", "Catalog Nbr", "Section", "Course Title",
   "Component", "Time", "Location", "Instructor", "Units",
   ...DAY_COLUMNS.map(([col]) => col),
 ];
@@ -183,6 +184,7 @@ export function parseScheduleCsv(text: string): ParseResult {
         code: `${department} ${catalog}`,
         title: get(row, "Course Title"),
         department,
+        school: get(row, "Acad Group"),
         credits: formatCredits(get(row, "Units")),
         sections: [],
       };

@@ -10,7 +10,8 @@ import {
   levelLabel,
   type Course,
 } from "@/lib/courses";
-import { formatMeetings, rateMyProfessorsUrl, sectionSummary } from "@/lib/format";
+import { InstructorLinks } from "@/components/instructor-links";
+import { formatMeetings, sectionSummary } from "@/lib/format";
 import { CompareSearch } from "./_components/compare-search";
 
 export const metadata: Metadata = {
@@ -150,25 +151,7 @@ function CompareTable({ courses }: { courses: Course[] }) {
           <Row
             label="Instructors"
             courses={courses}
-            cell={(c) => {
-              const names = getInstructors(c);
-              if (names.length === 0) return "—";
-              return (
-                <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-xs">
-                  {names.map((name) => (
-                    <a
-                      key={name}
-                      href={rateMyProfessorsUrl(name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline decoration-slate-300 underline-offset-2 hover:text-michigan"
-                    >
-                      {name}
-                    </a>
-                  ))}
-                </div>
-              );
-            }}
+            cell={(c) => <div className="text-xs"><InstructorLinks names={getInstructors(c)} /></div>}
           />
         </tbody>
       </table>

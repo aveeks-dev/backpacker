@@ -16,7 +16,7 @@ function section(number: string, component: string, days: string, start: string,
 }
 
 function course(id: string, sections: ScheduleSection[]): ScheduleCourse {
-  return { id, code: id.toUpperCase(), title: id, department: id.split("-")[0].toUpperCase(), credits: "4", sections };
+  return { id, code: id.toUpperCase(), title: id, department: id.split("-")[0].toUpperCase(), school: "Test", credits: "4", sections };
 }
 
 const numbers = (sections: ScheduleSection[][]) => sections.map((alt) => alt.map((s) => s.number).join("+"));
