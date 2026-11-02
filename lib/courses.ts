@@ -1,257 +1,127 @@
-import coursesData from "@/data/courses.json";
+// Server-only course data: the Atlas catalog merged with the current term's
+// Registrar schedule. Client components should fetch from /api/courses
+// instead of importing this module, which would bundle all the data.
 
-export type Day = "M" | "T" | "W" | "Th" | "F";
-export const DAYS: Day[] = ["M", "T", "W", "Th", "F"];
-export const DAY_LABELS: Record<Day, string> = { M: "Mon", T: "Tue", W: "Wed", Th: "Thu", F: "Fri" };
+import catalogData from "@/data/catalog.json";
+import scheduleData from "@/data/schedule/WN2027.json";
+import type { ScheduleCourse, ScheduleSection } from "./registrar";
 
-export type Meeting = {
-  days: Day[];
-  start: string;
-  end: string;
-};
-
-export type Section = {
-  id: string;
-  number: string;
-  professor: string;
-  meetings: Meeting[];
-  enrolled: number;
-  capacity: number;
-};
-
-export type GradeLetter =
-  | "A+" | "A" | "A-"
-  | "B+" | "B" | "B-"
-  | "C+" | "C" | "C-"
-  | "D+" | "D" | "D-"
-  | "E";
-
-export const GRADE_LETTERS: GradeLetter[] = [
-  "A+", "A", "A-",
-  "B+", "B", "B-",
-  "C+", "C", "C-",
-  "D+", "D", "D-",
-  "E",
-];
-
-export type GradeDistribution = {
-  median: string;
-  mean: number;
-  buckets: Partial<Record<GradeLetter, number>>;
-};
-
-export type DataQuality = "curated" | "estimated" | "catalog-only";
+export const CURRENT_TERM = { id: "WN2027", label: "Winter 2027" };
 
 export type Course = {
   id: string;
   code: string;
   title: string;
   department: string;
-  credits: number;
-  description: string;
-  prereqs: string[];
-  fulfills: string[];
-  workloadHoursPerWeek: number;
-  difficulty: 1 | 2 | 3 | 4 | 5;
-  studentRating: number;
-  grades: GradeDistribution | null;
-  sections: Section[];
-  tags: string[];
-  dataQuality: DataQuality;
+  school: string | null; // null when the course isn't offered this term
+  credits: string | null; // null when the course isn't offered this term
+  sections: ScheduleSection[]; // this term's sections; empty if not offered
 };
 
-const courses = coursesData as Course[];
+export type CourseSummary = Pick<Course, "id" | "code" | "title" | "credits"> & { offered: boolean };
+
+type CatalogEntry = { id: string; code: string; title: string; department: string };
+
+function compareCodes(a: Course, b: Course): number {
+  return a.department.localeCompare(b.department) || a.code.localeCompare(b.code, undefined, { numeric: true });
+}
+
+function buildCourses(): Course[] {
+  const byId = new Map<string, Course>();
+  for (const c of catalogData as CatalogEntry[]) {
+    byId.set(c.id, { ...c, school: null, credits: null, sections: [] });
+  }
+  for (const s of (scheduleData as { courses: ScheduleCourse[] }).courses) {
+    const existing = byId.get(s.id);
+    if (existing) {
+      // Keep the catalog title; the Registrar abbreviates ("Data Struct&Algor").
+      existing.school = s.school;
+      existing.credits = s.credits;
+      existing.sections = s.sections;
+    } else {
+      byId.set(s.id, { id: s.id, code: s.code, title: s.title, department: s.department, school: s.school, credits: s.credits, sections: s.sections });
+    }
+  }
+  return [...byId.values()].sort(compareCodes);
+}
+
+const courses = buildCourses();
+const courseById = new Map(courses.map((c) => [c.id, c]));
 
 export function getAllCourses(): Course[] {
   return courses;
 }
 
 export function getCourse(id: string): Course | undefined {
-  return courses.find((c) => c.id === id);
+  return courseById.get(id);
+}
+
+export function getCoursesById(ids: string[]): Course[] {
+  return ids.map((id) => courseById.get(id)).filter((c): c is Course => !!c);
+}
+
+export function isOffered(course: Course): boolean {
+  return course.sections.length > 0;
+}
+
+export function toSummary(c: Course): CourseSummary {
+  return { id: c.id, code: c.code, title: c.title, credits: c.credits, offered: isOffered(c) };
 }
 
 export function getDepartments(): string[] {
   return Array.from(new Set(courses.map((c) => c.department))).sort();
 }
 
-export function getAllFulfills(): string[] {
-  return Array.from(new Set(courses.flatMap((c) => c.fulfills))).sort();
-}
-
-export type FulfillsGroup = { label: string; options: string[] };
-
-export function getFulfillsGroups(): FulfillsGroup[] {
-  const all = getAllFulfills();
-  const lsa = all.filter((f) => f.startsWith("LSA "));
-  const eng = all.filter((f) => f.startsWith("Engineering"));
-  const ross = all.filter((f) => f.startsWith("Ross"));
-  const major = all.filter(
-    (f) =>
-      f.endsWith("Major") ||
-      f.endsWith("Major Core") ||
-      f.endsWith("Major Elective") ||
-      f === "CS Theory" ||
-      f === "Data Science Core",
-  );
-  const usedSet = new Set([...lsa, ...eng, ...ross, ...major]);
-  const other = all.filter((f) => !usedSet.has(f));
-  const groups: FulfillsGroup[] = [];
-  if (lsa.length) groups.push({ label: "LSA Distribution", options: lsa });
-  if (eng.length) groups.push({ label: "Engineering", options: eng });
-  if (ross.length) groups.push({ label: "Ross BBA", options: ross });
-  if (major.length) groups.push({ label: "Major / Concentration", options: major });
-  if (other.length) groups.push({ label: "Other", options: other });
-  return groups;
+export function getSchools(): string[] {
+  return Array.from(new Set(courses.flatMap((c) => (c.school ? [c.school] : [])))).sort();
 }
 
 export type CourseFilters = {
   q?: string;
+  school?: string;
   department?: string;
   credits?: string;
-  maxWorkload?: string;
-  fulfills?: string;
-  hasData?: string;
   level?: string;
+  offered?: string; // "1" = only courses offered this term
 };
 
+function normalize(text: string): string {
+  return text.toLowerCase().replace(/\s+/g, "");
+}
+
+export function matchesQuery(course: Course, q: string): boolean {
+  const needle = normalize(q);
+  return normalize(`${course.code} ${course.title}`).includes(needle);
+}
+
 export function filterCourses(all: Course[], filters: CourseFilters): Course[] {
+  const level = filters.level ? parseInt(filters.level, 10) : null;
   return all.filter((c) => {
+    if (filters.offered === "1" && !isOffered(c)) return false;
+    if (filters.school && c.school !== filters.school) return false;
     if (filters.department && c.department !== filters.department) return false;
-    if (filters.credits && c.credits !== Number(filters.credits)) return false;
-    if (filters.maxWorkload && (c.workloadHoursPerWeek <= 0 || c.workloadHoursPerWeek > Number(filters.maxWorkload))) return false;
-    if (filters.fulfills && !c.fulfills.includes(filters.fulfills)) return false;
-    if (filters.hasData === "curated" && c.dataQuality !== "curated") return false;
-    if (filters.level) {
-      const target = parseInt(filters.level, 10);
+    if (filters.credits && c.credits !== filters.credits) return false;
+    if (level !== null) {
       const lvl = getCourseLevelGroup(c);
-      if (target >= 600) {
-        if (lvl < 600) return false;
-      } else if (lvl !== target) {
-        return false;
-      }
+      if (level >= 600 ? lvl < 600 : lvl !== level) return false;
     }
-    if (filters.q) {
-      const q = filters.q.toLowerCase().replace(/\s+/g, "");
-      const haystack = `${c.code} ${c.title} ${c.tags.join(" ")}`.toLowerCase().replace(/\s+/g, "");
-      if (!haystack.includes(q)) return false;
-    }
+    if (filters.q && !matchesQuery(c, filters.q)) return false;
     return true;
   });
 }
 
-export type SortKey =
-  | "code-asc"
-  | "workload-asc"
-  | "workload-desc"
-  | "difficulty-asc"
-  | "difficulty-desc"
-  | "median-desc"
-  | "median-asc"
-  | "a-percent-desc"
-  | "a-percent-asc";
-
-export const SORT_LABELS: Record<SortKey, string> = {
-  "code-asc": "Course code (A→Z)",
-  "workload-asc": "Workload — light first",
-  "workload-desc": "Workload — heavy first",
-  "difficulty-asc": "Difficulty — easy first",
-  "difficulty-desc": "Difficulty — hard first",
-  "median-desc": "Median grade — high first",
-  "median-asc": "Median grade — low first",
-  "a-percent-desc": "% A grades — high first",
-  "a-percent-asc": "% A grades — low first",
-};
-
-export function sortCourses(list: Course[], key: SortKey): Course[] {
-  const sorted = [...list];
-  sorted.sort((a, b) => {
-    // Missing observations belong last in either direction, never at zero.
-    const metric = (c: Course) => key.startsWith("workload") ? c.workloadHoursPerWeek > 0 : key.startsWith("difficulty") ? c.difficulty > 0 : c.grades !== null;
-    if (key !== "code-asc" && metric(a) !== metric(b)) return metric(a) ? -1 : 1;
-    switch (key) {
-      case "workload-asc": return a.workloadHoursPerWeek - b.workloadHoursPerWeek;
-      case "workload-desc": return b.workloadHoursPerWeek - a.workloadHoursPerWeek;
-      case "difficulty-asc": return a.difficulty - b.difficulty;
-      case "difficulty-desc": return b.difficulty - a.difficulty;
-      case "median-desc": return (b.grades?.mean ?? 0) - (a.grades?.mean ?? 0);
-      case "median-asc": return (a.grades?.mean ?? 0) - (b.grades?.mean ?? 0);
-      case "a-percent-desc":
-        return aGradePercent(b.grades?.buckets ?? {}) - aGradePercent(a.grades?.buckets ?? {});
-      case "a-percent-asc":
-        return aGradePercent(a.grades?.buckets ?? {}) - aGradePercent(b.grades?.buckets ?? {});
-      case "code-asc":
-      default: return a.code.localeCompare(b.code);
-    }
-  });
-  return sorted;
-}
-
-export function isSortKey(value: string | undefined): value is SortKey {
-  return !!value && Object.hasOwn(SORT_LABELS, value);
+/** Search for pickers: exact code-prefix matches first, then title matches. */
+export function searchCourses(q: string, { offeredOnly = false, limit = 8 } = {}): Course[] {
+  const needle = normalize(q);
+  if (!needle) return [];
+  const pool = offeredOnly ? courses.filter(isOffered) : courses;
+  const codeHits = pool.filter((c) => normalize(c.code).startsWith(needle));
+  const rest = pool.filter((c) => !normalize(c.code).startsWith(needle) && matchesQuery(c, q));
+  return [...codeHits, ...rest].slice(0, limit);
 }
 
 // ---------------------------------------------------------------------
-// Department averages (for comparative context on detail page)
-// ---------------------------------------------------------------------
-
-export type DeptAverages = {
-  workload: number;
-  difficulty: number;
-  meanGpa: number;
-  rating: number;
-  count: number;
-};
-
-let _deptAvgsCache: Record<string, DeptAverages> | null = null;
-
-export function getDepartmentAverages(): Record<string, DeptAverages> {
-  if (_deptAvgsCache) return _deptAvgsCache;
-  const acc: Record<string, { wSum: number; dSum: number; gSum: number; rSum: number; n: number; gN: number }> = {};
-  for (const c of courses) {
-    const k = c.department;
-    if (!acc[k]) acc[k] = { wSum: 0, dSum: 0, gSum: 0, rSum: 0, n: 0, gN: 0 };
-    acc[k].wSum += c.workloadHoursPerWeek;
-    acc[k].dSum += c.difficulty;
-    if (c.grades) { acc[k].gSum += c.grades.mean; acc[k].gN += 1; }
-    acc[k].rSum += c.studentRating;
-    acc[k].n += 1;
-  }
-  const out: Record<string, DeptAverages> = {};
-  for (const [k, v] of Object.entries(acc)) {
-    out[k] = {
-      workload: v.wSum / v.n,
-      difficulty: v.dSum / v.n,
-      meanGpa: v.gN ? v.gSum / v.gN : 0,
-      rating: v.rSum / v.n,
-      count: v.n,
-    };
-  }
-  _deptAvgsCache = out;
-  return out;
-}
-
-// ---------------------------------------------------------------------
-// Grade letter helpers
-// ---------------------------------------------------------------------
-
-export function gradeLetterColor(letter: GradeLetter): string {
-  if (letter.startsWith("A")) return "bg-emerald-500";
-  if (letter.startsWith("B")) return "bg-emerald-300";
-  if (letter.startsWith("C")) return "bg-amber-400";
-  if (letter.startsWith("D")) return "bg-orange-400";
-  return "bg-rose-400"; // E
-}
-
-export function difficultyLabel(d: number): string {
-  if (d <= 1) return "Very easy";
-  if (d <= 2) return "Easy";
-  if (d <= 3) return "Moderate";
-  if (d <= 4) return "Hard";
-  return "Very hard";
-}
-
-// ---------------------------------------------------------------------
-// Course level / number helpers
+// Course level helpers
 // ---------------------------------------------------------------------
 
 export function getCourseLevel(course: Course): number {
@@ -275,36 +145,17 @@ export function levelLabel(level: number): string {
   return "600+ — Graduate";
 }
 
-export const LEVEL_OPTIONS: Array<{ value: string; label: string }> = [
-  { value: "100", label: "100 — Intro" },
-  { value: "200", label: "200 — Lower" },
-  { value: "300", label: "300 — Upper" },
-  { value: "400", label: "400 — Upper" },
-  { value: "500", label: "500 — Capstone / Grad" },
-  { value: "600", label: "600+ — Graduate" },
-];
-
-// ---------------------------------------------------------------------
-// A-grade percentage and similar courses
-// ---------------------------------------------------------------------
-
-export function aGradePercent(buckets: Partial<Record<GradeLetter, number>>): number {
-  return (buckets["A+"] ?? 0) + (buckets["A"] ?? 0) + (buckets["A-"] ?? 0);
-}
-
 export function getSimilarCourses(course: Course, n = 6): Course[] {
   const target = getCourseLevel(course);
   return courses
     .filter((c) => c.id !== course.id && c.department === course.department)
-    .map((c) => ({ c, d: Math.abs(getCourseLevel(c) - target) }))
-    .sort((a, b) => {
-      if (a.d !== b.d) return a.d - b.d;
-      return a.c.code.localeCompare(b.c.code);
-    })
+    .map((c) => ({ c, d: Math.abs(getCourseLevel(c) - target) + (isOffered(c) ? 0 : 1000) }))
+    .sort((a, b) => a.d - b.d || compareCodes(a.c, b.c))
     .slice(0, n)
     .map((x) => x.c);
 }
 
-export function getCoursesById(ids: string[]): Course[] {
-  return ids.map((id) => getCourse(id)).filter((c): c is Course => !!c);
+/** Distinct instructors across a course's sections, in section order. */
+export function getInstructors(course: Course): string[] {
+  return Array.from(new Set(course.sections.flatMap((s) => s.instructors)));
 }

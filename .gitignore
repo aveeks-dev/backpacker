@@ -44,3 +44,6 @@ next-env.d.ts
 /data/scraped.json
 /data/courses-scraped.json
 
+
+# Registrar CSVs (downloaded behind UMich login; not redistributed)
+/data/raw/

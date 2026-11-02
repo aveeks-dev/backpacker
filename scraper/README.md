@@ -1,64 +1,37 @@
-# Backpacker scrapers
+# Backpacker data
 
-Two scrapers are planned for pulling real UMich course data into `data/courses.json`.
+Backpacker combines two sources:
 
-| Stage | Source | Auth | Status | Data extracted |
-|---|---|---|---|---|
-| v1 | `atlas.ai.umich.edu/api/courses` (public JSON) | none | **available** | course code, title, terms offered |
-| v2 | `atlas.ai.umich.edu/courses/<dept>/<num>/` (HTML, behind UMich SSO) | UMich login (you, locally) | TODO | grade distributions, sections, professors, descriptions, prereqs |
+| File | Source | What it holds |
+|---|---|---|
+| `data/catalog.json` | Atlas public course API (`scrape_atlas.py`) | Every course code and title in the catalog |
+| `data/schedule/<TERM>.json` | Registrar "All classes" CSV (`npm run import:schedule`) | Credits, sections, meeting times, rooms, instructors for one term |
 
-## v1 — public catalog scraper
+A course appears in the app if it is in either file. Course titles come from
+the catalog when available, because the Registrar abbreviates them.
 
-Pulls every UMich course code + title from Atlas's public JSON API. No
-authentication required.
+## Catalog: Atlas public API
 
 ```bash
 cd scraper
-python3 scrape_atlas.py
+python3 scrape_atlas.py                         # all subjects -> ../data/catalog.json
+python3 scrape_atlas.py --departments EECS MATH # selected subjects only
 ```
 
-Default output: `../data/courses-scraped.json`. Other flags:
+No authentication or dependencies beyond the Python standard library. Atlas
+caps results at 100 per query, so the script makes several narrower passes
+per subject and merges them.
+
+## Term schedule: Registrar CSV
+
+The Registrar publishes one CSV per term at
+https://ro.umich.edu/calendars/schedule-of-classes ("All classes (CSV)"). It
+requires a UMich login, so download it in your browser, save it under
+`data/raw/` (gitignored), then run:
 
 ```bash
-python3 scrape_atlas.py --output /tmp/courses.json
-python3 scrape_atlas.py --departments EECS MATH STATS
+npm run import:schedule -- data/raw/WN2027.csv
 ```
 
-### Limitations
-
-- Atlas caps results at 100 per query. Subjects that exceed 100 (e.g.
-  some music performance codes) will be partially missed; the script
-  prints a warning naming each capped subject.
-- The public endpoint exposes only `course_code`, `title`, and
-  `offered_terms`. Workload, grades, descriptions, sections, and
-  professors are not in this API response.
-
-### Why don't we just merge into `data/courses.json` directly?
-
-The hand-curated `data/courses.json` has rich metrics (workload,
-grade distributions, sections) that the public API can't provide. We
-keep the scraped catalog separate so you can review it first, then
-merge selectively. The recommended workflow:
-
-1. Run the scraper → `data/courses-scraped.json`
-2. Review what's new vs. what's already in `data/courses.json`
-3. Merge by hand or with a small merge script (TODO)
-4. Once v2 is ready, the auth scraper will fill in the rich fields
-
-## v2 — authenticated detail scraper (TODO)
-
-Will use Playwright with a persistent browser profile. You log in to
-UMich once, the session cookie is saved locally, and the script then
-fetches the per-course detail pages to extract grade distributions,
-sections, and professors.
-
-**Your credentials never enter any code or server.** Playwright opens
-your browser, you log in interactively, and only the cookie sits in
-a local file (`~/.config/backpacker/auth/`).
-
-Planned interface:
-
-```bash
-python3 scrape_atlas_auth.py login        # one-time interactive login
-python3 scrape_atlas_auth.py --department EECS
-```
+This writes `data/schedule/WN2027.json`. To switch the app to a new term,
+change `CURRENT_TERM` in `lib/courses.ts`.

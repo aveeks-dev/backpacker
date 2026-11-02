@@ -2,33 +2,25 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  LEVEL_OPTIONS,
-  SORT_LABELS,
-  type FulfillsGroup,
-  type SortKey,
-} from "@/lib/courses";
-
-const SORT_OPTIONS = Object.keys(SORT_LABELS) as SortKey[];
+import { LEVEL_OPTIONS } from "@/lib/format";
 
 type Props = {
+  schools: string[];
   departments: string[];
-  fulfillsGroups: FulfillsGroup[];
-  curatedCount: number;
+  offeredCount: number;
+  termLabel: string;
 };
 
-export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
+export function Filters({ schools, departments, offeredCount, termLabel }: Props) {
   const router = useRouter();
   const params = useSearchParams();
 
   const [q, setQ] = useState(params.get("q") ?? "");
+  const school = params.get("school") ?? "";
   const department = params.get("department") ?? "";
-  const fulfills = params.get("fulfills") ?? "";
   const credits = params.get("credits") ?? "";
-  const maxWorkload = params.get("maxWorkload") ?? "";
   const level = params.get("level") ?? "";
-  const sort = params.get("sort") ?? "code-asc";
-  const hasData = params.get("hasData") ?? "";
+  const offered = params.get("offered") ?? "";
 
   useEffect(() => {
     const handle = setTimeout(() => {
@@ -57,8 +49,7 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
     router.replace("/courses", { scroll: false });
   }
 
-  const hasFilters =
-    q || department || credits || maxWorkload || fulfills || hasData || level || sort !== "code-asc";
+  const hasFilters = q || school || department || credits || level || offered;
 
   return (
     <div className="space-y-3">
@@ -71,15 +62,6 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
           placeholder="Find a course (e.g. EECS 280, ANTHRO 101)"
           className="min-w-[260px] flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:border-michigan focus:outline-none"
         />
-        <Select
-          value={sort}
-          onChange={(v) => setParam("sort", v === "code-asc" ? "" : v)}
-          ariaLabel="Sort"
-        >
-          {SORT_OPTIONS.map((k) => (
-            <option key={k} value={k}>{SORT_LABELS[k]}</option>
-          ))}
-        </Select>
         {hasFilters && (
           <button
             onClick={clearAll}
@@ -91,68 +73,38 @@ export function Filters({ departments, fulfillsGroups, curatedCount }: Props) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <Select
-          value={department}
-          onChange={(v) => setParam("department", v)}
-          ariaLabel="Subject"
-        >
+        <Select value={school} onChange={(v) => setParam("school", v)} ariaLabel="School">
+          <option value="">All schools</option>
+          {schools.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </Select>
+        <Select value={department} onChange={(v) => setParam("department", v)} ariaLabel="Subject">
           <option value="">All subjects</option>
           {departments.map((d) => (
             <option key={d} value={d}>{d}</option>
           ))}
         </Select>
-        <Select
-          value={level}
-          onChange={(v) => setParam("level", v)}
-          ariaLabel="Course level"
-        >
+        <Select value={level} onChange={(v) => setParam("level", v)} ariaLabel="Course level">
           <option value="">All levels</option>
           {LEVEL_OPTIONS.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </Select>
-        <Select
-          value={fulfills}
-          onChange={(v) => setParam("fulfills", v)}
-          ariaLabel="Distribution"
-        >
-          <option value="">Any distribution</option>
-          {fulfillsGroups.map((g) => (
-            <optgroup key={g.label} label={g.label}>
-              {g.options.map((o) => (
-                <option key={o} value={o}>{o}</option>
-              ))}
-            </optgroup>
-          ))}
-        </Select>
-        <Select
-          value={credits}
-          onChange={(v) => setParam("credits", v)}
-          ariaLabel="Credits"
-        >
+        <Select value={credits} onChange={(v) => setParam("credits", v)} ariaLabel="Credits">
           <option value="">Any credits</option>
-          {[2, 3, 4, 5].map((c) => (
-            <option key={c} value={String(c)}>{c} credits</option>
-          ))}
-        </Select>
-        <Select
-          value={maxWorkload}
-          onChange={(v) => setParam("maxWorkload", v)}
-          ariaLabel="Max workload"
-        >
-          <option value="">Any workload</option>
-          {[8, 12, 15, 20].map((w) => (
-            <option key={w} value={String(w)}>{`≤ ${w} hrs/wk`}</option>
+          {["1", "2", "3", "4", "5"].map((c) => (
+            <option key={c} value={c}>{c} credits</option>
           ))}
         </Select>
         <label className="ml-1 inline-flex items-center gap-1.5 text-xs text-slate-600">
           <input
             type="checkbox"
-            checked={hasData === "curated"}
-            onChange={(e) => setParam("hasData", e.target.checked ? "curated" : "")}
+            checked={offered === "1"}
+            onChange={(e) => setParam("offered", e.target.checked ? "1" : "")}
             className="h-3.5 w-3.5 rounded border-slate-300"
           />
-          Only fully reviewed ({curatedCount})
+          Offered in {termLabel} ({offeredCount.toLocaleString()})
         </label>
       </div>
     </div>

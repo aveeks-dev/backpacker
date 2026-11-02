@@ -2,29 +2,22 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  getAllCourses,
+  CURRENT_TERM,
   getCourse,
   getCourseLevel,
-  getDepartmentAverages,
+  getInstructors,
   getSimilarCourses,
-  aGradePercent,
-  GRADE_LETTERS,
-  gradeLetterColor,
-  difficultyLabel,
+  isOffered,
   levelLabel,
-  type GradeLetter,
-  type Section,
 } from "@/lib/courses";
+import { InstructorLinks } from "@/components/instructor-links";
+import { componentLabel, formatMeeting, sectionSummary } from "@/lib/format";
+import { describePrereqs, PREREQ_SOURCE } from "@/lib/prereqs";
+import type { ScheduleSection } from "@/lib/registrar";
 import { getDeptName, getSubjectResources } from "@/lib/resources";
+import { SaveCourseButton } from "@/components/save-course-button";
 import { AddToPlanButton } from "./_components/add-to-plan";
 import { SimilarCourses } from "./_components/similar-courses";
-
-// Only prerender curated courses; estimated/catalog-only render dynamically
-export function generateStaticParams() {
-  return getAllCourses()
-    .filter((c) => c.dataQuality === "curated")
-    .map((c) => ({ id: c.id }));
-}
 
 export async function generateMetadata({
   params,
@@ -36,9 +29,9 @@ export async function generateMetadata({
   if (!course) return { title: "Course not found" };
   return {
     title: `${course.code} — ${course.title}`,
-    description:
-      course.description ||
-      `Workload, difficulty, and grade outcomes for ${course.code} (${course.title}) at the University of Michigan.`,
+    description: isOffered(course)
+      ? `${course.code} (${course.title}) at the University of Michigan: ${CURRENT_TERM.label} sections, meeting times, and instructors.`
+      : `${course.code} (${course.title}) at the University of Michigan.`,
   };
 }
 
@@ -51,12 +44,16 @@ export default async function CourseDetailPage({
   const course = getCourse(id);
   if (!course) notFound();
 
-  const deptAvg = getDepartmentAverages()[course.department];
-  const isCurated = course.dataQuality === "curated";
-  const isEstimated = course.dataQuality === "estimated";
-  const level = getCourseLevel(course);
+  const offered = isOffered(course);
   const similar = getSimilarCourses(course, 6);
-  const aPct = course.grades ? aGradePercent(course.grades.buckets) : null;
+  // Group sections by component, lectures first, exams last.
+  const groups = new Map<string, ScheduleSection[]>();
+  for (const s of course.sections) {
+    if (!groups.has(s.component)) groups.set(s.component, []);
+    groups.get(s.component)!.push(s);
+  }
+  const order = (c: string) => (c === "LEC" ? 0 : c === "MID" ? 2 : 1);
+  const grouped = [...groups].sort(([a], [b]) => order(a) - order(b) || a.localeCompare(b));
 
   return (
     <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-10">
@@ -78,150 +75,113 @@ export default async function CourseDetailPage({
             >
               {getDeptName(course.department)}
             </Link>
-            <span className="text-slate-400">·</span>
-            <span className="text-slate-500">{course.credits} credits</span>
-            <span className="text-slate-400">·</span>
-            <span className="text-slate-500">{levelLabel(level)}</span>
-            {course.studentRating > 0 && (
+            {course.credits && (
               <>
                 <span className="text-slate-400">·</span>
-                <span className="text-slate-700" title="Average student rating">
-                  ★ {course.studentRating.toFixed(1)}
-                </span>
+                <span className="text-slate-500">{course.credits} credits</span>
               </>
             )}
-            {isEstimated && (
-              <span className="ml-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-800">
-                Estimated metrics
-              </span>
-            )}
+            <span className="text-slate-400">·</span>
+            <span className="text-slate-500">{levelLabel(getCourseLevel(course))}</span>
           </div>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">{course.title}</h1>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <SaveCourseButton courseId={course.id} withLabel />
           <Link
             href={`/compare?ids=${course.id}`}
             className="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
           >
             Compare
           </Link>
-          <AddToPlanButton courseId={course.id} />
+          {offered && <AddToPlanButton courseId={course.id} />}
         </div>
       </div>
 
-      {course.description && (
-        <p className="mt-4 max-w-2xl text-slate-600">{course.description}</p>
-      )}
-
-      {course.fulfills.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {course.fulfills.map((f) => (
-            <span
-              key={f}
-              className="rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600"
-            >
-              {f}
-            </span>
-          ))}
+      <section className="mt-8 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-md border border-slate-200 bg-white p-5">
+          <h2 className="font-display text-base font-semibold">Prerequisites</h2>
+          {describePrereqs(course.id) ? (
+            <>
+              <p className="mt-1 text-sm">{describePrereqs(course.id)}</p>
+              <p className="mt-1 text-xs text-slate-500">
+                Enforced, usually with a C or better.{" "}
+                <a href={PREREQ_SOURCE} target="_blank" rel="noopener noreferrer" className="underline">Engineering Bulletin ↗</a>
+              </p>
+            </>
+          ) : (
+            <p className="mt-1 text-sm text-slate-600">Not listed on Backpacker yet. Check Wolverine Access or Atlas before registering.</p>
+          )}
         </div>
-      )}
-
-      {isEstimated && (
-        <div className="mt-6 rounded-md border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
-          <strong>Estimated data.</strong> The metrics below are derived from
-          this course&apos;s level and subject, not from verified student
-          outcomes. Treat them as a starting point, not a promise.
+        <div className="rounded-md border border-slate-200 bg-white p-5">
+          <h2 className="font-display text-base font-semibold">Student evaluations and grades</h2>
+          <p className="mt-1 text-sm text-slate-600">See workload, how much students learned, and past grades on Atlas. Requires a U-M login.</p>
+          <a
+            href={`https://atlas.ai.umich.edu/courses/${course.code.replace(/\s+/g, "")}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block rounded-md bg-michigan px-3 py-1.5 text-sm font-medium text-white hover:bg-michigan-light"
+          >
+            See evaluations on Atlas ↗
+          </a>
         </div>
-      )}
+      </section>
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <BigStat
-          label="Workload"
-          value={course.workloadHoursPerWeek > 0 ? course.workloadHoursPerWeek.toString() : "—"}
-          unit="hrs / week"
-          comparison={
-            deptAvg && course.workloadHoursPerWeek > 0
-              ? compareLine(course.workloadHoursPerWeek, deptAvg.workload, course.department, "hrs")
-              : undefined
-          }
-        />
-        <BigStat
-          label="Difficulty"
-          value={`${course.difficulty}/5`}
-          unit={difficultyLabel(course.difficulty)}
-          comparison={
-            deptAvg
-              ? compareLine(course.difficulty, deptAvg.difficulty, course.department, "")
-              : undefined
-          }
-        />
-        <BigStat
-          label="Median grade"
-          value={course.grades?.median ?? "—"}
-          unit={course.grades ? `mean ${course.grades.mean.toFixed(1)} GPA` : "no data yet"}
-          comparison={
-            deptAvg && course.grades
-              ? compareLine(course.grades.mean, deptAvg.meanGpa, course.department, "GPA")
-              : undefined
-          }
-        />
-        <BigStat
-          label="% earning A"
-          value={aPct !== null ? `${Math.round(aPct)}%` : "—"}
-          unit={aPct !== null ? "A+, A, or A−" : "no data yet"}
-        />
-      </div>
-
-      {course.grades && (
-        <section className="mt-10">
-          <h2 className="mb-1 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Grade distribution
-          </h2>
-          <p className="mb-4 text-xs text-slate-500">
-            Median {course.grades.median} · Mean {course.grades.mean.toFixed(2)} GPA
-            {!isCurated && " · Estimated"}
+      {getInstructors(course).length > 0 && (
+        <section className="mt-8 rounded-md border border-slate-200 bg-white p-5">
+          <h2 className="font-display text-base font-semibold">Who&apos;s teaching in {CURRENT_TERM.label}</h2>
+          <p className="mt-0.5 text-xs text-slate-500">
+            Reviews open on Rate My Professors. The Registrar lists last names only, so check it&apos;s the right person.
           </p>
-          <GradeChart buckets={course.grades.buckets} median={course.grades.median} />
-        </section>
-      )}
-
-      {course.prereqs.length > 0 && (
-        <section className="mt-8">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Prerequisites
-          </h2>
-          <ul className="text-sm text-slate-700">
-            {course.prereqs.map((p) => (
-              <li key={p}>· {p}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {course.sections.length > 0 && (
-        <section className="mt-10">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Sections
-          </h2>
-          <div className="overflow-x-auto rounded-md border border-slate-200">
-            <table className="w-full min-w-[480px] text-sm">
-              <thead>
-                <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-                  <th className="px-4 py-3 font-medium">Section</th>
-                  <th className="px-4 py-3 font-medium">Professor</th>
-                  <th className="px-4 py-3 font-medium">Meets</th>
-                  <th className="px-4 py-3 font-medium">Enrollment</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {course.sections.map((s) => (
-                  <SectionRow key={s.id} section={s} />
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-3 text-sm font-medium">
+            <InstructorLinks names={getInstructors(course)} />
           </div>
         </section>
       )}
+
+      <section className="mt-10">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            {CURRENT_TERM.label} sections
+          </h2>
+          {offered && <span className="text-xs text-slate-500">{sectionSummary(course.sections)}</span>}
+        </div>
+        {!offered ? (
+          <p className="rounded-md border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+            {course.code} isn&apos;t on the Registrar&apos;s {CURRENT_TERM.label} schedule.
+          </p>
+        ) : (
+          <div className="space-y-6">
+            {grouped.map(([component, sections]) => (
+              <div key={component}>
+                <h3 className="mb-2 text-sm font-medium text-slate-700">
+                  {componentLabel(component)}
+                  {component === "MID" && (
+                    <span className="ml-2 font-normal text-slate-500">(evening exam times, not regular meetings)</span>
+                  )}
+                </h3>
+                <div className="overflow-x-auto rounded-md border border-slate-200">
+                  <table className="w-full min-w-[560px] text-sm">
+                    <thead>
+                      <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+                        <th className="px-4 py-2.5 font-medium">Section</th>
+                        <th className="px-4 py-2.5 font-medium">Meets</th>
+                        <th className="px-4 py-2.5 font-medium">Room</th>
+                        <th className="px-4 py-2.5 font-medium">Instructors</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {sections.map((s) => (
+                        <SectionRow key={s.classNumber} section={s} />
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+                      </div>
+        )}
+      </section>
 
       <SimilarCourses similar={similar} />
 
@@ -250,138 +210,28 @@ export default async function CourseDetailPage({
           </Link>
         </div>
       </section>
-
-      <details className="group mt-10 rounded-md border border-slate-200 p-4">
-        <summary className="cursor-pointer select-none text-sm font-medium text-slate-700 marker:text-slate-400">
-          How to read these numbers
-        </summary>
-        <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-          <li>
-            <strong>Workload</strong> — total hours/week including lecture,
-            assignments, and exam prep.
-          </li>
-          <li>
-            <strong>Difficulty (1–5)</strong> — conceptual rigor and pace, not
-            just hours.
-          </li>
-          <li>
-            <strong>Median grade</strong> — the middle student&apos;s final letter;{" "}
-            <strong>mean GPA</strong> averages everyone&apos;s grade points.
-          </li>
-          <li>
-            <strong>% earning A</strong> — share of students finishing with A+,
-            A, or A−.
-          </li>
-          <li>
-            Comparisons are against this subject&apos;s average, so you can tell
-            whether a number is high <em>for the discipline</em>.
-          </li>
-        </ul>
-      </details>
     </main>
   );
 }
 
-function GradeChart({
-  buckets,
-  median,
-}: {
-  buckets: Partial<Record<GradeLetter, number>>;
-  median: string;
-}) {
-  const max = Math.max(1, ...GRADE_LETTERS.map((l) => buckets[l] ?? 0));
+function SectionRow({ section }: { section: ScheduleSection }) {
   return (
-    <div>
-      <div className="flex h-32 items-end gap-1">
-        {GRADE_LETTERS.map((letter) => {
-          const pct = buckets[letter] ?? 0;
-          const isMedian = letter === median;
-          const heightPct = (pct / max) * 100;
-          return (
-            <div key={letter} className="flex flex-1 flex-col items-center justify-end">
-              <span className="mb-1 text-[10px] tabular-nums text-slate-500">
-                {pct > 0 ? `${pct}%` : ""}
-              </span>
-              <div
-                className={`w-full rounded-t ${gradeLetterColor(letter)} ${
-                  isMedian ? "ring-2 ring-offset-2 ring-michigan" : ""
-                }`}
-                style={{ height: pct > 0 ? `${Math.max(2, heightPct)}%` : "2px", opacity: pct > 0 ? 1 : 0.2 }}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className="mt-1.5 flex gap-1">
-        {GRADE_LETTERS.map((letter) => (
-          <div
-            key={letter}
-            className={`flex-1 text-center text-[10px] tabular-nums ${
-              letter === median ? "font-semibold text-michigan" : "text-slate-500"
-            }`}
-          >
-            {letter}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function compareLine(value: number, avg: number, dept: string, unit: string): string {
-  const diff = value - avg;
-  const absPct = avg === 0 ? 0 : Math.round((Math.abs(diff) / avg) * 100);
-  if (Math.abs(diff) < 0.05 || absPct < 3) return `≈ ${dept} avg`;
-  const direction = diff > 0 ? "above" : "below";
-  return `${direction} ${dept} avg (${avg.toFixed(unit === "GPA" ? 2 : 1)}${unit ? " " + unit : ""})`;
-}
-
-function SectionRow({ section }: { section: Section }) {
-  const fillPct = Math.round((section.enrolled / section.capacity) * 100);
-  const meetingStr = section.meetings
-    .map((m) => `${m.days.join("")} ${m.start}–${m.end}`)
-    .join(", ");
-  return (
-    <tr>
-      <td className="px-4 py-3 font-mono text-xs">{section.number}</td>
-      <td className="px-4 py-3 text-slate-700">{section.professor}</td>
-      <td className="px-4 py-3 text-slate-600">{meetingStr}</td>
-      <td className="px-4 py-3">
-        <div className="flex items-center gap-2">
-          <span className="text-xs tabular-nums text-slate-600">
-            {section.enrolled}/{section.capacity}
-          </span>
-          <div className="h-1 w-16 overflow-hidden rounded-full bg-slate-100">
-            <div
-              className={`h-full ${fillPct >= 95 ? "bg-rose-500" : "bg-slate-400"}`}
-              style={{ width: `${fillPct}%` }}
-            />
-          </div>
-        </div>
+    <tr className="align-top">
+      <td className="px-4 py-2.5">
+        <span className="font-mono text-xs">{section.number}</span>
+        <div className="text-[11px] text-slate-400">#{section.classNumber}</div>
+      </td>
+      <td className="px-4 py-2.5 text-slate-700">
+        {section.meetings.length === 0
+          ? <span className="text-slate-400">Arranged</span>
+          : section.meetings.map((m, i) => <div key={i}>{formatMeeting(m)}</div>)}
+      </td>
+      <td className="px-4 py-2.5 text-slate-600">
+        {section.meetings.map((m, i) => <div key={i}>{m.location || "—"}</div>)}
+      </td>
+      <td className="px-4 py-2.5 text-slate-700">
+        <InstructorLinks names={section.instructors} />
       </td>
     </tr>
-  );
-}
-
-function BigStat({
-  label,
-  value,
-  unit,
-  comparison,
-}: {
-  label: string;
-  value: string;
-  unit: string;
-  comparison?: string;
-}) {
-  return (
-    <div className="rounded-md border border-slate-200 bg-white p-4">
-      <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-1 text-xl font-semibold tabular-nums">{value}</div>
-      <div className="text-xs text-slate-500">{unit}</div>
-      {comparison && (
-        <div className="mt-1 text-[11px] text-slate-500">{comparison}</div>
-      )}
-    </div>
   );
 }

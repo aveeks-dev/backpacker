@@ -1,0 +1,10 @@
+Term,Session,Acad Group,Class Nbr,Subject,Catalog Nbr,Section,Course Title,Component,Codes,M,T,W,TH,F,S,SU,Start Date,End Date,Time,Location,Instructor,Units
+Winter 2027,Regular Academic Session,Engineering,11001,Electrical Engineering and Computer Science (EECS), 281,001,Data Struct&Algor,LEC,P  W,,T,,TH,,,,01/06/2027,04/20/2027,1030-12PM,1670 BBB,"Darden, Garcia-Ramirez",4.00
+Winter 2027,Regular Academic Session,Engineering,11001,Electrical Engineering and Computer Science (EECS), 281,001,Data Struct&Algor,LEC,P  W,,T,,TH,,,,01/06/2027,04/20/2027,1030-12PM,1670 BBB,"Paoletti",4.00
+Winter 2027,Regular Academic Session,Engineering,11002,Electrical Engineering and Computer Science (EECS), 281,011,Data Struct&Algor,LAB,P  W,,,,,F,,,01/06/2027,04/20/2027,1030-1230PM,1005 DOW,,0.00
+Winter 2027,Regular Academic Session,Engineering,11003,Electrical Engineering and Computer Science (EECS), 281,012,Data Struct&Algor,LAB,P  W,,,,,F,,,01/06/2027,04/20/2027,1-3PM,1005 DOW,,0.00
+Winter 2027,Regular Academic Session,Engineering,11010,Electrical Engineering and Computer Science (EECS), 280,001,Prog&Data Struct,LEC,P  W,M,,W,,,,,01/06/2027,04/20/2027,9-1030AM,1571 GGBL,"DeOrio",4.00
+Winter 2027,Regular Academic Session,Engineering,11011,Electrical Engineering and Computer Science (EECS), 280,099,Prog&Data Struct,LAB,P  W,,,,,,,,01/06/2027,04/20/2027,ARR,ARR,,0.00
+Winter 2027,Regular Academic Session,Engineering,11012,Electrical Engineering and Computer Science (EECS), 280,098,Prog&Data Struct,LAB,P  W,,T,,,,,,01/06/2027,04/20/2027,1-1AM,ARR,,0.00
+Winter 2027,Regular Academic Session,LSA,22001,Mathematics (MATH), 215,001,Calculus III,LEC,P  W,M,,W,,F,,,01/06/2027,04/20/2027,9-10AM,B735 EH,"Smith",4.00
+Winter 2027,Regular Academic Session,LSA,22001,Mathematics (MATH), 215,001,Calculus III,LEC,P  W,,T,,,,,,01/06/2027,04/20/2027,9-10AM,B735 EH,"Smith",4.00

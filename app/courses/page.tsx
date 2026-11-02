@@ -1,233 +1,123 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SaveCourseButton } from "@/components/save-course-button";
 import {
-  aGradePercent,
+  CURRENT_TERM,
   filterCourses,
   getAllCourses,
   getDepartments,
-  getFulfillsGroups,
-  isSortKey,
-  sortCourses,
+  getInstructors,
+  getSchools,
+  isOffered,
   type Course,
-  type SortKey,
 } from "@/lib/courses";
+import { sectionSummary } from "@/lib/format";
 import { Filters } from "./_components/filters";
+import { SavedCourses } from "./_components/saved-courses";
 
 export const metadata: Metadata = {
   title: "Courses",
-  description:
-    "Browse and filter every University of Michigan course by subject, level, credits, workload, and grade outcomes.",
+  description: `Browse every University of Michigan course, with ${CURRENT_TERM.label} sections, times, and instructors.`,
 };
 
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 32;
 
 type SearchParams = Promise<{
   q?: string;
+  school?: string;
   department?: string;
   credits?: string;
-  maxWorkload?: string;
-  fulfills?: string;
-  sort?: string;
-  page?: string;
-  hasData?: string;
   level?: string;
+  offered?: string;
+  page?: string;
 }>;
 
 export default async function CoursesPage({ searchParams }: { searchParams: SearchParams }) {
   const sp = await searchParams;
   const all = getAllCourses();
-  const departments = getDepartments();
-  const fulfillsGroups = getFulfillsGroups();
   const filtered = filterCourses(all, sp);
-  const sortKey: SortKey = isSortKey(sp.sort) ? sp.sort : "code-asc";
-  const sorted = sortCourses(filtered, sortKey);
-  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const page = Math.min(totalPages, Math.max(1, parseInt(sp.page ?? "1", 10) || 1));
-  const visible = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const visible = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const offeredCount = all.filter(isOffered).length;
 
   const activeBits: string[] = [];
+  if (sp.offered === "1") activeBits.push(CURRENT_TERM.label);
+  if (sp.school) activeBits.push(sp.school);
   if (sp.department) activeBits.push(sp.department);
   if (sp.level) activeBits.push(`${sp.level} level`);
-  if (sp.fulfills) activeBits.push(sp.fulfills);
-
-  const curatedCount = all.filter((c) => c.dataQuality === "curated").length;
 
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">
-      <div className="mb-6 flex items-baseline justify-between">
-        <h1 className="text-2xl font-semibold tracking-tight">Courses</h1>
+      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+        <h1 className="text-3xl font-semibold tracking-tight">Browse courses</h1>
         <span className="text-sm text-slate-500">
-          {sorted.length.toLocaleString()} of {all.length.toLocaleString()}
+          {filtered.length.toLocaleString()} of {all.length.toLocaleString()}
           {activeBits.length ? ` · ${activeBits.join(" · ")}` : ""}
         </span>
       </div>
 
-      <Filters
-        departments={departments}
-        fulfillsGroups={fulfillsGroups}
-        curatedCount={curatedCount}
-      />
+      <SavedCourses />
 
-      {sorted.length === 0 ? (
+      <Filters schools={getSchools()} departments={getDepartments()} offeredCount={offeredCount} termLabel={CURRENT_TERM.label} />
+
+      {filtered.length === 0 ? (
         <div className="mt-6 rounded-md border border-slate-200 bg-white p-12 text-center text-sm text-slate-500">
           No courses match. Try clearing some filters.
         </div>
       ) : (
         <>
-          <div className="mt-6 overflow-x-auto rounded-md border border-slate-200">
-            <table className="w-full min-w-[600px] text-sm">
-              <thead>
-                <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-                  <th className="px-4 py-3 font-medium">Course</th>
-                  <th className="px-4 py-3 font-medium">Cr</th>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="workload-asc" desc="workload-desc">
-                    Hrs/wk
-                  </ColHeader>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="difficulty-asc" desc="difficulty-desc">
-                    Diff
-                  </ColHeader>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="median-asc" desc="median-desc">
-                    Median
-                  </ColHeader>
-                  <ColHeader sp={sp} sortKey={sortKey} asc="a-percent-asc" desc="a-percent-desc">
-                    % A
-                  </ColHeader>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {visible.map((c) => (
-                  <CourseRow key={c.id} course={c} />
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {visible.map((c) => (
+              <CourseCard key={c.id} course={c} />
+            ))}
+          </ul>
 
           {totalPages > 1 && <Pagination sp={sp} page={page} totalPages={totalPages} />}
         </>
       )}
 
-      <p className="mt-6 text-xs text-slate-400">
-        Courses marked{" "}
-        <span className="text-amber-700">est.</span> show estimates derived from
-        course level and subject; {curatedCount} courses have fully reviewed data.
-        Click a column header to sort, or press{" "}
-        <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd>{" "}
-        to search from anywhere.
+      <p className="mt-6 text-xs text-slate-500">
+        Course titles come from the U-M Atlas catalog; sections, times, and instructors from the
+        Registrar&apos;s {CURRENT_TERM.label} schedule. Press{" "}
+        <kbd className="rounded border border-slate-300 px-1 py-0.5 text-[10px]">/</kbd> to search from anywhere.
       </p>
     </main>
   );
 }
 
-function ColHeader({
-  children,
-  sp,
-  sortKey,
-  asc,
-  desc,
-}: {
-  children: React.ReactNode;
-  sp: Record<string, string | undefined>;
-  sortKey: SortKey;
-  asc?: SortKey;
-  desc?: SortKey;
-}) {
-  const next: SortKey = (() => {
-    if (desc && sortKey !== desc && sortKey !== asc) return desc;
-    if (desc && sortKey === desc && asc) return asc;
-    if (asc && sortKey === asc && desc) return desc;
-    return desc || asc || "code-asc";
-  })();
-  const params = new URLSearchParams();
-  for (const [k, v] of Object.entries(sp)) {
-    if (typeof v === "string" && v) params.set(k, v);
-  }
-  params.set("sort", next);
-  params.delete("page");
-  const indicator =
-    sortKey === asc ? " ↑" : sortKey === desc ? " ↓" : "";
+function CourseCard({ course }: { course: Course }) {
+  const offered = isOffered(course);
+  const instructors = getInstructors(course);
   return (
-    <th className="px-4 py-3 text-right font-medium">
-      <Link
-        href={`/courses?${params.toString()}`}
-        className="inline-flex items-center hover:text-michigan"
-        scroll={false}
-      >
-        {children}
-        <span className="ml-0.5 tabular-nums">{indicator || "  "}</span>
-      </Link>
-    </th>
-  );
-}
-
-function CourseRow({ course }: { course: Course }) {
-  const isEstimated = course.dataQuality === "estimated";
-  const aPct = course.grades ? aGradePercent(course.grades.buckets) : null;
-  return (
-    <tr className="hover:bg-slate-50">
-      <td className="px-4 py-3">
-        <Link href={`/courses/${course.id}`} className="block group">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold text-slate-700">{course.code}</span>
-            {isEstimated && (
-              <span
-                className="text-[10px] text-amber-700"
-                title="Workload, difficulty, and grades estimated from course level"
-              >
-                est.
-              </span>
-            )}
-          </div>
-          <div className="mt-0.5 font-medium text-michigan group-hover:underline">
-            {course.title}
-          </div>
-          {course.fulfills.length > 0 && (
-            <div className="mt-1 flex flex-wrap gap-1">
-              {course.fulfills.slice(0, 4).map((f) => (
-                <span
-                  key={f}
-                  className="rounded border border-slate-200 px-1.5 py-0.5 text-[10px] text-slate-500"
-                >
-                  {f}
-                </span>
-              ))}
+    <li className="flex flex-col rounded-md border border-slate-200 bg-white p-4 transition-colors hover:border-michigan/50">
+      <div className="flex items-start justify-between gap-3">
+        <Link href={`/courses/${course.id}`} className="group min-w-0">
+          <span className="font-mono text-xs font-semibold text-slate-600">{course.code}</span>
+          <h2 className="mt-0.5 font-semibold leading-snug group-hover:underline">{course.title}</h2>
+        </Link>
+        <SaveCourseButton courseId={course.id} />
+      </div>
+      {offered && (
+        <div className="mt-2 text-xs text-slate-600">
+          {course.credits} credits · {sectionSummary(course.sections)}
+          {instructors.length > 0 && (
+            <div className="mt-0.5 truncate text-slate-500" title={instructors.join(", ")}>
+              {instructors.slice(0, 3).join(", ")}
+              {instructors.length > 3 && ` +${instructors.length - 3}`}
             </div>
           )}
-        </Link>
-      </td>
-      <td className="px-4 py-3 tabular-nums text-slate-700">{course.credits}</td>
-      <td className="px-4 py-3 text-right tabular-nums text-slate-700">
-        {course.workloadHoursPerWeek || "—"}
-      </td>
-      <td className="px-4 py-3 text-right">
-        <DifficultyDots level={course.difficulty} />
-      </td>
-      <td className="px-4 py-3 text-right tabular-nums">
-        {course.grades ? (
-          <>
-            <span className="font-medium text-michigan">{course.grades.median}</span>
-            <span className="ml-1 text-xs text-slate-400">{course.grades.mean.toFixed(1)}</span>
-          </>
+        </div>
+      )}
+      <div className="mt-auto flex flex-wrap items-center gap-2 pt-3 text-xs">
+        {offered ? (
+          <span className="rounded bg-maize/30 px-2 py-0.5 font-medium text-michigan">Offered {CURRENT_TERM.label}</span>
         ) : (
-          <span className="text-slate-400">—</span>
+          <span className="rounded bg-slate-100 px-2 py-0.5 text-slate-600">Not offered {CURRENT_TERM.label}</span>
         )}
-      </td>
-      <td className="px-4 py-3 text-right tabular-nums text-slate-700">
-        {aPct !== null ? `${Math.round(aPct)}%` : <span className="text-slate-400">—</span>}
-      </td>
-    </tr>
-  );
-}
-
-function DifficultyDots({ level }: { level: number }) {
-  return (
-    <span className="inline-flex gap-0.5" aria-label={`Difficulty ${level} of 5`}>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <span
-          key={i}
-          className={`h-1.5 w-1.5 rounded-full ${i <= level ? "bg-michigan" : "bg-slate-200"}`}
-        />
-      ))}
-    </span>
+        {course.school && <span className="text-slate-500">{course.school}</span>}
+      </div>
+    </li>
   );
 }
 
@@ -259,7 +149,7 @@ function Pagination({
         {page > 1 && (
           <Link
             href={urlForPage(page - 1)}
-            className="rounded-md border border-slate-200 px-3 py-1.5 text-slate-700 hover:bg-slate-50"
+            className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-slate-700 hover:bg-slate-50"
           >
             ← Prev
           </Link>
@@ -267,7 +157,7 @@ function Pagination({
         {page < totalPages && (
           <Link
             href={urlForPage(page + 1)}
-            className="rounded-md border border-slate-200 px-3 py-1.5 text-slate-700 hover:bg-slate-50"
+            className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-slate-700 hover:bg-slate-50"
           >
             Next →
           </Link>

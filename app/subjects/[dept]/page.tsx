@@ -1,14 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  aGradePercent,
-  getAllCourses,
-  getDepartmentAverages,
-  getDepartments,
-  sortCourses,
-  type Course,
-} from "@/lib/courses";
+import { CURRENT_TERM, getAllCourses, getDepartments, isOffered } from "@/lib/courses";
+import { sectionSummary } from "@/lib/format";
 import {
   getDeptName,
   getSubjectResources,
@@ -29,9 +23,11 @@ export async function generateMetadata({
   const name = getDeptName(dept);
   return {
     title: `${dept} — ${name}`,
-    description: `${name} courses at the University of Michigan: workload, grade outcomes, and study resources.`,
+    description: `${name} courses at the University of Michigan: ${CURRENT_TERM.label} sections and study resources.`,
   };
 }
+
+const SHOWN_OFFERED = 8;
 
 export default async function SubjectPage({
   params,
@@ -42,9 +38,8 @@ export default async function SubjectPage({
   const courses = getAllCourses().filter((c) => c.department === dept);
   if (courses.length === 0) notFound();
 
-  const avg = getDepartmentAverages()[dept];
+  const offered = courses.filter(isOffered);
   const resources = getSubjectResources(dept);
-  const popular = pickPopular(courses, 6);
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
@@ -68,17 +63,10 @@ export default async function SubjectPage({
         </Link>
       </div>
 
-      {avg && (
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-          <Stat label="Courses" value={avg.count.toLocaleString()} unit="in catalog" />
-          <Stat label="Avg workload" value={avg.workload.toFixed(1)} unit="hrs / week" />
-          <Stat
-            label="Avg GPA"
-            value={avg.meanGpa > 0 ? avg.meanGpa.toFixed(2) : "—"}
-            unit="across graded courses"
-          />
-        </div>
-      )}
+      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+        <Stat label="Courses" value={courses.length.toLocaleString()} unit="in the catalog" />
+        <Stat label={CURRENT_TERM.label} value={offered.length.toLocaleString()} unit="courses offered" />
+      </div>
 
       <section className="mt-10">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -87,35 +75,36 @@ export default async function SubjectPage({
         <ResourceList resources={resources} />
       </section>
 
-      {popular.length > 0 && (
+      {offered.length > 0 && (
         <section className="mt-10">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Popular courses
-          </h2>
+          <div className="mb-3 flex items-baseline justify-between">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Offered in {CURRENT_TERM.label}
+            </h2>
+            {offered.length > SHOWN_OFFERED && (
+              <Link
+                href={`/courses?department=${encodeURIComponent(dept)}&offered=1`}
+                className="text-sm text-michigan hover:underline"
+              >
+                All {offered.length} →
+              </Link>
+            )}
+          </div>
           <ul className="divide-y divide-slate-100 overflow-hidden rounded-md border border-slate-200">
-            {popular.map((c) => {
-              const aPct = c.grades ? Math.round(aGradePercent(c.grades.buckets)) : null;
-              return (
-                <li key={c.id}>
-                  <Link
-                    href={`/courses/${c.id}`}
-                    className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-slate-50"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <span className="font-mono text-xs font-semibold text-slate-700">
-                        {c.code}
-                      </span>
-                      <div className="truncate text-sm text-slate-700">{c.title}</div>
-                    </div>
-                    <div className="flex shrink-0 items-center gap-4 text-xs tabular-nums text-slate-600">
-                      <Cell label="hrs/wk" value={c.workloadHoursPerWeek > 0 ? `${c.workloadHoursPerWeek}` : "—"} />
-                      <Cell label="median" value={c.grades?.median ?? "—"} />
-                      <Cell label="%A" value={aPct !== null ? `${aPct}%` : "—"} />
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+            {offered.slice(0, SHOWN_OFFERED).map((c) => (
+              <li key={c.id}>
+                <Link
+                  href={`/courses/${c.id}`}
+                  className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-slate-50"
+                >
+                  <div className="min-w-0 flex-1">
+                    <span className="font-mono text-xs font-semibold text-slate-700">{c.code}</span>
+                    <div className="truncate text-sm text-slate-700">{c.title}</div>
+                  </div>
+                  <span className="shrink-0 text-xs text-slate-500">{sectionSummary(c.sections)}</span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </section>
       )}
@@ -128,16 +117,6 @@ export default async function SubjectPage({
       </section>
     </main>
   );
-}
-
-function pickPopular(courses: Course[], n: number): Course[] {
-  // curated (real data) first, then highest-rated, then lowest course number
-  const curated = courses.filter((c) => c.dataQuality === "curated");
-  const rest = sortCourses(
-    courses.filter((c) => c.dataQuality !== "curated"),
-    "code-asc",
-  );
-  return [...curated.sort((a, b) => b.studentRating - a.studentRating), ...rest].slice(0, n);
 }
 
 function ResourceList({ resources }: { resources: Resource[] }) {
@@ -169,15 +148,6 @@ function Stat({ label, value, unit }: { label: string; value: string; unit: stri
       <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
       <div className="mt-1 text-xl font-semibold tabular-nums">{value}</div>
       <div className="text-xs text-slate-500">{unit}</div>
-    </div>
-  );
-}
-
-function Cell({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex w-12 flex-col items-end leading-tight">
-      <span className="text-michigan">{value}</span>
-      <span className="text-[10px] text-slate-400">{label}</span>
     </div>
   );
 }
