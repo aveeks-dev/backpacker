@@ -13,11 +13,6 @@ export type Resource = {
 
 export const UNIVERSAL_RESOURCES: Resource[] = [
   {
-    name: "Atlas",
-    url: "https://atlas.ai.umich.edu",
-    description: "Official U-M curriculum data — log in for full course profiles and schedule builder.",
-  },
-  {
     name: "U-M Library",
     url: "https://www.lib.umich.edu",
     description: "Research guides, course reserves, and librarians for every subject.",

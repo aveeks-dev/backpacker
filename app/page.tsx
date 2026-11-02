@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CURRENT_TERM, getAllCourses, getDepartments, isOffered } from "@/lib/courses";
-import { MAJORS } from "@/lib/majors";
+import { PROGRAMS, hasFullPlan } from "@/lib/major-directory";
 
 // A real Winter 2027 combination from the Registrar's schedule, drawn to scale.
 const EXAMPLE = [
@@ -68,9 +68,9 @@ export default function Home() {
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-6 sm:px-6">
         <h2 className="text-2xl font-semibold">Four-year plans by major</h2>
-        <p className="mt-1 text-slate-600">Built from official U-M requirements, with more majors on the way.</p>
+        <p className="mt-1 text-slate-600">Find any of {PROGRAMS.length} U-M programs. These have full checklists and roadmaps so far, with more on the way.</p>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {MAJORS.map((m) => (
+          {PROGRAMS.filter(hasFullPlan).map((m) => (
             <li key={m.id} className="rounded-md border border-slate-200 bg-white p-5">
               <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{m.school}</div>
               <div className="mt-1 font-display text-lg font-semibold">{m.name}</div>

@@ -1,0 +1,1076 @@
+[
+ {
+  "id": "lsa-actuarial-mathematics",
+  "name": "Actuarial Mathematics (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#actuarial_mathematics-sub",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-afroamerican-and-african-studies",
+  "name": "Afroamerican and African Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#afroamerican_and_african_studies-maj",
+  "subject": "AAS"
+ },
+ {
+  "id": "lsa-american-culture",
+  "name": "American Culture",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#american_culture-maj",
+  "subject": "AMCULT"
+ },
+ {
+  "id": "lsa-anthropology",
+  "name": "Anthropology",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#anthropology-maj",
+  "subject": "ANTHRCUL"
+ },
+ {
+  "id": "lsa-archaeology",
+  "name": "Archaeology (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#archaeology-sub",
+  "subject": "ANTHRARC"
+ },
+ {
+  "id": "lsa-archaeology-of-the-ancient-mediterranean",
+  "name": "Archaeology of the Ancient Mediterranean",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#archaeology_of_the_ancient_mediterranean-maj"
+ },
+ {
+  "id": "lsa-arts-and-ideas-in-the-humanities",
+  "name": "Arts & Ideas in the Humanities",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#arts_and_ideas_in_the_humanities-maj"
+ },
+ {
+  "id": "lsa-asian-studies",
+  "name": "Asian Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#asian_studies-maj",
+  "subject": "ASIAN"
+ },
+ {
+  "id": "lsa-astronomy-and-astrophysics",
+  "name": "Astronomy and Astrophysics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#astronomy_and_astrophysics-maj",
+  "subject": "ASTRO"
+ },
+ {
+  "id": "lsa-biochemistry-bs",
+  "name": "Biochemistry [B.S.]",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biochemistry_bs-maj",
+  "subject": "CHEM"
+ },
+ {
+  "id": "lsa-biology",
+  "name": "Biology",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biology-maj",
+  "subject": "BIOLOGY"
+ },
+ {
+  "id": "lsa-general-biology",
+  "name": "Biology, Health, and Society",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#general_biology-maj",
+  "subject": "BIOLOGY"
+ },
+ {
+  "id": "lsa-biomolecular-science-ab-or-bs",
+  "name": "Biomolecular Science [A.B. or B.S.]",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biomolecular_science_ab_or_bs-maj",
+  "subject": "BIOLOGY"
+ },
+ {
+  "id": "lsa-biophysics-bs",
+  "name": "Biophysics [B.S.]",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biophysics_bs-maj",
+  "subject": "BIOPHYS"
+ },
+ {
+  "id": "lsa-biophyschology-cognition-and-neuroscience-bcn",
+  "name": "Biopsychology, Cognition, and Neuroscience (BCN)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biophyschology_cognition_and_neuroscience_bcn-maj",
+  "subject": "PSYCH"
+ },
+ {
+  "id": "lsa-biotechnology-and-bioenvironmental-sciences",
+  "name": "Biotechnology and Bioenvironmental Sciences",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biotechnology-and-bioenvironmental-sciences-maj"
+ },
+ {
+  "id": "lsa-cell-and-molecular-biology-and-biomedical-engineering",
+  "name": "Cellular and Molecular Biomedical Science",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#cell_and_molecular_biology_and_biomedical_engineering-maj"
+ },
+ {
+  "id": "lsa-chemistry",
+  "name": "Chemistry",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#chemistry-maj",
+  "subject": "CHEM"
+ },
+ {
+  "id": "lsa-classical-civilization",
+  "name": "Classical Civilization",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#classical_civilization-maj",
+  "subject": "CLCIV"
+ },
+ {
+  "id": "lsa-classical-languages-and-literatures",
+  "name": "Classical Languages and Literatures",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#classical_languages_and_literatures-maj"
+ },
+ {
+  "id": "lsa-cognitive-science",
+  "name": "Cognitive Science",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#cognitive_science-maj",
+  "subject": "COGSCI"
+ },
+ {
+  "id": "lsa-communication-studies",
+  "name": "Communication and Media",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#communication_studies-maj",
+  "subject": "COMM"
+ },
+ {
+  "id": "lsa-comparative-culture-and-identity-cci",
+  "name": "Comparative Culture & Identity (CCI) (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#comparative_culture_and_identity_cci-sub",
+  "subject": "INTLSTD"
+ },
+ {
+  "id": "lsa-comparative-literature-arts-and-media",
+  "name": "Comparative Literature, Arts, and Media",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#comparative_literature_arts_and_media-maj",
+  "subject": "COMPLIT"
+ },
+ {
+  "id": "cs-lsa",
+  "name": "Computer Science",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#computer_science-maj",
+  "subject": "EECS"
+ },
+ {
+  "id": "lsa-creative-writing-and-literature",
+  "name": "Creative Writing and Literature",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#creative_writing_and_literature-maj",
+  "subject": "ENGLISH"
+ },
+ {
+  "id": "lsa-culture-and-media",
+  "name": "Culture and Media (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#culture_and_media-sub",
+  "subject": "ANTHRCUL"
+ },
+ {
+  "id": "ds-lsa",
+  "name": "Data Science",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#data_science-maj",
+  "subject": "DATASCI"
+ },
+ {
+  "id": "lsa-drama",
+  "name": "Drama",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#drama-maj"
+ },
+ {
+  "id": "lsa-earth-and-environmental-sciences",
+  "name": "Earth and Environmental Sciences",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#earth_and_environmental_sciences-maj",
+  "subject": "EARTH"
+ },
+ {
+  "id": "lsa-ecology-and-evolutionary-biology-eeb",
+  "name": "Ecology, Evolution, and Biodiversity (EEB)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#ecology_and_evolutionary_biology_eeb-maj",
+  "subject": "EEB"
+ },
+ {
+  "id": "econ-lsa",
+  "name": "Economics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#economics-maj",
+  "subject": "ECON"
+ },
+ {
+  "id": "lsa-english",
+  "name": "English",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#english-maj",
+  "subject": "ENGLISH"
+ },
+ {
+  "id": "lsa-environment",
+  "name": "Environment",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#environment-maj",
+  "subject": "ENVIRON"
+ },
+ {
+  "id": "lsa-environment-and-conservation",
+  "name": "Environment and Conservation (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#environment_and_conservation-sub",
+  "subject": "ENVIRON"
+ },
+ {
+  "id": "lsa-ethnic-studies",
+  "name": "Ethnic Studies (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#ethnic_studies-sub",
+  "subject": "AMCULT"
+ },
+ {
+  "id": "lsa-screen-arts-and-cultures",
+  "name": "Film, Television, and Media",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#screen_arts_and_cultures-maj",
+  "subject": "FTVM"
+ },
+ {
+  "id": "lsa-french-and-francophone-studies",
+  "name": "French and Francophone Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#french_and_francophone_studies-maj",
+  "subject": "FRENCH"
+ },
+ {
+  "id": "lsa-gender-and-health",
+  "name": "Gender and Health",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#gender_and_health-maj",
+  "subject": "WGS"
+ },
+ {
+  "id": "lsa-general-studies",
+  "name": "General Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#general_studies-maj"
+ },
+ {
+  "id": "lsa-german",
+  "name": "German",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#german-maj",
+  "subject": "GERMAN"
+ },
+ {
+  "id": "lsa-global-environment-and-health-geh",
+  "name": "Global Environment & Health (GEH) (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#global_environment_and_health_geh-sub",
+  "subject": "INTLSTD"
+ },
+ {
+  "id": "lsa-greek-ancient-language-and-literature",
+  "name": "Greek (Ancient) Language and Literature",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#greek_ancient_language_and_literature-maj",
+  "subject": "GREEK"
+ },
+ {
+  "id": "lsa-greek-modern-language-and-culture",
+  "name": "Greek (Modern) Language and Culture",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#greek_modern_language_and_culture-maj",
+  "subject": "GREEKMOD"
+ },
+ {
+  "id": "lsa-history",
+  "name": "History",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#history-maj",
+  "subject": "HISTORY"
+ },
+ {
+  "id": "lsa-history-of-art",
+  "name": "History of Art",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#history_of_art-maj",
+  "subject": "HISTART"
+ },
+ {
+  "id": "lsa-honors-mathematics",
+  "name": "Honors Mathematics (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#honors_mathematics-sub",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-human-origins-biology-and-behavior",
+  "name": "Human Origins, Biology, and Behavior",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#human_origins_biology_and_behavior-maj",
+  "subject": "ANTHRBIO"
+ },
+ {
+  "id": "lsa-interdisciplinary-astronomy-ba-or-bs",
+  "name": "Interdisciplinary Astronomy (B.A. or B.S.)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#interdisciplinary_astronomy_ba_or_bs-maj",
+  "subject": "ASTRO"
+ },
+ {
+  "id": "lsa-interdisciplinary-chemical-sciences-ics-ab-or-bs",
+  "name": "Interdisciplinary Chemical Sciences (ICS) [A.B. or B.S.]",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#interdisciplinary_chemical_sciences_ics_ab_or_bs-maj",
+  "subject": "CHEM"
+ },
+ {
+  "id": "lsa-interdiscplinary-physics-ab-or-bs",
+  "name": "Interdisciplinary Physics (A.B. or B.S.)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#interdiscplinary_physics_ab_or_bs-maj",
+  "subject": "PHYSICS"
+ },
+ {
+  "id": "lsa-international-security-norms-and-cooperation-isnc",
+  "name": "International Security, Norms & Cooperation (ISNC) (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#international_security_norms_and_cooperation_isnc-sub",
+  "subject": "INTLSTD"
+ },
+ {
+  "id": "lsa-international-studies",
+  "name": "International Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#international_studies-maj",
+  "subject": "INTLSTD"
+ },
+ {
+  "id": "lsa-italian",
+  "name": "Italian",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#italian-maj",
+  "subject": "ITALIAN"
+ },
+ {
+  "id": "lsa-judaic-studies",
+  "name": "Judaic Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#judaic_studies-maj",
+  "subject": "JUDAIC"
+ },
+ {
+  "id": "lsa-latin-american-and-caribbean-studies",
+  "name": "Latin American and Caribbean Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#latin_american_and_caribbean_studies-maj",
+  "subject": "LACS"
+ },
+ {
+  "id": "lsa-latin-language-and-literature",
+  "name": "Latin Language and Literature",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#latin_language_and_literature-maj",
+  "subject": "LATIN"
+ },
+ {
+  "id": "lsa-latina-latino-studies",
+  "name": "Latina/Latino Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#latina_latino_studies-maj",
+  "subject": "LATINOAM"
+ },
+ {
+  "id": "lsa-law-justics-and-social-change",
+  "name": "Law, Justice, and Social Change (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#law_justics_and_social_change-sub",
+  "subject": "SOC"
+ },
+ {
+  "id": "lsa-linguistics",
+  "name": "Linguistics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#linguistics-maj",
+  "subject": "LING"
+ },
+ {
+  "id": "lsa-mathematical-sciences",
+  "name": "Mathematical Sciences (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#mathematical_sciences-sub",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-mathematics",
+  "name": "Mathematics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#mathematics-maj",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-mathematics-of-finance-and-risk-management",
+  "name": "Mathematics of Finance and Risk Management (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#mathematics_of_finance_and_risk_management-sub",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-medical-anthropology",
+  "name": "Medical Anthropology (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#medical_anthropology-sub",
+  "subject": "ANTHRCUL"
+ },
+ {
+  "id": "lsa-microbiology",
+  "name": "Microbiology",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#microbiology-maj",
+  "subject": "MCDB"
+ },
+ {
+  "id": "lsa-near-eastern-studies",
+  "name": "Middle East Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#near_eastern_studies-maj",
+  "subject": "MIDEAST"
+ },
+ {
+  "id": "lsa-middle-eastern-and-north-african-studies",
+  "name": "Middle Eastern and North African Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#middle_eastern_and_north_african_studies-maj",
+  "subject": "MENAS"
+ },
+ {
+  "id": "lsa-cell-and-molecular-biology",
+  "name": "Molecular, Cellular, and Developmental Biology",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#cell_and_molecular_biology-maj",
+  "subject": "MCDB"
+ },
+ {
+  "id": "lsa-neuroscience",
+  "name": "Neuroscience",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#neuroscience-maj"
+ },
+ {
+  "id": "lsa-organizational-studies",
+  "name": "Organizational Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#organizational_studies-maj",
+  "subject": "ORGSTUDY"
+ },
+ {
+  "id": "lsa-philosophy",
+  "name": "Philosophy",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#philosophy-maj",
+  "subject": "PHIL"
+ },
+ {
+  "id": "lsa-philosophy-political-science-economics",
+  "name": "Philosophy, Politics, and Economics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#philosophy_political_science_economics-maj",
+  "subject": "PPE"
+ },
+ {
+  "id": "lsa-physics",
+  "name": "Physics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#physics-maj",
+  "subject": "PHYSICS"
+ },
+ {
+  "id": "lsa-polish",
+  "name": "Polish",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#polish-maj",
+  "subject": "POLISH"
+ },
+ {
+  "id": "lsa-political-economy-and-development-ped",
+  "name": "Political Economy & Development (PED) (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#political_economy_and_development_ped-sub",
+  "subject": "INTLSTD"
+ },
+ {
+  "id": "lsa-political-science",
+  "name": "Political Science",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#political_science-maj",
+  "subject": "POLSCI"
+ },
+ {
+  "id": "lsa-politics-law-and-economy",
+  "name": "Politics, Law, and Economy (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#politics_law_and_economy-sub",
+  "subject": "SOC"
+ },
+ {
+  "id": "lsa-power-identity-and-inequality",
+  "name": "Power, Identity, and Inequality (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#power_identity_and_inequality-sub",
+  "subject": "SOC"
+ },
+ {
+  "id": "lsa-psychology-general-social-science",
+  "name": "Psychology",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#psychology_general_social_science-maj",
+  "subject": "PSYCH"
+ },
+ {
+  "id": "lsa-pure-mathematics",
+  "name": "Pure Mathematics (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#pure_mathematics-sub",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-romance-languages-and-literatures",
+  "name": "Romance Languages and Literatures",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#romance_languages_and_literatures-maj",
+  "subject": "ROMLANG"
+ },
+ {
+  "id": "lsa-russian",
+  "name": "Russian",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#russian-maj",
+  "subject": "RUSSIAN"
+ },
+ {
+  "id": "lsa-russian-east-european-and-eurasian-studies",
+  "name": "Russian, East European and Eurasian Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#russian_east_european_and_eurasian_studies-maj",
+  "subject": "REEES"
+ },
+ {
+  "id": "lsa-screenwriting",
+  "name": "Screenwriting (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#screenwriting-sub",
+  "subject": "FTVM"
+ },
+ {
+  "id": "lsa-secondary-mathematics-teaching-certificate",
+  "name": "Secondary Mathematics Teaching Certificate (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#secondary_mathematics_teaching_certificate-sub",
+  "subject": "MATH"
+ },
+ {
+  "id": "lsa-social-theory-and-practice",
+  "name": "Social Theory and Practice",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#social_theory_and_practice-maj"
+ },
+ {
+  "id": "lsa-sociology",
+  "name": "Sociology",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#sociology-maj",
+  "subject": "SOC"
+ },
+ {
+  "id": "lsa-sociology-and-social-work",
+  "name": "Sociology and Social Work (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#sociology_and_social_work-sub",
+  "subject": "SOC"
+ },
+ {
+  "id": "lsa-health-and-society",
+  "name": "Sociology of Health & Medicine (sub-major)",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#health-and-society-sub",
+  "subject": "SOC"
+ },
+ {
+  "id": "lsa-spanish",
+  "name": "Spanish",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#spanish-maj",
+  "subject": "SPANISH"
+ },
+ {
+  "id": "lsa-statistics",
+  "name": "Statistics",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#statistics-maj",
+  "subject": "STATS"
+ },
+ {
+  "id": "lsa-translation",
+  "name": "Translation",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#translation-maj"
+ },
+ {
+  "id": "lsa-womens-studies",
+  "name": "Women's and Gender Studies",
+  "school": "LSA",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#womens_studies-maj",
+  "subject": "WGS"
+ },
+ {
+  "id": "engineering-aerospace-engineering",
+  "name": "Aerospace Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "AEROSP"
+ },
+ {
+  "id": "engineering-biomedical-engineering",
+  "name": "Biomedical Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "BIOMEDE"
+ },
+ {
+  "id": "engineering-chemical-engineering",
+  "name": "Chemical Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "CHE"
+ },
+ {
+  "id": "engineering-civil-engineering",
+  "name": "Civil Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "CEE"
+ },
+ {
+  "id": "engineering-climate-and-meteorology",
+  "name": "Climate and Meteorology",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "CLIMATE"
+ },
+ {
+  "id": "engineering-computer-engineering",
+  "name": "Computer Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "EECS"
+ },
+ {
+  "id": "engineering-data-science",
+  "name": "Data Science",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "EECS"
+ },
+ {
+  "id": "engineering-electrical-engineering",
+  "name": "Electrical Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "EECS"
+ },
+ {
+  "id": "engineering-engineering-physics",
+  "name": "Engineering Physics",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/"
+ },
+ {
+  "id": "engineering-environmental-engineering",
+  "name": "Environmental Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "CEE"
+ },
+ {
+  "id": "engineering-industrial-and-operations-engineering",
+  "name": "Industrial and Operations Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "IOE"
+ },
+ {
+  "id": "engineering-materials-science-and-engineering",
+  "name": "Materials Science and Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "MATSCIE"
+ },
+ {
+  "id": "engineering-mechanical-engineering",
+  "name": "Mechanical Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "MECHENG"
+ },
+ {
+  "id": "engineering-naval-architecture-and-marine-engineering",
+  "name": "Naval Architecture and Marine Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "NAVARCH"
+ },
+ {
+  "id": "engineering-nuclear-engineering-and-radiological-sciences",
+  "name": "Nuclear Engineering and Radiological Sciences",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "NERS"
+ },
+ {
+  "id": "engineering-robotics",
+  "name": "Robotics",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "ROB"
+ },
+ {
+  "id": "engineering-space-sciences-and-engineering",
+  "name": "Space Sciences and Engineering",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "subject": "SPACE"
+ },
+ {
+  "id": "cs-eng",
+  "name": "Computer Science",
+  "school": "Engineering",
+  "url": "https://bulletin.engin.umich.edu/eecs/",
+  "subject": "EECS"
+ },
+ {
+  "id": "ross-school-of-business-bachelor-of-business-administration",
+  "name": "Bachelor of Business Administration",
+  "school": "Ross School of Business",
+  "url": "https://michiganross.umich.edu/undergraduate/bba"
+ },
+ {
+  "id": "school-of-information-bachelor-of-science-in-information",
+  "name": "Bachelor of Science in Information",
+  "school": "School of Information",
+  "url": "https://si.umich.edu/programs/bachelor-science-information",
+  "subject": "SI"
+ },
+ {
+  "id": "stamps-school-of-art-design-bfa-in-art-design",
+  "name": "BFA in Art & Design",
+  "school": "Stamps School of Art & Design",
+  "url": "https://stamps.umich.edu/undergraduate-programs/bfa",
+  "subject": "ARTDES"
+ },
+ {
+  "id": "stamps-school-of-art-design-ba-in-art-design",
+  "name": "BA in Art & Design",
+  "school": "Stamps School of Art & Design",
+  "url": "https://stamps.umich.edu/undergraduate-programs/ba",
+  "subject": "ARTDES"
+ },
+ {
+  "id": "stamps-school-of-art-design-bfa-in-interarts-performance",
+  "name": "BFA in Interarts Performance",
+  "school": "Stamps School of Art & Design",
+  "url": "https://stamps.umich.edu/undergraduate-programs/interarts",
+  "subject": "ARTDES"
+ },
+ {
+  "id": "architecture-urban-planning-architecture",
+  "name": "Architecture",
+  "school": "Architecture & Urban Planning",
+  "url": "https://taubmancollege.umich.edu/academics/architecture/bachelor-of-science-in-architecture/",
+  "subject": "ARCH"
+ },
+ {
+  "id": "architecture-urban-planning-urban-technology",
+  "name": "Urban Technology",
+  "school": "Architecture & Urban Planning",
+  "url": "https://taubmancollege.umich.edu/academics/urban-and-regional-planning/bachelor-of-science-in-urban-technology/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-composition",
+  "name": "Bachelor of Music in Composition",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-dance",
+  "name": "Bachelor of Fine Arts in Dance",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-arts-in-music",
+  "name": "Bachelor of Arts in Music",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-jazz-contemplative-studies",
+  "name": "Bachelor of Fine Arts in Jazz & Contemplative Studies",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-jazz-contemporary-improvisation",
+  "name": "Bachelor of Music in Jazz & Contemporary Improvisation",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-choral-music-education",
+  "name": "Bachelor of Music in Choral Music Education",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-instrumental-music-education",
+  "name": "Bachelor of Music in Instrumental Music Education",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-music-theory",
+  "name": "Bachelor of Music in Music Theory",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-musical-theatre",
+  "name": "Bachelor of Fine Arts in Musical Theatre",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-musicology",
+  "name": "Bachelor of Music in Musicology",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-organ-performance-sacred-music",
+  "name": "Bachelor of Music in Organ Performance & Sacred Music",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-organ",
+  "name": "Bachelor of Musical Arts in Performance: Organ",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-performing-arts-technology",
+  "name": "Bachelor of Fine Arts in Performing Arts Technology",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-music-technology",
+  "name": "Bachelor of Music in Music & Technology",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-science-in-sound-engineering",
+  "name": "Bachelor of Science in Sound Engineering",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-piano-performance",
+  "name": "Bachelor of Music in Piano Performance",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-piano",
+  "name": "Bachelor of Musical Arts in Performance: Piano",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-strings-performance",
+  "name": "Bachelor of Music in Strings Performance",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-strings",
+  "name": "Bachelor of Musical Arts in Performance: Strings",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-theatre-performance-acting",
+  "name": "Bachelor of Fine Arts in Theatre Performance: Acting",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-theatre-performance-directing",
+  "name": "Bachelor of Fine Arts in Theatre Performance: Directing",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-theatre-design-production",
+  "name": "Bachelor of Fine Arts in Theatre Design & Production",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-theatre-arts",
+  "name": "Bachelor of Theatre Arts",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-fine-arts-in-interarts-performance",
+  "name": "Bachelor of Fine Arts in Interarts Performance",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-voice-performance",
+  "name": "Bachelor of Music in Voice Performance",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-voice",
+  "name": "Bachelor of Musical Arts in Performance: Voice",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-performance-winds-percussion",
+  "name": "Bachelor of Music in Performance: Winds & Percussion",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-music-in-performance-multiple-wind-instruments",
+  "name": "Bachelor of Music in Performance: Multiple Wind Instruments",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-winds-percussion",
+  "name": "Bachelor of Musical Arts in Performance: Winds & Percussion",
+  "school": "Music, Theatre & Dance",
+  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+ },
+ {
+  "id": "kinesiology-applied-exercise-science",
+  "name": "Applied Exercise Science",
+  "school": "Kinesiology",
+  "url": "https://kines.umich.edu/academics/applied-exercise-science/undergraduate-program"
+ },
+ {
+  "id": "kinesiology-movement-science",
+  "name": "Movement Science",
+  "school": "Kinesiology",
+  "url": "https://kines.umich.edu/academics/movement-science/undergraduate",
+  "subject": "MOVESCI"
+ },
+ {
+  "id": "kinesiology-sport-management",
+  "name": "Sport Management",
+  "school": "Kinesiology",
+  "url": "https://kines.umich.edu/academics/sport-management/undergraduate",
+  "subject": "SM"
+ },
+ {
+  "id": "nursing-bachelor-of-science-in-nursing",
+  "name": "Bachelor of Science in Nursing",
+  "school": "Nursing",
+  "url": "https://nursing.umich.edu/academics/BSN",
+  "subject": "NURS"
+ },
+ {
+  "id": "public-health-ba-in-community-and-global-public-health",
+  "name": "BA in Community and Global Public Health",
+  "school": "Public Health",
+  "url": "https://sph.umich.edu/undergrad/degrees/index.html"
+ },
+ {
+  "id": "public-health-bs-in-public-health-sciences",
+  "name": "BS in Public Health Sciences",
+  "school": "Public Health",
+  "url": "https://sph.umich.edu/undergrad/degrees/index.html"
+ },
+ {
+  "id": "public-policy-bachelor-of-arts-in-public-policy",
+  "name": "Bachelor of Arts in Public Policy",
+  "school": "Public Policy",
+  "url": "https://fordschool.umich.edu/ba/major",
+  "subject": "PUBPOL"
+ },
+ {
+  "id": "education-learning-equity-and-problem-solving-for-the-public-good-leaps",
+  "name": "Learning, Equity, and Problem Solving for the Public Good (LEAPS)",
+  "school": "Education",
+  "url": "https://marsal.umich.edu/academics-admissions/degrees/bachelors/learning-equity-and-problem-solving-public-good",
+  "subject": "EDUC"
+ },
+ {
+  "id": "education-elementary-teacher-education",
+  "name": "Elementary Teacher Education",
+  "school": "Education",
+  "url": "https://marsal.umich.edu/academics-admissions/degrees/bachelors-certification/undergraduate-elementary-teacher-education",
+  "subject": "EDUC"
+ },
+ {
+  "id": "education-secondary-teacher-education",
+  "name": "Secondary Teacher Education",
+  "school": "Education",
+  "url": "https://marsal.umich.edu/academics-admissions/degrees/certification-bachelors/undergraduate-secondary-teacher-education",
+  "subject": "EDUC"
+ },
+ {
+  "id": "dentistry-dental-hygiene-bs",
+  "name": "Dental Hygiene (BS)",
+  "school": "Dentistry",
+  "url": "https://dent.umich.edu/education/academic-programs/dental-hygiene-programs/undergraduate-program-bs",
+  "subject": "DENTHYG"
+ },
+ {
+  "id": "dentistry-dental-hygiene-degree-completion-bs",
+  "name": "Dental Hygiene Degree Completion (BS)",
+  "school": "Dentistry",
+  "url": "https://dent.umich.edu/education/academic-programs/dental-hygiene-programs/degree-completion-bs",
+  "subject": "DENTHYG"
+ },
+ {
+  "id": "pharmacy-bs-in-pharmaceutical-sciences",
+  "name": "BS in Pharmaceutical Sciences",
+  "school": "Pharmacy",
+  "url": "https://pharmacy.umich.edu/pharmacy-programs/bs-in-pharmaceutical-sciences/"
+ }
+]

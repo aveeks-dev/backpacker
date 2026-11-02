@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 import { CourseSearch } from "@/components/course-search";
 import type { CourseSummary } from "@/lib/courses";
 import {
-  MAJORS,
   arrangePlan,
   courseCode,
   evaluate,
@@ -23,6 +22,7 @@ import {
   type YearStatus,
 } from "@/lib/majors";
 import { describeGroup } from "@/lib/prereqs";
+import { PROGRAMS, getProgram, hasFullPlan, searchPrograms, type Program } from "@/lib/major-directory";
 import { usePlan } from "@/lib/use-plan";
 import { useProfile } from "@/lib/use-profile";
 
@@ -32,6 +32,7 @@ const YEARS = ["First year", "Second year", "Third year", "Fourth year", "Fifth 
 export default function DegreePage() {
   const { profile, mounted, setMajor, setCourses, setOpenProgress, moveEntry, setExtraYear, resetLayout } = useProfile();
   const major = getMajor(profile.majorId);
+  const program = getProgram(profile.majorId);
   // null until the student chooses: returning students with progress land on their plan.
   const [editing, setEditing] = useState<boolean | null>(null);
   const courses = useCourseSummaries(major);
@@ -39,13 +40,15 @@ export default function DegreePage() {
   if (!mounted) return <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12 text-sm text-slate-500">Loading…</main>;
 
   const showChecklist = major && (editing ?? profile.completed.length === 0);
-  const step = !major ? 1 : showChecklist ? 2 : 3;
+  const step = !program ? 1 : !major || !showChecklist ? 3 : 2;
 
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-8 sm:px-6 sm:py-10">
       <Steps step={step} />
-      {!major ? (
+      {!program ? (
         <MajorPicker onPick={(id) => { setMajor(id); setEditing(true); }} />
+      ) : !major ? (
+        <ProgramOverview program={program} onChange={() => setMajor(null)} />
       ) : showChecklist ? (
         <Checklist
           major={major}
@@ -113,31 +116,95 @@ function Steps({ step }: { step: number }) {
 }
 
 function MajorPicker({ onPick }: { onPick: (id: string) => void }) {
+  const [query, setQuery] = useState("");
+  const results = useMemo(() => searchPrograms(query), [query]);
   return (
     <section>
       <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">What are you studying?</h1>
       <p className="mt-2 max-w-2xl text-slate-600">
-        Pick your major and tell us what you&apos;ve taken. You&apos;ll get what&apos;s left, what to take next, and a four-year layout.
+        Find your major, or your best guess if you haven&apos;t declared. You can change it anytime.
       </p>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-        {MAJORS.map((m) => (
-          <li key={m.id}>
-            <button
-              onClick={() => onPick(m.id)}
-              className="group flex h-full w-full flex-col rounded-md border border-slate-200 bg-white p-6 text-left transition hover:-translate-y-0.5 hover:border-michigan"
-            >
-              <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">{m.school}</span>
-              <span className="mt-1 font-display text-xl font-semibold text-michigan">{m.name}</span>
-              <span className="mt-3 text-sm text-slate-500">{m.requirements.length} requirements · {m.planIsOfficial ? "official sample schedule" : "suggested four-year order"}</span>
-              <span className="mt-4 text-sm font-medium text-michigan group-hover:underline">Choose →</span>
-            </button>
+      <input
+        type="search"
+        autoFocus
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        aria-label="Search majors"
+        placeholder={`Search ${PROGRAMS.length} majors and programs`}
+        className="mt-6 w-full max-w-xl rounded-md border border-slate-300 bg-white px-4 py-3 placeholder:text-slate-400 focus:border-michigan focus:outline-none"
+      />
+      {results.length === 0 ? (
+        <p className="mt-6 text-sm text-slate-600">No matches. Try a shorter word, like &ldquo;bio&rdquo;.</p>
+      ) : (
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {results.map((p) => (
+            <li key={p.id}>
+              <button
+                onClick={() => onPick(p.id)}
+                className="flex h-full w-full flex-col rounded-md border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-michigan"
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{p.school}</span>
+                <span className="mt-1 font-display font-semibold text-michigan">{p.name}</span>
+                {hasFullPlan(p) && (
+                  <span className="mt-2 self-start rounded bg-maize/40 px-2 py-0.5 text-[11px] font-semibold text-michigan">Full plan available</span>
+                )}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function ProgramOverview({ program, onChange }: { program: Program; onChange: () => void }) {
+  return (
+    <section>
+      <div className="rounded-md bg-michigan p-6 text-white sm:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-sm text-slate-300">{program.school}</p>
+            <h1 className="mt-1 text-3xl font-semibold tracking-tight text-white">{program.name}</h1>
+          </div>
+          <button onClick={onChange} className="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/20">Change major</button>
+        </div>
+        <a
+          href={program.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-block rounded-md bg-maize px-5 py-2.5 font-semibold text-michigan hover:bg-maize-dark"
+        >
+          See official requirements ↗
+        </a>
+      </div>
+
+      <p className="mt-6 max-w-2xl text-slate-600">
+        We don&apos;t have a checklist or roadmap for this program yet. We only add them from official requirements, so nothing here is a guess. Until then, these will get you started:
+      </p>
+      <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+        {program.subject && (
+          <li>
+            <Link href={`/courses?department=${encodeURIComponent(program.subject)}&offered=1`} className="block h-full rounded-md border border-slate-200 bg-white p-5 hover:border-michigan">
+              <span className="font-display font-semibold">{program.subject} courses in {TERM_LABEL}</span>
+              <span className="mt-1 block text-sm text-slate-600">See sections, times, and instructors.</span>
+            </Link>
           </li>
-        ))}
+        )}
+        <li>
+          <Link href="/plan" className="block h-full rounded-md border border-slate-200 bg-white p-5 hover:border-michigan">
+            <span className="font-display font-semibold">Build your schedule</span>
+            <span className="mt-1 block text-sm text-slate-600">Add your courses and see every combination that fits.</span>
+          </Link>
+        </li>
+        {!program.subject && (
+          <li>
+            <Link href="/courses?offered=1" className="block h-full rounded-md border border-slate-200 bg-white p-5 hover:border-michigan">
+              <span className="font-display font-semibold">Browse {TERM_LABEL} courses</span>
+              <span className="mt-1 block text-sm text-slate-600">Filter by school, subject, level, and credits.</span>
+            </Link>
+          </li>
+        )}
       </ul>
-      <p className="mt-6 text-sm text-slate-500">
-        More majors are coming. Each one is added from official U-M requirements so nothing here is guessed. Until yours is here, you can still{" "}
-        <Link href="/plan" className="underline">build a schedule</Link>.
-      </p>
     </section>
   );
 }

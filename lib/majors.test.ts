@@ -163,6 +163,14 @@ test("year status reflects finished entries", () => {
   assert.equal(yearStatus(terms.slice(4, 6), finished), "Not started");
 });
 
+test("every full plan is reachable from the program directory", () => {
+  const directory = JSON.parse(readFileSync(new URL("../data/majors-directory.json", import.meta.url), "utf8")) as { id: string; url: string }[];
+  assert.ok(directory.length > 100);
+  assert.equal(new Set(directory.map((p) => p.id)).size, directory.length);
+  for (const major of MAJORS) assert.ok(directory.some((p) => p.id === major.id), major.id);
+  for (const p of directory) assert.match(p.url, /^https:\/\/[a-z.]*umich\.edu\//, p.id);
+});
+
 test("core required courses exist in the real Winter 2027 or catalog data", () => {
   const catalog = JSON.parse(readFileSync(new URL("../data/catalog.json", import.meta.url), "utf8")) as { id: string }[];
   const schedule = JSON.parse(readFileSync(new URL("../data/schedule/WN2027.json", import.meta.url), "utf8")) as { courses: { id: string }[] };
