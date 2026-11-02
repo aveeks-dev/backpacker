@@ -364,7 +364,13 @@ export function suggestNext(
     if (requirement.anyOf) {
       const known = requirement.anyOf[0].every(hasKnownPrereqs);
       if (!known && firstTermBySubject.get(subjectOf(requirement.anyOf[0][0])) !== termIndex) continue;
-      const unlocked = requirement.anyOf.filter((ids) => ids.every((id) => missingPrereqs(id, progress.completed).length === 0));
+      const mainBlocked = requirement.anyOf[0].some((id) => missingPrereqs(id, progress.completed).length > 0);
+      // Unknown prerequisites aren't the same as none: when the usual course is
+      // blocked, don't offer an alternative we can't check (MATH 465 instead of
+      // EECS 203 for a new student).
+      const unlocked = requirement.anyOf.filter((ids) =>
+        ids.every((id) => (mainBlocked ? hasKnownPrereqs(id) : true) && missingPrereqs(id, progress.completed).length === 0),
+      );
       if (unlocked.length === 0) {
         // Only mention what's coming up soon, not the whole degree.
         if (termIndex <= earliestTerm + 2 && blocked.length < 3) {

@@ -109,6 +109,16 @@ test("published prerequisites gate suggestions", () => {
   for (const id of ["eecs-281", "eecs-370", "eecs-376"]) assert.ok(after.includes(id), id);
 });
 
+test("a blocked course's unverifiable alternatives aren't offered", () => {
+  const result = suggestNext(getMajor("cs-lsa")!, { completed: [], openProgress: {} }, everyOffered, 30);
+  assert.ok(!result.suggestions.some((s) => s.requirement.id === "eecs-203"));
+  assert.ok(result.blocked.some((b) => b.requirement.id === "eecs-203"));
+  // Once EECS 203 is open, the listed alternatives can appear beside it.
+  const open = suggestNext(getMajor("cs-lsa")!, { completed: ["math-115"], openProgress: {} }, everyOffered, 30);
+  const discrete = open.suggestions.find((s) => s.requirement.id === "eecs-203")!;
+  assert.deepEqual(discrete.options[0], ["eecs-203"]);
+});
+
 test("prerequisite logic reads AND of ORs", () => {
   assert.deepEqual(missingPrereqs("eecs-281", ["math-465"]), [["eecs-280"]]);
   assert.deepEqual(missingPrereqs("eecs-281", ["eecs-203", "eecs-280"]), []);
