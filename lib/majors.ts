@@ -1118,7 +1118,190 @@ const WGS: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS];
+const ASIAN_STUDIES: Major = {
+  id: "lsa-asian-studies",
+  name: "Asian Studies",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/asian-studies-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "34 credits minimum. When you declare, choose one sub-major: Asian Religions, or Chinese, Japanese, Korean, South Asian, or Southeast Asian Studies.",
+    "Fourth-term proficiency in an Asian language is required. Those credits don't count toward the major.",
+    "A department advisor must approve your courses. At least 5 courses must be in residence.",
+  ],
+  requirements: [
+    { id: "language", group: "Language", label: "Terms of an Asian language", target: 4, unit: "course", note: "Or show fourth-term proficiency. Enter the terms you've finished.", browse: "/courses?department=ASIANLAN&offered=1" },
+    { id: "intro", group: "Core", label: "Introduction to Asian Studies", anyOf: one("asian-235") },
+    { id: "seminar", group: "Core", label: "Junior/Senior Research Seminar", anyOf: one("asian-381") },
+    { id: "electives", group: "Electives", label: "Sub-major electives", target: 8, unit: "course", note: "At least four must be 300-level or above ASIAN or ASIANLAN, and one must be 400-level or above. One optional cognate can come from outside the department.", browse: "/courses?department=ASIAN&offered=1" },
+  ],
+  plan: [
+    [{ label: "Asian language", req: "language" }, LSA_FILLER],
+    [{ label: "Asian language", req: "language" }, { label: "ASIAN 235", req: "intro" }, LSA_FILLER],
+    [{ label: "Asian language", req: "language" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Asian language", req: "language" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", req: "electives" }, LSA_FILLER],
+    [{ label: "ASIAN 381", req: "seminar" }, { label: "Electives", req: "electives" }, LSA_FILLER],
+    [{ label: "Upper-level electives", req: "electives" }, LSA_FILLER],
+    [{ label: "400-level elective", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const ASTRONOMY: Major = {
+  id: "lsa-astronomy-and-astrophysics",
+  name: "Astronomy and Astrophysics",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/astronomy-and-astrophysics-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2026",
+  planIsOfficial: false,
+  notes: [
+    "35 credits minimum. Finish the physics and math requirements as soon as you can.",
+    "Apart from the prerequisites and physics coursework, major courses must be in residence. Transfer students should meet an advisor.",
+    "The source page lists major exclusions.",
+  ],
+  requirements: [
+    { id: "calc-1", group: "Prerequisites: math through MATH 216", label: "Calculus I", anyOf: one("math-115") },
+    { id: "calc-2", group: "Prerequisites: math through MATH 216", label: "Calculus II", anyOf: one("math-116") },
+    { id: "calc-3", group: "Prerequisites: math through MATH 216", label: "Calculus III", anyOf: one("math-215") },
+    { id: "diffeq", group: "Prerequisites: math through MATH 216", label: "Differential equations", anyOf: one("math-216") },
+    { id: "physics-1", group: "Prerequisites", label: "Physics I with lab", anyOf: [["physics-140", "physics-141"], ["physics-160", "physics-161"]] },
+    { id: "physics-2", group: "Prerequisites", label: "Physics II with lab", anyOf: [["physics-240", "physics-241"], ["physics-260", "physics-261"]] },
+    { id: "physics-3", group: "Prerequisites", label: "PHYSICS 340 or 360", anyOf: one("physics-340", "physics-360") },
+    { id: "p-316", group: "Prerequisites", label: "Mathematical Methods", anyOf: one("physics-316") },
+    { id: "prog", group: "Prerequisites", label: "Programming with Python", note: "Or an equivalent approved by an Astronomy advisor.", anyOf: one("compfor-131", "si-101") },
+    { id: "a-201", group: "Astronomy core", label: "ASTRO 201", anyOf: one("astro-201") },
+    { id: "a-361", group: "Astronomy core", label: "ASTRO 361", anyOf: one("astro-361") },
+    { id: "a-399", group: "Astronomy core", label: "ASTRO 399", anyOf: one("astro-399") },
+    { id: "a-402", group: "Astronomy core", label: "ASTRO 402", anyOf: one("astro-402") },
+    { id: "a-404", group: "Astronomy core", label: "ASTRO 404", anyOf: one("astro-404") },
+    { id: "a-429", group: "Astronomy core", label: "ASTRO 429", anyOf: one("astro-429") },
+    { id: "p-390", group: "Physics core", label: "PHYSICS 390", anyOf: one("physics-390") },
+    { id: "p-391", group: "Physics core", label: "PHYSICS 391", anyOf: one("physics-391") },
+    { id: "p-401", group: "Physics core", label: "PHYSICS 401", anyOf: one("physics-401") },
+    { id: "p-405", group: "Physics core", label: "PHYSICS 405", anyOf: one("physics-405") },
+    { id: "electives", group: "Electives", label: "Astronomy electives", target: 2, unit: "course", note: "Two of ASTRO 401, 403, 405, 406, 416, 461, or a 500-level ASTRO course with permission.", browse: "/courses?department=ASTRO&level=400&offered=1" },
+  ],
+  plan: [
+    [{ label: "MATH 115", req: "calc-1" }, { label: "Programming", req: "prog" }, LSA_FILLER],
+    [{ label: "MATH 116", req: "calc-2" }, { label: "Physics I with lab", req: "physics-1" }, { label: "ASTRO 201", req: "a-201" }],
+    [{ label: "MATH 215", req: "calc-3" }, { label: "Physics II with lab", req: "physics-2" }, { label: "ASTRO 361", req: "a-361" }],
+    [{ label: "MATH 216", req: "diffeq" }, { label: "PHYSICS 340 or 360", req: "physics-3" }, { label: "PHYSICS 316", req: "p-316" }],
+    [{ label: "PHYSICS 390", req: "p-390" }, { label: "PHYSICS 391", req: "p-391" }, { label: "PHYSICS 401", req: "p-401" }, { label: "ASTRO 399", req: "a-399" }],
+    [{ label: "PHYSICS 405", req: "p-405" }, { label: "ASTRO 402", req: "a-402" }, LSA_FILLER],
+    [{ label: "ASTRO 404", req: "a-404" }, { label: "Astronomy elective", req: "electives" }, LSA_FILLER],
+    [{ label: "ASTRO 429", req: "a-429" }, { label: "Astronomy elective", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const SPANISH: Major = {
+  id: "lsa-spanish",
+  name: "Spanish",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/spanish-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2026",
+  planIsOfficial: false,
+  notes: [
+    "At least 10 courses and 30 credits beyond the prerequisite, each at least 3 credits.",
+    "At most one independent study and one internship count. One approved cognate taught in English is allowed.",
+    "At least 5 courses must be in residence or through an affiliated study abroad program.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "SPANISH 277 or 278", note: "SPANISH 278 is for eligible heritage language learners. RC students: see the source page.", anyOf: one("spanish-277", "spanish-278") },
+    { id: "mid", group: "Major", label: "Courses numbered 279 to 399", target: 4, unit: "course", note: "Four or five courses. Up to three terms of RCLANG 324 can count.", browse: "/courses?department=SPANISH&level=300&offered=1" },
+    { id: "upper", group: "Major", label: "400-level courses", target: 5, unit: "course", note: "Five or six courses.", browse: "/courses?department=SPANISH&level=400&offered=1" },
+    { id: "total", group: "Major", label: "Total major courses", target: 10, unit: "course", browse: "/courses?department=SPANISH&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "SPANISH 277 or 278", req: "prereq" }, LSA_FILLER],
+    [{ label: "279-399 course", req: "mid" }, LSA_FILLER],
+    [{ label: "279-399 course", req: "mid" }, LSA_FILLER],
+    [{ label: "279-399 courses", req: "mid" }, LSA_FILLER],
+    [{ label: "400-level courses", req: "upper" }, LSA_FILLER],
+    [{ label: "400-level courses", req: "upper" }, LSA_FILLER],
+    [{ label: "400-level courses", req: "upper" }, { label: "Any remaining courses", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const FRENCH: Major = {
+  id: "lsa-french-and-francophone-studies",
+  name: "French and Francophone Studies",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/french-and-francophone-studies-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "At least 30 FRENCH credits beyond the prerequisite. At least 15 must be in residence or through an affiliated study abroad program.",
+    "At most two courses can be taught in English. At most 6 credits can be professional or internship courses.",
+    "You can also meet the prerequisite through the placement test.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "FRENCH 230 or 232, or RCLANG 290 or 310", note: "C- or higher.", anyOf: one("french-230", "french-232", "rclang-290", "rclang-310") },
+    { id: "f-235", group: "Major", label: "FRENCH 235 or RCLANG 320", anyOf: one("french-235", "rclang-320") },
+    { id: "f-270", group: "Major", label: "FRENCH 270-299 courses", target: 2, unit: "course", browse: "/courses?department=FRENCH&level=200&offered=1" },
+    { id: "lit", group: "Major", label: "Literature and culture course", target: 1, unit: "course", note: "FRENCH 350-379, in Ann Arbor. Counts toward the upper-level credits.", browse: "/courses?department=FRENCH&level=300&offered=1" },
+    { id: "upper", group: "Major", label: "Credits at the 300 level or above", target: 18, unit: "credits", browse: "/courses?department=FRENCH&level=300&offered=1" },
+    { id: "total", group: "Major", label: "Total credits toward the 30-credit major", target: 30, unit: "credits", note: "Enter your total.", browse: "/courses?department=FRENCH&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "FRENCH 230 or 232", req: "prereq" }, LSA_FILLER],
+    [{ label: "FRENCH 235", req: "f-235" }, LSA_FILLER],
+    [{ label: "FRENCH 270-299", req: "f-270" }, LSA_FILLER],
+    [{ label: "FRENCH 270-299", req: "f-270" }, { label: "Literature and culture", req: "lit" }, LSA_FILLER],
+    [{ label: "300+ FRENCH", credits: 6, req: "upper" }, LSA_FILLER],
+    [{ label: "300+ FRENCH", credits: 6, req: "upper" }, LSA_FILLER],
+    [{ label: "300+ FRENCH", credits: 6, req: "upper" }, { label: "Any remaining credits", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const BIOCHEM_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/biochemistry-major.html";
+
+const BIOCHEMISTRY: Major = {
+  id: "lsa-biochemistry-bs",
+  name: "Biochemistry",
+  school: "LSA",
+  sourceUrl: BIOCHEM_URL,
+  sourceLabel: "LSA major requirements, effective Winter 2026",
+  planIsOfficial: false,
+  notes: [
+    "37 credits minimum (B.S.). You're strongly encouraged to take CHEM 351, though MCDB 310 or BIOLCHEM 415 can replace it.",
+    "This major has exclusions with other science majors; see the source page.",
+  ],
+  requirements: [
+    { id: "bio", group: "Prerequisites", label: "Intro biology", anyOf: [["biology-171", "biology-172"], ["biology-171", "biology-174"], ["biology-192"], ["biology-195"]], sequential: true },
+    { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II", anyOf: one("chem-215") },
+    { id: "calc-1", group: "Prerequisites", label: "Calculus I", anyOf: one("math-115", "math-120") },
+    { id: "calc-2", group: "Prerequisites", label: "Calculus II", anyOf: one("math-116", "math-121") },
+    { id: "adv-math", group: "Prerequisites", label: "MATH 215 or CHEM 262", anyOf: one("math-215", "chem-262") },
+    { id: "physics", group: "Prerequisites", label: "Two-term physics sequence with labs", target: 2, unit: "course", note: "See the source page for the accepted first- and second-term options.", browse: BIOCHEM_URL },
+    { id: "genetics", group: "Core", label: "Genetics", anyOf: one("biology-305") },
+    { id: "pchem", group: "Core", label: "CHEM 260, or CHEM 230 and 261", anyOf: [["chem-260"], ["chem-230", "chem-261"]] },
+    { id: "inorganic", group: "Core", label: "CHEM 302, 303, 241, or 245", anyOf: one("chem-302", "chem-303", "chem-241", "chem-245") },
+    { id: "lab", group: "Core", label: "CHEM 216 or 242, or 246 and 247", anyOf: [["chem-216"], ["chem-242"], ["chem-246", "chem-247"]] },
+    { id: "biochem", group: "Core", label: "Biochemistry", anyOf: one("chem-351", "mcdb-310", "biolchem-415") },
+    { id: "c-352", group: "Core", label: "CHEM 352 or 353", anyOf: one("chem-352", "chem-353") },
+    { id: "c-451", group: "Core", label: "CHEM 451", anyOf: one("chem-451") },
+    { id: "c-452", group: "Core", label: "CHEM 452", anyOf: one("chem-452") },
+    { id: "c-453", group: "Core", label: "CHEM 453", anyOf: one("chem-453") },
+    { id: "electives", group: "Electives", label: "Approved elective credits", target: 6, unit: "credits", note: "From the list on the source page.", browse: BIOCHEM_URL },
+    { id: "research", group: "Electives", label: "Advanced lab or undergraduate research", target: 1, unit: "course", browse: BIOCHEM_URL },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "bio" }, { label: "Calculus I", req: "calc-1" }, LSA_FILLER],
+    [{ label: "CHEM 210 + 211", req: "chem-1" }, { label: "Calculus II", req: "calc-2" }, { label: "Rest of intro biology", req: "bio" }],
+    [{ label: "CHEM 215", req: "chem-2" }, { label: "Physics", req: "physics" }, { label: "MATH 215 or CHEM 262", req: "adv-math" }],
+    [{ label: "CHEM 216 or 242", req: "lab" }, { label: "Physics", req: "physics" }, { label: "CHEM 260, or 230 and 261", req: "pchem" }],
+    [{ label: "CHEM 351", req: "biochem" }, { label: "BIOLOGY 305", req: "genetics" }, { label: "CHEM 302, 303, 241, or 245", req: "inorganic" }],
+    [{ label: "CHEM 352 or 353", req: "c-352" }, { label: "Elective", credits: 3, req: "electives" }, LSA_FILLER],
+    [{ label: "CHEM 451", req: "c-451" }, { label: "CHEM 453", req: "c-453" }, { label: "Advanced lab or research", req: "research" }],
+    [{ label: "CHEM 452", req: "c-452" }, { label: "Elective", credits: 3, req: "electives" }, LSA_FILLER],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS, ASIAN_STUDIES, ASTRONOMY, SPANISH, FRENCH, BIOCHEMISTRY];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);
