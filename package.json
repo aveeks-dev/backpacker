@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --test \"lib/**/*.test.ts\"",
-    "import:schedule": "node scripts/import-schedule.ts"
+    "import:schedule": "node scripts/import-schedule.ts",
+    "scrape:catalog": "node scripts/scrape-atlas.ts"
   },
   "dependencies": {
     "next": "16.2.4",
