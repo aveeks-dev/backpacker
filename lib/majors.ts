@@ -1529,7 +1529,246 @@ const PPE: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS, ASIAN_STUDIES, ASTRONOMY, SPANISH, FRENCH, BIOCHEMISTRY, AAS, CLASSICAL_CIV, GERMAN, ITALIAN, JUDAIC, LATINO_STUDIES, PPE];
+const DRAMA_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/drama-major.html";
+
+const DRAMA: Major = {
+  id: "lsa-drama",
+  name: "Drama",
+  school: "LSA",
+  sourceUrl: DRAMA_URL,
+  sourceLabel: "LSA major requirements, effective Winter 2024",
+  planIsOfficial: false,
+  notes: [
+    "35 credits minimum, with no prerequisites.",
+    "Other electives need approval from the Drama Program head.",
+  ],
+  requirements: [
+    { id: "foundation", group: "Major", label: "Foundational course", anyOf: one("rcdrama-281", "rcdrama-282") },
+    { id: "electives", group: "Major", label: "Approved elective credits", target: 27, unit: "credits", note: "From the list on the source page.", browse: DRAMA_URL },
+    { id: "capstone", group: "Major", label: "Capstone", note: "Usually RCDRAMA 481.", anyOf: one("rcdrama-481", "rccore-307", "rccore-406", "rcdrama-483") },
+  ],
+  plan: [
+    [{ label: "Elective", credits: 3, req: "electives" }, LSA_FILLER],
+    [{ label: "Foundational course", req: "foundation" }, LSA_FILLER],
+    [{ label: "Elective", credits: 4, req: "electives" }, LSA_FILLER],
+    [{ label: "Elective", credits: 4, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 4, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 4, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 4, req: "electives" }, LSA_FILLER],
+    [{ label: "Capstone", req: "capstone" }, { label: "Electives", credits: 4, req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const HOBB_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/human-origins-biology-and-behavior-major.html";
+
+const HOBB: Major = {
+  id: "lsa-human-origins-biology-and-behavior",
+  name: "Human Origins, Biology, and Behavior",
+  school: "LSA",
+  sourceUrl: HOBB_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2023",
+  planIsOfficial: false,
+  notes: [
+    "32 credits minimum at the 200 level and above. At most 6 credits of independent research count.",
+    "At least 20 credits must be in residence. The source page lists major exclusions.",
+  ],
+  requirements: [
+    { id: "intro", group: "Prerequisites", label: "How Humans Evolved", anyOf: one("anthrbio-201") },
+    { id: "bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: [["biology-171", "biology-172", "biology-173"], ["biology-195", "biology-173"]], sequential: true },
+    { id: "group-paleo", group: "Anthropology", label: "Paleoanthropology and morphology", target: 1, unit: "course", browse: HOBB_URL },
+    { id: "group-ecology", group: "Anthropology", label: "Ecology and behavior", target: 1, unit: "course", browse: HOBB_URL },
+    { id: "group-adaptation", group: "Anthropology", label: "Human adaptation", target: 1, unit: "course", browse: HOBB_URL },
+    { id: "group-evolution", group: "Anthropology", label: "Evolution and genetics", target: 1, unit: "course", browse: HOBB_URL },
+    { id: "anthro-fifth", group: "Anthropology", label: "Fifth anthropology course", target: 1, unit: "course", note: "At least two of your five must be at the 400 level or above. A course can't count in two groups.", browse: HOBB_URL },
+    { id: "biology", group: "Biology", label: "Biology courses", target: 3, unit: "course", note: "Cover both groups: molecular, cellular, and developmental; and ecology, evolution, and behavior.", browse: HOBB_URL },
+    { id: "total", group: "Total", label: "Total credits toward the 32-credit major", target: 32, unit: "credits", note: "Enter your total.", browse: HOBB_URL },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "bio" }, LSA_FILLER],
+    [{ label: "Rest of intro biology", req: "bio" }, { label: "ANTHRBIO 201", req: "intro" }, LSA_FILLER],
+    [{ label: "Biology course", req: "biology" }, LSA_FILLER],
+    [{ label: "Ecology and behavior", req: "group-ecology" }, { label: "Biology course", req: "biology" }, LSA_FILLER],
+    [{ label: "Paleoanthropology", req: "group-paleo" }, LSA_FILLER],
+    [{ label: "Human adaptation", req: "group-adaptation" }, { label: "Biology course", req: "biology" }, LSA_FILLER],
+    [{ label: "Evolution and genetics", req: "group-evolution" }, LSA_FILLER],
+    [{ label: "Fifth anthropology course", req: "anthro-fifth" }, { label: "Courses to reach 32 credits", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const LACS_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/latin-american-and-caribbean-studies-major.html";
+
+const LACS: Major = {
+  id: "lsa-latin-american-and-caribbean-studies",
+  name: "Latin American and Caribbean Studies",
+  school: "LSA",
+  sourceUrl: LACS_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2016",
+  planIsOfficial: false,
+  notes: [
+    "30 credits minimum, with at least 20 at the 300-400 level. Language courses don't count toward the 30.",
+    "Up to 4 credits of Quechua or Nahuatl can count as electives. Study abroad needs advisor approval.",
+    "This requirement version is from 2016, the newest on the LSA page. Confirm with an advisor.",
+  ],
+  requirements: [
+    { id: "language", group: "Language", label: "Spanish or Portuguese proficiency", note: "Or the equivalent. Get this done early.", anyOf: one("spanish-277", "rclang-294", "portug-232") },
+    { id: "anthro", group: "Areas of study", label: "Anthropology", note: "Or an approved upper-level course on Latin America.", anyOf: one("anthrcul-319", "anthrcul-414") },
+    { id: "history", group: "Areas of study", label: "History", note: "Or an approved upper-level course on Latin America.", anyOf: one("history-347", "history-348") },
+    { id: "lit", group: "Areas of study", label: "Literature", note: "Or an approved upper-level course in Latin American literature.", anyOf: one("spanish-381", "spanish-382") },
+    { id: "politics", group: "Areas of study", label: "Politics and economy", note: "Or an approved upper-level course on Latin American politics or economy.", anyOf: one("spanish-438") },
+    { id: "total", group: "Electives", label: "Total credits toward the 30-credit major", target: 30, unit: "credits", note: "Enter your total. Electives can come from any department with Latin America and Caribbean content.", browse: "/courses?department=LACS&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "Language proficiency", req: "language" }, LSA_FILLER],
+    [{ label: "LACS electives", credits: 6, req: "total" }, LSA_FILLER],
+    [{ label: "Anthropology", req: "anthro" }, LSA_FILLER],
+    [{ label: "History", req: "history" }, LSA_FILLER],
+    [{ label: "Literature", req: "lit" }, LSA_FILLER],
+    [{ label: "Politics and economy", req: "politics" }, LSA_FILLER],
+    [{ label: "Remaining electives", credits: 24, req: "total" }, LSA_FILLER],
+  ],
+};
+
+const MENAS_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/middle-eastern-and-north-african-studies-major.html";
+
+const MENAS: Major = {
+  id: "lsa-middle-eastern-and-north-african-studies",
+  name: "Middle Eastern and North African Studies",
+  school: "LSA",
+  sourceUrl: MENAS_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2016",
+  planIsOfficial: false,
+  notes: [
+    "30 credits minimum at the 200 level and above, approved by the undergraduate advisor.",
+    "MIDEAST 200 and an intro to Islam course (ISLAM 216, MIDEAST 216, or RELIGION 204) are strongly recommended.",
+    "This requirement version is from 2016, the newest on the LSA page. Confirm with an advisor.",
+  ],
+  requirements: [
+    { id: "lang-1", group: "Prerequisites", label: "First-year language sequence", note: "Or the equivalent.", anyOf: [["arabic-101", "arabic-102"], ["armenian-101", "armenian-102"], ["hebrew-101", "hebrew-102"], ["persian-101", "persian-102"], ["turkish-101", "turkish-102"]], sequential: true },
+    { id: "lang-2", group: "Language", label: "Terms of language beyond first year", target: 2, unit: "course", note: "One year of Arabic, Armenian, Hebrew, Persian, or Turkish.", browse: "/courses?offered=1" },
+    { id: "capstone", group: "Core", label: "MENAS 493", anyOf: one("menas-493") },
+    { id: "social", group: "Core", label: "Anthropology, Sociology, or Women's Studies", target: 1, unit: "course", note: "300 or 400 level, advisor approved.", browse: MENAS_URL },
+    { id: "h-443", group: "Core", label: "HISTORY 443", anyOf: one("history-443") },
+    { id: "pre-1800", group: "Core", label: "Pre-1800 Middle East history", target: 1, unit: "course", note: "300 or 400 level, advisor approved.", browse: MENAS_URL },
+    { id: "polsci", group: "Core", label: "Political science", anyOf: one("polsci-351", "polsci-352", "polsci-353") },
+    { id: "electives", group: "Electives", label: "Approved electives", target: 2, unit: "course", browse: MENAS_URL },
+  ],
+  plan: [
+    [{ label: "First-year language", req: "lang-1" }, LSA_FILLER],
+    [{ label: "First-year language", req: "lang-1" }, LSA_FILLER],
+    [{ label: "Second-year language", req: "lang-2" }, LSA_FILLER],
+    [{ label: "Second-year language", req: "lang-2" }, LSA_FILLER],
+    [{ label: "HISTORY 443", req: "h-443" }, { label: "Political science", req: "polsci" }, LSA_FILLER],
+    [{ label: "Pre-1800 history", req: "pre-1800" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Anthropology, Sociology, or Women's Studies", req: "social" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "MENAS 493", req: "capstone" }, LSA_FILLER],
+  ],
+};
+
+const POLISH: Major = {
+  id: "lsa-polish",
+  name: "Polish",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/polish-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2013",
+  planIsOfficial: false,
+  notes: [
+    "27 credits minimum, with at least 15 at the 300 level or above and 15 in residence or an affiliated study abroad program.",
+    "Talk to the Polish advisor before studying abroad.",
+    "This requirement version is from 2013, the newest on the LSA page. Confirm with an advisor.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "First- and second-year Polish", note: "Or the equivalent.", anyOf: [["polish-121", "polish-122", "polish-221", "polish-222"]], sequential: true },
+    { id: "language", group: "Major", label: "Polish language credits", target: 6, unit: "credits", note: "6-12 credits of POLISH 321, 322, 421, 422, or equivalent.", browse: "/courses?department=POLISH&offered=1" },
+    { id: "lit", group: "Major", label: "Polish literature credits", target: 6, unit: "credits", note: "6-9 credits of POLISH 325, 326, 432.", browse: "/courses?department=POLISH&offered=1" },
+    { id: "culture", group: "Major", label: "Polish culture credits", target: 6, unit: "credits", note: "6-9 credits of POLISH 214, 215, 314, 450, or SLAVIC 490.", browse: "/courses?department=POLISH&offered=1" },
+    { id: "electives", group: "Major", label: "Elective credits", target: 3, unit: "credits", note: "3-9 credits from the source page's list.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/polish-major.html" },
+    { id: "total", group: "Total", label: "Total credits toward the 27-credit major", target: 27, unit: "credits", note: "Enter your total.", browse: "/courses?department=POLISH&offered=1" },
+  ],
+  plan: [
+    [{ label: "POLISH 121", req: "prereq" }, LSA_FILLER],
+    [{ label: "POLISH 122", req: "prereq" }, LSA_FILLER],
+    [{ label: "POLISH 221", req: "prereq" }, LSA_FILLER],
+    [{ label: "POLISH 222", req: "prereq" }, LSA_FILLER],
+    [{ label: "Language", credits: 3, req: "language" }, { label: "Literature", credits: 3, req: "lit" }, LSA_FILLER],
+    [{ label: "Language", credits: 3, req: "language" }, { label: "Literature", credits: 3, req: "lit" }, LSA_FILLER],
+    [{ label: "Culture", credits: 3, req: "culture" }, { label: "Elective", credits: 3, req: "electives" }, LSA_FILLER],
+    [{ label: "Culture", credits: 3, req: "culture" }, { label: "Courses to reach 27 credits", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const ROMANCE_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/romance-languages-and-literatures-major.html";
+
+const ROMANCE: Major = {
+  id: "lsa-romance-languages-and-literatures",
+  name: "Romance Languages and Literatures",
+  school: "LSA",
+  sourceUrl: ROMANCE_URL,
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "At least 39 credits. Pick two principal languages from French, Italian, Portuguese, Spanish, or Catalan.",
+    "All 33 language credits must be taught in the target language. Up to 9 can be in a third language.",
+    "Upper-level means 300+ in French and Italian, 281+ in Portuguese, and 400+ in Spanish and Catalan.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "Prerequisites in your principal languages", target: 2, unit: "course", note: "FRENCH 230/232, RCLANG 290/310; ITALIAN 230/232/233/410; PORTUG 232/280; or SPANISH 277/278, RCLANG 324.", browse: ROMANCE_URL },
+    { id: "lang-1", group: "Languages", label: "First principal language credits", target: 12, unit: "credits", note: "At least 6 upper-level.", browse: "/courses?department=SPANISH&offered=1" },
+    { id: "lang-2", group: "Languages", label: "Second principal language credits", target: 12, unit: "credits", note: "At least 6 upper-level.", browse: "/courses?department=FRENCH&offered=1" },
+    { id: "lang-rest", group: "Languages", label: "Remaining language credits", target: 9, unit: "credits", note: "In a principal or third language, for 33 total.", browse: "/courses?department=ITALIAN&offered=1" },
+    { id: "romling", group: "Required", label: "Introduction to the Romance Languages", note: "Check with your advisor about when it's offered.", anyOf: one("romling-300") },
+    { id: "seminar", group: "Required", label: "Seminar in RLL", anyOf: one("romlang-498") },
+  ],
+  plan: [
+    [{ label: "First language prerequisite", req: "prereq" }, LSA_FILLER],
+    [{ label: "Second language prerequisite", req: "prereq" }, LSA_FILLER],
+    [{ label: "First language", credits: 3, req: "lang-1" }, { label: "Second language", credits: 3, req: "lang-2" }, LSA_FILLER],
+    [{ label: "First language", credits: 3, req: "lang-1" }, { label: "Second language", credits: 3, req: "lang-2" }, LSA_FILLER],
+    [{ label: "First language", credits: 3, req: "lang-1" }, { label: "Second language", credits: 3, req: "lang-2" }, { label: "ROMLING 300", req: "romling" }],
+    [{ label: "First language", credits: 3, req: "lang-1" }, { label: "Second language", credits: 3, req: "lang-2" }, LSA_FILLER],
+    [{ label: "Remaining language credits", credits: 6, req: "lang-rest" }, LSA_FILLER],
+    [{ label: "Remaining language credits", credits: 3, req: "lang-rest" }, { label: "ROMLANG 498", req: "seminar" }, LSA_FILLER],
+  ],
+};
+
+const STP_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/social-theory-and-practice-major.html";
+
+const STP: Major = {
+  id: "lsa-social-theory-and-practice",
+  name: "Social Theory and Practice",
+  school: "LSA",
+  sourceUrl: STP_URL,
+  sourceLabel: "LSA major requirements, effective Winter 2026",
+  planIsOfficial: false,
+  notes: [
+    "30 credits minimum, in the Residential College. Design your major proposal in RCSTP 290.",
+    "RCSTP 260 and 290 are ideally taken together, usually in the second semester of sophomore year.",
+    "Confirm your gateway course with the STP advisor. The Residential College website has a checklist.",
+  ],
+  requirements: [
+    { id: "r-260", group: "Prerequisites", label: "Theorizing Knowledge in the Social Sciences", anyOf: one("rcstp-260") },
+    { id: "r-290", group: "Prerequisites", label: "Designing your STP Major Proposal", anyOf: one("rcstp-290") },
+    { id: "gateway", group: "Prerequisites", label: "Social science gateway course", target: 1, unit: "course", note: "RCSTP 101 or an approved 200-level course.", browse: "/courses?department=RCSTP&offered=1" },
+    { id: "theory", group: "Core", label: "RCSTP theory course", anyOf: one("rcstp-301", "rcstp-302") },
+    { id: "methods", group: "Core", label: "Research methods", note: "Other options may count; check with your advisor.", anyOf: one("stats-250", "qmss-201", "soc-210", "soc-310") },
+    { id: "theory-2", group: "Self-designed courses", label: "Second social theory course", target: 1, unit: "course", note: "At least 3 credits.", browse: STP_URL },
+    { id: "practicum", group: "Self-designed courses", label: "Community-engaged learning or practicum", target: 1, unit: "course", note: "At least 3 credits.", browse: STP_URL },
+    { id: "electives", group: "Self-designed courses", label: "Electives", target: 4, unit: "course", note: "Your 18 self-designed credits include at least six upper-level courses.", browse: STP_URL },
+    { id: "capstone", group: "Capstone", label: "STP Capstone", note: "Fall of senior year.", anyOf: one("rcstp-490") },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "Gateway course", req: "gateway" }, LSA_FILLER],
+    [{ label: "Research methods", req: "methods" }, LSA_FILLER],
+    [{ label: "RCSTP 260", req: "r-260" }, { label: "RCSTP 290", req: "r-290" }, LSA_FILLER],
+    [{ label: "RCSTP 301 or 302", req: "theory" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Second theory course", req: "theory-2" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "RCSTP 490", req: "capstone" }, { label: "Practicum", req: "practicum" }, { label: "Elective", req: "electives" }],
+    [{ label: "Elective", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS, ASIAN_STUDIES, ASTRONOMY, SPANISH, FRENCH, BIOCHEMISTRY, AAS, CLASSICAL_CIV, GERMAN, ITALIAN, JUDAIC, LATINO_STUDIES, PPE, DRAMA, HOBB, LACS, MENAS, POLISH, ROMANCE, STP];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);
@@ -1714,7 +1953,7 @@ export function suggestNext(
       const candidates = requirement.sequential ? nextInSequence(unlocked, progress.completed) : unlocked;
       const options = candidates.filter((ids) => ids.every(isOffered));
       if (options.length > 0) suggestions.push({ requirement, options });
-      else notOffered.push(requirement);
+      else if (termIndex <= earliestTerm + 2) notOffered.push(requirement);
     } else if (termIndex <= earliestTerm + 1) {
       suggestions.push({ requirement, options: [] });
     }

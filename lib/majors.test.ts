@@ -171,6 +171,12 @@ test("every full plan is reachable from the program directory", () => {
   for (const p of directory) assert.match(p.url, /^https:\/\/[a-z.]*umich\.edu\//, p.id);
 });
 
+test("only near-term courses are reported as not offered", () => {
+  const result = suggestNext(getMajor("cs-lsa")!, { completed: [], openProgress: {} }, () => false, 30);
+  assert.ok(!result.notOffered.some((r) => r.id === "eecs-376"));
+  assert.ok(result.notOffered.some((r) => r.id === "math-1"));
+});
+
 test("a sequence suggests its next course, not all of them", () => {
   const biology = getMajor("lsa-biology")!;
   const next = (completed: string[]) => suggestNext(biology, { completed, openProgress: {} }, everyOffered, 30).suggestions.find((s) => s.requirement.id === "intro-bio")!.options;
@@ -185,9 +191,10 @@ test("core required courses exist in the real Winter 2027 or catalog data", () =
   const known = new Set([...catalog.map((c) => c.id), ...schedule.courses.map((c) => c.id)]);
   // Official lists include AP-only and rarely offered courses that aren't in
   // our data, but every requirement should have at least one real option.
-  // FTVM isn't in the catalog yet (it was scraped under its old code), so its
-  // courses not offered this term can't be checked.
-  const unchecked = (id: string) => id.startsWith("ftvm-");
+  // Subjects missing from the catalog (FTVM, RCDRAMA, ...) can't be checked
+  // for courses not offered this term.
+  const catalogSubjects = new Set(catalog.map((c) => c.id.split("-")[0]));
+  const unchecked = (id: string) => !catalogSubjects.has(id.split("-")[0]);
   for (const major of MAJORS) {
     for (const r of major.requirements) {
       if (r.anyOf) assert.ok(r.anyOf.some((ids) => ids.every((id) => known.has(id) || unchecked(id))), `${major.id}: ${r.id}`);
