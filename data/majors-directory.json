@@ -644,63 +644,63 @@
   "id": "engineering-aerospace-engineering",
   "name": "Aerospace Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/aero/",
   "subject": "AEROSP"
  },
  {
   "id": "engineering-biomedical-engineering",
   "name": "Biomedical Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/bme/",
   "subject": "BIOMEDE"
  },
  {
   "id": "engineering-chemical-engineering",
   "name": "Chemical Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/che/",
   "subject": "CHE"
  },
  {
   "id": "engineering-civil-engineering",
   "name": "Civil Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/cee/",
   "subject": "CEE"
  },
  {
   "id": "engineering-climate-and-meteorology",
   "name": "Climate and Meteorology",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/clasp/",
   "subject": "CLIMATE"
  },
  {
   "id": "engineering-computer-engineering",
   "name": "Computer Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/eecs/",
   "subject": "EECS"
  },
  {
   "id": "engineering-data-science",
   "name": "Data Science",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/eecs/",
   "subject": "EECS"
  },
  {
   "id": "engineering-electrical-engineering",
   "name": "Electrical Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/eecs/",
   "subject": "EECS"
  },
  {
   "id": "engineering-engineering-physics",
   "name": "Engineering Physics",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/"
+  "url": "https://bulletin.engin.umich.edu/engin-phys/"
  },
  {
   "id": "engineering-environmental-engineering",
@@ -713,14 +713,14 @@
   "id": "engineering-industrial-and-operations-engineering",
   "name": "Industrial and Operations Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/depts/ioe-2/",
   "subject": "IOE"
  },
  {
   "id": "engineering-materials-science-and-engineering",
   "name": "Materials Science and Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/depts/mse-2/",
   "subject": "MATSCIE"
  },
  {
@@ -734,28 +734,28 @@
   "id": "engineering-naval-architecture-and-marine-engineering",
   "name": "Naval Architecture and Marine Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/depts/name/",
   "subject": "NAVARCH"
  },
  {
   "id": "engineering-nuclear-engineering-and-radiological-sciences",
   "name": "Nuclear Engineering and Radiological Sciences",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/depts/ners/",
   "subject": "NERS"
  },
  {
   "id": "engineering-robotics",
   "name": "Robotics",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/depts/rob/",
   "subject": "ROB"
  },
  {
   "id": "engineering-space-sciences-and-engineering",
   "name": "Space Sciences and Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/clasp/",
   "subject": "SPACE"
  },
  {
@@ -816,139 +816,139 @@
   "id": "music-theatre-dance-bachelor-of-music-in-composition",
   "name": "Bachelor of Music in Composition",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-composition/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-dance",
   "name": "Bachelor of Fine Arts in Dance",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-dance/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-arts-in-music",
   "name": "Bachelor of Arts in Music",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-arts-in-music/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-jazz-contemplative-studies",
   "name": "Bachelor of Fine Arts in Jazz & Contemplative Studies",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-jazz-contemporary-improvisation/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-jazz-contemporary-improvisation",
   "name": "Bachelor of Music in Jazz & Contemporary Improvisation",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-jazz-contemporary-improvisation/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-choral-music-education",
   "name": "Bachelor of Music in Choral Music Education",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-music-education-choral/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-instrumental-music-education",
   "name": "Bachelor of Music in Instrumental Music Education",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-music-education-instrumental/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-music-theory",
   "name": "Bachelor of Music in Music Theory",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-music-theory/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-musical-theatre",
   "name": "Bachelor of Fine Arts in Musical Theatre",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-musical-theatre/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-musicology",
   "name": "Bachelor of Music in Musicology",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-musicology/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-organ-performance-sacred-music",
   "name": "Bachelor of Music in Organ Performance & Sacred Music",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-organ-performance-sacred-music/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-organ",
   "name": "Bachelor of Musical Arts in Performance: Organ",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-musical-arts-in-organ-performance/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-performing-arts-technology",
   "name": "Bachelor of Fine Arts in Performing Arts Technology",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-performing-arts-technology-music-technology/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-music-technology",
   "name": "Bachelor of Music in Music & Technology",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-performing-arts-technology-music-technology/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-science-in-sound-engineering",
   "name": "Bachelor of Science in Sound Engineering",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-piano-performance",
   "name": "Bachelor of Music in Piano Performance",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-piano-performance/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-piano",
   "name": "Bachelor of Musical Arts in Performance: Piano",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-musical-arts-in-piano/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-strings-performance",
   "name": "Bachelor of Music in Strings Performance",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-performance-strings/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-strings",
   "name": "Bachelor of Musical Arts in Performance: Strings",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-musical-arts-in-performance-strings/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-theatre-performance-acting",
   "name": "Bachelor of Fine Arts in Theatre Performance: Acting",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-theatre-drama-acting/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-theatre-performance-directing",
   "name": "Bachelor of Fine Arts in Theatre Performance: Directing",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-theatre-drama-directing/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-theatre-design-production",
   "name": "Bachelor of Fine Arts in Theatre Design & Production",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-fine-arts-in-theatre-drama-design-production/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-theatre-arts",
   "name": "Bachelor of Theatre Arts",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-theatre-arts/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-fine-arts-in-interarts-performance",
@@ -960,31 +960,31 @@
   "id": "music-theatre-dance-bachelor-of-music-in-voice-performance",
   "name": "Bachelor of Music in Voice Performance",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-performance-voice/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-voice",
   "name": "Bachelor of Musical Arts in Performance: Voice",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-musical-arts-in-performance-voice/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-performance-winds-percussion",
   "name": "Bachelor of Music in Performance: Winds & Percussion",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-performance-winds-percussion/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-music-in-performance-multiple-wind-instruments",
   "name": "Bachelor of Music in Performance: Multiple Wind Instruments",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-music-in-performance-multiple-winds/"
  },
  {
   "id": "music-theatre-dance-bachelor-of-musical-arts-in-performance-winds-percussion",
   "name": "Bachelor of Musical Arts in Performance: Winds & Percussion",
   "school": "Music, Theatre & Dance",
-  "url": "https://smtd.umich.edu/admissions/undergraduate/undergraduate-degrees-minors/"
+  "url": "https://smtd.umich.edu/degree/bachelor-of-musical-arts-in-performance-winds-percussion/"
  },
  {
   "id": "kinesiology-applied-exercise-science",

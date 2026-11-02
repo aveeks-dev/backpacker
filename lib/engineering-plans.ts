@@ -1,5 +1,6 @@
 // Generated from official Engineering Bulletin sample schedules. Each plan's rows
-// were checked against the PDF's printed per-term credit totals.
+// were checked against the PDF's printed per-term credit totals. Exceptions are
+// stated in that plan's notes.
 
 import type { Major } from "./majors.ts";
 
@@ -19,9 +20,9 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "mathematics-115-116-215-and-216",
+    "id": "mathematics-115-116-215-and",
     "group": "Subjects Required by all Programs",
-    "label": "Mathematics 115, 116, 215, and 216",
+    "label": "Mathematics 115, 116, 215, and",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/aero/"
@@ -49,25 +50,25 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "chem-125-126-130-or-210-211",
+    "id": "chem-125-126-130-or-210",
     "group": "Subjects Required by all Programs",
-    "label": "CHEM 125/126, 130 or 210, 211",
+    "label": "CHEM 125/126, 130 or 210,",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/aero/"
    },
    {
-    "id": "physics-140-with-lab-141",
+    "id": "physics-140-with-lab",
     "group": "Subjects Required by all Programs",
-    "label": "Physics 140 with Lab 141",
+    "label": "Physics 140 with Lab",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/aero/"
    },
    {
-    "id": "physics-240-with-lab-241",
+    "id": "physics-240-with-lab",
     "group": "Subjects Required by all Programs",
-    "label": "Physics 240 with Lab 241",
+    "label": "Physics 240 with Lab",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/aero/"
@@ -92,9 +93,9 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "engineering-distribution-1",
+    "id": "engineering-distribution",
     "group": "Related Technical Core Subjects",
-    "label": "Engineering distribution 1",
+    "label": "Engineering distribution",
     "target": 4,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/aero/"
@@ -102,7 +103,7 @@ export const ENGINEERING_PLANS: Major[] = [
    {
     "id": "engineering-distribution-2",
     "group": "Related Technical Core Subjects",
-    "label": "Engineering distribution 2",
+    "label": "Engineering distribution",
     "target": 4,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/aero/"
@@ -261,9 +262,9 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "ENGR 100, Introduction to Engineering",
@@ -271,9 +272,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engr-100-introduction-to-engineering"
     },
     {
-     "label": "CHEM 125/126, 130 or 210, 211",
+     "label": "CHEM 125/126, 130 or 210,",
      "credits": 5,
-     "req": "chem-125-126-130-or-210-211"
+     "req": "chem-125-126-130-or-210"
     },
     {
      "label": "Intelectual Breadth",
@@ -283,9 +284,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "ENGR 101, Introduction to Computers",
@@ -293,9 +294,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engr-101-introduction-to-computers"
     },
     {
-     "label": "Physics 140 with Lab 141",
+     "label": "Physics 140 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141"
+     "req": "physics-140-with-lab"
     },
     {
      "label": "Intelectual Breadth",
@@ -305,14 +306,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
-     "label": "Physics 240 with Lab 241",
+     "label": "Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-240-with-lab-241"
+     "req": "physics-240-with-lab"
     },
     {
      "label": "Intelectual Breadth",
@@ -332,9 +333,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "MECHENG 240, Intro to Dynamics and Vibrations",
@@ -359,9 +360,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Engineering distribution 1",
+     "label": "Engineering distribution",
      "credits": 4,
-     "req": "engineering-distribution-1"
+     "req": "engineering-distribution"
     },
     {
      "label": "AEROSP 315, Aircraft and Spacecraft Structures",
@@ -386,7 +387,7 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Engineering distribution 2",
+     "label": "Engineering distribution",
      "credits": 4,
      "req": "engineering-distribution-2"
     },
@@ -463,6 +464,859 @@ export const ENGINEERING_PLANS: Major[] = [
   ]
  },
  {
+  "id": "engineering-chemical-engineering",
+  "name": "Chemical Engineering",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/che/",
+  "sourceLabel": "Engineering Bulletin, sample schedule revised September 2023",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2024/03/Chemical_Engineering_BSE_Sample-Schedule.pdf",
+  "notes": [
+   "Other courses may replace CHEM 261; see the notes on the schedule.",
+   "This follows the department's sample schedule revised September 2023. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "mathematics-115-116-215",
+    "group": "Subjects Required by all Programs",
+    "label": "Mathematics 115, 116, 215,",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "engineering-100-introduction-to-engineering",
+    "group": "Subjects Required by all Programs",
+    "label": "Engineering 100, Introduction to Engineering",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-100"
+     ]
+    ]
+   },
+   {
+    "id": "engineering-101-introduction-to-computers",
+    "group": "Subjects Required by all Programs",
+    "label": "Engineering 101, Introduction to Computers",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-101"
+     ]
+    ]
+   },
+   {
+    "id": "chemistry",
+    "group": "Subjects Required by all Programs",
+    "label": "Chemistry",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "physics-140-with-lab-141-physics-240-with-lab",
+    "group": "Subjects Required by all Programs",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "intellectual-breadth-to-include-a-course-in-micr",
+    "group": "Subjects Required by all Programs",
+    "label": "Intellectual Breadth (to include a course in micro or macro economics)",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "chemistry-210-211-structure-and-reactivity-i-and",
+    "group": "Advanced Chemistry",
+    "label": "Chemistry 210/211, Structure and Reactivity I and Lab",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "chemistry-215-216-structure-and-reactivity-ii-an",
+    "group": "Advanced Chemistry",
+    "label": "Chemistry 215/216, Structure and Reactivity II and Lab",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "biology-life-science-elective-typically-bio-172-",
+    "group": "Related Technical Subjects",
+    "label": "Biology/Life Science Elective (Typically Bio 172 or 174)",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "materials-elective-mse-250-or-mse-220",
+    "group": "Related Technical Subjects",
+    "label": "Materials Elective (MSE 250 or MSE 220)",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "engineering-electives",
+    "group": "Related Technical Subjects",
+    "label": "Engineering Electives",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "che-230-material-and-energy-balances",
+    "group": "Program Subjects",
+    "label": "CHE 230 Material and Energy Balances",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-230"
+     ]
+    ]
+   },
+   {
+    "id": "che-330-chemical-and-engineering-thermodynamics",
+    "group": "Program Subjects",
+    "label": "CHE 330 Chemical and Engineering Thermodynamics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-330"
+     ]
+    ]
+   },
+   {
+    "id": "che-341-fluid-mechanics",
+    "group": "Program Subjects",
+    "label": "CHE 341 Fluid Mechanics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-341"
+     ]
+    ]
+   },
+   {
+    "id": "che-342-mass-and-heat-transfer",
+    "group": "Program Subjects",
+    "label": "CHE 342 Mass and Heat Transfer",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-342"
+     ]
+    ]
+   },
+   {
+    "id": "che-343-separation-processes",
+    "group": "Program Subjects",
+    "label": "CHE 343 Separation Processes",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-343"
+     ]
+    ]
+   },
+   {
+    "id": "che-360-chemical-engineering-laboratory-i",
+    "group": "Program Subjects",
+    "label": "CHE 360 Chemical Engineering Laboratory I",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-360"
+     ]
+    ]
+   },
+   {
+    "id": "che-460-chemical-engineering-laboratory-ii",
+    "group": "Program Subjects",
+    "label": "CHE 460 Chemical Engineering Laboratory II",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-460"
+     ]
+    ]
+   },
+   {
+    "id": "che-485-chemical-engineering-process-economics",
+    "group": "Program Subjects",
+    "label": "CHE 485 Chemical Engineering Process Economics",
+    "credits": 1,
+    "anyOf": [
+     [
+      "che-485"
+     ]
+    ]
+   },
+   {
+    "id": "che-487-chemical-process-simulation-and-design-o",
+    "group": "Program Subjects",
+    "label": "CHE 487 Chemical Process Simulation and Design, or CHE 488/489, Chemical Product Design...",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "12-hours",
+    "group": "Program Subjects",
+    "label": "(12 Hours)",
+    "target": 12,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/che/"
+   },
+   {
+    "id": "chemistry-261-introduction-to-quantum-chemistry",
+    "group": "Advanced Chemistry",
+    "label": "Chemistry 261 Introduction to Quantum Chemistry",
+    "credits": 1,
+    "anyOf": [
+     [
+      "chem-261"
+     ]
+    ]
+   },
+   {
+    "id": "che-344-reaction-engineering-and-design",
+    "group": "Program subjects",
+    "label": "CHE 344 Reaction Engineering and Design",
+    "credits": 4,
+    "anyOf": [
+     [
+      "che-344"
+     ]
+    ]
+   },
+   {
+    "id": "che-466-process-dynamics-and-control",
+    "group": "Program subjects",
+    "label": "CHE 466 Process Dynamics and Control",
+    "credits": 3,
+    "anyOf": [
+     [
+      "che-466"
+     ]
+    ]
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "Mathematics 115, 116, 215,",
+     "credits": 4,
+     "req": "mathematics-115-116-215"
+    },
+    {
+     "label": "Engineering 100, Introduction to Engineering",
+     "credits": 4,
+     "req": "engineering-100-introduction-to-engineering"
+    },
+    {
+     "label": "Chemistry",
+     "credits": 3,
+     "req": "chemistry"
+    },
+    {
+     "label": "Intellectual Breadth (to include a course in micro or macro economics)",
+     "credits": 4,
+     "req": "intellectual-breadth-to-include-a-course-in-micr"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215,",
+     "credits": 4,
+     "req": "mathematics-115-116-215"
+    },
+    {
+     "label": "Engineering 101, Introduction to Computers",
+     "credits": 4,
+     "req": "engineering-101-introduction-to-computers"
+    },
+    {
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
+    },
+    {
+     "label": "Chemistry 210/211, Structure and Reactivity I and Lab",
+     "credits": 5,
+     "req": "chemistry-210-211-structure-and-reactivity-i-and"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215,",
+     "credits": 4,
+     "req": "mathematics-115-116-215"
+    },
+    {
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
+    },
+    {
+     "label": "Chemistry 215/216, Structure and Reactivity II and Lab",
+     "credits": 5,
+     "req": "chemistry-215-216-structure-and-reactivity-ii-an"
+    },
+    {
+     "label": "CHE 230 Material and Energy Balances",
+     "credits": 4,
+     "req": "che-230-material-and-energy-balances"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215,",
+     "credits": 4,
+     "req": "mathematics-115-116-215"
+    },
+    {
+     "label": "CHE 330 Chemical and Engineering Thermodynamics",
+     "credits": 4,
+     "req": "che-330-chemical-and-engineering-thermodynamics"
+    },
+    {
+     "label": "CHE 341 Fluid Mechanics",
+     "credits": 4,
+     "req": "che-341-fluid-mechanics"
+    },
+    {
+     "label": "(12 Hours)",
+     "credits": 3,
+     "req": "12-hours"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth (to include a course in micro or macro economics)",
+     "credits": 4,
+     "req": "intellectual-breadth-to-include-a-course-in-micr"
+    },
+    {
+     "label": "CHE 342 Mass and Heat Transfer",
+     "credits": 4,
+     "req": "che-342-mass-and-heat-transfer"
+    },
+    {
+     "label": "CHE 343 Separation Processes",
+     "credits": 4,
+     "req": "che-343-separation-processes"
+    },
+    {
+     "label": "(12 Hours)",
+     "credits": 3,
+     "req": "12-hours"
+    },
+    {
+     "label": "Chemistry 261 Introduction to Quantum Chemistry",
+     "credits": 1,
+     "req": "chemistry-261-introduction-to-quantum-chemistry"
+    }
+   ],
+   [
+    {
+     "label": "Biology/Life Science Elective (Typically Bio 172 or 174)",
+     "credits": 4,
+     "req": "biology-life-science-elective-typically-bio-172-"
+    },
+    {
+     "label": "CHE 360 Chemical Engineering Laboratory I",
+     "credits": 4,
+     "req": "che-360-chemical-engineering-laboratory-i"
+    },
+    {
+     "label": "CHE 485 Chemical Engineering Process Economics",
+     "credits": 1,
+     "req": "che-485-chemical-engineering-process-economics"
+    },
+    {
+     "label": "(12 Hours)",
+     "credits": 3,
+     "req": "12-hours"
+    },
+    {
+     "label": "CHE 344 Reaction Engineering and Design",
+     "credits": 4,
+     "req": "che-344-reaction-engineering-and-design"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth (to include a course in micro or macro economics)",
+     "credits": 4,
+     "req": "intellectual-breadth-to-include-a-course-in-micr"
+    },
+    {
+     "label": "Materials Elective (MSE 250 or MSE 220)",
+     "credits": 4,
+     "req": "materials-elective-mse-250-or-mse-220"
+    },
+    {
+     "label": "(12 Hours)",
+     "credits": 3,
+     "req": "12-hours"
+    },
+    {
+     "label": "CHE 466 Process Dynamics and Control",
+     "credits": 3,
+     "req": "che-466-process-dynamics-and-control"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth (to include a course in micro or macro economics)",
+     "credits": 4,
+     "req": "intellectual-breadth-to-include-a-course-in-micr"
+    },
+    {
+     "label": "Engineering Electives",
+     "credits": 3,
+     "req": "engineering-electives"
+    },
+    {
+     "label": "CHE 460 Chemical Engineering Laboratory II",
+     "credits": 4,
+     "req": "che-460-chemical-engineering-laboratory-ii"
+    },
+    {
+     "label": "CHE 487 Chemical Process Simulation and Design, or CHE 488/489, Chemical Product Design...",
+     "credits": 5,
+     "req": "che-487-chemical-process-simulation-and-design-o"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "engineering-biomedical-engineering",
+  "name": "Biomedical Engineering",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/bme/",
+  "sourceLabel": "Engineering Bulletin, 2026-27 sample schedule",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2026/03/BME-UG-2026-2027-Sample-Schedule.pdf",
+  "notes": [
+   "This follows the BIOMEDE 451 and 452 path. BIOMEDE 450 is the alternative, and the schedule prints a credit range for terms 7 and 8.",
+   "This follows the department's 2026-27 sample schedule. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "math-115-116-215",
+    "group": "Subjects Required by all Programs",
+    "label": "Math 115, 116, 215,",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "engr-100-introduction-to-engineering",
+    "group": "Subjects Required by all Programs",
+    "label": "ENGR 100, Introduction to Engineering",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-100"
+     ]
+    ]
+   },
+   {
+    "id": "engr-101-introduction-to-computers",
+    "group": "Subjects Required by all Programs",
+    "label": "ENGR 101, Introduction to Computers",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-101"
+     ]
+    ]
+   },
+   {
+    "id": "chem-125-126-130-or-chem-210",
+    "group": "Subjects Required by all Programs",
+    "label": "CHEM 125, 126, & 130 OR CHEM 210 &",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "physics-140-141-physics-240-241",
+    "group": "Subjects Required by all Programs",
+    "label": "PHYSICS 140/141 & PHYSICS 240/241",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "intellectual-breadth",
+    "group": "Subjects Required by all Programs",
+    "label": "Intellectual Breadth",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "biology-172-174-or-195-introduction-to-biology",
+    "group": "Life and Material Science in Engineering",
+    "label": "BIOLOGY 172, 174, or 195, Introduction to Biology",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "matscie-220-or-250-principles-of-engineering-mat",
+    "group": "Life and Material Science in Engineering",
+    "label": "MATSCIE 220 or 250, Principles of Engineering Materials",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "biomede-211-circuits-systems-for-biomedical-engi",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 211, Circuits & Systems for Biomedical Engineers",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-211"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-221-biophysical-chemistry-thermodynamics",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 221, Biophysical Chemistry & Thermodynamics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-221"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-231-introduction-to-biomechanics",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 231, Introduction to Biomechanics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-231"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-241-statistics-computation-and-data-anal",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 241, Statistics, Computation, and Data Analysis",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-241"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-350-introduction-to-biomedical-engineeri",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 350, Introduction to Biomedical Engineering",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-350"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-418-quantitative-cell-biology",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 418, Quantitative Cell Biology",
+    "credits": 3,
+    "anyOf": [
+     [
+      "biomede-418"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-419-quantitative-physiology",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 419, Quantitative Physiology",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-419"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-458-biomedical-instrumentation-design",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 458, Biomedical Instrumentation & Design",
+    "credits": 4,
+    "anyOf": [
+     [
+      "biomede-458"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-451-biomedical-design-part-i-and",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 451, Biomedical Design, Part I AND",
+    "credits": 3,
+    "anyOf": [
+     [
+      "biomede-451"
+     ]
+    ]
+   },
+   {
+    "id": "biomede-452-biomedical-design-part-ii",
+    "group": "Required Program Subjects",
+    "label": "BIOMEDE 452, Biomedical Design, Part II ^^",
+    "credits": 3,
+    "anyOf": [
+     [
+      "biomede-452"
+     ]
+    ]
+   },
+   {
+    "id": "engineering-expertise",
+    "group": "Depth Requirements",
+    "label": "Engineering Expertise",
+    "target": 12,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "cross-disciplinary",
+    "group": "Depth Requirements",
+    "label": "Cross Disciplinary",
+    "target": 6,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "profession-in-practice",
+    "group": "Depth Requirements",
+    "label": "Profession in Practice",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   },
+   {
+    "id": "9-hours",
+    "group": "Depth Requirements",
+    "label": "(9 hours)",
+    "target": 9,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/bme/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "Math 115, 116, 215,",
+     "credits": 4,
+     "req": "math-115-116-215"
+    },
+    {
+     "label": "ENGR 100, Introduction to Engineering",
+     "credits": 4,
+     "req": "engr-100-introduction-to-engineering"
+    },
+    {
+     "label": "CHEM 125, 126, & 130 OR CHEM 210 &",
+     "credits": 5,
+     "req": "chem-125-126-130-or-chem-210"
+    },
+    {
+     "label": "BIOLOGY 172, 174, or 195, Introduction to Biology",
+     "credits": 4,
+     "req": "biology-172-174-or-195-introduction-to-biology"
+    }
+   ],
+   [
+    {
+     "label": "Math 115, 116, 215,",
+     "credits": 4,
+     "req": "math-115-116-215"
+    },
+    {
+     "label": "ENGR 101, Introduction to Computers",
+     "credits": 4,
+     "req": "engr-101-introduction-to-computers"
+    },
+    {
+     "label": "PHYSICS 140/141 & PHYSICS 240/241",
+     "credits": 5,
+     "req": "physics-140-141-physics-240-241"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "Math 115, 116, 215,",
+     "credits": 4,
+     "req": "math-115-116-215"
+    },
+    {
+     "label": "PHYSICS 140/141 & PHYSICS 240/241",
+     "credits": 5,
+     "req": "physics-140-141-physics-240-241"
+    },
+    {
+     "label": "BIOMEDE 221, Biophysical Chemistry & Thermodynamics",
+     "credits": 4,
+     "req": "biomede-221-biophysical-chemistry-thermodynamics"
+    },
+    {
+     "label": "BIOMEDE 231, Introduction to Biomechanics",
+     "credits": 4,
+     "req": "biomede-231-introduction-to-biomechanics"
+    }
+   ],
+   [
+    {
+     "label": "Math 115, 116, 215,",
+     "credits": 4,
+     "req": "math-115-116-215"
+    },
+    {
+     "label": "MATSCIE 220 or 250, Principles of Engineering Materials",
+     "credits": 4,
+     "req": "matscie-220-or-250-principles-of-engineering-mat"
+    },
+    {
+     "label": "BIOMEDE 211, Circuits & Systems for Biomedical Engineers",
+     "credits": 4,
+     "req": "biomede-211-circuits-systems-for-biomedical-engi"
+    },
+    {
+     "label": "BIOMEDE 241, Statistics, Computation, and Data Analysis",
+     "credits": 4,
+     "req": "biomede-241-statistics-computation-and-data-anal"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "BIOMEDE 350, Introduction to Biomedical Engineering",
+     "credits": 4,
+     "req": "biomede-350-introduction-to-biomedical-engineeri"
+    },
+    {
+     "label": "BIOMEDE 418, Quantitative Cell Biology",
+     "credits": 3,
+     "req": "biomede-418-quantitative-cell-biology"
+    },
+    {
+     "label": "Cross Disciplinary",
+     "credits": 3,
+     "req": "cross-disciplinary"
+    },
+    {
+     "label": "Profession in Practice",
+     "credits": 3,
+     "req": "profession-in-practice"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "BIOMEDE 458, Biomedical Instrumentation & Design",
+     "credits": 4,
+     "req": "biomede-458-biomedical-instrumentation-design"
+    },
+    {
+     "label": "Engineering Expertise",
+     "credits": 6,
+     "req": "engineering-expertise"
+    },
+    {
+     "label": "(9 hours)",
+     "credits": 3,
+     "req": "9-hours"
+    }
+   ],
+   [
+    {
+     "label": "BIOMEDE 419, Quantitative Physiology",
+     "credits": 4,
+     "req": "biomede-419-quantitative-physiology"
+    },
+    {
+     "label": "BIOMEDE 451, Biomedical Design, Part I AND",
+     "credits": 3,
+     "req": "biomede-451-biomedical-design-part-i-and"
+    },
+    {
+     "label": "Engineering Expertise",
+     "credits": 3,
+     "req": "engineering-expertise"
+    },
+    {
+     "label": "Cross Disciplinary",
+     "credits": 3,
+     "req": "cross-disciplinary"
+    },
+    {
+     "label": "(9 hours)",
+     "credits": 3,
+     "req": "9-hours"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "BIOMEDE 452, Biomedical Design, Part II ^^",
+     "credits": 3,
+     "req": "biomede-452-biomedical-design-part-ii"
+    },
+    {
+     "label": "Engineering Expertise",
+     "credits": 3,
+     "req": "engineering-expertise"
+    },
+    {
+     "label": "(9 hours)",
+     "credits": 3,
+     "req": "9-hours"
+    }
+   ]
+  ]
+ },
+ {
   "id": "engineering-data-science",
   "name": "Data Science",
   "school": "College of Engineering (B.S.E.)",
@@ -485,15 +1339,12 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "mathematics-215",
+    "id": "mathematics",
     "group": "Subjects Required by all Programs",
-    "label": "Mathematics 215",
-    "credits": 4,
-    "anyOf": [
-     [
-      "math-215"
-     ]
-    ]
+    "label": "Mathematics",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
     "id": "engineering-100-introduction-to-engineering",
@@ -526,17 +1377,17 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "physics-140-and-lab-141",
+    "id": "physics-140-and-lab",
     "group": "Subjects Required by all Programs",
-    "label": "Physics 140 and Lab 141",
+    "label": "Physics 140 and Lab",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "physics-240-and-lab-241",
+    "id": "physics-240-and-lab",
     "group": "Subjects Required by all Programs",
-    "label": "Physics 240 and Lab 241",
+    "label": "Physics 240 and Lab",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
@@ -550,9 +1401,9 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "discrete-mathematics-eecs-203-or-math-465",
+    "id": "discrete-mathematics-eecs-203-or-math",
     "group": "Program Core",
-    "label": "Discrete Mathematics: EECS 203 or MATH 465",
+    "label": "Discrete Mathematics: EECS 203 or MATH",
     "target": 4,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
@@ -631,9 +1482,9 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "capstone-experience-course",
+    "id": "experience-course",
     "group": "Program Core",
-    "label": "Capstone Experience Course",
+    "label": "Experience Course",
     "target": 4,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
@@ -647,15 +1498,12 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "tchnclcm-300",
+    "id": "tchnclcm",
     "group": "Program Core",
-    "label": "TCHNCLCM 300",
-    "credits": 1,
-    "anyOf": [
-     [
-      "tchnclcm-300"
-     ]
-    ]
+    "label": "TCHNCLCM",
+    "target": 1,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
     "id": "eecs-496-eecs-295-or-engr-499-002-or",
@@ -680,9 +1528,9 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "general-electives-15-credits-see-note-above",
+    "id": "15-credits-see-note-above",
     "group": "Program Core",
-    "label": "General Electives (15 credits) – See note above",
+    "label": "(15 credits) – See note above",
     "target": 15,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
@@ -723,9 +1571,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engineering-100-introduction-to-engineering"
     },
     {
-     "label": "Discrete Mathematics: EECS 203 or MATH 465",
+     "label": "Discrete Mathematics: EECS 203 or MATH",
      "credits": 4,
-     "req": "discrete-mathematics-eecs-203-or-math-465"
+     "req": "discrete-mathematics-eecs-203-or-math"
     },
     {
      "label": "EECS 280, Programming and Elementary Data",
@@ -735,14 +1583,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 215",
+     "label": "Mathematics",
      "credits": 4,
-     "req": "mathematics-215"
+     "req": "mathematics"
     },
     {
-     "label": "Physics 140 and Lab 141",
+     "label": "Physics 140 and Lab",
      "credits": 5,
-     "req": "physics-140-and-lab-141"
+     "req": "physics-140-and-lab"
     },
     {
      "label": "EECS 281, Data Structures and Algorithms",
@@ -750,9 +1598,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "eecs-281-data-structures-and-algorithms"
     },
     {
-     "label": "General Electives (15 credits) – See note above",
+     "label": "(15 credits) – See note above",
      "credits": 3,
-     "req": "general-electives-15-credits-see-note-above"
+     "req": "15-credits-see-note-above"
     }
    ],
    [
@@ -762,9 +1610,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "mathematics-115-116-and-214-or-217"
     },
     {
-     "label": "Physics 240 and Lab 241",
+     "label": "Physics 240 and Lab",
      "credits": 5,
-     "req": "physics-240-and-lab-241"
+     "req": "physics-240-and-lab"
     },
     {
      "label": "Intellectual Breadth",
@@ -816,21 +1664,21 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "advanced-technical-electives-in-data-science"
     },
     {
-     "label": "TCHNCLCM 300",
+     "label": "TCHNCLCM",
      "credits": 1,
-     "req": "tchnclcm-300"
+     "req": "tchnclcm"
     },
     {
-     "label": "General Electives (15 credits) – See note above",
+     "label": "(15 credits) – See note above",
      "credits": 3,
-     "req": "general-electives-15-credits-see-note-above"
+     "req": "15-credits-see-note-above"
     }
    ],
    [
     {
-     "label": "Capstone Experience Course",
+     "label": "Experience Course",
      "credits": 4,
-     "req": "capstone-experience-course"
+     "req": "experience-course"
     },
     {
      "label": "Other Requirements",
@@ -848,9 +1696,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "tchnclcm-497-tchnclcm-499-stats-404-or"
     },
     {
-     "label": "General Electives (15 credits) – See note above",
+     "label": "(15 credits) – See note above",
      "credits": 3,
-     "req": "general-electives-15-credits-see-note-above"
+     "req": "15-credits-see-note-above"
     }
    ],
    [
@@ -870,9 +1718,389 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "other-requirements"
     },
     {
-     "label": "General Electives (15 credits) – See note above",
+     "label": "(15 credits) – See note above",
      "credits": 6,
-     "req": "general-electives-15-credits-see-note-above"
+     "req": "15-credits-see-note-above"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "engineering-civil-engineering",
+  "name": "Civil Engineering",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/cee/",
+  "sourceLabel": "Engineering Bulletin, 2025-26 sample schedule",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2025/06/Civil-Engineering-Sample-Schedule_AY202526_Final.pdf",
+  "notes": [
+   "CEE 230 or 375 and CEE 265 can be taken in either order, in terms 3 and 4.",
+   "This follows the department's 2025-26 sample schedule. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "math-115-116-215-216",
+    "group": "Subjects Required by all Programs",
+    "label": "MATH 115, 116, 215, 216",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "engr-100-intro-to-engineering",
+    "group": "Subjects Required by all Programs",
+    "label": "ENGR 100, Intro to Engineering",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-100"
+     ]
+    ]
+   },
+   {
+    "id": "engr-101-intro-to-computers",
+    "group": "Subjects Required by all Programs",
+    "label": "ENGR 101, Intro to Computers",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-101"
+     ]
+    ]
+   },
+   {
+    "id": "chem-130-125-126-or-chem-210-and",
+    "group": "Subjects Required by all Programs",
+    "label": "CHEM 130 & 125/126 or CHEM 210 and",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "physics-140-with-lab",
+    "group": "Subjects Required by all Programs",
+    "label": "PHYSICS 140 with Lab",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "physics-240-with-lab",
+    "group": "Subjects Required by all Programs",
+    "label": "PHYSICS 240 with Lab",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "intellectual-breadth-includes-econ-101-or-102",
+    "group": "Subjects Required by all Programs",
+    "label": "Intellectual Breadth (includes ECON 101 or 102)",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "cee-303-computational-methods",
+    "group": "Mathematical Methods",
+    "label": "CEE 303, Computational Methods",
+    "credits": 4,
+    "anyOf": [
+     [
+      "cee-303"
+     ]
+    ]
+   },
+   {
+    "id": "cee-373-statistical-methods",
+    "group": "Mathematical Methods",
+    "label": "CEE 373, Statistical Methods",
+    "credits": 3,
+    "anyOf": [
+     [
+      "cee-373"
+     ]
+    ]
+   },
+   {
+    "id": "cee-200-intro-to-civil-environmental-engineering",
+    "group": "Required Program Subjects",
+    "label": "CEE 200, Intro to Civil & Environmental Engineering",
+    "credits": 1,
+    "anyOf": [
+     [
+      "cee-200"
+     ]
+    ]
+   },
+   {
+    "id": "cee-211-statics-and-dynamics",
+    "group": "Required Program Subjects",
+    "label": "CEE 211, Statics and Dynamics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "cee-211"
+     ]
+    ]
+   },
+   {
+    "id": "cee-212-solid-and-structural-mechanics",
+    "group": "Required Program Subjects",
+    "label": "CEE 212, Solid and Structural Mechanics",
+    "credits": 3,
+    "anyOf": [
+     [
+      "cee-212"
+     ]
+    ]
+   },
+   {
+    "id": "cee-325-fluid-mechanics",
+    "group": "Required Program Subjects",
+    "label": "CEE 325, Fluid Mechanics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "cee-325"
+     ]
+    ]
+   },
+   {
+    "id": "cee-402-professional-issues-design",
+    "group": "Required Program Subjects",
+    "label": "CEE 402, Professional Issues & Design",
+    "credits": 4,
+    "anyOf": [
+     [
+      "cee-402"
+     ]
+    ]
+   },
+   {
+    "id": "biology-171-or",
+    "group": "Science Elective",
+    "label": "Biology 171 or",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "12-hours",
+    "group": "Technical Electives",
+    "label": "(12 hours)",
+    "target": 12,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "cee-230-thermodynamics-or-cee-375-sensors-and-ci",
+    "group": "Required Program Subjects",
+    "label": "CEE 230, Thermodynamics, or CEE 375, Sensors and Circuits",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "cee-265-sustainable-engineering-principles",
+    "group": "Required Program Subjects",
+    "label": "CEE 265, Sustainable Engineering Principles",
+    "credits": 3,
+    "anyOf": [
+     [
+      "cee-265"
+     ]
+    ]
+   },
+   {
+    "id": "program-electives",
+    "group": "Program Electives",
+    "label": "Program Electives",
+    "target": 20,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   },
+   {
+    "id": "technical-electives",
+    "group": "Technical Electives",
+    "label": "Technical Electives",
+    "target": 9,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/cee/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "MATH 115, 116, 215, 216",
+     "credits": 4,
+     "req": "math-115-116-215-216"
+    },
+    {
+     "label": "ENGR 100, Intro to Engineering",
+     "credits": 4,
+     "req": "engr-100-intro-to-engineering"
+    },
+    {
+     "label": "CHEM 130 & 125/126 or CHEM 210 and",
+     "credits": 5,
+     "req": "chem-130-125-126-or-chem-210-and"
+    },
+    {
+     "label": "Intellectual Breadth (includes ECON 101 or 102)",
+     "credits": 4,
+     "req": "intellectual-breadth-includes-econ-101-or-102"
+    }
+   ],
+   [
+    {
+     "label": "MATH 115, 116, 215, 216",
+     "credits": 4,
+     "req": "math-115-116-215-216"
+    },
+    {
+     "label": "ENGR 101, Intro to Computers",
+     "credits": 4,
+     "req": "engr-101-intro-to-computers"
+    },
+    {
+     "label": "PHYSICS 140 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab"
+    },
+    {
+     "label": "Intellectual Breadth (includes ECON 101 or 102)",
+     "credits": 4,
+     "req": "intellectual-breadth-includes-econ-101-or-102"
+    }
+   ],
+   [
+    {
+     "label": "MATH 115, 116, 215, 216",
+     "credits": 4,
+     "req": "math-115-116-215-216"
+    },
+    {
+     "label": "PHYSICS 240 with Lab",
+     "credits": 5,
+     "req": "physics-240-with-lab"
+    },
+    {
+     "label": "CEE 211, Statics and Dynamics",
+     "credits": 4,
+     "req": "cee-211-statics-and-dynamics"
+    },
+    {
+     "label": "CEE 230, Thermodynamics, or CEE 375, Sensors and Circuits",
+     "credits": 3,
+     "req": "cee-230-thermodynamics-or-cee-375-sensors-and-ci"
+    }
+   ],
+   [
+    {
+     "label": "MATH 115, 116, 215, 216",
+     "credits": 4,
+     "req": "math-115-116-215-216"
+    },
+    {
+     "label": "Intellectual Breadth (includes ECON 101 or 102)",
+     "credits": 4,
+     "req": "intellectual-breadth-includes-econ-101-or-102"
+    },
+    {
+     "label": "CEE 200, Intro to Civil & Environmental Engineering",
+     "credits": 1,
+     "req": "cee-200-intro-to-civil-environmental-engineering"
+    },
+    {
+     "label": "CEE 212, Solid and Structural Mechanics",
+     "credits": 3,
+     "req": "cee-212-solid-and-structural-mechanics"
+    },
+    {
+     "label": "CEE 265, Sustainable Engineering Principles",
+     "credits": 3,
+     "req": "cee-265-sustainable-engineering-principles"
+    }
+   ],
+   [
+    {
+     "label": "CEE 373, Statistical Methods",
+     "credits": 3,
+     "req": "cee-373-statistical-methods"
+    },
+    {
+     "label": "CEE 325, Fluid Mechanics",
+     "credits": 4,
+     "req": "cee-325-fluid-mechanics"
+    },
+    {
+     "label": "Program Electives",
+     "credits": 8,
+     "req": "program-electives"
+    }
+   ],
+   [
+    {
+     "label": "CEE 303, Computational Methods",
+     "credits": 4,
+     "req": "cee-303-computational-methods"
+    },
+    {
+     "label": "(12 hours)",
+     "credits": 3,
+     "req": "12-hours"
+    },
+    {
+     "label": "Program Electives",
+     "credits": 8,
+     "req": "program-electives"
+    }
+   ],
+   [
+    {
+     "label": "Biology 171 or",
+     "credits": 3,
+     "req": "biology-171-or"
+    },
+    {
+     "label": "(12 hours)",
+     "credits": 6,
+     "req": "12-hours"
+    },
+    {
+     "label": "Program Electives",
+     "credits": 4,
+     "req": "program-electives"
+    },
+    {
+     "label": "Technical Electives",
+     "credits": 3,
+     "req": "technical-electives"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth (includes ECON 101 or 102)",
+     "credits": 4,
+     "req": "intellectual-breadth-includes-econ-101-or-102"
+    },
+    {
+     "label": "CEE 402, Professional Issues & Design",
+     "credits": 4,
+     "req": "cee-402-professional-issues-design"
+    },
+    {
+     "label": "(12 hours)",
+     "credits": 3,
+     "req": "12-hours"
+    },
+    {
+     "label": "Technical Electives",
+     "credits": 6,
+     "req": "technical-electives"
     }
    ]
   ]
@@ -892,9 +2120,9 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "mathema-cs-115-116-215-and-216-16",
+    "id": "mathema-cs-115-116-215-and-216",
     "group": "Subjects Required by all Programs",
-    "label": "Mathema\u0000cs 115, 116, 215, and 216 16",
+    "label": "Mathema\u0000cs 115, 116, 215, and 216",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/clasp/"
@@ -922,9 +2150,9 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "chemistry-125-126-and-130-or-chemistry-210-and-2",
+    "id": "chemistry-125-126-and-130-or-chemistry-210-and",
     "group": "Subjects Required by all Programs",
-    "label": "Chemistry 125/126 and 130 or Chemistry 210 and 2111",
+    "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/clasp/"
@@ -932,15 +2160,15 @@ export const ENGINEERING_PLANS: Major[] = [
    {
     "id": "physics-140-with-lab-141-physics-240-with-lab-24",
     "group": "Subjects Required by all Programs",
-    "label": "Physics 140 with Lab 141; Physics 240 with Lab 2412 10",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab 2412",
     "target": 10,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/clasp/"
    },
    {
-    "id": "intellectual-breadth-16",
+    "id": "intellectual-breadth",
     "group": "Subjects Required by all Programs",
-    "label": "Intellectual Breadth 16",
+    "label": "Intellectual Breadth",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/clasp/"
@@ -1087,9 +2315,9 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/clasp/"
    },
    {
-    "id": "technical-elec-ves-13",
+    "id": "technical-elec-ves",
     "group": "Meteorology",
-    "label": "Technical Elec\u0000ves 13",
+    "label": "Technical Elec\u0000ves",
     "target": 13,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/clasp/"
@@ -1106,9 +2334,9 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "Mathema\u0000cs 115, 116, 215, and 216 16",
+     "label": "Mathema\u0000cs 115, 116, 215, and 216",
      "credits": 4,
-     "req": "mathema-cs-115-116-215-and-216-16"
+     "req": "mathema-cs-115-116-215-and-216"
     },
     {
      "label": "Engineering 100, Introduc\u0000on to Engineering",
@@ -1116,21 +2344,21 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engineering-100-introduc-on-to-engineering"
     },
     {
-     "label": "Chemistry 125/126 and 130 or Chemistry 210 and 2111",
+     "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
      "credits": 5,
-     "req": "chemistry-125-126-and-130-or-chemistry-210-and-2"
+     "req": "chemistry-125-126-and-130-or-chemistry-210-and"
     },
     {
-     "label": "Intellectual Breadth 16",
+     "label": "Intellectual Breadth",
      "credits": 4,
-     "req": "intellectual-breadth-16"
+     "req": "intellectual-breadth"
     }
    ],
    [
     {
-     "label": "Mathema\u0000cs 115, 116, 215, and 216 16",
+     "label": "Mathema\u0000cs 115, 116, 215, and 216",
      "credits": 4,
-     "req": "mathema-cs-115-116-215-and-216-16"
+     "req": "mathema-cs-115-116-215-and-216"
     },
     {
      "label": "Engineering 101, Introduc\u0000on to Computers",
@@ -1138,31 +2366,31 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engineering-101-introduc-on-to-computers"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 2412 10",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab 2412",
      "credits": 5,
      "req": "physics-140-with-lab-141-physics-240-with-lab-24"
     },
     {
-     "label": "Intellectual Breadth 16",
+     "label": "Intellectual Breadth",
      "credits": 4,
-     "req": "intellectual-breadth-16"
+     "req": "intellectual-breadth"
     }
    ],
    [
     {
-     "label": "Mathema\u0000cs 115, 116, 215, and 216 16",
+     "label": "Mathema\u0000cs 115, 116, 215, and 216",
      "credits": 4,
-     "req": "mathema-cs-115-116-215-and-216-16"
+     "req": "mathema-cs-115-116-215-and-216"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 2412 10",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab 2412",
      "credits": 5,
      "req": "physics-140-with-lab-141-physics-240-with-lab-24"
     },
     {
-     "label": "Intellectual Breadth 16",
+     "label": "Intellectual Breadth",
      "credits": 4,
-     "req": "intellectual-breadth-16"
+     "req": "intellectual-breadth"
     },
     {
      "label": "CLIMATE 320, Earth and Space System Evolu\u0000on",
@@ -1172,14 +2400,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathema\u0000cs 115, 116, 215, and 216 16",
+     "label": "Mathema\u0000cs 115, 116, 215, and 216",
      "credits": 4,
-     "req": "mathema-cs-115-116-215-and-216-16"
+     "req": "mathema-cs-115-116-215-and-216"
     },
     {
-     "label": "Intellectual Breadth 16",
+     "label": "Intellectual Breadth",
      "credits": 4,
-     "req": "intellectual-breadth-16"
+     "req": "intellectual-breadth"
     },
     {
      "label": "CLIMATE 321, Earth and Space System Dynamics",
@@ -1209,9 +2437,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "climate-463-boundary-layer-meteorology"
     },
     {
-     "label": "Technical Elec\u0000ves 13",
+     "label": "Technical Elec\u0000ves",
      "credits": 4,
-     "req": "technical-elec-ves-13"
+     "req": "technical-elec-ves"
     },
     {
      "label": "General Elec\u0000ves",
@@ -1258,9 +2486,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "climate-440-meteorological-analysis-laboratory"
     },
     {
-     "label": "Technical Elec\u0000ves 13",
+     "label": "Technical Elec\u0000ves",
      "credits": 4,
-     "req": "technical-elec-ves-13"
+     "req": "technical-elec-ves"
     },
     {
      "label": "General Elec\u0000ves",
@@ -1285,9 +2513,789 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "climate-485-remote-sensing"
     },
     {
-     "label": "Technical Elec\u0000ves 13",
+     "label": "Technical Elec\u0000ves",
      "credits": 5,
-     "req": "technical-elec-ves-13"
+     "req": "technical-elec-ves"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "engineering-computer-engineering",
+  "name": "Computer Engineering",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/eecs/",
+  "sourceLabel": "Engineering Bulletin, FA26 sample schedule",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2026/03/FA26-Computer-Engineering-Sample-Schedule-CoE-Bulletin.pdf",
+  "notes": [
+   "Statistics can be 3 or 4 credits, so term 6 may total 16.",
+   "This follows the department's FA26 sample schedule. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "math-115-116-and",
+    "group": "CoE Common Core",
+    "label": "MATH 115 , 116 , and",
+    "target": 12,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "linear-algebra-math-214-215-217-417-or",
+    "group": "CoE Common Core",
+    "label": "Linear algebra: MATH 214, 215, 217, 417, or",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "engr",
+    "group": "CoE Common Core",
+    "label": "ENGR",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "engr-2",
+    "group": "CoE Common Core",
+    "label": "ENGR",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "chem-125-126",
+    "group": "CoE Common Core",
+    "label": "CHEM 125 / 126 /",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "physics-140-141-physics-240",
+    "group": "CoE Common Core",
+    "label": "PHYSICS 140 / 141 ; PHYSICS 240 /",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "intellectual-breadth",
+    "group": "CoE Common Core",
+    "label": "Intellectual Breadth",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "eecs-203-discrete-math",
+    "group": "CE Program Subjects",
+    "label": "EECS 203 : Discrete Math",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-203"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-215-introduction-to-circuits",
+    "group": "CE Program Subjects",
+    "label": "EECS 215 : Introduction to Circuits",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-215"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-216-signals-and-systems",
+    "group": "CE Program Subjects",
+    "label": "EECS 216 : Signals and Systems",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-216"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-270-introduction-to-logic-design",
+    "group": "CE Program Subjects",
+    "label": "EECS 270 : Introduction to Logic Design",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-270"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-280-programming-and-introductory-data-struc",
+    "group": "CE Program Subjects",
+    "label": "EECS 280 : Programming and Introductory Data Structures",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-280"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-370-introduction-to-computer-organization",
+    "group": "CE Program Subjects",
+    "label": "EECS 370 : Introduction to Computer Organization",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-370"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-400-ece-major-design-experience",
+    "group": "CE Program Subjects",
+    "label": "EECS 400 : ECE Major Design Experience",
+    "credits": 2,
+    "anyOf": [
+     [
+      "eecs-400"
+     ]
+    ]
+   },
+   {
+    "id": "tchnclcm-300-technical-communication-for-eecs",
+    "group": "CE Program Subjects",
+    "label": "TCHNCLCM 300 : Technical Communication for EECS",
+    "credits": 1,
+    "anyOf": [
+     [
+      "tchnclcm-300"
+     ]
+    ]
+   },
+   {
+    "id": "tchnclcm-496-advanced-technical-comm-for-ece",
+    "group": "CE Program Subjects",
+    "label": "TCHNCLCM 496 : Advanced Technical Comm. for ECE",
+    "credits": 2,
+    "anyOf": [
+     [
+      "tchnclcm-496"
+     ]
+    ]
+   },
+   {
+    "id": "core-electives",
+    "group": "General and Technical Electives",
+    "label": "Core Electives",
+    "target": 8,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "upper-level-ce-electives-including-mde",
+    "group": "General and Technical Electives",
+    "label": "Upper Level CE Electives (including MDE)",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "eecs-electives",
+    "group": "General and Technical Electives",
+    "label": "EECS Electives",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "flexible-technical-electives",
+    "group": "General and Technical Electives",
+    "label": "Flexible Technical Electives",
+    "target": 7,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "general-electives",
+    "group": "General and Technical Electives",
+    "label": "General Electives",
+    "target": 13,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "statistics-eecs-301-4-math-425-3-or-stats-412-3",
+    "group": "CE Program Subjects",
+    "label": "Statistics: EECS 301 (4), MATH 425 (3), or STATS 412 (3)",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "MATH 115 , 116 , and",
+     "credits": 4,
+     "req": "math-115-116-and"
+    },
+    {
+     "label": "ENGR",
+     "credits": 4,
+     "req": "engr-2"
+    },
+    {
+     "label": "PHYSICS 140 / 141 ; PHYSICS 240 /",
+     "credits": 5,
+     "req": "physics-140-141-physics-240"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "MATH 115 , 116 , and",
+     "credits": 4,
+     "req": "math-115-116-and"
+    },
+    {
+     "label": "ENGR",
+     "credits": 4,
+     "req": "engr"
+    },
+    {
+     "label": "CHEM 125 / 126 /",
+     "credits": 5,
+     "req": "chem-125-126"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "PHYSICS 140 / 141 ; PHYSICS 240 /",
+     "credits": 5,
+     "req": "physics-140-141-physics-240"
+    },
+    {
+     "label": "EECS 203 : Discrete Math",
+     "credits": 4,
+     "req": "eecs-203-discrete-math"
+    },
+    {
+     "label": "EECS 270 : Introduction to Logic Design",
+     "credits": 4,
+     "req": "eecs-270-introduction-to-logic-design"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "MATH 115 , 116 , and",
+     "credits": 4,
+     "req": "math-115-116-and"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "EECS 215 : Introduction to Circuits",
+     "credits": 4,
+     "req": "eecs-215-introduction-to-circuits"
+    },
+    {
+     "label": "EECS 280 : Programming and Introductory Data Structures",
+     "credits": 4,
+     "req": "eecs-280-programming-and-introductory-data-struc"
+    }
+   ],
+   [
+    {
+     "label": "Linear algebra: MATH 214, 215, 217, 417, or",
+     "credits": 4,
+     "req": "linear-algebra-math-214-215-217-417-or"
+    },
+    {
+     "label": "EECS 216 : Signals and Systems",
+     "credits": 4,
+     "req": "eecs-216-signals-and-systems"
+    },
+    {
+     "label": "EECS 370 : Introduction to Computer Organization",
+     "credits": 4,
+     "req": "eecs-370-introduction-to-computer-organization"
+    },
+    {
+     "label": "TCHNCLCM 300 : Technical Communication for EECS",
+     "credits": 1,
+     "req": "tchnclcm-300-technical-communication-for-eecs"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "Core Electives",
+     "credits": 8,
+     "req": "core-electives"
+    },
+    {
+     "label": "Statistics: EECS 301 (4), MATH 425 (3), or STATS 412 (3)",
+     "credits": 3,
+     "req": "statistics-eecs-301-4-math-425-3-or-stats-412-3"
+    }
+   ],
+   [
+    {
+     "label": "Upper Level CE Electives (including MDE)",
+     "credits": 4,
+     "req": "upper-level-ce-electives-including-mde"
+    },
+    {
+     "label": "EECS Electives",
+     "credits": 3,
+     "req": "eecs-electives"
+    },
+    {
+     "label": "Flexible Technical Electives",
+     "credits": 5,
+     "req": "flexible-technical-electives"
+    },
+    {
+     "label": "General Electives",
+     "credits": 4,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "EECS 400 : ECE Major Design Experience",
+     "credits": 2,
+     "req": "eecs-400-ece-major-design-experience"
+    },
+    {
+     "label": "TCHNCLCM 496 : Advanced Technical Comm. for ECE",
+     "credits": 2,
+     "req": "tchnclcm-496-advanced-technical-comm-for-ece"
+    },
+    {
+     "label": "Upper Level CE Electives (including MDE)",
+     "credits": 6,
+     "req": "upper-level-ce-electives-including-mde"
+    },
+    {
+     "label": "Flexible Technical Electives",
+     "credits": 2,
+     "req": "flexible-technical-electives"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "engineering-robotics",
+  "name": "Robotics",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/depts/rob/",
+  "sourceLabel": "Engineering Bulletin, sample schedule dated March 2026",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2026/03/Robotics-Undergraduate-Sample-Schedule-3.10.26.pdf",
+  "notes": [
+   "The published schedule prints 15 credits for term 7 and 128 total, but its rows add up to 14 and 127. This page shows the rows as published, so check with an advisor. ROB 320, 330, and 340 are samples: choose 3 of 6 intermediate courses.",
+   "This follows the department's sample schedule dated March 2026. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "rob-101-or-math",
+    "group": "Requirements",
+    "label": "ROB 101 or MATH",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "engr",
+    "group": "Requirements",
+    "label": "ENGR",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "engr-101-or-rob",
+    "group": "Requirements",
+    "label": "ENGR 101 or ROB",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "math-115-116-or-rob-201-alt",
+    "group": "Requirements",
+    "label": "MATH 115/116 or ROB 201/Alt",
+    "target": 8,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "math-215-or-216-or-alt",
+    "group": "Requirements",
+    "label": "MATH 215 or 216 or Alt",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "physics-140-and-lab",
+    "group": "Requirements",
+    "label": "PHYSICS 140 and Lab",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "physics-240-and-lab",
+    "group": "Requirements",
+    "label": "PHYSICS 240 and Lab",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "chem-125-126-130-or-210-211",
+    "group": "Requirements",
+    "label": "CHEM 125/126/130 or 210/211",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "intellectual-breadth",
+    "group": "Requirements",
+    "label": "Intellectual Breadth",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "rob",
+    "group": "Requirements",
+    "label": "ROB",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "rob-2",
+    "group": "Requirements",
+    "label": "ROB",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "rob-3",
+    "group": "Requirements",
+    "label": "ROB",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "rob-4",
+    "group": "Requirements",
+    "label": "ROB",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "eecs",
+    "group": "Requirements",
+    "label": "EECS",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "ioe",
+    "group": "Requirements",
+    "label": "IOE",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "eecs-215-or-270-or-biomede",
+    "group": "Requirements",
+    "label": "EECS 215 or 270 or BIOMEDE",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "mecheng-240-or-biomede",
+    "group": "Requirements",
+    "label": "MECHENG 240 or BIOMEDE",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "navarch-270-or-other-approved-course",
+    "group": "Requirements",
+    "label": "NAVARCH 270 (or other approved course)",
+    "credits": 4,
+    "anyOf": [
+     [
+      "navarch-270"
+     ]
+    ]
+   },
+   {
+    "id": "tchnclcm",
+    "group": "Requirements",
+    "label": "TCHNCLCM",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "rob-5",
+    "group": "Requirements",
+    "label": "ROB",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "upper-level-robotics-electives-min-6-crs",
+    "group": "Requirements",
+    "label": "Upper Level Robotics Electives (min. 6 crs)",
+    "target": 12,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "flexible-technical-electives",
+    "group": "",
+    "label": "Flexible Technical Electives",
+    "target": 7,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   },
+   {
+    "id": "general-electives",
+    "group": "",
+    "label": "General Electives",
+    "target": 11,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/rob/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "ROB 101 or MATH",
+     "credits": 4,
+     "req": "rob-101-or-math"
+    },
+    {
+     "label": "ENGR 101 or ROB",
+     "credits": 4,
+     "req": "engr-101-or-rob"
+    },
+    {
+     "label": "MATH 115/116 or ROB 201/Alt",
+     "credits": 4,
+     "req": "math-115-116-or-rob-201-alt"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "ENGR",
+     "credits": 4,
+     "req": "engr"
+    },
+    {
+     "label": "MATH 115/116 or ROB 201/Alt",
+     "credits": 4,
+     "req": "math-115-116-or-rob-201-alt"
+    },
+    {
+     "label": "PHYSICS 140 and Lab",
+     "credits": 5,
+     "req": "physics-140-and-lab"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "MATH 215 or 216 or Alt",
+     "credits": 4,
+     "req": "math-215-or-216-or-alt"
+    },
+    {
+     "label": "PHYSICS 240 and Lab",
+     "credits": 5,
+     "req": "physics-240-and-lab"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "EECS",
+     "credits": 4,
+     "req": "eecs"
+    }
+   ],
+   [
+    {
+     "label": "CHEM 125/126/130 or 210/211",
+     "credits": 5,
+     "req": "chem-125-126-130-or-210-211"
+    },
+    {
+     "label": "ROB",
+     "credits": 4,
+     "req": "rob"
+    },
+    {
+     "label": "IOE",
+     "credits": 3,
+     "req": "ioe"
+    },
+    {
+     "label": "EECS 215 or 270 or BIOMEDE",
+     "credits": 4,
+     "req": "eecs-215-or-270-or-biomede"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "ROB",
+     "credits": 4,
+     "req": "rob-3"
+    },
+    {
+     "label": "ROB",
+     "credits": 4,
+     "req": "rob-4"
+    },
+    {
+     "label": "NAVARCH 270 (or other approved course)",
+     "credits": 4,
+     "req": "navarch-270-or-other-approved-course"
+    }
+   ],
+   [
+    {
+     "label": "ROB",
+     "credits": 4,
+     "req": "rob-2"
+    },
+    {
+     "label": "MECHENG 240 or BIOMEDE",
+     "credits": 4,
+     "req": "mecheng-240-or-biomede"
+    },
+    {
+     "label": "Flexible Technical Electives",
+     "credits": 4,
+     "req": "flexible-technical-electives"
+    },
+    {
+     "label": "General Electives",
+     "credits": 4,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "TCHNCLCM",
+     "credits": 3,
+     "req": "tchnclcm"
+    },
+    {
+     "label": "Upper Level Robotics Electives (min. 6 crs)",
+     "credits": 4,
+     "req": "upper-level-robotics-electives-min-6-crs"
+    },
+    {
+     "label": "Flexible Technical Electives",
+     "credits": 3,
+     "req": "flexible-technical-electives"
+    },
+    {
+     "label": "General Electives",
+     "credits": 4,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "ROB",
+     "credits": 4,
+     "req": "rob-5"
+    },
+    {
+     "label": "Upper Level Robotics Electives (min. 6 crs)",
+     "credits": 8,
+     "req": "upper-level-robotics-electives-min-6-crs"
     }
    ]
   ]
@@ -1307,9 +3315,9 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "mathematics-115-116-215-and-216",
+    "id": "mathematics-115-116-215-and",
     "group": "Subjects Required by All Programs",
-    "label": "Mathematics 115, 116, 215, and 216",
+    "label": "Mathematics 115, 116, 215, and",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/name/"
@@ -1345,9 +3353,9 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/depts/name/"
    },
    {
-    "id": "physics-140-with-lab-141-physics-240-with-lab-24",
+    "id": "physics-140-with-lab-141-physics-240-with-lab",
     "group": "Subjects Required by All Programs",
-    "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab",
     "target": 10,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/name/"
@@ -1364,25 +3372,34 @@ export const ENGINEERING_PLANS: Major[] = [
     "id": "me-211-solid-mechanics",
     "group": "Related Technical Core Subjects",
     "label": "ME 211, Solid Mechanics",
-    "target": 4,
-    "unit": "credits",
-    "browse": "https://bulletin.engin.umich.edu/depts/name/"
+    "credits": 4,
+    "anyOf": [
+     [
+      "mecheng-211"
+     ]
+    ]
    },
    {
     "id": "me-240-introduction-to-dynamics",
     "group": "Related Technical Core Subjects",
     "label": "ME 240, Introduction to Dynamics",
-    "target": 4,
-    "unit": "credits",
-    "browse": "https://bulletin.engin.umich.edu/depts/name/"
+    "credits": 4,
+    "anyOf": [
+     [
+      "mecheng-240"
+     ]
+    ]
    },
    {
     "id": "me-235-thermodynamics",
     "group": "Related Technical Core Subjects",
     "label": "ME 235, Thermodynamics",
-    "target": 3,
-    "unit": "credits",
-    "browse": "https://bulletin.engin.umich.edu/depts/name/"
+    "credits": 3,
+    "anyOf": [
+     [
+      "mecheng-235"
+     ]
+    ]
    },
    {
     "id": "na-270-vessel-platform-design",
@@ -1511,9 +3528,9 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "Engineering 100, Introduction to Engineering",
@@ -1533,9 +3550,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "Engineering 101, Introduction to Computers",
@@ -1543,9 +3560,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engineering-101-introduction-to-computers"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141-physics-240-with-lab-24"
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
     },
     {
      "label": "Intellectual Breadth",
@@ -1555,14 +3572,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141-physics-240-with-lab-24"
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
     },
     {
      "label": "ME 235, Thermodynamics",
@@ -1577,9 +3594,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 216",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-216"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "ME 211, Solid Mechanics",
@@ -1712,9 +3729,9 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "mathematics-115-116-215-and-ners-320",
+    "id": "mathematics-115-116-215-and-ners",
     "group": "Subjects required by all programs",
-    "label": "Mathematics 115, 116, 215, and NERS 320",
+    "label": "Mathematics 115, 116, 215, and NERS",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ners/"
@@ -1742,17 +3759,17 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "chemistry-125-126-and-130-or-chemistry-210-and-2",
+    "id": "chemistry-125-126-and-130-or-chemistry-210-and",
     "group": "Subjects required by all programs",
-    "label": "Chemistry 125/126 and 130 or Chemistry 210 and 211",
+    "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ners/"
    },
    {
-    "id": "physics-140-with-lab-141-physics-240-with-lab-24",
+    "id": "physics-140-with-lab-141-physics-240-with-lab",
     "group": "Subjects required by all programs",
-    "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab",
     "target": 10,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ners/"
@@ -1904,17 +3921,17 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/depts/ners/"
    },
    {
-    "id": "technical-electives-5-hours",
+    "id": "5-hours",
     "group": "Electives",
-    "label": "Technical Electives (5 hours)",
+    "label": "(5 hours)",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ners/"
    },
    {
-    "id": "general-electives-12-hours",
+    "id": "12-hours",
     "group": "Electives",
-    "label": "General Electives (12 hours)",
+    "label": "(12 hours)",
     "target": 12,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ners/"
@@ -1923,9 +3940,9 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "Mathematics 115, 116, 215, and NERS 320",
+     "label": "Mathematics 115, 116, 215, and NERS",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-ners-320"
+     "req": "mathematics-115-116-215-and-ners"
     },
     {
      "label": "Engr 100, Intro to Engr",
@@ -1933,9 +3950,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engr-100-intro-to-engr"
     },
     {
-     "label": "Chemistry 125/126 and 130 or Chemistry 210 and 211",
+     "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
      "credits": 5,
-     "req": "chemistry-125-126-and-130-or-chemistry-210-and-2"
+     "req": "chemistry-125-126-and-130-or-chemistry-210-and"
     },
     {
      "label": "Intellectual Breadth",
@@ -1945,9 +3962,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and NERS 320",
+     "label": "Mathematics 115, 116, 215, and NERS",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-ners-320"
+     "req": "mathematics-115-116-215-and-ners"
     },
     {
      "label": "Engr 101, Intro to Computers",
@@ -1955,9 +3972,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engr-101-intro-to-computers"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141-physics-240-with-lab-24"
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
     },
     {
      "label": "Intellectual Breadth",
@@ -1967,14 +3984,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and NERS 320",
+     "label": "Mathematics 115, 116, 215, and NERS",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-ners-320"
+     "req": "mathematics-115-116-215-and-ners"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141-physics-240-with-lab-24"
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
     },
     {
      "label": "Intellectual Breadth",
@@ -1982,16 +3999,16 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "intellectual-breadth"
     },
     {
-     "label": "General Electives (12 hours)",
+     "label": "(12 hours)",
      "credits": 3,
-     "req": "general-electives-12-hours"
+     "req": "12-hours"
     }
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and NERS 320",
+     "label": "Mathematics 115, 116, 215, and NERS",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-ners-320"
+     "req": "mathematics-115-116-215-and-ners"
     },
     {
      "label": "MATSCIE 250, Princ of Eng Materials or MSE 220, Intro to Materials and Manf",
@@ -2004,9 +4021,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ners-250-fundamentals-of-nuclear-eng-and-rad-sci"
     },
     {
-     "label": "General Electives (12 hours)",
+     "label": "(12 hours)",
      "credits": 3,
-     "req": "general-electives-12-hours"
+     "req": "12-hours"
     }
    ],
    [
@@ -2031,9 +4048,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ners-420-applied-mathematics-for-engineering-phy"
     },
     {
-     "label": "Technical Electives (5 hours)",
+     "label": "(5 hours)",
      "credits": 2,
-     "req": "technical-electives-5-hours"
+     "req": "5-hours"
     }
    ],
    [
@@ -2058,9 +4075,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ners-344-fluid-mech-nucl-eng"
     },
     {
-     "label": "General Electives (12 hours)",
+     "label": "(12 hours)",
      "credits": 3,
-     "req": "general-electives-12-hours"
+     "req": "12-hours"
     }
    ],
    [
@@ -2085,9 +4102,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ners-electives"
     },
     {
-     "label": "General Electives (12 hours)",
+     "label": "(12 hours)",
      "credits": 3,
-     "req": "general-electives-12-hours"
+     "req": "12-hours"
     }
    ],
    [
@@ -2107,9 +4124,838 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ners-electives"
     },
     {
-     "label": "Technical Electives (5 hours)",
+     "label": "(5 hours)",
      "credits": 3,
-     "req": "technical-electives-5-hours"
+     "req": "5-hours"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "engineering-space-sciences-and-engineering",
+  "name": "Space Sciences and Engineering",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/clasp/",
+  "sourceLabel": "Engineering Bulletin, 2023 sample schedule",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2023/02/Program-Plan-SSE-BSE-2023-Sheet1.pdf",
+  "notes": [
+   "This follows the Space Science concentration. The Space Instrumentation concentration differs, so see the schedule.",
+   "This follows the department's 2023 sample schedule. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "mathematics-115-116-215-and",
+    "group": "Subjects Required by all Programs",
+    "label": "Mathematics 115, 116, 215, and",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "engineering-100-introduction-to-engineering",
+    "group": "Subjects Required by all Programs",
+    "label": "Engineering 100, Introduction to Engineering",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-100"
+     ]
+    ]
+   },
+   {
+    "id": "engineering-101-introduction-to-computers",
+    "group": "Subjects Required by all Programs",
+    "label": "Engineering 101, Introduction to Computers",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-101"
+     ]
+    ]
+   },
+   {
+    "id": "chemistry-125-126-and-130-or-chemistry-210-and",
+    "group": "Subjects Required by all Programs",
+    "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "physics-140-with-lab-141-physics-240-with-lab",
+    "group": "Subjects Required by all Programs",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "intellectual-breadth",
+    "group": "Subjects Required by all Programs",
+    "label": "Intellectual Breadth",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "space-320-earth-and-space-system-evolution",
+    "group": "Required Core Subjects",
+    "label": "SPACE 320, Earth and Space System Evolution",
+    "credits": 3,
+    "anyOf": [
+     [
+      "space-320"
+     ]
+    ]
+   },
+   {
+    "id": "space-321-earth-and-space-system-dynamics",
+    "group": "Required Core Subjects",
+    "label": "SPACE 321, Earth and Space System Dynamics",
+    "credits": 3,
+    "anyOf": [
+     [
+      "space-321"
+     ]
+    ]
+   },
+   {
+    "id": "space-323-earth-system-analysis",
+    "group": "Required Core Subjects",
+    "label": "SPACE 323, Earth System Analysis",
+    "credits": 4,
+    "anyOf": [
+     [
+      "space-323"
+     ]
+    ]
+   },
+   {
+    "id": "space-370-solar-terrestrial-relations",
+    "group": "Required Core Subjects",
+    "label": "SPACE 370, Solar-Terrestrial Relations",
+    "credits": 4,
+    "anyOf": [
+     [
+      "space-370"
+     ]
+    ]
+   },
+   {
+    "id": "space-324-instrumentation-for-atmos-space-scienc",
+    "group": "Required Core Subjects",
+    "label": "SPACE 324, Instrumentation for Atmos & Space Sciences",
+    "credits": 4,
+    "anyOf": [
+     [
+      "space-324"
+     ]
+    ]
+   },
+   {
+    "id": "space-478-space-environment",
+    "group": "Required Core Subjects",
+    "label": "SPACE 478, Space Environment",
+    "credits": 4,
+    "anyOf": [
+     [
+      "space-478"
+     ]
+    ]
+   },
+   {
+    "id": "space-423-data-analysis-and-visualization",
+    "group": "Required Core Subjects",
+    "label": "SPACE 423, Data Analysis and Visualization",
+    "credits": 4,
+    "anyOf": [
+     [
+      "space-423"
+     ]
+    ]
+   },
+   {
+    "id": "space-495-595-note-1-495-4-595-3",
+    "group": "Required Core Subjects",
+    "label": "SPACE 495/595 (Note 1) 495 (4) / 595 (3)",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "physics-340-waves-heat-and-light",
+    "group": "Space Science",
+    "label": "PHYSICS 340, Waves Heat and Light",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-340"
+     ]
+    ]
+   },
+   {
+    "id": "space-380-introduction-to-radiative-transfer",
+    "group": "Space Science",
+    "label": "SPACE 380, Introduction to Radiative Transfer",
+    "credits": 3,
+    "anyOf": [
+     [
+      "space-380"
+     ]
+    ]
+   },
+   {
+    "id": "physics-405-intermediate-electricity-and-magneti",
+    "group": "Space Science",
+    "label": "PHYSICS 405, Intermediate Electricity and Magnetism (Note 4)",
+    "credits": 4,
+    "anyOf": [
+     [
+      "physics-405"
+     ]
+    ]
+   },
+   {
+    "id": "physics-390-modern-physics",
+    "group": "Space Science",
+    "label": "PHYSICS 390, Modern Physics",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-390"
+     ]
+    ]
+   },
+   {
+    "id": "physics-391-lab",
+    "group": "Space Science",
+    "label": "PHYSICS 391, Lab",
+    "credits": 2,
+    "anyOf": [
+     [
+      "physics-391"
+     ]
+    ]
+   },
+   {
+    "id": "ners-471-introduction-to-plasmas",
+    "group": "Space Science",
+    "label": "NERS 471, Introduction to Plasmas",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "space-499-455-capstone-research-note-2",
+    "group": "Space Science",
+    "label": "SPACE 499/455 Capstone Research (Note 2)",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "11-12-hours",
+    "group": "Space Science",
+    "label": "(11/12 hours)",
+    "target": 11,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   },
+   {
+    "id": "10-hours",
+    "group": "Space Science",
+    "label": "(10 Hours)",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/clasp/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Engineering 100, Introduction to Engineering",
+     "credits": 4,
+     "req": "engineering-100-introduction-to-engineering"
+    },
+    {
+     "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
+     "credits": 5,
+     "req": "chemistry-125-126-and-130-or-chemistry-210-and"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Engineering 101, Introduction to Computers",
+     "credits": 4,
+     "req": "engineering-101-introduction-to-computers"
+    },
+    {
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "SPACE 320, Earth and Space System Evolution",
+     "credits": 3,
+     "req": "space-320-earth-and-space-system-evolution"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "SPACE 321, Earth and Space System Dynamics",
+     "credits": 3,
+     "req": "space-321-earth-and-space-system-dynamics"
+    },
+    {
+     "label": "SPACE 323, Earth System Analysis",
+     "credits": 4,
+     "req": "space-323-earth-system-analysis"
+    }
+   ],
+   [
+    {
+     "label": "SPACE 370, Solar-Terrestrial Relations",
+     "credits": 4,
+     "req": "space-370-solar-terrestrial-relations"
+    },
+    {
+     "label": "PHYSICS 340, Waves Heat and Light",
+     "credits": 3,
+     "req": "physics-340-waves-heat-and-light"
+    },
+    {
+     "label": "SPACE 380, Introduction to Radiative Transfer",
+     "credits": 3,
+     "req": "space-380-introduction-to-radiative-transfer"
+    },
+    {
+     "label": "(11/12 hours)",
+     "credits": 3,
+     "req": "11-12-hours"
+    },
+    {
+     "label": "(10 Hours)",
+     "credits": 3,
+     "req": "10-hours"
+    }
+   ],
+   [
+    {
+     "label": "SPACE 324, Instrumentation for Atmos & Space Sciences",
+     "credits": 4,
+     "req": "space-324-instrumentation-for-atmos-space-scienc"
+    },
+    {
+     "label": "PHYSICS 405, Intermediate Electricity and Magnetism (Note 4)",
+     "credits": 4,
+     "req": "physics-405-intermediate-electricity-and-magneti"
+    },
+    {
+     "label": "PHYSICS 390, Modern Physics",
+     "credits": 3,
+     "req": "physics-390-modern-physics"
+    },
+    {
+     "label": "PHYSICS 391, Lab",
+     "credits": 2,
+     "req": "physics-391-lab"
+    },
+    {
+     "label": "(10 Hours)",
+     "credits": 3,
+     "req": "10-hours"
+    }
+   ],
+   [
+    {
+     "label": "SPACE 478, Space Environment",
+     "credits": 4,
+     "req": "space-478-space-environment"
+    },
+    {
+     "label": "NERS 471, Introduction to Plasmas",
+     "credits": 3,
+     "req": "ners-471-introduction-to-plasmas"
+    },
+    {
+     "label": "(11/12 hours)",
+     "credits": 4,
+     "req": "11-12-hours"
+    },
+    {
+     "label": "(10 Hours)",
+     "credits": 4,
+     "req": "10-hours"
+    }
+   ],
+   [
+    {
+     "label": "SPACE 423, Data Analysis and Visualization",
+     "credits": 4,
+     "req": "space-423-data-analysis-and-visualization"
+    },
+    {
+     "label": "SPACE 495/595 (Note 1) 495 (4) / 595 (3)",
+     "credits": 4,
+     "req": "space-495-595-note-1-495-4-595-3"
+    },
+    {
+     "label": "SPACE 499/455 Capstone Research (Note 2)",
+     "credits": 4,
+     "req": "space-499-455-capstone-research-note-2"
+    },
+    {
+     "label": "(11/12 hours)",
+     "credits": 4,
+     "req": "11-12-hours"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "engineering-engineering-physics",
+  "name": "Engineering Physics",
+  "school": "College of Engineering (B.S.E.)",
+  "sourceUrl": "https://bulletin.engin.umich.edu/engin-phys/",
+  "sourceLabel": "Engineering Bulletin, sample schedule revised March 2025",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://bulletin.engin.umich.edu/wp-content/uploads/sites/306/2025/09/Engineering-Physics-Sample-Schedule-Winter-2025-1.pdf",
+  "notes": [
+   "This follows the department's sample schedule revised March 2025. A plan may differ by when you started, so check the current Bulletin.",
+   "It's only a sample: you don't have to follow it exactly, apart from prerequisite chains.",
+   "Rows with several courses or choices are tracked by credits. The linked schedule has the details and footnotes."
+  ],
+  "requirements": [
+   {
+    "id": "mathematics-115-116-215-and",
+    "group": "Required of all engineers",
+    "label": "Mathematics 115, 116, 215, and",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "engr-100-intro-to-engr",
+    "group": "Required of all engineers",
+    "label": "Engr 100, Intro to Engr",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-100"
+     ]
+    ]
+   },
+   {
+    "id": "engr-101-intro-to-computers",
+    "group": "Required of all engineers",
+    "label": "Engr 101, Intro to Computers",
+    "credits": 4,
+    "anyOf": [
+     [
+      "engr-101"
+     ]
+    ]
+   },
+   {
+    "id": "chemistry-125-126-and-130-or-chemistry-210-and",
+    "group": "Required of all engineers",
+    "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
+    "target": 5,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "physics-140-with-lab-141-physics-240-with-lab",
+    "group": "Required of all engineers",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+    "target": 10,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "intellectual-breadth",
+    "group": "Required of all engineers",
+    "label": "Intellectual Breadth",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "mathematics-elective-300-level-or-higher",
+    "group": "Advanced Mathematics",
+    "label": "Mathematics Elective (300-level or higher)",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "matscie-250-or-matscie",
+    "group": "Related Technical Subjects",
+    "label": "MATSCIE 250 or MATSCIE",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "eecs-314-or-eecs",
+    "group": "Related Technical Subjects",
+    "label": "EECS 314 or EECS",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "physics-340-waves-heat-and-light",
+    "group": "Physics",
+    "label": "Physics 340, Waves, Heat and Light",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-340"
+     ]
+    ]
+   },
+   {
+    "id": "physics-316-mathematical-methods",
+    "group": "Physics",
+    "label": "Physics 316, Mathematical Methods",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-316"
+     ]
+    ]
+   },
+   {
+    "id": "physics-390-or-ners",
+    "group": "Physics",
+    "label": "Physics 390 or NERS",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "physics-401-intermediate-mechanics",
+    "group": "Physics",
+    "label": "Physics 401, Intermediate Mechanics",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-401"
+     ]
+    ]
+   },
+   {
+    "id": "physics-405-intermediate-electricity-and-magneti",
+    "group": "Physics",
+    "label": "Physics 405, Intermediate Electricity and Magnetism",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-405"
+     ]
+    ]
+   },
+   {
+    "id": "physics-406-statistical-and-thermal-physics",
+    "group": "Physics",
+    "label": "Physics 406, Statistical and Thermal Physics",
+    "credits": 3,
+    "anyOf": [
+     [
+      "physics-406"
+     ]
+    ]
+   },
+   {
+    "id": "physics-lab-elective-or-directed-study-with-rese",
+    "group": "Physics",
+    "label": "Physics Lab Elective or Directed Study with Research Lab",
+    "target": 2,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "physics-elective-300-level-or-higher",
+    "group": "Physics",
+    "label": "Physics Elective (300-level or higher)",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "engineering-electives",
+    "group": "Engineering Concentration",
+    "label": "Engineering Electives",
+    "target": 16,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "engineering-laboratory-elective-400-level-or-hig",
+    "group": "Engineering Concentration",
+    "label": "Engineering Laboratory Elective (400-level or higher)",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "300-level-or-higher",
+    "group": "Technical Electives",
+    "label": "(300-level or higher)",
+    "target": 7,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   },
+   {
+    "id": "general-electives",
+    "group": "General Electives",
+    "label": "General Electives",
+    "target": 12,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/engin-phys/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Engr 100, Intro to Engr",
+     "credits": 4,
+     "req": "engr-100-intro-to-engr"
+    },
+    {
+     "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
+     "credits": 5,
+     "req": "chemistry-125-126-and-130-or-chemistry-210-and"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Engr 101, Intro to Computers",
+     "credits": 4,
+     "req": "engr-101-intro-to-computers"
+    },
+    {
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
+     "credits": 5,
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "MATSCIE 250 or MATSCIE",
+     "credits": 4,
+     "req": "matscie-250-or-matscie"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics 115, 116, 215, and",
+     "credits": 4,
+     "req": "mathematics-115-116-215-and"
+    },
+    {
+     "label": "Intellectual Breadth",
+     "credits": 4,
+     "req": "intellectual-breadth"
+    },
+    {
+     "label": "EECS 314 or EECS",
+     "credits": 4,
+     "req": "eecs-314-or-eecs"
+    },
+    {
+     "label": "Physics 340, Waves, Heat and Light",
+     "credits": 3,
+     "req": "physics-340-waves-heat-and-light"
+    }
+   ],
+   [
+    {
+     "label": "Physics 316, Mathematical Methods",
+     "credits": 3,
+     "req": "physics-316-mathematical-methods"
+    },
+    {
+     "label": "Physics 390 or NERS",
+     "credits": 3,
+     "req": "physics-390-or-ners"
+    },
+    {
+     "label": "Physics Lab Elective or Directed Study with Research Lab",
+     "credits": 2,
+     "req": "physics-lab-elective-or-directed-study-with-rese"
+    },
+    {
+     "label": "Engineering Electives",
+     "credits": 4,
+     "req": "engineering-electives"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "Physics 401, Intermediate Mechanics",
+     "credits": 3,
+     "req": "physics-401-intermediate-mechanics"
+    },
+    {
+     "label": "Physics Elective (300-level or higher)",
+     "credits": 3,
+     "req": "physics-elective-300-level-or-higher"
+    },
+    {
+     "label": "Engineering Electives",
+     "credits": 4,
+     "req": "engineering-electives"
+    },
+    {
+     "label": "(300-level or higher)",
+     "credits": 4,
+     "req": "300-level-or-higher"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "Mathematics Elective (300-level or higher)",
+     "credits": 3,
+     "req": "mathematics-elective-300-level-or-higher"
+    },
+    {
+     "label": "Physics 405, Intermediate Electricity and Magnetism",
+     "credits": 3,
+     "req": "physics-405-intermediate-electricity-and-magneti"
+    },
+    {
+     "label": "Engineering Electives",
+     "credits": 4,
+     "req": "engineering-electives"
+    },
+    {
+     "label": "(300-level or higher)",
+     "credits": 3,
+     "req": "300-level-or-higher"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
+    }
+   ],
+   [
+    {
+     "label": "Physics 406, Statistical and Thermal Physics",
+     "credits": 3,
+     "req": "physics-406-statistical-and-thermal-physics"
+    },
+    {
+     "label": "Engineering Electives",
+     "credits": 4,
+     "req": "engineering-electives"
+    },
+    {
+     "label": "Engineering Laboratory Elective (400-level or higher)",
+     "credits": 4,
+     "req": "engineering-laboratory-elective-400-level-or-hig"
+    },
+    {
+     "label": "General Electives",
+     "credits": 3,
+     "req": "general-electives"
     }
    ]
   ]
@@ -2129,44 +4975,41 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "math-115-116-215-216",
+    "id": "math-115-116-215",
     "group": "CoE Common Core",
-    "label": "MATH 115 , 116 , 215 , 216",
+    "label": "MATH 115 , 116 , 215 ,",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "engr-100",
+    "id": "engr",
     "group": "CoE Common Core",
-    "label": "ENGR 100",
-    "credits": 4,
-    "anyOf": [
-     [
-      "engr-100"
-     ]
-    ]
-   },
-   {
-    "id": "engr-101-or-151",
-    "group": "CoE Common Core",
-    "label": "ENGR 101 or 151",
+    "label": "ENGR",
     "target": 4,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "chem-125-126-130-or-chem-210-211",
+    "id": "engr-101-or",
     "group": "CoE Common Core",
-    "label": "CHEM 125 / 126 / 130 or CHEM 210 / 211",
+    "label": "ENGR 101 or",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/eecs/"
+   },
+   {
+    "id": "chem-125-126-130-or-chem-210",
+    "group": "CoE Common Core",
+    "label": "CHEM 125 / 126 / 130 or CHEM 210 /",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "physics-140-141-physics-240-241",
+    "id": "physics-140-141-physics-240",
     "group": "CoE Common Core",
-    "label": "PHYSICS 140 / 141 , PHYSICS 240 / 241",
+    "label": "PHYSICS 140 / 141 , PHYSICS 240 /",
     "target": 10,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
@@ -2314,9 +5157,9 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/eecs/"
    },
    {
-    "id": "general-electives-11-credits",
+    "id": "11-credits",
     "group": "Technical Electives",
-    "label": "General Electives (11 credits)",
+    "label": "(11 credits)",
     "target": 11,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/eecs/"
@@ -2325,19 +5168,19 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
-     "label": "ENGR 100",
+     "label": "ENGR",
      "credits": 4,
-     "req": "engr-100"
+     "req": "engr"
     },
     {
-     "label": "CHEM 125 / 126 / 130 or CHEM 210 / 211",
+     "label": "CHEM 125 / 126 / 130 or CHEM 210 /",
      "credits": 5,
-     "req": "chem-125-126-130-or-chem-210-211"
+     "req": "chem-125-126-130-or-chem-210"
     },
     {
      "label": "Intellectual Breadth",
@@ -2347,19 +5190,19 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
-     "label": "ENGR 101 or 151",
+     "label": "ENGR 101 or",
      "credits": 4,
-     "req": "engr-101-or-151"
+     "req": "engr-101-or"
     },
     {
-     "label": "PHYSICS 140 / 141 , PHYSICS 240 / 241",
+     "label": "PHYSICS 140 / 141 , PHYSICS 240 /",
      "credits": 5,
-     "req": "physics-140-141-physics-240-241"
+     "req": "physics-140-141-physics-240"
     },
     {
      "label": "Intellectual Breadth",
@@ -2369,14 +5212,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
-     "label": "PHYSICS 140 / 141 , PHYSICS 240 / 241",
+     "label": "PHYSICS 140 / 141 , PHYSICS 240 /",
      "credits": 5,
-     "req": "physics-140-141-physics-240-241"
+     "req": "physics-140-141-physics-240"
     },
     {
      "label": "EECS 215 : Introduction to Circuits",
@@ -2391,9 +5234,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
      "label": "EECS 200 : EE Systems Design I",
@@ -2411,9 +5254,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "eecs-230-electromagnetics-i"
     },
     {
-     "label": "General Electives (11 credits)",
+     "label": "(11 credits)",
      "credits": 3,
-     "req": "general-electives-11-credits"
+     "req": "11-credits"
     }
    ],
    [
@@ -2472,9 +5315,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "flexible-technical-electives"
     },
     {
-     "label": "General Electives (11 credits)",
+     "label": "(11 credits)",
      "credits": 4,
-     "req": "general-electives-11-credits"
+     "req": "11-credits"
     }
    ],
    [
@@ -2499,9 +5342,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "flexible-technical-electives"
     },
     {
-     "label": "General Electives (11 credits)",
+     "label": "(11 credits)",
      "credits": 4,
-     "req": "general-electives-11-credits"
+     "req": "11-credits"
     }
    ]
   ]
@@ -2521,47 +5364,41 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "math-115-116-215-216",
+    "id": "math-115-116-215",
     "group": "CoE Common Core",
-    "label": "MATH 115 , 116 , 215 , 216",
+    "label": "MATH 115 , 116 , 215 ,",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
    },
    {
-    "id": "engr-100",
+    "id": "engr",
     "group": "CoE Common Core",
-    "label": "ENGR 100",
-    "credits": 4,
-    "anyOf": [
-     [
-      "engr-100"
-     ]
-    ]
+    "label": "ENGR",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
    },
    {
-    "id": "engr-101",
+    "id": "engr-2",
     "group": "CoE Common Core",
-    "label": "ENGR 101",
-    "credits": 4,
-    "anyOf": [
-     [
-      "engr-101"
-     ]
-    ]
+    "label": "ENGR",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
    },
    {
-    "id": "chem-125-126-130-or-chem-210-211",
+    "id": "chem-125-126-130-or-chem-210",
     "group": "CoE Common Core",
-    "label": "CHEM 125 / 126 / 130 or CHEM 210 / 211",
+    "label": "CHEM 125 / 126 / 130 or CHEM 210 /",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
    },
    {
-    "id": "physics-140-141-physics-240-241",
+    "id": "physics-140-141-physics-240",
     "group": "CoE Common Core",
-    "label": "PHYSICS 140 / 141 , PHYSICS 240 / 241",
+    "label": "PHYSICS 140 / 141 , PHYSICS 240 /",
     "target": 10,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
@@ -2723,9 +5560,9 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
    },
    {
-    "id": "general-electives-12-credits",
+    "id": "12-credits",
     "group": "Science and Technical Electives",
-    "label": "General Electives (12 credits)",
+    "label": "(12 credits)",
     "target": 12,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/mse-2/"
@@ -2734,19 +5571,19 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
-     "label": "ENGR 100",
+     "label": "ENGR",
      "credits": 4,
-     "req": "engr-100"
+     "req": "engr"
     },
     {
-     "label": "CHEM 125 / 126 / 130 or CHEM 210 / 211",
+     "label": "CHEM 125 / 126 / 130 or CHEM 210 /",
      "credits": 5,
-     "req": "chem-125-126-130-or-chem-210-211"
+     "req": "chem-125-126-130-or-chem-210"
     },
     {
      "label": "Intellectual Breadth",
@@ -2756,19 +5593,19 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
-     "label": "ENGR 101",
+     "label": "ENGR",
      "credits": 4,
-     "req": "engr-101"
+     "req": "engr-2"
     },
     {
-     "label": "PHYSICS 140 / 141 , PHYSICS 240 / 241",
+     "label": "PHYSICS 140 / 141 , PHYSICS 240 /",
      "credits": 5,
-     "req": "physics-140-141-physics-240-241"
+     "req": "physics-140-141-physics-240"
     },
     {
      "label": "Intellectual Breadth",
@@ -2778,14 +5615,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
-     "label": "PHYSICS 140 / 141 , PHYSICS 240 / 241",
+     "label": "PHYSICS 140 / 141 , PHYSICS 240 /",
      "credits": 5,
-     "req": "physics-140-141-physics-240-241"
+     "req": "physics-140-141-physics-240"
     },
     {
      "label": "MATSCIE 250 : Manufacturing Principles of Engineering Materials",
@@ -2800,9 +5637,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "MATH 115 , 116 , 215 , 216",
+     "label": "MATH 115 , 116 , 215 ,",
      "credits": 4,
-     "req": "math-115-116-215-216"
+     "req": "math-115-116-215"
     },
     {
      "label": "Intellectual Breadth",
@@ -2864,9 +5701,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "four-mse-electives"
     },
     {
-     "label": "General Electives (12 credits)",
+     "label": "(12 credits)",
      "credits": 3,
-     "req": "general-electives-12-credits"
+     "req": "12-credits"
     }
    ],
    [
@@ -2891,9 +5728,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "science-and-technical-electives"
     },
     {
-     "label": "General Electives (12 credits)",
+     "label": "(12 credits)",
      "credits": 3,
-     "req": "general-electives-12-credits"
+     "req": "12-credits"
     }
    ],
    [
@@ -2913,9 +5750,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "science-and-technical-electives"
     },
     {
-     "label": "General Electives (12 credits)",
+     "label": "(12 credits)",
      "credits": 6,
-     "req": "general-electives-12-credits"
+     "req": "12-credits"
     }
    ]
   ]
@@ -2935,9 +5772,9 @@ export const ENGINEERING_PLANS: Major[] = [
   ],
   "requirements": [
    {
-    "id": "mathematics-115-116-215-and-214",
+    "id": "mathematics-115-116-215-and",
     "group": "Subjects required by all programs",
-    "label": "Mathematics 115, 116, 215, and 214",
+    "label": "Mathematics 115, 116, 215, and",
     "target": 16,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
@@ -2965,17 +5802,17 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "chemistry-125-126-and-130-or-chemistry-210-and-2",
+    "id": "chemistry-125-126-and-130-or-chemistry-210-and",
     "group": "Subjects required by all programs",
-    "label": "Chemistry 125/126 and 130 or Chemistry 210 and 211",
+    "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
     "target": 5,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
    },
    {
-    "id": "physics-140-with-lab-141-physics-240-with-lab-24",
+    "id": "physics-140-with-lab-141-physics-240-with-lab",
     "group": "Subjects required by all programs",
-    "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+    "label": "Physics 140 with Lab 141; Physics 240 with Lab",
     "target": 10,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
@@ -3096,9 +5933,9 @@ export const ENGINEERING_PLANS: Major[] = [
     ]
    },
    {
-    "id": "ioe-senior-design-course-ioe-424-481-499",
+    "id": "ioe-senior-design-course-ioe-424-481",
     "group": "Required Program Subjects",
-    "label": "IOE Senior Design Course IOE 424, 481, 499",
+    "label": "IOE Senior Design Course IOE 424, 481,",
     "target": 4,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
@@ -3112,17 +5949,17 @@ export const ENGINEERING_PLANS: Major[] = [
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
    },
    {
-    "id": "technical-electives-19",
+    "id": "19",
     "group": "Required Program Subjects",
-    "label": "Technical Electives (19)",
+    "label": "(19)",
     "target": 19,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
    },
    {
-    "id": "general-electives-9-12-hours-9-12",
+    "id": "9-12-hours-9-12",
     "group": "Required Program Subjects",
-    "label": "General Electives (9-12 hours) 9-12",
+    "label": "(9-12 hours) 9-12",
     "target": 9,
     "unit": "credits",
     "browse": "https://bulletin.engin.umich.edu/depts/ioe-2/"
@@ -3131,9 +5968,9 @@ export const ENGINEERING_PLANS: Major[] = [
   "plan": [
    [
     {
-     "label": "Mathematics 115, 116, 215, and 214",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-214"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "Engr 100, Intro to Engr",
@@ -3141,9 +5978,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engr-100-intro-to-engr"
     },
     {
-     "label": "Chemistry 125/126 and 130 or Chemistry 210 and 211",
+     "label": "Chemistry 125/126 and 130 or Chemistry 210 and",
      "credits": 5,
-     "req": "chemistry-125-126-and-130-or-chemistry-210-and-2"
+     "req": "chemistry-125-126-and-130-or-chemistry-210-and"
     },
     {
      "label": "Intellectual Breadth",
@@ -3153,9 +5990,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 214",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-214"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "Engr 101, Intro to Computers",
@@ -3163,9 +6000,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "engr-101-intro-to-computers"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141-physics-240-with-lab-24"
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
     },
     {
      "label": "Intellectual Breadth",
@@ -3175,14 +6012,14 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 214",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-214"
+     "req": "mathematics-115-116-215-and"
     },
     {
-     "label": "Physics 140 with Lab 141; Physics 240 with Lab 241",
+     "label": "Physics 140 with Lab 141; Physics 240 with Lab",
      "credits": 5,
-     "req": "physics-140-with-lab-141-physics-240-with-lab-24"
+     "req": "physics-140-with-lab-141-physics-240-with-lab"
     },
     {
      "label": "Intellectual Breadth",
@@ -3202,9 +6039,9 @@ export const ENGINEERING_PLANS: Major[] = [
    ],
    [
     {
-     "label": "Mathematics 115, 116, 215, and 214",
+     "label": "Mathematics 115, 116, 215, and",
      "credits": 4,
-     "req": "mathematics-115-116-215-and-214"
+     "req": "mathematics-115-116-215-and"
     },
     {
      "label": "Non-IOE Engineering Courses (11-12 hours)",
@@ -3244,9 +6081,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ioe-366-linear-statistical-models"
     },
     {
-     "label": "Technical Electives (19)",
+     "label": "(19)",
      "credits": 3,
-     "req": "technical-electives-19"
+     "req": "19"
     }
    ],
    [
@@ -3266,9 +6103,9 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "tc-380-technical-communication-in-ioe"
     },
     {
-     "label": "Technical Electives (19)",
+     "label": "(19)",
      "credits": 6,
-     "req": "technical-electives-19"
+     "req": "19"
     }
    ],
    [
@@ -3278,14 +6115,14 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "ioe-474-simulation"
     },
     {
-     "label": "Technical Electives (19)",
+     "label": "(19)",
      "credits": 6,
-     "req": "technical-electives-19"
+     "req": "19"
     },
     {
-     "label": "General Electives (9-12 hours) 9-12",
+     "label": "(9-12 hours) 9-12",
      "credits": 6,
-     "req": "general-electives-9-12-hours-9-12"
+     "req": "9-12-hours-9-12"
     }
    ],
    [
@@ -3295,19 +6132,19 @@ export const ENGINEERING_PLANS: Major[] = [
      "req": "non-ioe-engineering-courses-11-12-hours"
     },
     {
-     "label": "IOE Senior Design Course IOE 424, 481, 499",
+     "label": "IOE Senior Design Course IOE 424, 481,",
      "credits": 4,
-     "req": "ioe-senior-design-course-ioe-424-481-499"
+     "req": "ioe-senior-design-course-ioe-424-481"
     },
     {
-     "label": "Technical Electives (19)",
+     "label": "(19)",
      "credits": 4,
-     "req": "technical-electives-19"
+     "req": "19"
     },
     {
-     "label": "General Electives (9-12 hours) 9-12",
+     "label": "(9-12 hours) 9-12",
      "credits": 3,
-     "req": "general-electives-9-12-hours-9-12"
+     "req": "9-12-hours-9-12"
     }
    ]
   ]
