@@ -1301,7 +1301,235 @@ const BIOCHEMISTRY: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS, ASIAN_STUDIES, ASTRONOMY, SPANISH, FRENCH, BIOCHEMISTRY];
+const AAS_GATEWAY = one("aas-200", "aas-201", "aas-202");
+
+const AAS: Major = {
+  id: "lsa-afroamerican-and-african-studies",
+  name: "Afroamerican and African Studies",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/afroamerican-and-african-studies-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2025",
+  planIsOfficial: false,
+  notes: [
+    "28 credits minimum, with no prerequisites. The source page lists major exclusions.",
+    "You also need at least one AAS upper-level writing course, which can count toward other major requirements.",
+    "Choose electives with a DAAS advisor or faculty. The DAAS website lists courses by theme.",
+  ],
+  requirements: [
+    { id: "gateway-1", group: "Gateway", label: "Gateway course", anyOf: AAS_GATEWAY },
+    { id: "gateway-2", group: "Gateway", label: "Second gateway course", anyOf: AAS_GATEWAY },
+    { id: "comparative", group: "Major", label: "Comparative or global courses", target: 2, unit: "course", note: "From AAS 304, 309, 322, 323, 324, 346, 357, 359, 362, 365, 381, 384, or 441.", browse: "/courses?department=AAS&level=300&offered=1" },
+    { id: "electives", group: "Major", label: "AAS electives", target: 4, unit: "course", note: "Two must be at the 300 or 400 level.", browse: "/courses?department=AAS&offered=1" },
+    { id: "ulwr", group: "Major", label: "AAS upper-level writing course", target: 1, unit: "course", note: "Can also count toward other requirements here.", browse: "/courses?department=AAS&level=300&offered=1" },
+    { id: "action", group: "Major", label: "DAAS-In-Action", anyOf: one("aas-498") },
+  ],
+  plan: [
+    [{ label: "Gateway course", req: "gateway-1" }, LSA_FILLER],
+    [{ label: "Gateway course", req: "gateway-2" }, LSA_FILLER],
+    [{ label: "AAS elective", req: "electives" }, LSA_FILLER],
+    [{ label: "AAS elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Comparative or global course", req: "comparative" }, LSA_FILLER],
+    [{ label: "Comparative or global course", req: "comparative" }, { label: "Upper-level writing", req: "ulwr" }, LSA_FILLER],
+    [{ label: "300+ AAS elective", req: "electives" }, LSA_FILLER],
+    [{ label: "AAS 498", req: "action" }, { label: "300+ AAS elective", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const CLCIV_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/classical-civilization-major.html";
+
+const CLASSICAL_CIV: Major = {
+  id: "lsa-classical-civilization",
+  name: "Classical Civilization",
+  school: "LSA",
+  sourceUrl: CLCIV_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2024",
+  planIsOfficial: false,
+  notes: [
+    "24 credits minimum: eight courses of at least 3 credits each. Greek or Latin is recommended, not required.",
+    "Three of your six courses must come from one cluster: Language, Literature and Reception; History and Archaeology; or Religion and Philosophy.",
+    "Honors thesis students may have a different capstone arrangement; see the source page.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "Intro course", note: "At least 4 credits.", anyOf: one("clciv-101", "clciv-202", "history-200", "history-201", "gtbooks-191", "clarch-221", "clarch-222", "archam-221", "archam-222") },
+    { id: "level-200", group: "Major", label: "200-level CLCIV course", target: 1, unit: "course", browse: "/courses?department=CLCIV&level=200&offered=1" },
+    { id: "six", group: "Major", label: "Classical Civilization courses", target: 6, unit: "course", note: "At least 18 credits, with three or more at the 300 level and two or more at the 400 level.", browse: "/courses?department=CLCIV&offered=1" },
+    { id: "capstone", group: "Major", label: "Capstone Seminar", note: "Register for section 001 (2 credits) and section 002 (1 credit).", anyOf: one("clciv-480") },
+  ],
+  plan: [
+    [{ label: "Intro course", req: "prereq" }, LSA_FILLER],
+    [{ label: "200-level CLCIV", req: "level-200" }, LSA_FILLER],
+    [{ label: "Classical Civilization course", req: "six" }, LSA_FILLER],
+    [{ label: "300-level course", req: "six" }, LSA_FILLER],
+    [{ label: "300-level course", req: "six" }, LSA_FILLER],
+    [{ label: "300-level course", req: "six" }, LSA_FILLER],
+    [{ label: "400-level course", req: "six" }, LSA_FILLER],
+    [{ label: "400-level course", req: "six" }, { label: "CLCIV 480", req: "capstone" }, LSA_FILLER],
+  ],
+};
+
+const GERMAN: Major = {
+  id: "lsa-german",
+  name: "German",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/german-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2017",
+  planIsOfficial: false,
+  notes: [
+    "30 credits beyond GERMAN 232. AP/IB, placement, or transfer credit can meet the prerequisite.",
+    "At least 15 credits must be in residence or through an affiliated study abroad program.",
+    "This requirement version is from 2017, the newest on the LSA page. Confirm with an advisor.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "GERMAN 230 or 232, or RCLANG 291", anyOf: one("german-230", "german-232", "rclang-291") },
+    { id: "g-325", group: "Major", label: "GERMAN 325 or 326", anyOf: one("german-325", "german-326") },
+    { id: "level-300", group: "Major", label: "Other 300-level courses", target: 3, unit: "course", browse: "/courses?department=GERMAN&level=300&offered=1" },
+    { id: "g-425", group: "Major", label: "GERMAN 425 or 426", anyOf: one("german-425", "german-426") },
+    { id: "level-400", group: "Major", label: "Other 400-level courses", target: 3, unit: "course", browse: "/courses?department=GERMAN&level=400&offered=1" },
+    { id: "additional", group: "Major", label: "Additional courses at the 300 level or higher", target: 2, unit: "course", note: "Keep going until you reach 30 credits.", browse: "/courses?department=GERMAN&level=300&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "GERMAN 230 or 232", req: "prereq" }, LSA_FILLER],
+    [{ label: "GERMAN 325 or 326", req: "g-325" }, LSA_FILLER],
+    [{ label: "300-level courses", req: "level-300" }, LSA_FILLER],
+    [{ label: "300-level courses", req: "level-300" }, LSA_FILLER],
+    [{ label: "GERMAN 425 or 426", req: "g-425" }, { label: "400-level course", req: "level-400" }, LSA_FILLER],
+    [{ label: "400-level courses", req: "level-400" }, { label: "Additional course", req: "additional" }, LSA_FILLER],
+    [{ label: "400-level course", req: "level-400" }, { label: "Additional course", req: "additional" }, LSA_FILLER],
+  ],
+};
+
+const ITALIAN: Major = {
+  id: "lsa-italian",
+  name: "Italian",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/italian-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2026",
+  planIsOfficial: false,
+  notes: [
+    "30 credits in Italian courses numbered 235 and above. ITALIAN 410 doesn't count toward the major.",
+    "Three credits may come from an advisor-approved cognate.",
+    "At least 15 credits must be in residence or through an affiliated study abroad program, including one 300- or 400-level course in Italian at Ann Arbor.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "Intermediate Italian", note: "Or the equivalent.", anyOf: one("italian-230", "italian-232", "italian-233", "italian-410") },
+    { id: "language", group: "Major", label: "Credits taught in Italian", target: 12, unit: "credits", note: "Include one course at the 200 level beyond 233, one at the 300 level, and one at the 400 level.", browse: "/courses?department=ITALIAN&offered=1" },
+    { id: "total", group: "Major", label: "Total credits toward the 30-credit major", target: 30, unit: "credits", note: "Enter your total.", browse: "/courses?department=ITALIAN&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "Intermediate Italian", req: "prereq" }, LSA_FILLER],
+    [{ label: "200-level in Italian", credits: 3, req: "language" }, LSA_FILLER],
+    [{ label: "Italian courses", credits: 3, req: "language" }, LSA_FILLER],
+    [{ label: "300-level in Italian", credits: 3, req: "language" }, LSA_FILLER],
+    [{ label: "Italian courses", credits: 6, req: "total" }, LSA_FILLER],
+    [{ label: "400-level in Italian", credits: 3, req: "language" }, LSA_FILLER],
+    [{ label: "Italian courses", credits: 12, req: "total" }, LSA_FILLER],
+  ],
+};
+
+const JUDAIC: Major = {
+  id: "lsa-judaic-studies",
+  name: "Judaic Studies",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/judaic-studies-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2021",
+  planIsOfficial: false,
+  notes: [
+    "28 credits minimum at the 200 level or above, with no prerequisites. Courses need a Judaic listing or advisor approval.",
+    "At least 15 credits must be in residence. At most one independent study course counts without approval.",
+    "An optional Hebrew sub plan has its own language requirement; see the source page.",
+  ],
+  requirements: [
+    { id: "core", group: "Core", label: "Core course", anyOf: one("judaic-205", "judaic-210", "judaic-281") },
+    { id: "level-400", group: "Upper level", label: "400-level course", target: 1, unit: "course", browse: "/courses?department=JUDAIC&level=400&offered=1" },
+    { id: "upper", group: "Upper level", label: "Credits at the 300 or 400 level", target: 15, unit: "credits", browse: "/courses?department=JUDAIC&level=300&offered=1" },
+    { id: "total", group: "Total", label: "Total credits toward the 28-credit major", target: 28, unit: "credits", note: "Enter your total.", browse: "/courses?department=JUDAIC&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "Core course", req: "core" }, LSA_FILLER],
+    [{ label: "Judaic electives", credits: 6, req: "total" }, LSA_FILLER],
+    [{ label: "Judaic electives", credits: 7, req: "total" }, LSA_FILLER],
+    [{ label: "Upper-level courses", credits: 4, req: "upper" }, LSA_FILLER],
+    [{ label: "Upper-level courses", credits: 4, req: "upper" }, LSA_FILLER],
+    [{ label: "Upper-level courses", credits: 4, req: "upper" }, LSA_FILLER],
+    [{ label: "400-level course", req: "level-400" }, { label: "Upper-level courses", credits: 3, req: "upper" }, LSA_FILLER],
+  ],
+};
+
+const LATINO_STUDIES: Major = {
+  id: "lsa-latina-latino-studies",
+  name: "Latina/Latino Studies",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/latina-latino-studies-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2019",
+  planIsOfficial: false,
+  notes: [
+    "30 credits, with no prerequisites.",
+    "When declaring, pick a track: comparative ethnic studies, gender and sexuality, migration and transnationalism, community engagement and social action, or arts and media. Four to six of your courses should fit it.",
+    "If you're considering graduate study in a specific discipline, the program suggests also majoring in that department.",
+  ],
+  requirements: [
+    { id: "language", group: "Language", label: "Terms of Spanish or an approved language", target: 4, unit: "course", note: "Or show fourth-term proficiency. Enter the terms you've finished.", browse: "/courses?department=SPANISH&offered=1" },
+    { id: "intro", group: "Major", label: "Introduction to Latina/o Studies", anyOf: one("amcult-213") },
+    { id: "courses", group: "Major", label: "Latina/o Studies courses", target: 6, unit: "course", note: "Two must be at the 300 level or above.", browse: "/courses?department=LATINOAM&offered=1" },
+    { id: "capstone", group: "Major", label: "Capstone", note: "Or an equivalent approved by the program advisor.", anyOf: one("amcult-498") },
+  ],
+  plan: [
+    [{ label: "Language", req: "language" }, LSA_FILLER],
+    [{ label: "Language", req: "language" }, { label: "AMCULT 213", req: "intro" }, LSA_FILLER],
+    [{ label: "Language", req: "language" }, { label: "Latina/o Studies course", req: "courses" }, LSA_FILLER],
+    [{ label: "Language", req: "language" }, { label: "Latina/o Studies course", req: "courses" }, LSA_FILLER],
+    [{ label: "Latina/o Studies course", req: "courses" }, LSA_FILLER],
+    [{ label: "Latina/o Studies course", req: "courses" }, LSA_FILLER],
+    [{ label: "300+ Latina/o Studies course", req: "courses" }, LSA_FILLER],
+    [{ label: "300+ Latina/o Studies course", req: "courses" }, { label: "AMCULT 498", req: "capstone" }, LSA_FILLER],
+  ],
+};
+
+const PPE_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/philosophy-politics-and-economics-major.html";
+
+const PPE: Major = {
+  id: "lsa-philosophy-political-science-economics",
+  name: "Philosophy, Politics, and Economics",
+  school: "LSA",
+  sourceUrl: PPE_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2025",
+  planIsOfficial: false,
+  notes: [
+    "This major is selective: you apply, with applications open for a limited time in the Winter term. Winter of sophomore year is best.",
+    "33 credits minimum across 12 courses. Admission depends on a C- or better in all prerequisites, and a C or better in calculus.",
+    "One philosophy course must count toward normative theory or your theme. Write a rationale for your theme and get it approved by your PPE advisor.",
+  ],
+  requirements: [
+    { id: "phil", group: "Prerequisites", label: "100- or 200-level PHIL course", target: 1, unit: "course", note: "Not PHIL 180, 183, 201, or 296.", browse: "/courses?department=PHIL&level=100&offered=1" },
+    { id: "polsci", group: "Prerequisites", label: "Intro political science", anyOf: one("polsci-101", "polsci-111", "polsci-140", "polsci-160") },
+    { id: "econ-101", group: "Prerequisites", label: "ECON 101", anyOf: one("econ-101") },
+    { id: "econ-102", group: "Prerequisites", label: "ECON 102", anyOf: one("econ-102") },
+    { id: "calc", group: "Prerequisites", label: "Calculus", anyOf: one("math-115", "math-116", "math-121", "math-156", "math-176", "math-185", "math-186", "math-215", "math-285", "math-295", "math-296", "econ-210") },
+    { id: "e-401", group: "Core", label: "Intermediate Microeconomics", anyOf: one("econ-401") },
+    { id: "p-300", group: "Core", label: "Introduction to Political Economy", anyOf: one("ppe-300") },
+    { id: "capstone", group: "Core", label: "Senior Seminar in Political Economy", note: "Honors students take PPE 401 and 402.", anyOf: [["ppe-400"], ["ppe-401", "ppe-402"]] },
+    { id: "stats", group: "Distribution", label: "Statistics", anyOf: one("stats-250", "stats-280", "stats-426", "polsci-300", "econ-404", "econ-405", "econ-453") },
+    { id: "formal", group: "Distribution", label: "Other formal methods", target: 1, unit: "course", note: "Statistics, logic, decision theory, or game theory, from the source page's list.", browse: PPE_URL },
+    { id: "normative", group: "Distribution", label: "Normative theory", target: 2, unit: "course", note: "300- or 400-level courses from the source page's list.", browse: PPE_URL },
+    { id: "pol-econ", group: "Distribution", label: "Political economy", target: 2, unit: "course", note: "From the source page's list.", browse: PPE_URL },
+    { id: "theme", group: "Theme", label: "Theme courses", target: 3, unit: "course", note: "Can use core list courses not already counted for the core.", browse: PPE_URL },
+  ],
+  plan: [
+    [{ label: "ECON 101", req: "econ-101" }, { label: "Calculus", req: "calc" }, LSA_FILLER],
+    [{ label: "ECON 102", req: "econ-102" }, { label: "Intro political science", req: "polsci" }, LSA_FILLER],
+    [{ label: "Intro PHIL course", req: "phil" }, { label: "Statistics", req: "stats" }, LSA_FILLER],
+    [{ label: "Apply to the major" }, { label: "PPE 300", req: "p-300" }, LSA_FILLER],
+    [{ label: "ECON 401", req: "e-401" }, { label: "Formal methods", req: "formal" }, LSA_FILLER],
+    [{ label: "Normative theory", req: "normative" }, { label: "Political economy", req: "pol-econ" }, LSA_FILLER],
+    [{ label: "Normative theory", req: "normative" }, { label: "Political economy", req: "pol-econ" }, { label: "Theme courses", req: "theme" }],
+    [{ label: "Remaining theme courses", req: "theme" }, { label: "PPE 400", req: "capstone" }, LSA_FILLER],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS, ASIAN_STUDIES, ASTRONOMY, SPANISH, FRENCH, BIOCHEMISTRY, AAS, CLASSICAL_CIV, GERMAN, ITALIAN, JUDAIC, LATINO_STUDIES, PPE];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);
