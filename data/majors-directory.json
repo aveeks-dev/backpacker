@@ -10,7 +10,7 @@
   "id": "lsa-afroamerican-and-african-studies",
   "name": "Afroamerican and African Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#afroamerican_and_african_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/afroamerican-and-african-studies-major.html",
   "subject": "AAS"
  },
  {
@@ -31,7 +31,7 @@
   "id": "lsa-archaeology",
   "name": "Archaeology (sub-major)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#archaeology-sub",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/archaeology-sub-major.html",
   "subject": "ANTHRARC"
  },
  {
@@ -50,21 +50,21 @@
   "id": "lsa-asian-studies",
   "name": "Asian Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#asian_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/asian-studies-major.html",
   "subject": "ASIAN"
  },
  {
   "id": "lsa-astronomy-and-astrophysics",
   "name": "Astronomy and Astrophysics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#astronomy_and_astrophysics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/astronomy-and-astrophysics-major.html",
   "subject": "ASTRO"
  },
  {
   "id": "lsa-biochemistry-bs",
   "name": "Biochemistry [B.S.]",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biochemistry_bs-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/biochemistry-major.html",
   "subject": "CHEM"
  },
  {
@@ -78,35 +78,35 @@
   "id": "lsa-general-biology",
   "name": "Biology, Health, and Society",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#general_biology-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/general-biology-major.html",
   "subject": "BIOLOGY"
  },
  {
   "id": "lsa-biomolecular-science-ab-or-bs",
   "name": "Biomolecular Science [A.B. or B.S.]",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biomolecular_science_ab_or_bs-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/biomolecular-science-major.html",
   "subject": "BIOLOGY"
  },
  {
   "id": "lsa-biophysics-bs",
   "name": "Biophysics [B.S.]",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biophysics_bs-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/biophysics-major.html",
   "subject": "BIOPHYS"
  },
  {
   "id": "lsa-biophyschology-cognition-and-neuroscience-bcn",
   "name": "Biopsychology, Cognition, and Neuroscience (BCN)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biophyschology_cognition_and_neuroscience_bcn-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/biopsychology-cognition-and-neuroscience-major.html",
   "subject": "PSYCH"
  },
  {
   "id": "lsa-biotechnology-and-bioenvironmental-sciences",
   "name": "Biotechnology and Bioenvironmental Sciences",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biotechnology-and-bioenvironmental-sciences-maj"
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/biotechnology-and-bioenvironmental-sciences-maj.html"
  },
  {
   "id": "lsa-cell-and-molecular-biology-and-biomedical-engineering",
@@ -118,27 +118,27 @@
   "id": "lsa-chemistry",
   "name": "Chemistry",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#chemistry-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/chemistry-maj.html",
   "subject": "CHEM"
  },
  {
   "id": "lsa-classical-civilization",
   "name": "Classical Civilization",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#classical_civilization-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/classical-civilization-major.html",
   "subject": "CLCIV"
  },
  {
   "id": "lsa-classical-languages-and-literatures",
   "name": "Classical Languages and Literatures",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#classical_languages_and_literatures-maj"
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/classical-languages-and-literatures-major.html"
  },
  {
   "id": "lsa-cognitive-science",
   "name": "Cognitive Science",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#cognitive_science-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/cognitive-science-major.html",
   "subject": "COGSCI"
  },
  {
@@ -166,7 +166,7 @@
   "id": "cs-lsa",
   "name": "Computer Science",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#computer_science-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/computer-science-major.html",
   "subject": "EECS"
  },
  {
@@ -180,27 +180,27 @@
   "id": "lsa-culture-and-media",
   "name": "Culture and Media (sub-major)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#culture_and_media-sub",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/culture-and-media-sub-major.html",
   "subject": "ANTHRCUL"
  },
  {
   "id": "ds-lsa",
   "name": "Data Science",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#data_science-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/data-science-major.html",
   "subject": "DATASCI"
  },
  {
   "id": "lsa-drama",
   "name": "Drama",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#drama-maj"
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/drama-major.html"
  },
  {
   "id": "lsa-earth-and-environmental-sciences",
   "name": "Earth and Environmental Sciences",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#earth_and_environmental_sciences-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/earth-and-environmental-sciences-major.html",
   "subject": "EARTH"
  },
  {
@@ -214,7 +214,7 @@
   "id": "econ-lsa",
   "name": "Economics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#economics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/economics-major.html",
   "subject": "ECON"
  },
  {
@@ -235,7 +235,7 @@
   "id": "lsa-environment-and-conservation",
   "name": "Environment and Conservation (sub-major)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#environment_and_conservation-sub",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/environment-and-conservation-sub-major.html",
   "subject": "ENVIRON"
  },
  {
@@ -249,21 +249,21 @@
   "id": "lsa-screen-arts-and-cultures",
   "name": "Film, Television, and Media",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#screen_arts_and_cultures-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/film-television-and-media-major.html",
   "subject": "FTVM"
  },
  {
   "id": "lsa-french-and-francophone-studies",
   "name": "French and Francophone Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#french_and_francophone_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/french-and-francophone-studies-major.html",
   "subject": "FRENCH"
  },
  {
   "id": "lsa-gender-and-health",
   "name": "Gender and Health",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#gender_and_health-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/gender-and-health-major.html",
   "subject": "WGS"
  },
  {
@@ -276,7 +276,7 @@
   "id": "lsa-german",
   "name": "German",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#german-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/german-major.html",
   "subject": "GERMAN"
  },
  {
@@ -290,14 +290,14 @@
   "id": "lsa-greek-ancient-language-and-literature",
   "name": "Greek (Ancient) Language and Literature",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#greek_ancient_language_and_literature-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/greek-ancient-language-and-literature-major.html",
   "subject": "GREEK"
  },
  {
   "id": "lsa-greek-modern-language-and-culture",
   "name": "Greek (Modern) Language and Culture",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#greek_modern_language_and_culture-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/greek-modern-language-and-culture-major.html",
   "subject": "GREEKMOD"
  },
  {
@@ -325,28 +325,28 @@
   "id": "lsa-human-origins-biology-and-behavior",
   "name": "Human Origins, Biology, and Behavior",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#human_origins_biology_and_behavior-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/human-origins-biology-and-behavior-major.html",
   "subject": "ANTHRBIO"
  },
  {
   "id": "lsa-interdisciplinary-astronomy-ba-or-bs",
   "name": "Interdisciplinary Astronomy (B.A. or B.S.)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#interdisciplinary_astronomy_ba_or_bs-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/interdisciplinary-astronomy-major.html",
   "subject": "ASTRO"
  },
  {
   "id": "lsa-interdisciplinary-chemical-sciences-ics-ab-or-bs",
   "name": "Interdisciplinary Chemical Sciences (ICS) [A.B. or B.S.]",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#interdisciplinary_chemical_sciences_ics_ab_or_bs-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/interdisciplinary-chemical-sciences-major.html",
   "subject": "CHEM"
  },
  {
   "id": "lsa-interdiscplinary-physics-ab-or-bs",
   "name": "Interdisciplinary Physics (A.B. or B.S.)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#interdiscplinary_physics_ab_or_bs-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/interdisciplinary-physics-major.html",
   "subject": "PHYSICS"
  },
  {
@@ -360,42 +360,42 @@
   "id": "lsa-international-studies",
   "name": "International Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#international_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/international-studies-major.html",
   "subject": "INTLSTD"
  },
  {
   "id": "lsa-italian",
   "name": "Italian",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#italian-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/italian-major.html",
   "subject": "ITALIAN"
  },
  {
   "id": "lsa-judaic-studies",
   "name": "Judaic Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#judaic_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/judaic-studies-major.html",
   "subject": "JUDAIC"
  },
  {
   "id": "lsa-latin-american-and-caribbean-studies",
   "name": "Latin American and Caribbean Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#latin_american_and_caribbean_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/latin-american-and-caribbean-studies-major.html",
   "subject": "LACS"
  },
  {
   "id": "lsa-latin-language-and-literature",
   "name": "Latin Language and Literature",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#latin_language_and_literature-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/latin-language-and-literature-major.html",
   "subject": "LATIN"
  },
  {
   "id": "lsa-latina-latino-studies",
   "name": "Latina/Latino Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#latina_latino_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/latina-latino-studies-major.html",
   "subject": "LATINOAM"
  },
  {
@@ -423,7 +423,7 @@
   "id": "lsa-mathematics",
   "name": "Mathematics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#mathematics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/mathematics-major.html",
   "subject": "MATH"
  },
  {
@@ -437,7 +437,7 @@
   "id": "lsa-medical-anthropology",
   "name": "Medical Anthropology (sub-major)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#medical_anthropology-sub",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/medical-anthropology-sub-major.html",
   "subject": "ANTHRCUL"
  },
  {
@@ -451,21 +451,21 @@
   "id": "lsa-near-eastern-studies",
   "name": "Middle East Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#near_eastern_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/middle-east-studies-major.html",
   "subject": "MIDEAST"
  },
  {
   "id": "lsa-middle-eastern-and-north-african-studies",
   "name": "Middle Eastern and North African Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#middle_eastern_and_north_african_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/middle-eastern-and-north-african-studies-major.html",
   "subject": "MENAS"
  },
  {
   "id": "lsa-cell-and-molecular-biology",
   "name": "Molecular, Cellular, and Developmental Biology",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#cell_and_molecular_biology-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/molecular-cellular-and-developmental-biology-major.html",
   "subject": "MCDB"
  },
  {
@@ -492,7 +492,7 @@
   "id": "lsa-philosophy-political-science-economics",
   "name": "Philosophy, Politics, and Economics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#philosophy_political_science_economics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/philosophy-politics-and-economics-major.html",
   "subject": "PPE"
  },
  {
@@ -506,7 +506,7 @@
   "id": "lsa-polish",
   "name": "Polish",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#polish-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/polish-major.html",
   "subject": "POLISH"
  },
  {
@@ -527,14 +527,14 @@
   "id": "lsa-politics-law-and-economy",
   "name": "Politics, Law, and Economy (sub-major)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#politics_law_and_economy-sub",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/politics-law-and-economy-sub-major.html",
   "subject": "SOC"
  },
  {
   "id": "lsa-power-identity-and-inequality",
   "name": "Power, Identity, and Inequality (sub-major)",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#power_identity_and_inequality-sub",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/power-identity-and-inequality-sub-major.html",
   "subject": "SOC"
  },
  {
@@ -555,21 +555,21 @@
   "id": "lsa-romance-languages-and-literatures",
   "name": "Romance Languages and Literatures",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#romance_languages_and_literatures-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/romance-languages-and-literatures-major.html",
   "subject": "ROMLANG"
  },
  {
   "id": "lsa-russian",
   "name": "Russian",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#russian-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/russian-major.html",
   "subject": "RUSSIAN"
  },
  {
   "id": "lsa-russian-east-european-and-eurasian-studies",
   "name": "Russian, East European and Eurasian Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#russian_east_european_and_eurasian_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/russian-east-european-and-eurasian-studies-major.html",
   "subject": "REEES"
  },
  {
@@ -590,7 +590,7 @@
   "id": "lsa-social-theory-and-practice",
   "name": "Social Theory and Practice",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#social_theory_and_practice-maj"
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/social-theory-and-practice-major.html"
  },
  {
   "id": "lsa-sociology",
@@ -617,7 +617,7 @@
   "id": "lsa-spanish",
   "name": "Spanish",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#spanish-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/spanish-major.html",
   "subject": "SPANISH"
  },
  {
@@ -631,13 +631,13 @@
   "id": "lsa-translation",
   "name": "Translation",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#translation-maj"
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/translation-maj.html"
  },
  {
   "id": "lsa-womens-studies",
   "name": "Women's and Gender Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#womens_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/womens-and-gender-studies-major.html",
   "subject": "WGS"
  },
  {

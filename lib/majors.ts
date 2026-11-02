@@ -850,7 +850,275 @@ const MICROBIOLOGY: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY];
+const CHEM_LIST = "https://lsa.umich.edu/lsa/academics/majors-minors/chemistry-maj.html";
+
+const CHEMISTRY: Major = {
+  id: "lsa-chemistry",
+  name: "Chemistry",
+  school: "LSA",
+  sourceUrl: CHEM_LIST,
+  sourceLabel: "LSA major requirements, effective Winter 2024",
+  planIsOfficial: false,
+  notes: [
+    "40 core credits minimum. Prerequisites must be taken for a grade.",
+    "Choose electives with a Chemistry advisor, using 300-level or higher CHEM courses. At most 4 credits of CHEM 399/398 count.",
+    "This major excludes some other chemistry-related majors; see the source page.",
+  ],
+  requirements: [
+    { id: "gen-chem", group: "Prerequisites", label: "General chemistry", note: "Or 5 credits of chemistry electives if you place into CHEM 210 or have AP credit.", anyOf: [["chem-125", "chem-126", "chem-130"]] },
+    { id: "physics-1", group: "Prerequisites", label: "Physics I with lab", anyOf: [["physics-140", "physics-141"], ["physics-150", "physics-151"], ["physics-160", "physics-161"], ["physics-139"]] },
+    { id: "physics-2", group: "Prerequisites", label: "Physics II with lab", anyOf: [["physics-240", "physics-241"], ["physics-250", "physics-251"], ["physics-260", "physics-261"], ["physics-239"]] },
+    { id: "calc-1", group: "Prerequisites", label: "Calculus I", anyOf: one("math-115", "math-120") },
+    { id: "calc-2", group: "Prerequisites", label: "Calculus II", anyOf: one("math-116", "math-121") },
+    { id: "adv-math", group: "Prerequisites", label: "Advanced math for chemists", anyOf: [["chem-262"], ["math-215", "math-216"], ["math-215", "math-217"]] },
+    { id: "organic", group: "Introductory", label: "Organic chemistry with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "c-241", group: "Introductory", label: "CHEM 241 and 242", anyOf: [["chem-241", "chem-242"]] },
+    { id: "pchem-intro", group: "Introductory", label: "CHEM 230 and 261, or CHEM 260", anyOf: [["chem-260"], ["chem-230", "chem-261"]] },
+    { id: "inorganic", group: "Introductory", label: "CHEM 302 or 303", anyOf: one("chem-302", "chem-303") },
+    { id: "lectures", group: "Advanced", label: "Advanced lecture courses", target: 3, unit: "course", note: "Three of CHEM 215, 351, 402, 447, and CHEM 461 or 463.", browse: "/courses?department=CHEM&level=400&offered=1" },
+    { id: "labs", group: "Advanced", label: "Advanced lab courses", target: 3, unit: "course", note: "Three of CHEM 216, 436, 462, 482, 483.", browse: "/courses?department=CHEM&level=400&offered=1" },
+    { id: "total", group: "Electives", label: "Total core credits", target: 40, unit: "credits", note: "Enter your total. Electives fill what's left.", browse: CHEM_LIST },
+  ],
+  plan: [
+    [{ label: "General chemistry", req: "gen-chem" }, { label: "Calculus I", req: "calc-1" }, LSA_FILLER],
+    [{ label: "Organic chemistry with lab", req: "organic" }, { label: "Calculus II", req: "calc-2" }, LSA_FILLER],
+    [{ label: "Physics I with lab", req: "physics-1" }, { label: "CHEM 230/261 or 260", req: "pchem-intro" }, LSA_FILLER],
+    [{ label: "Physics II with lab", req: "physics-2" }, { label: "CHEM 241 and 242", req: "c-241" }, { label: "Advanced lecture", req: "lectures" }],
+    [{ label: "Advanced math", req: "adv-math" }, { label: "CHEM 302 or 303", req: "inorganic" }, { label: "Advanced lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Advanced lecture", req: "lectures" }, { label: "Advanced lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Advanced lecture", req: "lectures" }, { label: "Advanced lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Remaining electives", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const BHS_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/general-biology-major.html";
+
+const BIO_HEALTH: Major = {
+  id: "lsa-general-biology",
+  name: "Biology, Health, and Society",
+  school: "LSA",
+  sourceUrl: BHS_URL,
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "24 credits minimum, not counting prerequisites and intro science. Test credit can't meet major requirements.",
+    "Courses used for the major can't be Pass/Fail. At most 3 credits of independent research count.",
+    "This major excludes some other biology majors; see the source page.",
+  ],
+  requirements: [
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY, sequential: true },
+    { id: "chem", group: "Prerequisites", label: "Organic chemistry with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "quant", group: "Prerequisites", label: "Quantitative analysis courses", target: 3, unit: "course", note: "Three from calculus, physics, programming, statistics, and others on the source page. They can't also count as major electives.", browse: BHS_URL },
+    { id: "group-a", group: "Groups", label: "Group A: gateway biology", target: 2, unit: "course", note: "BIOLOGY 205, 207, 225, 230, 252, 255, 256, 272, 288, or 290. At least 6 credits.", browse: "/courses?department=BIOLOGY&level=200&offered=1" },
+    { id: "group-b", group: "Groups", label: "Group B: health and society", target: 2, unit: "course", note: "At least 6 credits, from the list on the source page.", browse: BHS_URL },
+    { id: "group-c", group: "Groups", label: "Group C: core biology", target: 2, unit: "course", note: "Two of genetics, biochemistry, evolution, or ecology. At least 6 credits.", browse: BHS_URL },
+    { id: "group-d", group: "Groups", label: "Group D: biology elective", target: 1, unit: "course", note: "BIOLOGY, EEB, or MCDB at the 200 to 400 level, with listed exclusions.", browse: BHS_URL },
+    { id: "lab", group: "Lab", label: "Course with a lab", target: 1, unit: "course", note: "Can overlap with other major requirements.", browse: BHS_URL },
+    { id: "total", group: "Total", label: "Total credits toward the 24-credit major", target: 24, unit: "credits", note: "Enter your total.", browse: BHS_URL },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "Rest of intro biology", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 210 + 211", req: "chem" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "Group A course", req: "group-a" }, { label: "Group B course", req: "group-b" }, LSA_FILLER],
+    [{ label: "Group A course", req: "group-a" }, { label: "Group B course", req: "group-b" }, LSA_FILLER],
+    [{ label: "Group C course", req: "group-c" }, { label: "Course with a lab", req: "lab" }, LSA_FILLER],
+    [{ label: "Group C course", req: "group-c" }, { label: "Group D course", req: "group-d" }, LSA_FILLER],
+    [{ label: "Courses to reach 24 credits", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const EARTH_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/earth-and-environmental-sciences-major.html";
+const EARTH_CORE = one("earth-305", "earth-313", "earth-314", "earth-315", "earth-325", "earth-331", "earth-351", "earth-352", "earth-442");
+
+const EARTH: Major = {
+  id: "lsa-earth-and-environmental-sciences",
+  name: "Earth and Environmental Sciences",
+  school: "LSA",
+  sourceUrl: EARTH_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2023",
+  planIsOfficial: false,
+  notes: [
+    "This checklist covers the main major, 30 credits beyond prerequisites. The Earth Sciences and Environmental Sciences sub-plans need 38 credits and have different requirements; see the source page.",
+    "The field course is at Camp Davis, Wyoming. EARTH 440 needs EARTH 305 and 351 first; EARTH 450 needs EARTH 313 and 325 first.",
+  ],
+  requirements: [
+    { id: "cat-1", group: "Prerequisites", label: "Intro geoscience with lab", anyOf: [["earth-116"], ["earth-119", "earth-118"], ["earth-120"]] },
+    { id: "cat-2", group: "Prerequisites", label: "Intro environmental science or oceanography with lab", anyOf: [["earth-202"], ["earth-219", "earth-218"], ["earth-222", "earth-223"]] },
+    { id: "math", group: "Prerequisites", label: "Calculus", anyOf: one("math-115", "earth-132") },
+    { id: "welcome", group: "Prerequisites", label: "Welcome to EARTH", anyOf: one("earth-295") },
+    { id: "science", group: "Prerequisites", label: "Supporting science courses", target: 2, unit: "course", note: "Two of four options: chemistry, physics, biology, or math/chemistry/physics/programming. See the source page.", browse: EARTH_URL },
+    { id: "core-1", group: "Core", label: "Core course", anyOf: EARTH_CORE },
+    { id: "core-2", group: "Core", label: "Second core course", anyOf: EARTH_CORE },
+    { id: "core-3", group: "Core", label: "Third core course", anyOf: EARTH_CORE },
+    { id: "core-4", group: "Core", label: "Fourth core course", anyOf: EARTH_CORE },
+    { id: "field", group: "Field and writing", label: "Field course", note: "A marine field course may count, with advisor approval.", anyOf: one("earth-440", "earth-450") },
+    { id: "writing", group: "Field and writing", label: "Upper-level writing", note: "Or the department's writing program.", anyOf: one("earth-333", "earth-380") },
+    { id: "electives", group: "Electives", label: "EARTH credits at the 300 level or higher", target: 9, unit: "credits", browse: "/courses?department=EARTH&level=300&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro geoscience", req: "cat-1" }, { label: "Calculus", req: "math" }, LSA_FILLER],
+    [{ label: "Intro environmental science", req: "cat-2" }, { label: "Supporting science", req: "science" }, LSA_FILLER],
+    [{ label: "EARTH 295", req: "welcome" }, { label: "Supporting science", req: "science" }, LSA_FILLER],
+    [{ label: "Core course", req: "core-1" }, LSA_FILLER],
+    [{ label: "Core course", req: "core-2" }, { label: "Upper-level writing", req: "writing" }, LSA_FILLER],
+    [{ label: "Core course", req: "core-3" }, { label: "Core course", req: "core-4" }, LSA_FILLER],
+    [{ label: "Field course", req: "field" }, { label: "Electives", credits: 4, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 5, req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const MCDB_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/molecular-cellular-and-developmental-biology-major.html";
+
+const MCDB: Major = {
+  id: "lsa-cell-and-molecular-biology",
+  name: "Molecular, Cellular, and Developmental Biology",
+  school: "LSA",
+  sourceUrl: MCDB_URL,
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "31 credits minimum, not counting prerequisites and intro science.",
+    "At most 3 credits of MCDB 400 count, completed in one term to meet the lab or advanced course requirement.",
+    "This major has exclusions with other biology majors; see the source page.",
+  ],
+  requirements: [
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY, sequential: true },
+    { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II with lab", anyOf: [["chem-215", "chem-216"]] },
+    { id: "quant", group: "Prerequisites", label: "Quantitative analysis courses", target: 4, unit: "course", note: "Four from calculus, physics, programming, statistics, and others on the source page. They can't also count as major electives.", browse: MCDB_URL },
+    { id: "cell", group: "Core", label: "Cell or developmental biology", anyOf: one("biology-272", "biology-205") },
+    { id: "genetics", group: "Core", label: "Genetics", anyOf: one("biology-305") },
+    { id: "biochem", group: "Core", label: "Biochemistry", anyOf: one("mcdb-310", "biolchem-415", "chem-351") },
+    { id: "cell-mol", group: "Core", label: "Cellular or molecular biology", anyOf: one("mcdb-427", "mcdb-428") },
+    { id: "lab-1", group: "Group I: advanced labs", label: "Advanced MCDB lab", anyOf: one("mcdb-306", "mcdb-400", "mcdb-423", "mcdb-424", "mcdb-429") },
+    { id: "lab-2", group: "Group I: advanced labs", label: "Second advanced MCDB lab", anyOf: one("mcdb-306", "mcdb-400", "mcdb-423", "mcdb-424", "mcdb-429") },
+    { id: "advanced", group: "Group II: advanced courses", label: "Advanced MCDB courses", target: 2, unit: "course", note: "From the list on the source page.", browse: "/courses?department=MCDB&level=400&offered=1" },
+    { id: "total", group: "Group III: electives", label: "Total credits toward the 31-credit major", target: 31, unit: "credits", note: "Enter your total. See the source page for eligible electives.", browse: MCDB_URL },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "Rest of intro biology", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 210 + 211", req: "chem-1" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 215 + 216", req: "chem-2" }, { label: "Cell or developmental biology", req: "cell" }, { label: "Quantitative course", req: "quant" }],
+    [{ label: "BIOLOGY 305", req: "genetics" }, LSA_FILLER],
+    [{ label: "Biochemistry", req: "biochem" }, { label: "Advanced lab", req: "lab-1" }, LSA_FILLER],
+    [{ label: "MCDB 427 or 428", req: "cell-mol" }, { label: "Advanced lab", req: "lab-2" }, { label: "Advanced course", req: "advanced" }],
+    [{ label: "Advanced course", req: "advanced" }, { label: "Remaining electives", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const BCN_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/biopsychology-cognition-and-neuroscience-major.html";
+
+const BCN: Major = {
+  id: "lsa-biophyschology-cognition-and-neuroscience-bcn",
+  name: "Biopsychology, Cognition, and Neuroscience (BCN)",
+  school: "LSA",
+  sourceUrl: BCN_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2024",
+  planIsOfficial: false,
+  notes: [
+    "32 letter-graded credits minimum. 100-level courses can't count.",
+    "At least 24 credits must be in residence, including 12 at the 300 level or above.",
+    "Students in this major can't also major in Psychology. See the source page for other exclusions.",
+  ],
+  requirements: [
+    { id: "intro", group: "Prerequisites", label: "Intro psychology", note: "C or better.", anyOf: one("psych-111", "psych-112", "psych-114") },
+    { id: "stats", group: "Prerequisites", label: "Statistics", note: "C- or better, or P.", anyOf: one("datasci-101", "stats-250", "stats-280") },
+    { id: "bio", group: "Core", label: "Biopsychology", anyOf: one("psych-230") },
+    { id: "cog", group: "Core", label: "Cognitive Psychology", anyOf: one("psych-240") },
+    { id: "breadth", group: "Breadth", label: "Breadth course", anyOf: one("psych-235", "psych-250", "psych-270", "psych-280", "psych-290", "psych-291") },
+    { id: "labs", group: "Labs", label: "Lab courses", target: 2, unit: "course", note: "At least 5 credits total, with at least one methods-based and at most one non-PSYCH course.", browse: "/courses?department=PSYCH&level=300&offered=1" },
+    { id: "cognate", group: "Electives", label: "Cognate course", target: 1, unit: "course", note: "From the BCN Major Worksheet, or a 300-400 level PSYCH course not on the advanced list.", browse: BCN_URL },
+    { id: "advanced", group: "Electives", label: "Advanced courses", target: 4, unit: "course", note: "At least 12 credits, with two at the 300 level and one at the 400 level.", browse: "/courses?department=PSYCH&level=300&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro psychology", req: "intro" }, LSA_FILLER],
+    [{ label: "Statistics", req: "stats" }, LSA_FILLER],
+    [{ label: "PSYCH 230", req: "bio" }, LSA_FILLER],
+    [{ label: "PSYCH 240", req: "cog" }, { label: "Breadth course", req: "breadth" }, LSA_FILLER],
+    [{ label: "Lab", req: "labs" }, { label: "300-level advanced course", req: "advanced" }, LSA_FILLER],
+    [{ label: "Lab", req: "labs" }, { label: "300-level advanced course", req: "advanced" }, LSA_FILLER],
+    [{ label: "Cognate", req: "cognate" }, { label: "Advanced course", req: "advanced" }, LSA_FILLER],
+    [{ label: "400-level advanced course", req: "advanced" }, LSA_FILLER],
+  ],
+};
+
+const FTVM_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/film-television-and-media-major.html";
+
+const FTVM: Major = {
+  id: "lsa-screen-arts-and-cultures",
+  name: "Film, Television, and Media",
+  school: "LSA",
+  sourceUrl: FTVM_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2025",
+  planIsOfficial: false,
+  notes: [
+    "32 credits minimum. Apply for entry after finishing the intro course with a C- or better.",
+    "Of the 7 elective credits, one course must be a 3-credit studies course.",
+  ],
+  requirements: [
+    { id: "intro", group: "Prerequisites", label: "Intro to Film, Television, and Media", anyOf: one("ftvm-150", "rchums-150", "ftvm-236", "rchums-236") },
+    { id: "h-352", group: "History", label: "Film History: Origins to the French New Wave", anyOf: one("ftvm-352") },
+    { id: "history-2", group: "History", label: "Second history course", anyOf: one("ftvm-353", "ftvm-354", "ftvm-355", "ftvm-356") },
+    { id: "t-272", group: "Theory", label: "Classical Film Theory", anyOf: one("ftvm-272") },
+    { id: "theory-2", group: "Theory", label: "Second theory course", anyOf: one("ftvm-372", "ftvm-375", "ftvm-376", "ftvm-461") },
+    { id: "p-290", group: "Production", label: "Intro to Media Production", anyOf: one("ftvm-290") },
+    { id: "production", group: "Production", label: "Production or writing courses", target: 2, unit: "course", note: "From the list on the source page.", browse: "/courses?department=FTVM&level=300&offered=1" },
+    { id: "studies", group: "Studies", label: "Studies course", target: 1, unit: "course", note: "National, regional, or transnational cinema, or a 300/400-level television or digital media course.", browse: FTVM_URL },
+    { id: "electives", group: "Electives", label: "300- or 400-level FTVM credits", target: 7, unit: "credits", browse: "/courses?department=FTVM&level=300&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro course", req: "intro" }, LSA_FILLER],
+    [{ label: "FTVM 272", req: "t-272" }, LSA_FILLER],
+    [{ label: "FTVM 290", req: "p-290" }, LSA_FILLER],
+    [{ label: "FTVM 352", req: "h-352" }, LSA_FILLER],
+    [{ label: "Second history course", req: "history-2" }, { label: "Production or writing", req: "production" }, LSA_FILLER],
+    [{ label: "Second theory course", req: "theory-2" }, { label: "Production or writing", req: "production" }, LSA_FILLER],
+    [{ label: "Studies course", req: "studies" }, { label: "Elective", credits: 3, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 4, req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const WGS_URL = "https://lsa.umich.edu/lsa/academics/majors-minors/womens-and-gender-studies-major.html";
+
+const WGS: Major = {
+  id: "lsa-womens-studies",
+  name: "Women's and Gender Studies",
+  school: "LSA",
+  sourceUrl: WGS_URL,
+  sourceLabel: "LSA major requirements, effective Fall 2020",
+  planIsOfficial: false,
+  notes: [
+    "33 credits, with at least 25 at the 300 level or above.",
+    "Only one course can double-count across the four thematic areas. At most 6 independent study credits count.",
+    "Your two cognates normally come from one department, and neither can be cross-listed with WGS.",
+    "At least 14 WGS credits must be in residence. The source page lists exclusions.",
+  ],
+  requirements: [
+    { id: "intro", group: "Prerequisites", label: "WGS 240", note: "C- or above.", anyOf: one("wgs-240", "womenstd-240") },
+    { id: "theory", group: "Required", label: "Feminist Thought", anyOf: one("wgs-330", "womenstd-330") },
+    { id: "theme-1", group: "Thematic areas", label: "LGBTQ and Sexuality Studies", target: 1, unit: "course", browse: "/courses?department=WGS&offered=1" },
+    { id: "theme-2", group: "Thematic areas", label: "Gender, Race, and Ethnicity in the U.S.", target: 1, unit: "course", browse: "/courses?department=WGS&offered=1" },
+    { id: "theme-3", group: "Thematic areas", label: "Gender in a Global Context", target: 1, unit: "course", browse: "/courses?department=WGS&offered=1" },
+    { id: "theme-4", group: "Thematic areas", label: "Gender, Culture, and Representation", target: 1, unit: "course", browse: "/courses?department=WGS&offered=1" },
+    { id: "practice", group: "Required", label: "Practice course", note: "Approved WGS 313 topic and SOC 225 topics also count; check with an advisor.", anyOf: one("wgs-350", "wgs-351", "wgs-404", "wgs-425") },
+    { id: "total", group: "Electives", label: "Total WGS credits, up to 27", target: 27, unit: "credits", note: "Enter your total, not counting prerequisites or cognates.", browse: "/courses?department=WGS&offered=1" },
+    { id: "cognates", group: "Cognates", label: "Upper-level cognate courses", target: 2, unit: "course", note: "6 credits total.", browse: "/courses?offered=1" },
+  ],
+  plan: [
+    [{ label: "WGS 240", req: "intro" }, LSA_FILLER],
+    [LSA_FILLER],
+    [{ label: "WGS 330", req: "theory" }, LSA_FILLER],
+    [{ label: "Thematic area course", req: "theme-1" }, LSA_FILLER],
+    [{ label: "Thematic area course", req: "theme-2" }, { label: "Cognate", req: "cognates" }, LSA_FILLER],
+    [{ label: "Thematic area course", req: "theme-3" }, { label: "Cognate", req: "cognates" }, LSA_FILLER],
+    [{ label: "Thematic area course", req: "theme-4" }, { label: "Practice course", req: "practice" }, LSA_FILLER],
+    [{ label: "Remaining electives", req: "total" }, LSA_FILLER],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY, CHEMISTRY, BIO_HEALTH, EARTH, MCDB, BCN, FTVM, WGS];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);
