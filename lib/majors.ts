@@ -14,6 +14,8 @@ export type Requirement = {
   // Course requirement: satisfied by any option; an option is a set of courses
   // that must all be complete (e.g. PHYSICS 140 + 141).
   anyOf?: string[][];
+  // Option courses are taken over several terms, so suggest one at a time.
+  sequential?: boolean;
   // Open requirement: the student picks from a list and reports progress.
   target?: number;
   unit?: "credits" | "course";
@@ -227,7 +229,7 @@ const BIOLOGY: Major = {
     "This major excludes several other biology-related majors and minors; see the source page.",
   ],
   requirements: [
-    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY },
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY, sequential: true },
     { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
     { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II with lab", anyOf: [["chem-215", "chem-216"]] },
     { id: "quant", group: "Prerequisites", label: "Quantitative analysis courses", target: 4, unit: "course", note: "Four from calculus, physics, programming, statistics, BIOLOGY 131 or 202, BIOPHYS/PHYSICS 290, or EARTH 468. They can't also count as major electives.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/biology-major.html" },
@@ -265,7 +267,7 @@ const NEUROSCIENCE: Major = {
     "This major excludes several other biology and neuroscience majors; see the source page.",
   ],
   requirements: [
-    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY },
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY, sequential: true },
     { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
     { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II with lab", anyOf: [["chem-215", "chem-216"]] },
     { id: "stats", group: "Prerequisites", label: "Statistics", anyOf: one("stats-250", "stats-280") },
@@ -404,7 +406,249 @@ const MECHANICAL: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL];
+const STATS_ADVANCED = one("stats-315", "datasci-315", "stats-406", "stats-415", "stats-430", "stats-449", "stats-451", "datasci-451", "stats-470", "stats-480", "stats-526", "math-526");
+
+const STATISTICS: Major = {
+  id: "lsa-statistics",
+  name: "Statistics",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/statistics-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2023",
+  planIsOfficial: false,
+  notes: [
+    "29 credits minimum. Build your plan with a Statistics undergraduate advisor.",
+    "To declare, you need one statistics class and Calculus II. Prerequisites can be Pass/Fail.",
+    "At least 15 major credits must be on the Ann Arbor campus.",
+  ],
+  requirements: [
+    { id: "calc-3", group: "Prerequisites", label: "Multivariable calculus", anyOf: one("math-215", "math-205", "math-285") },
+    { id: "linear", group: "Prerequisites", label: "Linear algebra", anyOf: one("math-214", "math-217") },
+    { id: "prog", group: "Prerequisites", label: "Intro programming", anyOf: one("eecs-183") },
+    { id: "intro", group: "Prerequisites", label: "Intro statistics", anyOf: one("stats-250", "datasci-101", "stats-206", "stats-280", "stats-412") },
+    { id: "applied", group: "Core", label: "Applied statistics", anyOf: one("stats-413", "datasci-413") },
+    { id: "prob", group: "Core", label: "Probability", anyOf: one("stats-425", "math-425") },
+    { id: "theory", group: "Core", label: "Theoretical statistics", anyOf: one("stats-426") },
+    { id: "computing", group: "Core", label: "Statistical computing", anyOf: one("stats-306", "datasci-306") },
+    { id: "adv-1", group: "Advanced", label: "Advanced statistics course", anyOf: STATS_ADVANCED },
+    { id: "adv-2", group: "Advanced", label: "Second advanced statistics course", anyOf: STATS_ADVANCED },
+    { id: "adv-3", group: "Advanced", label: "Third advanced statistics course", anyOf: STATS_ADVANCED },
+    { id: "capstone", group: "Advanced", label: "Capstone", anyOf: one("stats-485", "datasci-485") },
+    { id: "electives", group: "Electives", label: "Total credits toward the 29-credit major", target: 29, unit: "credits", note: "Enter your total. Advisor-approved electives fill what the courses above don't.", browse: "/courses?department=STATS&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro statistics", req: "intro" }, LSA_FILLER],
+    [{ label: "EECS 183", req: "prog" }, LSA_FILLER],
+    [{ label: "Multivariable calculus", req: "calc-3" }, { label: "Statistical computing", req: "computing" }, LSA_FILLER],
+    [{ label: "Linear algebra", req: "linear" }, LSA_FILLER],
+    [{ label: "Probability", req: "prob" }, { label: "Applied statistics", req: "applied" }, LSA_FILLER],
+    [{ label: "Theoretical statistics", req: "theory" }, { label: "Advanced statistics", req: "adv-1" }, LSA_FILLER],
+    [{ label: "Advanced statistics", req: "adv-2" }, { label: "Advanced statistics", req: "adv-3" }, LSA_FILLER],
+    [{ label: "Capstone", req: "capstone" }, { label: "Remaining electives", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const COMMUNICATION: Major = {
+  id: "lsa-communication-studies",
+  name: "Communication and Media",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/communication-and-media-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2024",
+  planIsOfficial: false,
+  notes: [
+    "28 credits minimum. COMM 101 and 102 each need a C- or higher.",
+    "At most 12 credits can be 200-level, and at most 3 can be independent study or research.",
+    "See an advisor during the first term of senior year. See the source page for campus residency rules.",
+  ],
+  requirements: [
+    { id: "comm-101", group: "Prerequisites", label: "COMM 101", anyOf: one("comm-101") },
+    { id: "comm-102", group: "Prerequisites", label: "COMM 102", anyOf: one("comm-102") },
+    { id: "action", group: "Major", label: "Communication in Action", target: 1, unit: "course", note: "COMM 350-399, COMM 452/492, or an approved course of at least 3 credits.", browse: "/courses?department=COMM&level=300&offered=1" },
+    { id: "seminars", group: "Major", label: "400-level seminars", target: 2, unit: "course", note: "At least 6 credits in the department. COMM 441 and 442 don't count. These also count toward the 25 advanced credits.", browse: "/courses?department=COMM&level=400&offered=1" },
+    { id: "advanced", group: "Major", label: "Advanced COMM credits", target: 25, unit: "credits", note: "From COMM 200-499.", browse: "/courses?department=COMM&offered=1" },
+  ],
+  plan: [
+    [{ label: "COMM 101", req: "comm-101" }, LSA_FILLER],
+    [{ label: "COMM 102", req: "comm-102" }, LSA_FILLER],
+    [{ label: "Advanced COMM", credits: 3, req: "advanced" }, LSA_FILLER],
+    [{ label: "Advanced COMM", credits: 4, req: "advanced" }, LSA_FILLER],
+    [{ label: "Advanced COMM", credits: 6, req: "advanced" }, { label: "Communication in Action", req: "action" }, LSA_FILLER],
+    [{ label: "Advanced COMM", credits: 6, req: "advanced" }, LSA_FILLER],
+    [{ label: "400-level seminar", req: "seminars" }, { label: "Advanced COMM", credits: 3, req: "advanced" }, LSA_FILLER],
+    [{ label: "400-level seminar", req: "seminars" }, { label: "Advanced COMM", credits: 3, req: "advanced" }, LSA_FILLER],
+  ],
+};
+
+const ENGLISH_LIST = "https://lsa.umich.edu/english/undergraduate/english-major.html";
+
+const ENGLISH: Major = {
+  id: "lsa-english",
+  name: "English",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/english-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2026",
+  planIsOfficial: false,
+  notes: [
+    "27 credits of ENGLISH with a C- or better. There's no prerequisite to declare.",
+    "At most two 200-level courses can count, and courses can't double-count across categories.",
+    "The department publishes which courses meet each requirement every year.",
+  ],
+  requirements: [
+    { id: "found-200", group: "Foundations and Methods", label: "200-level course", target: 1, unit: "course", browse: ENGLISH_LIST },
+    { id: "found-300", group: "Foundations and Methods", label: "300- or 400-level course", target: 1, unit: "course", browse: ENGLISH_LIST },
+    { id: "region-1", group: "Regions", label: "Americas, UK, Australia, New Zealand, or Ireland", target: 1, unit: "course", browse: ENGLISH_LIST },
+    { id: "region-2", group: "Regions", label: "Africa, Asia, Middle East, or Pacific Islands", target: 1, unit: "course", browse: ENGLISH_LIST },
+    { id: "time", group: "Time", label: "Courses from two time periods", target: 2, unit: "course", note: "Two of: Medieval and Early Modern; 18th and 19th Centuries; Modern and Contemporary.", browse: ENGLISH_LIST },
+    { id: "total", group: "Electives", label: "Total credits toward the 27-credit major", target: 27, unit: "credits", note: "Enter your total. Electives fill what the courses above don't.", browse: "/courses?department=ENGLISH&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "200-level Foundations course", req: "found-200" }, LSA_FILLER],
+    [{ label: "Foundations 300/400-level", req: "found-300" }, LSA_FILLER],
+    [{ label: "Regions course", req: "region-1" }, LSA_FILLER],
+    [{ label: "Regions course", req: "region-2" }, LSA_FILLER],
+    [{ label: "Time course", req: "time" }, LSA_FILLER],
+    [{ label: "Time course", req: "time" }, LSA_FILLER],
+    [{ label: "Remaining electives", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const HISTORY_LIST = "https://lsa.umich.edu/history/undergraduates.html";
+
+const HISTORY: Major = {
+  id: "lsa-history",
+  name: "History",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/history-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2022",
+  planIsOfficial: false,
+  notes: [
+    "Ten history courses, none below the 200 level. At least five must be upper-level and five in residence.",
+    "Take HISTORY 202 in your first term after declaring. There's no prerequisite to declare.",
+    "Requirements can overlap: one course may count for a region, pre-1800, and the colloquium.",
+  ],
+  requirements: [
+    { id: "doing", group: "Required", label: "Doing History", anyOf: one("history-202") },
+    { id: "survey", group: "Required", label: "Two-part survey sequence", target: 2, unit: "course", note: "From the department's approved pairings, or your own with approval.", browse: HISTORY_LIST },
+    { id: "regions", group: "Distribution", label: "Courses in four regions", target: 4, unit: "course", note: "From North America, Latin America, Europe, Middle East/Central Asia, Africa, Asia, and Transregional/Global.", browse: HISTORY_LIST },
+    { id: "pre-1800", group: "Distribution", label: "Pre-1800 course", target: 1, unit: "course", note: "Survey sequence courses don't count here.", browse: HISTORY_LIST },
+    { id: "colloquium", group: "Required", label: "Junior-senior colloquium", note: "Honors students take HISTORY 499 instead.", anyOf: one("history-491", "history-496", "history-497", "history-499") },
+    { id: "total", group: "Total", label: "Total history courses", target: 10, unit: "course", browse: "/courses?department=HISTORY&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "History course", req: "total" }, LSA_FILLER],
+    [{ label: "HISTORY 202", req: "doing" }, { label: "Survey course", req: "survey" }, LSA_FILLER],
+    [{ label: "Survey course", req: "survey" }, { label: "Region course", req: "regions" }, LSA_FILLER],
+    [{ label: "Region course", req: "regions" }, { label: "Pre-1800 course", req: "pre-1800" }, LSA_FILLER],
+    [{ label: "Region course", req: "regions" }, LSA_FILLER],
+    [{ label: "Colloquium", req: "colloquium" }, { label: "Region course", req: "regions" }, LSA_FILLER],
+    [{ label: "Remaining history courses", req: "total" }, LSA_FILLER],
+  ],
+};
+
+const ORGSTUDY_SITE = "https://lsa.umich.edu/orgstudies";
+
+const ORG_STUDIES: Major = {
+  id: "lsa-organizational-studies",
+  name: "Organizational Studies",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/organizational-studies-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2025",
+  planIsOfficial: false,
+  notes: [
+    "This major is competitive: you apply, usually during sophomore year, with at least two prerequisites finished and the third in progress.",
+    "34 credits minimum. Many upper-level courses have their own prerequisites.",
+    "Cluster rules limit 200-level and non-Ann Arbor courses; see the source page.",
+  ],
+  requirements: [
+    { id: "econ", group: "Prerequisites", label: "Economics", anyOf: one("econ-101") },
+    { id: "psych", group: "Prerequisites", label: "Psychology", anyOf: one("psych-111", "psych-112", "psych-114", "psych-115") },
+    { id: "soc", group: "Prerequisites", label: "Sociology", anyOf: one("soc-100", "soc-102", "soc-195", "soc-300") },
+    { id: "os-305", group: "Core", label: "Inside Organizations", anyOf: one("orgstudy-305") },
+    { id: "os-310", group: "Core", label: "Formal Organizations and Environments", anyOf: one("orgstudy-310") },
+    { id: "capstone", group: "Core", label: "Senior capstone research", note: "Honors majors take ORGSTUDY 497 and 498.", anyOf: [["orgstudy-410"], ["orgstudy-497", "orgstudy-498"]] },
+    { id: "cluster-a", group: "Clusters", label: "Cluster A: organizations and individuals", target: 2, unit: "course", browse: ORGSTUDY_SITE },
+    { id: "cluster-b", group: "Clusters", label: "Cluster B: organizations and society", target: 2, unit: "course", browse: ORGSTUDY_SITE },
+    { id: "cluster-any", group: "Clusters", label: "Any cluster", target: 3, unit: "course", note: "Two of your seven cluster courses must be 300/400-level ORGSTUDY courses in Ann Arbor.", browse: ORGSTUDY_SITE },
+  ],
+  plan: [
+    [{ label: "Economics", req: "econ" }, LSA_FILLER],
+    [{ label: "Psychology", req: "psych" }, LSA_FILLER],
+    [{ label: "Sociology", req: "soc" }, LSA_FILLER],
+    [{ label: "Apply to the major" }, LSA_FILLER],
+    [{ label: "ORGSTUDY 305", req: "os-305" }, { label: "Cluster A course", req: "cluster-a" }, LSA_FILLER],
+    [{ label: "ORGSTUDY 310", req: "os-310" }, { label: "Cluster B course", req: "cluster-b" }, { label: "Cluster A course", req: "cluster-a" }],
+    [{ label: "Cluster B course", req: "cluster-b" }, { label: "Any cluster", req: "cluster-any" }, LSA_FILLER],
+    [{ label: "Capstone", req: "capstone" }, { label: "Remaining cluster courses", req: "cluster-any" }, LSA_FILLER],
+  ],
+};
+
+const PHILOSOPHY: Major = {
+  id: "lsa-philosophy",
+  name: "Philosophy",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/philosophy-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2022",
+  planIsOfficial: false,
+  notes: [
+    "25 credits minimum, each course with a C- or better. At least 16 credits must be in residence.",
+    "No course can meet more than one requirement. PHIL 288 or 289 can count as the prerequisite or a requirement, not both.",
+    "Required courses aren't offered every term, so plan ahead.",
+  ],
+  requirements: [
+    { id: "prereq", group: "Prerequisites", label: "100- or 200-level PHIL course", target: 1, unit: "course", note: "Not PHIL 180, 183, 201, or 296.", browse: "/courses?department=PHIL&level=100&offered=1" },
+    { id: "formal", group: "Requirements", label: "Formal methods", anyOf: one("phil-296", "phil-303", "phil-305", "phil-413", "phil-414") },
+    { id: "history-1", group: "Requirements", label: "History of philosophy", anyOf: one("phil-288", "phil-289", "phil-388", "phil-389") },
+    { id: "history-2", group: "Requirements", label: "Second history of philosophy course", anyOf: one("phil-288", "phil-289", "phil-323", "phil-371", "phil-385", "phil-386", "phil-388", "phil-389", "phil-391", "phil-392", "phil-393", "phil-405", "phil-406", "phil-433", "phil-458", "phil-460", "phil-461", "phil-462", "phil-463", "phil-464", "phil-466", "phil-467", "phil-474", "phil-492") },
+    { id: "value", group: "Requirements", label: "Value", anyOf: one("phil-361", "phil-362", "phil-366", "phil-367", "ppe-300") },
+    { id: "mind", group: "Requirements", label: "Mind and reality", anyOf: one("phil-345", "phil-381", "phil-383") },
+    { id: "level-400", group: "Additional", label: "400-level courses", target: 2, unit: "course", note: "Not PHIL 419, 455, 498, or 499.", browse: "/courses?department=PHIL&level=400&offered=1" },
+    { id: "level-300", group: "Additional", label: "Course at the 300 level or higher", target: 1, unit: "course", browse: "/courses?department=PHIL&level=300&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro PHIL course", req: "prereq" }, LSA_FILLER],
+    [LSA_FILLER],
+    [{ label: "Formal methods", req: "formal" }, LSA_FILLER],
+    [{ label: "History of philosophy", req: "history-1" }, LSA_FILLER],
+    [{ label: "Value", req: "value" }, LSA_FILLER],
+    [{ label: "Mind and reality", req: "mind" }, { label: "History of philosophy", req: "history-2" }, LSA_FILLER],
+    [{ label: "400-level course", req: "level-400" }, { label: "300+ course", req: "level-300" }, LSA_FILLER],
+    [{ label: "400-level course", req: "level-400" }, LSA_FILLER],
+  ],
+};
+
+const SOCIOLOGY: Major = {
+  id: "lsa-sociology",
+  name: "Sociology",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/sociology-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2023",
+  planIsOfficial: false,
+  notes: [
+    "33 credits of SOC at the 200 level or above, not counting the intro course. Each needs a C- or better, with no Pass/Fail.",
+    "First- and second-year students should take SOC 100 or 102; juniors and seniors should take SOC 300 or 302.",
+    "At least 14 elective credits must be at the 300 level or above.",
+  ],
+  requirements: [
+    { id: "intro", group: "Prerequisites", label: "Intro sociology", anyOf: one("soc-100", "soc-102", "soc-300", "soc-302") },
+    { id: "stats", group: "Required", label: "Statistics", anyOf: one("soc-210", "stats-250", "stats-280") },
+    { id: "methods", group: "Required", label: "Research methods", note: "Must be taken in Ann Arbor.", anyOf: one("soc-310") },
+    { id: "theory", group: "Required", label: "Sociological theory", note: "Must be taken in Ann Arbor.", anyOf: one("soc-305") },
+    { id: "total", group: "Electives", label: "Total credits toward the 33-credit major", target: 33, unit: "credits", note: "Enter your total, including the required courses above.", browse: "/courses?department=SOC&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro sociology", req: "intro" }, LSA_FILLER],
+    [LSA_FILLER],
+    [{ label: "Statistics", req: "stats" }, LSA_FILLER],
+    [{ label: "SOC courses", credits: 6, req: "total" }, LSA_FILLER],
+    [{ label: "Research methods", req: "methods" }, { label: "SOC courses", credits: 6, req: "total" }, LSA_FILLER],
+    [{ label: "Sociological theory", req: "theory" }, { label: "SOC courses", credits: 6, req: "total" }, LSA_FILLER],
+    [{ label: "300+ SOC courses", credits: 7, req: "total" }, LSA_FILLER],
+    [{ label: "300+ SOC courses", credits: 8, req: "total" }, LSA_FILLER],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);
@@ -526,6 +770,13 @@ export type SuggestionResult = {
 
 const subjectOf = (courseId: string) => courseId.split("-")[0];
 
+/** The next unfinished course of each option, without repeats. */
+function nextInSequence(options: string[][], completed: string[]): string[][] {
+  const done = new Set(completed);
+  const next = options.flatMap((ids) => ids.filter((id) => !done.has(id)).slice(0, 1));
+  return Array.from(new Set(next)).map((id) => [id]);
+}
+
 /**
  * Suggests next-term courses in the student's plan order. Courses with
  * published prerequisites are checked against them. Other subjects stay
@@ -579,7 +830,8 @@ export function suggestNext(
         }
         continue;
       }
-      const options = unlocked.filter((ids) => ids.every(isOffered));
+      const candidates = requirement.sequential ? nextInSequence(unlocked, progress.completed) : unlocked;
+      const options = candidates.filter((ids) => ids.every(isOffered));
       if (options.length > 0) suggestions.push({ requirement, options });
       else notOffered.push(requirement);
     } else if (termIndex <= earliestTerm + 1) {

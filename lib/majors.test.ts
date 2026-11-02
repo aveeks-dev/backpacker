@@ -171,12 +171,24 @@ test("every full plan is reachable from the program directory", () => {
   for (const p of directory) assert.match(p.url, /^https:\/\/[a-z.]*umich\.edu\//, p.id);
 });
 
+test("a sequence suggests its next course, not all of them", () => {
+  const biology = getMajor("lsa-biology")!;
+  const next = (completed: string[]) => suggestNext(biology, { completed, openProgress: {} }, everyOffered, 30).suggestions.find((s) => s.requirement.id === "intro-bio")!.options;
+  assert.deepEqual(next([]), [["biology-171"], ["biology-195"], ["biology-191"]]);
+  assert.ok(next(["biology-171"]).some((o) => o[0] === "biology-172"));
+  assert.ok(next(["biology-171"]).every((o) => o.length === 1));
+});
+
 test("core required courses exist in the real Winter 2027 or catalog data", () => {
   const catalog = JSON.parse(readFileSync(new URL("../data/catalog.json", import.meta.url), "utf8")) as { id: string }[];
   const schedule = JSON.parse(readFileSync(new URL("../data/schedule/WN2027.json", import.meta.url), "utf8")) as { courses: { id: string }[] };
   const known = new Set([...catalog.map((c) => c.id), ...schedule.courses.map((c) => c.id)]);
-  const missing = MAJORS.flatMap((m) => majorCourseIds(m)).filter((id) => !known.has(id));
-  // Some alternatives (AP-only or discontinued) aren't in either source; they still count when checked.
-  assert.ok(missing.length < 20, missing.join(", "));
+  // Official lists include AP-only and rarely offered courses that aren't in
+  // our data, but every requirement should have at least one real option.
+  for (const major of MAJORS) {
+    for (const r of major.requirements) {
+      if (r.anyOf) assert.ok(r.anyOf.some((ids) => ids.every((id) => known.has(id))), `${major.id}: ${r.id}`);
+    }
+  }
   for (const id of ["eecs-280", "eecs-281", "math-115", "econ-101", "stats-250"]) assert.ok(known.has(id));
 });

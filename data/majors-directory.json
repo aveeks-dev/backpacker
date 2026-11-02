@@ -145,7 +145,7 @@
   "id": "lsa-communication-studies",
   "name": "Communication and Media",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#communication_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/communication-and-media-major.html",
   "subject": "COMM"
  },
  {
@@ -221,7 +221,7 @@
   "id": "lsa-english",
   "name": "English",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#english-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/english-major.html",
   "subject": "ENGLISH"
  },
  {
@@ -304,7 +304,7 @@
   "id": "lsa-history",
   "name": "History",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#history-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/history-major.html",
   "subject": "HISTORY"
  },
  {
@@ -478,14 +478,14 @@
   "id": "lsa-organizational-studies",
   "name": "Organizational Studies",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#organizational_studies-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/organizational-studies-major.html",
   "subject": "ORGSTUDY"
  },
  {
   "id": "lsa-philosophy",
   "name": "Philosophy",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#philosophy-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/philosophy-major.html",
   "subject": "PHIL"
  },
  {
@@ -596,7 +596,7 @@
   "id": "lsa-sociology",
   "name": "Sociology",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#sociology-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/sociology-major.html",
   "subject": "SOC"
  },
  {
@@ -624,7 +624,7 @@
   "id": "lsa-statistics",
   "name": "Statistics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#statistics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/statistics-major.html",
   "subject": "STATS"
  },
  {
