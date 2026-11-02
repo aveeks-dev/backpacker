@@ -648,7 +648,209 @@ const SOCIOLOGY: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY];
+const PHYSICS: Major = {
+  id: "lsa-physics",
+  name: "Physics",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/physics-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2026",
+  planIsOfficial: false,
+  notes: [
+    "35 credits minimum. You don't have to finish the intro sequence before declaring.",
+    "Recommended math: MATH 115 or 185, 116 or 186, 215 or 285, and 216, 286, or 316. These aren't listed as requirements, but you're expected to know this material.",
+    "Take PHYSICS 316 by the end of sophomore year if you can, and PHYSICS 401 and 405 before 453.",
+  ],
+  requirements: [
+    { id: "intro-1", group: "Prerequisites", label: "Intro physics I with lab", anyOf: [["physics-140", "physics-141"], ["physics-160", "physics-141"], ["physics-160", "physics-161"]] },
+    { id: "intro-2", group: "Prerequisites", label: "Intro physics II with lab", anyOf: [["physics-240", "physics-241"], ["physics-260", "physics-241"], ["physics-260", "physics-261"]] },
+    { id: "p-316", group: "Intermediate", label: "Mathematical Methods", anyOf: one("physics-316") },
+    { id: "p-390", group: "Intermediate", label: "Introduction to Modern Physics", anyOf: one("physics-390") },
+    { id: "p-391", group: "Intermediate", label: "Modern Physics Lab", anyOf: one("physics-391") },
+    { id: "p-401", group: "Advanced", label: "Intermediate Mechanics", anyOf: one("physics-401") },
+    { id: "p-405", group: "Advanced", label: "Intermediate Electricity and Magnetism", anyOf: one("physics-405") },
+    { id: "p-406", group: "Advanced", label: "Statistical and Thermal Physics", anyOf: one("physics-406") },
+    { id: "p-441", group: "Advanced", label: "Advanced Laboratory I", anyOf: one("physics-441") },
+    { id: "p-453", group: "Advanced", label: "Quantum Mechanics", anyOf: one("physics-453") },
+    { id: "electives", group: "Electives", label: "Elective courses", target: 4, unit: "course", note: "At least 12 credits, from the list on the source page.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/physics-major.html" },
+  ],
+  plan: [
+    [{ label: "Calculus I (recommended)" }, LSA_FILLER],
+    [{ label: "Intro physics I with lab", req: "intro-1" }, { label: "Calculus II (recommended)" }, LSA_FILLER],
+    [{ label: "Intro physics II with lab", req: "intro-2" }, { label: "Multivariable calculus (recommended)" }, LSA_FILLER],
+    [{ label: "PHYSICS 316", req: "p-316" }, { label: "Differential equations (recommended)" }, LSA_FILLER],
+    [{ label: "PHYSICS 390", req: "p-390" }, { label: "PHYSICS 391", req: "p-391" }, { label: "PHYSICS 401", req: "p-401" }, LSA_FILLER],
+    [{ label: "PHYSICS 405", req: "p-405" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "PHYSICS 453", req: "p-453" }, { label: "PHYSICS 441", req: "p-441" }, { label: "Elective", req: "electives" }, LSA_FILLER],
+    [{ label: "PHYSICS 406", req: "p-406" }, { label: "Remaining electives", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const ANTHROPOLOGY: Major = {
+  id: "lsa-anthropology",
+  name: "Anthropology",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/anthropology-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2023",
+  planIsOfficial: false,
+  notes: [
+    "32 credits minimum at the 200 level or above, with at least one course at the 400 level or above.",
+    "No prerequisites, but ANTHRCUL 101 is recommended.",
+    "At most 6 credits of independent research. At least 20 credits must be in residence. The source page lists major exclusions.",
+  ],
+  requirements: [
+    { id: "archaeology", group: "Subfields", label: "Anthropological archaeology", anyOf: one("anthrarc-282", "anthrarc-386") },
+    { id: "biological", group: "Subfields", label: "Biological anthropology", anyOf: one("anthrbio-201") },
+    { id: "linguistic", group: "Subfields", label: "Linguistic anthropology", anyOf: one("anthrcul-272", "anthrcul-374") },
+    { id: "sociocultural", group: "Subfields", label: "Sociocultural anthropology", anyOf: one("anthrcul-222", "anthrcul-226", "anthrcul-230", "anthrcul-330") },
+    { id: "level-400", group: "Electives", label: "Course at the 400 level or above", target: 1, unit: "course", browse: "/courses?department=ANTHRCUL&level=400&offered=1" },
+    { id: "total", group: "Electives", label: "Total credits toward the 32-credit major", target: 32, unit: "credits", note: "Enter your total. Use ANTHRARC, ANTHRBIO, or ANTHRCUL courses.", browse: "/courses?department=ANTHRCUL&offered=1" },
+  ],
+  plan: [
+    [{ label: "ANTHRCUL 101 (recommended)" }, LSA_FILLER],
+    [{ label: "Biological anthropology", req: "biological" }, LSA_FILLER],
+    [{ label: "Sociocultural anthropology", req: "sociocultural" }, LSA_FILLER],
+    [{ label: "Archaeology", req: "archaeology" }, LSA_FILLER],
+    [{ label: "Linguistic anthropology", req: "linguistic" }, LSA_FILLER],
+    [{ label: "Anthropology electives", credits: 8, req: "total" }, LSA_FILLER],
+    [{ label: "Anthropology electives", credits: 8, req: "total" }, LSA_FILLER],
+    [{ label: "400-level course", req: "level-400" }, LSA_FILLER],
+  ],
+};
+
+const AMCULT: Major = {
+  id: "lsa-american-culture",
+  name: "American Culture",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/american-culture-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2014",
+  planIsOfficial: false,
+  notes: [
+    "28 credits minimum, with no prerequisites. At most 9 credits at the 200 level can count.",
+    "One course can meet more than one breadth requirement, depending on its content.",
+    "This requirement version is from 2014, the newest on the LSA page. Confirm with an advisor.",
+  ],
+  requirements: [
+    { id: "core", group: "Required", label: "Practices of American Culture", anyOf: one("amcult-300") },
+    { id: "capstone", group: "Required", label: "Capstone Seminar", anyOf: one("amcult-498") },
+    { id: "pre-20th", group: "Breadth", label: "Pre-Twentieth-Century United States", target: 1, unit: "course", browse: "/courses?department=AMCULT&offered=1" },
+    { id: "transnational", group: "Breadth", label: "Transnationalism, Diaspora, and/or Empire", target: 1, unit: "course", browse: "/courses?department=AMCULT&offered=1" },
+    { id: "gender", group: "Breadth", label: "Women, Gender, and/or Sexuality", target: 1, unit: "course", browse: "/courses?department=AMCULT&offered=1" },
+    { id: "ethnic", group: "Breadth", label: "Ethnic and/or Indigenous Studies", target: 1, unit: "course", browse: "/courses?department=AMCULT&offered=1" },
+    { id: "total", group: "Electives", label: "Total credits toward the 28-credit major", target: 28, unit: "credits", note: "Enter your total. Use 200-level or higher AMCULT, LATINOAM, ASIANPAM, NATIVEAM, or ARABAM courses.", browse: "/courses?department=AMCULT&offered=1" },
+  ],
+  plan: [
+    [LSA_FILLER],
+    [{ label: "Breadth course", req: "pre-20th" }, LSA_FILLER],
+    [{ label: "Breadth course", req: "transnational" }, LSA_FILLER],
+    [{ label: "AMCULT 300", req: "core" }, LSA_FILLER],
+    [{ label: "Breadth course", req: "gender" }, LSA_FILLER],
+    [{ label: "Breadth course", req: "ethnic" }, LSA_FILLER],
+    [{ label: "Electives", credits: 14, req: "total" }, LSA_FILLER],
+    [{ label: "AMCULT 498", req: "capstone" }, { label: "Electives", credits: 14, req: "total" }, LSA_FILLER],
+  ],
+};
+
+const HISTORY_OF_ART: Major = {
+  id: "lsa-history-of-art",
+  name: "History of Art",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/history-of-art-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2023",
+  planIsOfficial: false,
+  notes: [
+    "30 credits minimum: 24 in History of Art plus 6 cognate credits. There are no prerequisites.",
+    "Your courses must cover at least three of five time periods and three of six regions. Three courses can be enough.",
+    "An advisor must approve your cognates. At least 15 credits must be in residence.",
+  ],
+  requirements: [
+    { id: "level-200", group: "History of Art", label: "200-level credits", target: 6, unit: "credits", browse: "/courses?department=HISTART&level=200&offered=1" },
+    { id: "seminar", group: "History of Art", label: "Seminar", target: 1, unit: "course", note: "3 credits. Counts toward the 12 upper-level credits.", browse: "/courses?department=HISTART&offered=1" },
+    { id: "level-300", group: "History of Art", label: "Credits at the 300 level or higher", target: 12, unit: "credits", browse: "/courses?department=HISTART&level=300&offered=1" },
+    { id: "additional", group: "History of Art", label: "Additional credits at the 200 level or higher", target: 6, unit: "credits", browse: "/courses?department=HISTART&offered=1" },
+    { id: "studio", group: "Cognates", label: "Studio course", target: 1, unit: "course", note: "At least 3 credits, approved by an advisor.", browse: "/courses?department=ARTDES&offered=1" },
+    { id: "cognate", group: "Cognates", label: "Related advisor-approved course", target: 1, unit: "course", note: "At least 3 credits.", browse: "/courses?offered=1" },
+  ],
+  plan: [
+    [{ label: "200-level HISTART", credits: 3, req: "level-200" }, LSA_FILLER],
+    [{ label: "200-level HISTART", credits: 3, req: "level-200" }, LSA_FILLER],
+    [{ label: "Studio course", req: "studio" }, LSA_FILLER],
+    [{ label: "Additional HISTART", credits: 3, req: "additional" }, LSA_FILLER],
+    [{ label: "Upper-level HISTART", credits: 3, req: "level-300" }, { label: "Additional HISTART", credits: 3, req: "additional" }, LSA_FILLER],
+    [{ label: "Upper-level HISTART", credits: 3, req: "level-300" }, { label: "Related course", req: "cognate" }, LSA_FILLER],
+    [{ label: "Upper-level HISTART", credits: 3, req: "level-300" }, LSA_FILLER],
+    [{ label: "Upper-level HISTART", credits: 3, req: "level-300" }, { label: "Seminar", req: "seminar" }, LSA_FILLER],
+  ],
+};
+
+const LINGUISTICS: Major = {
+  id: "lsa-linguistics",
+  name: "Linguistics",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/linguistics-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2023",
+  planIsOfficial: false,
+  notes: [
+    "30 credits, all at the 300 level or higher except one of LING 209 or 210.",
+    "No prerequisites, but LING 111, 209, or 210 are recommended. Take LING 313, 315, and 316 as soon as you can.",
+    "At most 9 credits of independent study and experiential courses can count.",
+  ],
+  requirements: [
+    { id: "l-313", group: "Core", label: "Sound Patterns", anyOf: one("ling-313") },
+    { id: "l-315", group: "Core", label: "Introduction to Syntax", anyOf: one("ling-315") },
+    { id: "l-316", group: "Core", label: "Aspects of Meaning", anyOf: one("ling-316") },
+    { id: "l-497", group: "Core", label: "Capstone Seminar", note: "Needs LING 313, 315, and 316 first, unless the instructor allows taking them together.", anyOf: one("ling-497") },
+    { id: "electives", group: "Electives", label: "Elective credits", target: 18, unit: "credits", note: "300+ LING courses, approved cognates, and one of LING 209 or 210.", browse: "/courses?department=LING&offered=1" },
+  ],
+  plan: [
+    [{ label: "LING 111, 209, or 210 (recommended)" }, LSA_FILLER],
+    [LSA_FILLER],
+    [{ label: "LING 313", req: "l-313" }, LSA_FILLER],
+    [{ label: "LING 315", req: "l-315" }, LSA_FILLER],
+    [{ label: "LING 316", req: "l-316" }, { label: "Electives", credits: 3, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 6, req: "electives" }, LSA_FILLER],
+    [{ label: "Electives", credits: 6, req: "electives" }, LSA_FILLER],
+    [{ label: "LING 497", req: "l-497" }, { label: "Electives", credits: 3, req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const MICROBIOLOGY: Major = {
+  id: "lsa-microbiology",
+  name: "Microbiology",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/microbiology-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "31 credits minimum. Courses used for the major can't be Pass/Fail.",
+    "Only one of MCDB 436 and MICRBIOL 440 counts toward the major.",
+    "This major has exclusions with other biology majors; see the source page.",
+  ],
+  requirements: [
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY, sequential: true },
+    { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II with lab", anyOf: [["chem-215", "chem-216"]] },
+    { id: "quant", group: "Prerequisites", label: "Quantitative analysis courses", target: 4, unit: "course", note: "Four from calculus, physics, programming, statistics, BIOLOGY 202, or BIOPHYS/PHYSICS 290. They can't also count as electives.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/microbiology-major.html" },
+    { id: "micro", group: "Core", label: "Microbiology", anyOf: one("biology-207") },
+    { id: "genetics", group: "Core", label: "Genetics", anyOf: one("biology-305") },
+    { id: "biochem", group: "Core", label: "Biochemistry", anyOf: one("mcdb-310", "biolchem-415", "chem-351") },
+    { id: "lab-1", group: "Advanced lab", label: "Lab 1", anyOf: one("mcdb-429", "eeb-447") },
+    { id: "lab-2", group: "Advanced lab", label: "Lab 2", target: 1, unit: "course", note: "Independent research (3 credits), MCDB 306, EPID 504 or 545, BIOLCHEM 416, or the other Lab 1 course.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/microbiology-major.html" },
+    { id: "specified", group: "Electives", label: "Specified electives", target: 4, unit: "course", note: "At least 12 credits from Group 1 on the source page.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/microbiology-major.html" },
+    { id: "total", group: "Electives", label: "Total credits toward the 31-credit major", target: 31, unit: "credits", note: "Enter your total. Group 2 electives fill what's left.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/microbiology-major.html" },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "Rest of intro biology", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 210 + 211", req: "chem-1" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 215 + 216", req: "chem-2" }, { label: "BIOLOGY 207", req: "micro" }, { label: "Quantitative course", req: "quant" }],
+    [{ label: "BIOLOGY 305", req: "genetics" }, { label: "Specified elective", req: "specified" }, LSA_FILLER],
+    [{ label: "Biochemistry", req: "biochem" }, { label: "Lab 1", req: "lab-1" }, { label: "Specified elective", req: "specified" }],
+    [{ label: "Lab 2", req: "lab-2" }, { label: "Specified elective", req: "specified" }, LSA_FILLER],
+    [{ label: "Specified elective", req: "specified" }, { label: "Remaining electives", req: "total" }, LSA_FILLER],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL, STATISTICS, COMMUNICATION, ENGLISH, HISTORY, ORG_STUDIES, PHILOSOPHY, SOCIOLOGY, PHYSICS, ANTHROPOLOGY, AMCULT, HISTORY_OF_ART, LINGUISTICS, MICROBIOLOGY];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);

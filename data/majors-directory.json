@@ -17,14 +17,14 @@
   "id": "lsa-american-culture",
   "name": "American Culture",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#american_culture-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/american-culture-major.html",
   "subject": "AMCULT"
  },
  {
   "id": "lsa-anthropology",
   "name": "Anthropology",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#anthropology-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/anthropology-major.html",
   "subject": "ANTHRCUL"
  },
  {
@@ -311,7 +311,7 @@
   "id": "lsa-history-of-art",
   "name": "History of Art",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#history_of_art-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/history-of-art-major.html",
   "subject": "HISTART"
  },
  {
@@ -409,7 +409,7 @@
   "id": "lsa-linguistics",
   "name": "Linguistics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#linguistics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/linguistics-major.html",
   "subject": "LING"
  },
  {
@@ -444,7 +444,7 @@
   "id": "lsa-microbiology",
   "name": "Microbiology",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#microbiology-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/microbiology-major.html",
   "subject": "MCDB"
  },
  {
@@ -499,7 +499,7 @@
   "id": "lsa-physics",
   "name": "Physics",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#physics-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/physics-major.html",
   "subject": "PHYSICS"
  },
  {
