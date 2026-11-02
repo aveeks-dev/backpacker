@@ -775,7 +775,7 @@
   "id": "school-of-information-bachelor-of-science-in-information",
   "name": "Bachelor of Science in Information",
   "school": "School of Information",
-  "url": "https://si.umich.edu/programs/bachelor-science-information",
+  "url": "https://si.umich.edu/programs/degree-programs/bachelor-science-information/bachelor-science-information-curriculum",
   "subject": "SI"
  },
  {
@@ -1017,13 +1017,13 @@
   "id": "public-health-ba-in-community-and-global-public-health",
   "name": "BA in Community and Global Public Health",
   "school": "Public Health",
-  "url": "https://sph.umich.edu/undergrad/degrees/index.html"
+  "url": "https://sph.umich.edu/undergrad/degrees/degree-requirements.html"
  },
  {
   "id": "public-health-bs-in-public-health-sciences",
   "name": "BS in Public Health Sciences",
   "school": "Public Health",
-  "url": "https://sph.umich.edu/undergrad/degrees/index.html"
+  "url": "https://sph.umich.edu/undergrad/degrees/degree-requirements.html"
  },
  {
   "id": "public-policy-bachelor-of-arts-in-public-policy",

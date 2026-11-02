@@ -68,9 +68,9 @@ export default function Home() {
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-6 sm:px-6">
         <h2 className="text-2xl font-semibold">Four-year plans by major</h2>
-        <p className="mt-1 text-slate-600">Find any of {PROGRAMS.length} U-M programs. These have full checklists and roadmaps so far, with more on the way.</p>
+        <p className="mt-1 text-slate-600">Find any of {PROGRAMS.length} U-M programs. {PROGRAMS.filter(hasFullPlan).length} have full checklists and roadmaps so far, including:</p>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {PROGRAMS.filter(hasFullPlan).map((m) => (
+          {PROGRAMS.filter(hasFullPlan).slice(0, 8).map((m) => (
             <li key={m.id} className="rounded-md border border-slate-200 bg-white p-5">
               <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{m.school}</div>
               <div className="mt-1 font-display text-lg font-semibold">{m.name}</div>

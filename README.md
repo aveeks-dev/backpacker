@@ -4,8 +4,8 @@ Backpacker helps University of Michigan students figure out what to take and whe
 
 ## What you can do
 
-- Choose a major (CS in Engineering or LSA, Data Science, or Economics), mark what you've taken, and see remaining requirements and next-term suggestions that respect published EECS prerequisites.
-- Rearrange a four-year roadmap, with status by year and an optional fifth year. CS-Engineering starts from the department's official sample schedule; the others start from a clearly labeled suggested order.
+- Find any of 160 U-M programs. Those with full plans let you mark what you've taken and see remaining requirements and next-term suggestions that respect published EECS prerequisites. Others link to their official requirements.
+- Rearrange a four-year roadmap, with status by year and an optional fifth year. Engineering plans with a verified sample schedule start from it; others start from a clearly labeled suggested order.
 - Browse courses as cards, filter by school, and save the ones you like. Each course links to its Rate My Professors searches and its Atlas evaluations.
 - Generate every conflict-free Winter 2027 schedule for up to 8 courses, ranked by later starts, fewer gaps, or fewer days on campus, with hard limits like "no class before 10am" or "Fridays off".
 - Lock the sections you want and let the generator fill in the rest; each result lists the class numbers to put in your Wolverine Access backpack.
