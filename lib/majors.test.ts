@@ -195,7 +195,7 @@ test("core required courses exist in the real Winter 2027 or catalog data", () =
   // for courses not offered this term.
   const catalogSubjects = new Set(catalog.map((c) => c.id.split("-")[0]));
   // These are on official major pages but not in our catalog data.
-  const unchecked = (id: string) => !catalogSubjects.has(id.split("-")[0]) || ["biophys-495", "pubpol-315"].includes(id);
+  const unchecked = (id: string) => !catalogSubjects.has(id.split("-")[0]) || ["biophys-495", "pubpol-315", "educ-241", "educ-271", "educ-481", "educ-482"].includes(id);
   for (const major of MAJORS) {
     for (const r of major.requirements) {
       if (r.anyOf) assert.ok(r.anyOf.some((ids) => ids.every((id) => known.has(id) || unchecked(id))), `${major.id}: ${r.id}`);

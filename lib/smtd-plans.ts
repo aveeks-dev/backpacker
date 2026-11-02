@@ -8709,6 +8709,669 @@ export const SMTD_PLANS: Major[] = [
   ]
  },
  {
+  "id": "music-theatre-dance-bachelor-of-science-in-sound-engineering",
+  "name": "Bachelor of Science in Sound Engineering",
+  "school": "Music, Theatre & Dance",
+  "sourceUrl": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/",
+  "sourceLabel": "SMTD degree page and Silent Advisor, 2025-26",
+  "planIsOfficial": true,
+  "planSourceUrl": "https://docs.google.com/document/d/1katKpT2i5qx0JN6fr9M6XYKSRHGfA_cg9OBdkXLxoss/edit",
+  "notes": [
+   "The source document lists 14.5 credits of rows for first-year fall but states 15.5. This page shows the rows as published, so check with an advisor.",
+   "This follows the 2025-26 Silent Advisor. Students follow the requirements of the year they were admitted, so use your own year's document.",
+   "The layout is a guideline, and credit ranges are shown at the low end. The linked document lists every requirement and option.",
+   "Courses repeated across terms and courses with options are tracked by credits. Lessons depend on your studio."
+  ],
+  "requirements": [
+   {
+    "id": "pat-400-pat-seminar",
+    "group": "Program requirements",
+    "label": "PAT 400: PAT Seminar",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "theory-139-aural-skills-i",
+    "group": "Program requirements",
+    "label": "Theory 139: Aural Skills I",
+    "target": 1,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "theory-149-written-skills-i",
+    "group": "Program requirements",
+    "label": "Theory 149: Written Skills I",
+    "target": 2,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "piano-110-class-piano",
+    "group": "Term layout courses",
+    "label": "Piano 110: Class Piano",
+    "credits": 2,
+    "anyOf": [
+     [
+      "piano-110"
+     ]
+    ]
+   },
+   {
+    "id": "pat-101-seminar-in-media-arts",
+    "group": "Term layout courses",
+    "label": "PAT 101: Seminar in Media Arts",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-101"
+     ]
+    ]
+   },
+   {
+    "id": "pat-201-intro-to-computer-music",
+    "group": "Term layout courses",
+    "label": "PAT 201: Intro to Computer Music",
+    "credits": 2,
+    "anyOf": [
+     [
+      "pat-201"
+     ]
+    ]
+   },
+   {
+    "id": "english-124-125-or-equivalent-first-year-writing",
+    "group": "Electives and general requirements",
+    "label": "English 124/125 or equivalent: First Year Writing",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "theory-140-aural-skills-ii-theory-150-written-sk",
+    "group": "Program requirements",
+    "label": "Theory 140: Aural Skills II/Theory 150: Written Skills II OR PAT 150: Experiential Theory",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "piano-111-class-piano",
+    "group": "Term layout courses",
+    "label": "Piano 111: Class Piano",
+    "credits": 2,
+    "anyOf": [
+     [
+      "piano-111"
+     ]
+    ]
+   },
+   {
+    "id": "pat-102-acoustics-and-psychoacoustics",
+    "group": "Term layout courses",
+    "label": "PAT 102: Acoustics and Psychoacoustics",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-102"
+     ]
+    ]
+   },
+   {
+    "id": "pat-202-computer-music-programming",
+    "group": "Term layout courses",
+    "label": "PAT 202: Computer Music Programming",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-202"
+     ]
+    ]
+   },
+   {
+    "id": "pat-204-creative-coding-for-music",
+    "group": "Term layout courses",
+    "label": "PAT 204: Creative Coding for Music",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-204"
+     ]
+    ]
+   },
+   {
+    "id": "race-and-ethnicity-elective",
+    "group": "Electives and general requirements",
+    "label": "Race and Ethnicity Elective",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "theory-239-aural-skills-iii-theory-249-written-s",
+    "group": "Program requirements",
+    "label": "Theory 239: Aural Skills III/Theory 249: Written Skills II OR Jazz 220: Basic Musicians...",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "pat-331-sound-recording-and-production-i",
+    "group": "Term layout courses",
+    "label": "PAT 331: Sound Recording and Production I",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-331"
+     ]
+    ]
+   },
+   {
+    "id": "math-115-calculus-i",
+    "group": "Term layout courses",
+    "label": "Math 115: Calculus I",
+    "credits": 4,
+    "anyOf": [
+     [
+      "math-115"
+     ]
+    ]
+   },
+   {
+    "id": "computer-programming",
+    "group": "Program requirements",
+    "label": "Computer Programming",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "theory-240-aural-skills-iv-theory-250-written-sk",
+    "group": "Program requirements",
+    "label": "Theory 240: Aural Skills IV/Theory 250: Written Skills IV OR Jazz 221: Basic Musiciansh...",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "pat-332-sound-recording-and-production-ii",
+    "group": "Term layout courses",
+    "label": "PAT 332: Sound Recording and Production II",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-332"
+     ]
+    ]
+   },
+   {
+    "id": "math-116-calculus-ii",
+    "group": "Term layout courses",
+    "label": "Math 116: Calculus II",
+    "credits": 4,
+    "anyOf": [
+     [
+      "math-116"
+     ]
+    ]
+   },
+   {
+    "id": "physics-140-physics-i",
+    "group": "Term layout courses",
+    "label": "Physics 140: Physics I",
+    "credits": 4,
+    "anyOf": [
+     [
+      "physics-140"
+     ]
+    ]
+   },
+   {
+    "id": "physics-141-elementary-lab-i",
+    "group": "Term layout courses",
+    "label": "Physics 141 Elementary Lab I",
+    "credits": 1,
+    "anyOf": [
+     [
+      "physics-141"
+     ]
+    ]
+   },
+   {
+    "id": "musicology-elective",
+    "group": "Electives and general requirements",
+    "label": "Musicology Elective",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "pat-280-sound-reinforcement",
+    "group": "Term layout courses",
+    "label": "PAT 280: Sound Reinforcement",
+    "credits": 1,
+    "anyOf": [
+     [
+      "pat-280"
+     ]
+    ]
+   },
+   {
+    "id": "math-216-differential-equations",
+    "group": "Term layout courses",
+    "label": "Math 216: Differential Equations",
+    "credits": 4,
+    "anyOf": [
+     [
+      "math-216"
+     ]
+    ]
+   },
+   {
+    "id": "physics-240-general-physics",
+    "group": "Term layout courses",
+    "label": "Physics 240: General Physics",
+    "credits": 4,
+    "anyOf": [
+     [
+      "physics-240"
+     ]
+    ]
+   },
+   {
+    "id": "physics-241-elementary-lab-ii",
+    "group": "Term layout courses",
+    "label": "Physics 241: Elementary Lab II",
+    "credits": 1,
+    "anyOf": [
+     [
+      "physics-241"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-215-intro-to-electronic-circuits",
+    "group": "Term layout courses",
+    "label": "EECS 215: Intro to Electronic Circuits",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-215"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-216-intro-to-signals-systems",
+    "group": "Term layout courses",
+    "label": "EECS 216: Intro to Signals & Systems",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-216"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-280-programming-and-data-structures",
+    "group": "Term layout courses",
+    "label": "EECS 280: Programming and Data Structures",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-280"
+     ]
+    ]
+   },
+   {
+    "id": "upper-level-writing",
+    "group": "Electives and general requirements",
+    "label": "Upper Level Writing",
+    "target": 4,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   },
+   {
+    "id": "pat-422-technical-ear-training",
+    "group": "Term layout courses",
+    "label": "PAT 422: Technical Ear Training",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-422"
+     ]
+    ]
+   },
+   {
+    "id": "pat-431-contemporary-practices-in-production-i",
+    "group": "Term layout courses",
+    "label": "PAT 431: Contemporary Practices in Production I",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-431"
+     ]
+    ]
+   },
+   {
+    "id": "pat-380-sound-for-theatre",
+    "group": "Term layout courses",
+    "label": "PAT 380: Sound for Theatre",
+    "credits": 2,
+    "anyOf": [
+     [
+      "pat-380"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-351-digital-signal-processing",
+    "group": "Term layout courses",
+    "label": "EECS 351: Digital Signal Processing",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-351"
+     ]
+    ]
+   },
+   {
+    "id": "pat-432-contemporary-practices-in-production-ii",
+    "group": "Term layout courses",
+    "label": "PAT 432: Contemporary Practices in Production II",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-432"
+     ]
+    ]
+   },
+   {
+    "id": "pat-490-senior-thesis",
+    "group": "Term layout courses",
+    "label": "PAT 490: Senior Thesis",
+    "credits": 3,
+    "anyOf": [
+     [
+      "pat-490"
+     ]
+    ]
+   },
+   {
+    "id": "eecs-452-design-lab",
+    "group": "Term layout courses",
+    "label": "EECS 452: Design Lab",
+    "credits": 4,
+    "anyOf": [
+     [
+      "eecs-452"
+     ]
+    ]
+   },
+   {
+    "id": "elective",
+    "group": "Electives and general requirements",
+    "label": "Elective",
+    "target": 3,
+    "unit": "credits",
+    "browse": "https://smtd.umich.edu/degree/bachelor-of-science-in-sound-engineering/"
+   }
+  ],
+  "plan": [
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "Theory 139: Aural Skills I",
+     "credits": 1,
+     "req": "theory-139-aural-skills-i"
+    },
+    {
+     "label": "Theory 149: Written Skills I",
+     "credits": 2,
+     "req": "theory-149-written-skills-i"
+    },
+    {
+     "label": "Piano 110: Class Piano",
+     "credits": 2,
+     "req": "piano-110-class-piano"
+    },
+    {
+     "label": "PAT 101: Seminar in Media Arts",
+     "credits": 3,
+     "req": "pat-101-seminar-in-media-arts"
+    },
+    {
+     "label": "PAT 201: Intro to Computer Music",
+     "credits": 2,
+     "req": "pat-201-intro-to-computer-music"
+    },
+    {
+     "label": "English 124/125 or equivalent: First Year Writing",
+     "credits": 4,
+     "req": "english-124-125-or-equivalent-first-year-writing"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "Theory 140: Aural Skills II/Theory 150: Written Skills II OR PAT 150: Experiential Theory",
+     "credits": 3,
+     "req": "theory-140-aural-skills-ii-theory-150-written-sk"
+    },
+    {
+     "label": "Piano 111: Class Piano",
+     "credits": 2,
+     "req": "piano-111-class-piano"
+    },
+    {
+     "label": "PAT 102: Acoustics and Psychoacoustics",
+     "credits": 3,
+     "req": "pat-102-acoustics-and-psychoacoustics"
+    },
+    {
+     "label": "PAT 202: Computer Music Programming",
+     "credits": 3,
+     "req": "pat-202-computer-music-programming"
+    },
+    {
+     "label": "PAT 204: Creative Coding for Music",
+     "credits": 3,
+     "req": "pat-204-creative-coding-for-music"
+    },
+    {
+     "label": "Race and Ethnicity Elective",
+     "credits": 3,
+     "req": "race-and-ethnicity-elective"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "Theory 239: Aural Skills III/Theory 249: Written Skills II OR Jazz 220: Basic Musicians...",
+     "credits": 3,
+     "req": "theory-239-aural-skills-iii-theory-249-written-s"
+    },
+    {
+     "label": "PAT 331: Sound Recording and Production I",
+     "credits": 3,
+     "req": "pat-331-sound-recording-and-production-i"
+    },
+    {
+     "label": "Math 115: Calculus I",
+     "credits": 4,
+     "req": "math-115-calculus-i"
+    },
+    {
+     "label": "Computer Programming",
+     "credits": 3,
+     "req": "computer-programming"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "Theory 240: Aural Skills IV/Theory 250: Written Skills IV OR Jazz 221: Basic Musiciansh...",
+     "credits": 3,
+     "req": "theory-240-aural-skills-iv-theory-250-written-sk"
+    },
+    {
+     "label": "PAT 332: Sound Recording and Production II",
+     "credits": 3,
+     "req": "pat-332-sound-recording-and-production-ii"
+    },
+    {
+     "label": "Math 116: Calculus II",
+     "credits": 4,
+     "req": "math-116-calculus-ii"
+    },
+    {
+     "label": "Physics 140: Physics I",
+     "credits": 4,
+     "req": "physics-140-physics-i"
+    },
+    {
+     "label": "Physics 141 Elementary Lab I",
+     "credits": 1,
+     "req": "physics-141-elementary-lab-i"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "Musicology Elective",
+     "credits": 2,
+     "req": "musicology-elective"
+    },
+    {
+     "label": "PAT 280: Sound Reinforcement",
+     "credits": 1,
+     "req": "pat-280-sound-reinforcement"
+    },
+    {
+     "label": "Math 216: Differential Equations",
+     "credits": 4,
+     "req": "math-216-differential-equations"
+    },
+    {
+     "label": "Physics 240: General Physics",
+     "credits": 4,
+     "req": "physics-240-general-physics"
+    },
+    {
+     "label": "Physics 241: Elementary Lab II",
+     "credits": 1,
+     "req": "physics-241-elementary-lab-ii"
+    },
+    {
+     "label": "EECS 215: Intro to Electronic Circuits",
+     "credits": 4,
+     "req": "eecs-215-intro-to-electronic-circuits"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "Musicology Elective",
+     "credits": 2,
+     "req": "musicology-elective"
+    },
+    {
+     "label": "EECS 216: Intro to Signals & Systems",
+     "credits": 4,
+     "req": "eecs-216-intro-to-signals-systems"
+    },
+    {
+     "label": "EECS 280: Programming and Data Structures",
+     "credits": 4,
+     "req": "eecs-280-programming-and-data-structures"
+    },
+    {
+     "label": "Upper Level Writing",
+     "credits": 4,
+     "req": "upper-level-writing"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "PAT 422: Technical Ear Training",
+     "credits": 3,
+     "req": "pat-422-technical-ear-training"
+    },
+    {
+     "label": "PAT 431: Contemporary Practices in Production I",
+     "credits": 3,
+     "req": "pat-431-contemporary-practices-in-production-i"
+    },
+    {
+     "label": "PAT 380: Sound for Theatre",
+     "credits": 2,
+     "req": "pat-380-sound-for-theatre"
+    },
+    {
+     "label": "EECS 351: Digital Signal Processing",
+     "credits": 4,
+     "req": "eecs-351-digital-signal-processing"
+    }
+   ],
+   [
+    {
+     "label": "PAT 400: PAT Seminar",
+     "credits": 0.5,
+     "req": "pat-400-pat-seminar"
+    },
+    {
+     "label": "PAT 432: Contemporary Practices in Production II",
+     "credits": 3,
+     "req": "pat-432-contemporary-practices-in-production-ii"
+    },
+    {
+     "label": "PAT 490: Senior Thesis",
+     "credits": 3,
+     "req": "pat-490-senior-thesis"
+    },
+    {
+     "label": "EECS 452: Design Lab",
+     "credits": 4,
+     "req": "eecs-452-design-lab"
+    },
+    {
+     "label": "Elective",
+     "credits": 3,
+     "req": "elective"
+    }
+   ]
+  ]
+ },
+ {
   "id": "music-theatre-dance-bachelor-of-music-in-piano-performance",
   "name": "Bachelor of Music in Piano Performance",
   "school": "Music, Theatre & Dance",
