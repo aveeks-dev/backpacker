@@ -203,7 +203,208 @@ const ECON_LSA: Major = {
   ],
 };
 
-export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA];
+const INTRO_BIOLOGY: string[][] = [
+  ["biology-171", "biology-172", "biology-173"],
+  ["biology-171", "biology-174", "biology-173"],
+  ["biology-171", "biology-172", "biology-196"],
+  ["biology-171", "biology-174", "biology-196"],
+  ["biology-195", "biology-173"],
+  ["biology-195", "biology-196"],
+  ["biology-191", "biology-192", "biology-173"],
+  ["biology-191", "biology-192", "biology-196"],
+];
+
+const BIOLOGY: Major = {
+  id: "lsa-biology",
+  name: "Biology",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/biology-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "30 credits minimum with a 2.0 GPA or better in the major. To declare, finish the intro biology sequence and one term in residence.",
+    "Courses used for the major can't be Pass/Fail, and intro biology must be taken for a grade.",
+    "This major excludes several other biology-related majors and minors; see the source page.",
+  ],
+  requirements: [
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY },
+    { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II with lab", anyOf: [["chem-215", "chem-216"]] },
+    { id: "quant", group: "Prerequisites", label: "Quantitative analysis courses", target: 4, unit: "course", note: "Four from calculus, physics, programming, statistics, BIOLOGY 131 or 202, BIOPHYS/PHYSICS 290, or EARTH 468. They can't also count as major electives.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/biology-major.html" },
+    { id: "group-1", group: "Biology groups", label: "Group I: MCDB elective", anyOf: one("biology-205", "biology-207", "biology-225", "biology-230", "biology-272") },
+    { id: "group-2", group: "Biology groups", label: "Group II: EEB elective", anyOf: one("biology-207", "biology-230", "biology-252", "biology-255", "biology-256", "biology-281", "biology-282", "biology-288", "eeb-381") },
+    { id: "genetics", group: "Required", label: "Genetics", anyOf: one("biology-305") },
+    { id: "biochem", group: "Required", label: "Biochemistry", anyOf: one("mcdb-310", "biolchem-415", "chem-351") },
+    { id: "evolution", group: "Required", label: "Evolution", anyOf: one("eeb-390", "eeb-391", "eeb-392") },
+    { id: "upper", group: "Electives", label: "Upper-level EEB or MCDB elective", target: 1, unit: "course", note: "300 or 400 level, with listed exclusions on the source page.", browse: "/courses?department=MCDB&offered=1" },
+    { id: "labs", group: "Electives", label: "Courses with labs", target: 3, unit: "course", note: "These can overlap with other major requirements. The approved list is on the source page.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/biology-major.html" },
+    { id: "additional", group: "Electives", label: "Additional courses to reach 30 credits", target: 30, unit: "credits", note: "Enter your total major credits. Use 200-level or higher BIOLOGY, EEB, and MCDB courses, with listed exclusions.", browse: "/courses?department=BIOLOGY&offered=1" },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "Rest of intro biology", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 210 + 211", req: "chem-1" }, { label: "Group I elective", req: "group-1" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 215 + 216", req: "chem-2" }, { label: "Group II elective", req: "group-2" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "BIOLOGY 305", req: "genetics" }, { label: "Course with lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Biochemistry", req: "biochem" }, { label: "Course with lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Evolution", req: "evolution" }, { label: "Upper-level elective", req: "upper" }, { label: "Course with lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Courses to reach 30 credits", req: "additional" }, LSA_FILLER],
+  ],
+};
+
+const NEUROSCIENCE: Major = {
+  id: "lsa-neuroscience",
+  name: "Neuroscience",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html",
+  sourceLabel: "LSA major requirements, effective Winter 2027",
+  planIsOfficial: false,
+  notes: [
+    "32 credits minimum. You don't have to finish every prerequisite before declaring.",
+    "An advisor must approve your plan for the major. Meet one during your first or second year.",
+    "This major excludes several other biology and neuroscience majors; see the source page.",
+  ],
+  requirements: [
+    { id: "intro-bio", group: "Prerequisites", label: "Intro biology sequence", anyOf: INTRO_BIOLOGY },
+    { id: "chem-1", group: "Prerequisites", label: "Organic chemistry I with lab", anyOf: [["chem-210", "chem-211"]] },
+    { id: "chem-2", group: "Prerequisites", label: "Organic chemistry II with lab", anyOf: [["chem-215", "chem-216"]] },
+    { id: "stats", group: "Prerequisites", label: "Statistics", anyOf: one("stats-250", "stats-280") },
+    { id: "quant", group: "Prerequisites", label: "Quantitative courses", target: 2, unit: "course", note: "Two from calculus, physics, BIOPHYS/PHYSICS 290, programming, or a later STATS course.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html" },
+    { id: "cellular", group: "Core", label: "Cellular and Molecular Neuroscience", anyOf: one("mcdb-322") },
+    { id: "behavioral", group: "Core", label: "Intro to Behavioral Neuroscience", anyOf: one("psych-230") },
+    { id: "physiology", group: "Core", label: "Human/Animal Physiology", anyOf: one("biology-225") },
+    { id: "genetics", group: "Core", label: "Genetics", anyOf: one("biology-305") },
+    { id: "biochem", group: "Core", label: "Biochemistry", anyOf: one("mcdb-310", "biolchem-415", "chem-351") },
+    { id: "group-a", group: "Electives", label: "Group A: molecular and cellular", target: 1, unit: "course", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html" },
+    { id: "group-b", group: "Electives", label: "Group B: behavioral and cognitive", target: 2, unit: "course", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html" },
+    { id: "group-c", group: "Electives", label: "Group C: additional elective", target: 1, unit: "course", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html" },
+    { id: "labs", group: "Electives", label: "Group D: labs", target: 2, unit: "course", note: "At least 4 credits total, including at least one methods-based lab.", browse: "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html" },
+  ],
+  plan: [
+    [{ label: "BIOLOGY 171", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "Rest of intro biology", req: "intro-bio" }, { label: "Quantitative course", req: "quant" }, LSA_FILLER],
+    [{ label: "CHEM 210 + 211", req: "chem-1" }, { label: "PSYCH 230", req: "behavioral" }, { label: "Statistics", req: "stats" }, LSA_FILLER],
+    [{ label: "CHEM 215 + 216", req: "chem-2" }, { label: "MCDB 322", req: "cellular" }, LSA_FILLER],
+    [{ label: "BIOLOGY 225", req: "physiology" }, { label: "BIOLOGY 305", req: "genetics" }, LSA_FILLER],
+    [{ label: "Biochemistry", req: "biochem" }, { label: "Group A elective", req: "group-a" }, LSA_FILLER],
+    [{ label: "Group B electives", req: "group-b" }, { label: "Lab", req: "labs" }, LSA_FILLER],
+    [{ label: "Group C elective", req: "group-c" }, { label: "Lab", req: "labs" }, LSA_FILLER],
+  ],
+};
+
+const POLSCI_INTRO = one("polsci-101", "polsci-111", "polsci-140", "polsci-160");
+
+const POLITICAL_SCIENCE: Major = {
+  id: "lsa-political-science",
+  name: "Political Science",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/political-science-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2024",
+  planIsOfficial: false,
+  notes: [
+    "At least 30 credits of POLSCI at the 300 level or above, beyond the prerequisites.",
+    "Include two 400-level courses, or one 400-level course and one upper-level writing course in POLSCI.",
+    "Take at least one course in four of five subfields: theory, American, comparative, world politics, and methods. Prerequisites can count.",
+    "At least 12 credits, including both 400-level courses, must be on the Ann Arbor campus.",
+  ],
+  requirements: [
+    { id: "intro-1", group: "Prerequisites", label: "Intro political science course", anyOf: POLSCI_INTRO },
+    { id: "intro-2", group: "Prerequisites", label: "Second intro political science course", anyOf: POLSCI_INTRO },
+    { id: "upper", group: "Major courses", label: "POLSCI credits at the 300 level or above", target: 30, unit: "credits", note: "At most 8 experiential and independent study credits, and only 4 from POLSCI 399.", browse: "/courses?department=POLSCI&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro POLSCI course", req: "intro-1" }, LSA_FILLER],
+    [{ label: "Second intro POLSCI course", req: "intro-2" }, LSA_FILLER],
+    [LSA_FILLER],
+    [{ label: "300-level POLSCI", credits: 3, req: "upper" }, LSA_FILLER],
+    [{ label: "300-level POLSCI", credits: 6, req: "upper" }, LSA_FILLER],
+    [{ label: "300-level POLSCI", credits: 7, req: "upper" }, LSA_FILLER],
+    [{ label: "400-level POLSCI", credits: 7, req: "upper" }, LSA_FILLER],
+    [{ label: "400-level POLSCI", credits: 7, req: "upper" }, LSA_FILLER],
+  ],
+};
+
+const PSYCHOLOGY: Major = {
+  id: "lsa-psychology-general-social-science",
+  name: "Psychology",
+  school: "LSA",
+  sourceUrl: "https://lsa.umich.edu/lsa/academics/majors-minors/psychology-general-social-science-major.html",
+  sourceLabel: "LSA major requirements, effective Fall 2025",
+  planIsOfficial: false,
+  notes: [
+    "32 credits minimum, not counting prerequisites. Add PSYCH courses if you finish the requirements below 32.",
+    "Intro psychology needs a C or better; statistics needs a C- or better, or P.",
+    "At least 24 credits must be in residence, including 12 at the 300 level or above.",
+  ],
+  requirements: [
+    { id: "intro", group: "Prerequisites", label: "Intro psychology", anyOf: one("psych-111", "psych-112", "psych-114") },
+    { id: "stats", group: "Prerequisites", label: "Statistics", anyOf: one("datasci-101", "stats-250", "stats-280") },
+    { id: "breadth-1", group: "Breadth", label: "Group I", anyOf: one("psych-220", "psych-235", "psych-240") },
+    { id: "breadth-2", group: "Breadth", label: "Group II", anyOf: one("psych-250", "psych-270") },
+    { id: "breadth-3", group: "Breadth", label: "Group III", anyOf: one("psych-280", "psych-290", "psych-291") },
+    { id: "labs", group: "Labs", label: "Lab courses", target: 2, unit: "course", note: "Two methods labs, or one methods and one experiential lab, at least 3 credits each. Or complete the thesis research sequence.", browse: "/courses?department=PSYCH&level=300&offered=1" },
+    { id: "electives", group: "Electives", label: "Upper-level electives", target: 4, unit: "course", note: "At least 12 credits, with two or more at the 300 level and one or more at the 400 level.", browse: "/courses?department=PSYCH&level=300&offered=1" },
+  ],
+  plan: [
+    [{ label: "Intro psychology", req: "intro" }, LSA_FILLER],
+    [{ label: "Statistics", req: "stats" }, LSA_FILLER],
+    [{ label: "Group I", req: "breadth-1" }, LSA_FILLER],
+    [{ label: "Group II", req: "breadth-2" }, LSA_FILLER],
+    [{ label: "Group III", req: "breadth-3" }, { label: "300-level elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Lab", req: "labs" }, { label: "300-level elective", req: "electives" }, LSA_FILLER],
+    [{ label: "Lab", req: "labs" }, { label: "Upper-level elective", req: "electives" }, LSA_FILLER],
+    [{ label: "400-level elective", req: "electives" }, LSA_FILLER],
+  ],
+};
+
+const ENGINEERING_CORE = CS_ENG.requirements.filter((r) => r.group === "Required of all engineers");
+
+const MECHANICAL: Major = {
+  id: "engineering-mechanical-engineering",
+  name: "Mechanical Engineering",
+  school: "College of Engineering (B.S.E.)",
+  sourceUrl: "https://bulletin.engin.umich.edu/depts/me-2/",
+  sourceLabel: "Engineering Bulletin, Mechanical Engineering",
+  planIsOfficial: false,
+  notes: [
+    "128 credits total, with 45 credits of ME core. Minimum grades vary by course; see the ME Bachelor's Degree website.",
+    "The all-engineer requirements here come from the College's CS sample schedule. Confirm any differences with ME Academic Services.",
+    "The Bulletin's linked ME sample schedule is from 2020, so this order is Backpacker's suggestion, not an official plan.",
+  ],
+  requirements: [
+    ...ENGINEERING_CORE,
+    { id: "design", group: "ME core", label: "Design and manufacturing I", anyOf: one("mecheng-250") },
+    { id: "design-2", group: "ME core", label: "Design and manufacturing II", anyOf: one("mecheng-350") },
+    { id: "design-3", group: "ME core", label: "Senior design", credits: 4, anyOf: one("mecheng-450", "mecheng-455") },
+    { id: "solids", group: "ME core", label: "Mechanics of solids", anyOf: one("mecheng-211") },
+    { id: "materials", group: "ME core", label: "Mechanical behavior of materials", anyOf: one("mecheng-382") },
+    { id: "dynamics", group: "ME core", label: "Dynamics", anyOf: one("mecheng-240") },
+    { id: "controls", group: "ME core", label: "Modeling and control", anyOf: one("mecheng-360") },
+    { id: "thermo", group: "ME core", label: "Thermodynamics", anyOf: one("mecheng-235") },
+    { id: "fluids", group: "ME core", label: "Fluid mechanics", anyOf: one("mecheng-320") },
+    { id: "heat", group: "ME core", label: "Heat transfer", anyOf: one("mecheng-335") },
+    { id: "lab-1", group: "ME core", label: "Laboratory I", anyOf: one("mecheng-395") },
+    { id: "lab-2", group: "ME core", label: "Senior laboratory", anyOf: one("mecheng-495") },
+    { id: "eecs", group: "ME program", label: "Circuits", credits: 4, note: "EECS 314 needs a D or better and can't be Pass/Fail.", anyOf: one("eecs-314", "eecs-215") },
+    { id: "te-400", group: "ME program", label: "400-level technical elective", target: 3, unit: "credits", note: "A 400-level or higher MECHENG course.", browse: "/courses?department=MECHENG&level=400&offered=1" },
+    { id: "te-core", group: "ME program", label: "Core technical electives", target: 6, unit: "credits", note: "Two MECHENG electives with a mechanical engineering prerequisite.", browse: "https://bulletin.engin.umich.edu/depts/me-2/" },
+    { id: "adv-math", group: "ME program", label: "Advanced math", target: 3, unit: "credits", browse: "https://bulletin.engin.umich.edu/depts/me-2/" },
+    { id: "specialization", group: "ME program", label: "Specialization elective", target: 3, unit: "credits", browse: "https://bulletin.engin.umich.edu/depts/me-2/" },
+    { id: "econ", group: "ME program", label: "Economics or finance course", target: 3, unit: "credits", browse: "https://bulletin.engin.umich.edu/depts/me-2/" },
+  ],
+  plan: [
+    [{ label: "MATH 115", req: "math-115" }, { label: "ENGR 101", req: "engr-101" }, { label: "Chemistry with lab", req: "chem" }, { label: "Intellectual Breadth", credits: 4, req: "breadth" }],
+    [{ label: "MATH 116", req: "math-116" }, { label: "ENGR 100", req: "engr-100" }, { label: "PHYSICS 140 + 141", req: "physics-140" }, { label: "Intellectual Breadth", credits: 4, req: "breadth" }],
+    [{ label: "Linear algebra", req: "math-214" }, { label: "PHYSICS 240 + 241", req: "physics-240" }, { label: "MECHENG 211", req: "solids" }, { label: "MECHENG 235", req: "thermo" }],
+    [{ label: "MATH 215 or 216", req: "math-215" }, { label: "MECHENG 240", req: "dynamics" }, { label: "MECHENG 250", req: "design" }, { label: "Circuits", req: "eecs" }],
+    [{ label: "MECHENG 320", req: "fluids" }, { label: "MECHENG 350", req: "design-2" }, { label: "MECHENG 360", req: "controls" }, { label: "MECHENG 382", req: "materials" }],
+    [{ label: "MECHENG 335", req: "heat" }, { label: "MECHENG 395", req: "lab-1" }, { label: "Advanced math", req: "adv-math" }, { label: "Economics or finance", req: "econ" }, { label: "Intellectual Breadth", credits: 4, req: "breadth" }],
+    [{ label: "Senior design", req: "design-3" }, { label: "Core technical electives", req: "te-core" }, { label: "Specialization elective", req: "specialization" }, { label: "Intellectual Breadth", credits: 4, req: "breadth" }],
+    [{ label: "MECHENG 495", req: "lab-2" }, { label: "400-level technical elective", req: "te-400" }, { label: "General electives" }],
+  ],
+};
+
+export const MAJORS: Major[] = [CS_ENG, CS_LSA, DS_LSA, ECON_LSA, BIOLOGY, NEUROSCIENCE, POLITICAL_SCIENCE, PSYCHOLOGY, MECHANICAL];
 
 export function getMajor(id: string | null | undefined): Major | undefined {
   return MAJORS.find((m) => m.id === id);

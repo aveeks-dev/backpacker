@@ -71,7 +71,7 @@
   "id": "lsa-biology",
   "name": "Biology",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#biology-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/biology-major.html",
   "subject": "BIOLOGY"
  },
  {
@@ -472,7 +472,7 @@
   "id": "lsa-neuroscience",
   "name": "Neuroscience",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#neuroscience-maj"
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/neuroscience-major.html"
  },
  {
   "id": "lsa-organizational-studies",
@@ -520,7 +520,7 @@
   "id": "lsa-political-science",
   "name": "Political Science",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#political_science-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/political-science-major.html",
   "subject": "POLSCI"
  },
  {
@@ -541,7 +541,7 @@
   "id": "lsa-psychology-general-social-science",
   "name": "Psychology",
   "school": "LSA",
-  "url": "https://lsa.umich.edu/lsa/academics/majors-minors.html#psychology_general_social_science-maj",
+  "url": "https://lsa.umich.edu/lsa/academics/majors-minors/psychology-general-social-science-major.html",
   "subject": "PSYCH"
  },
  {
@@ -727,7 +727,7 @@
   "id": "engineering-mechanical-engineering",
   "name": "Mechanical Engineering",
   "school": "Engineering",
-  "url": "https://bulletin.engin.umich.edu/ug-ed/degree-programs/",
+  "url": "https://bulletin.engin.umich.edu/depts/me-2/",
   "subject": "MECHENG"
  },
  {
