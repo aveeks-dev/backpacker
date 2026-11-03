@@ -19,7 +19,7 @@ export type GridBlock = {
 const PIXELS_PER_HOUR = 56;
 
 // Static class names so Tailwind can see them.
-const COLORS = [
+export const COLORS = [
   "border-michigan/30 bg-michigan/10 text-michigan",
   "border-amber-300 bg-amber-50 text-amber-900",
   "border-emerald-300 bg-emerald-50 text-emerald-900",

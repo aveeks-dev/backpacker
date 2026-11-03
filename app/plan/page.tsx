@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import type { Course } from "@/lib/courses";
 import type { Day, ScheduleSection } from "@/lib/registrar";
 import { generateSchedules, type GenerateResult, type Preferences } from "@/lib/scheduler";
 import { DAY_LABELS, WEEKDAYS, componentLabel, formatMeetings, formatMinutes } from "@/lib/format";
 import { usePlan } from "@/lib/use-plan";
+import { usePlanCourses } from "@/lib/use-plan-courses";
+import { replaceCalendarPicks } from "@/lib/use-calendar";
 import { CourseSearch } from "@/components/course-search";
 import { InstructorLinks } from "@/components/instructor-links";
 import { ScheduleGrid, type GridBlock } from "./_components/schedule-grid";
@@ -32,6 +34,7 @@ export default function PlanPage() {
 function PlanPageInner() {
   const { ids: savedIds, mounted, add, remove, clear, replace } = usePlan();
   const params = useSearchParams();
+  const router = useRouter();
 
   // `?ids=` means the user is viewing someone else's shared plan.
   const sharedIdsRaw = params.get("ids");
@@ -68,6 +71,12 @@ function PlanPageInner() {
       else next[courseId] = sections.map((s) => s.number);
       return next;
     });
+  }
+
+  function editInCalendar() {
+    if (!schedule) return;
+    replaceCalendarPicks(Object.fromEntries(schedule.bundles.map((b) => [b.courseId, b.alternatives[0].map((s) => s.number)])));
+    router.push("/calendar");
   }
 
   function removeCourse(id: string) {
@@ -116,6 +125,14 @@ function PlanPageInner() {
               courses={offered}
             />
             {schedule && <ScheduleStats stats={schedule.stats} />}
+            {schedule && !isViewingShared && (
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-maize/60 bg-maize/10 px-4 py-2.5 text-sm text-slate-700">
+                <span>Want to choose sections yourself, add work or practice times, or export to your calendar?</span>
+                <button onClick={editInCalendar} className="rounded-md bg-michigan px-3 py-1.5 text-xs font-medium text-white hover:bg-michigan-light">
+                  Edit this schedule in Calendar →
+                </button>
+              </div>
+            )}
             <ScheduleGrid blocks={schedule ? toBlocks(schedule.bundles, offered) : []} />
             <p className="text-xs text-slate-500">
               Section times come from the Registrar&apos;s {TERM_LABEL} schedule. Seats and
@@ -162,31 +179,6 @@ function PlanPageInner() {
       )}
     </main>
   );
-}
-
-/** Loads full course data (with sections) for the plan's ids. */
-function usePlanCourses(ids: string[]): Course[] | null {
-  const key = ids.join(",");
-  const [loaded, setLoaded] = useState<{ key: string; courses: Course[] } | null>(null);
-
-  useEffect(() => {
-    if (!key) return;
-    const controller = new AbortController();
-    fetch(`/api/courses?ids=${encodeURIComponent(key)}`, { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data: { courses: Course[] }) => setLoaded({ key, courses: data.courses }))
-      .catch(() => {});
-    return () => controller.abort();
-  }, [key]);
-
-  // Keep showing the previous courses while a changed list loads. Memoized
-  // so the schedule generator only reruns when the course list changes.
-  return useMemo(() => {
-    if (!key) return [];
-    if (!loaded) return null;
-    const wanted = new Set(key.split(","));
-    return loaded.courses.filter((c) => wanted.has(c.id));
-  }, [key, loaded]);
 }
 
 /** Runs the generator after paint so the "Generating…" state can show. */

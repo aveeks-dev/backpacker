@@ -37,6 +37,7 @@ export type Preferences = {
   earliestStart?: string; // "HH:MM": hard limit, no class starts before this
   latestEnd?: string; // "HH:MM": hard limit, no class ends after this
   daysOff?: Day[]; // hard limit, no classes on these days
+  busy?: { day: Day; start: string; end: string }[]; // hard limit, the student's own commitments
   // Soft preferences, used for ranking.
   preferLateStart?: boolean;
   minimizeGaps?: boolean;
@@ -158,7 +159,14 @@ function violatesHardLimits(intervals: Interval[], prefs: Preferences): boolean 
   const earliest = prefs.earliestStart ? toMinutes(prefs.earliestStart) : -1;
   const latest = prefs.latestEnd ? toMinutes(prefs.latestEnd) : Infinity;
   const off = new Set(prefs.daysOff ?? []);
-  return intervals.some((iv) => iv.start < earliest || iv.end > latest || off.has(iv.day));
+  const busy = (prefs.busy ?? []).map((b) => ({ day: b.day, start: toMinutes(b.start), end: toMinutes(b.end) }));
+  return intervals.some(
+    (iv) =>
+      iv.start < earliest ||
+      iv.end > latest ||
+      off.has(iv.day) ||
+      busy.some((b) => b.day === iv.day && iv.start < b.end && b.start < iv.end),
+  );
 }
 
 function intervalKey(intervals: Interval[]): string {
