@@ -1,24 +1,49 @@
 import Link from "next/link";
-import { CURRENT_TERM, getAllCourses, getDepartments, isOffered } from "@/lib/courses";
-import { PROGRAMS, hasFullPlan } from "@/lib/major-directory";
+import { CURRENT_TERM, getAllCourses, getCourse, getDepartments, isOffered, type Course } from "@/lib/courses";
+import { PROGRAMS, getProgram, hasFullPlan, type Program } from "@/lib/major-directory";
+import { generateSchedules, toMinutes } from "@/lib/scheduler";
 
-// A real Winter 2027 combination from the Registrar's schedule, drawn to scale.
-const EXAMPLE = [
-  { code: "ECON 101", kind: "Lecture", days: [0, 2], start: 10, end: 11.5, tone: "bg-maize text-michigan" },
-  { code: "EECS 281", kind: "Lecture", days: [1, 3], start: 10.5, end: 12, tone: "bg-white text-michigan" },
-  { code: "MATH 215", kind: "Lecture", days: [0, 2, 4], start: 12, end: 13, tone: "bg-sky-200 text-michigan" },
-  { code: "ECON 101", kind: "Discussion", days: [0], start: 13, end: 14.5, tone: "bg-maize/80 text-michigan" },
-  { code: "EECS 370", kind: "Lab", days: [0], start: 14.5, end: 16.5, tone: "bg-emerald-200 text-michigan" },
-  { code: "MATH 215", kind: "Lab", days: [1], start: 12, end: 13, tone: "bg-sky-200 text-michigan" },
-  { code: "EECS 281", kind: "Lab", days: [0], start: 16.5, end: 18.5, tone: "bg-white text-michigan" },
-];
-const FIRST_HOUR = 10;
-const LAST_HOUR = 19;
+// The best Winter 2027 schedule for these courses, from the real generator.
+const EXAMPLE_COURSES = ["econ-101", "eecs-281", "math-215", "eecs-370"];
+const TONES = ["bg-maize text-michigan", "bg-white text-michigan", "bg-sky-200 text-michigan", "bg-emerald-200 text-michigan"];
+const SHORT: Record<string, string> = { LEC: "Lecture", DIS: "Discussion", LAB: "Lab", REC: "Recitation", SEM: "Seminar" };
+const DAY_INDEX: Record<string, number> = { M: 0, T: 1, W: 2, Th: 3, F: 4 };
+
+type ExampleBlock = { key: string; code: string; kind: string; day: number; start: number; end: number; tone: string };
+
+function exampleWeek(): { blocks: ExampleBlock[]; total: number; truncated: boolean } {
+  const courses = EXAMPLE_COURSES.map(getCourse).filter((c): c is Course => c !== undefined && c.sections.length > 0);
+  const result = generateSchedules(courses, { preferences: { preferLateStart: true, minimizeGaps: true }, maxExplored: 500_000, limit: 1 });
+  const best = result.schedules[0];
+  const blocks: ExampleBlock[] = [];
+  for (const bundle of best?.bundles ?? []) {
+    const course = courses.find((c) => c.id === bundle.courseId)!;
+    for (const section of bundle.alternatives[0])
+      section.meetings.forEach((m, mi) =>
+        m.days.forEach((d) => {
+          if (DAY_INDEX[d] === undefined) return;
+          blocks.push({
+            key: `${course.id}-${section.number}-${mi}-${d}`,
+            code: course.code,
+            kind: SHORT[section.component] ?? section.component,
+            day: DAY_INDEX[d],
+            start: toMinutes(m.start) / 60,
+            end: toMinutes(m.end) / 60,
+            tone: TONES[courses.indexOf(course) % TONES.length],
+          });
+        }),
+      );
+  }
+  return { blocks, total: result.explored, truncated: result.truncated };
+}
+
+// Some of the most common U-M majors, for the home page.
+const FEATURED = ["cs-eng", "cs-lsa", "econ-lsa", "lsa-psychology-general-social-science", "ross-school-of-business-bachelor-of-business-administration", "engineering-mechanical-engineering", "lsa-biology", "nursing-bachelor-of-science-in-nursing"];
 
 const STEPS = [
   { title: "Tell us your major", body: "Pick your program and mark what you've already taken, including AP and transfer credit." },
   { title: "See what's left", body: "Get your remaining requirements, a four-year layout, and what makes sense next term." },
-  { title: "Build the schedule", body: "Backpacker tries every section combination and ranks the ones that fit your week." },
+  { title: "Build the schedule", body: "Backpacker tries every section combination and ranks the ones that fit your week, or you pick sections yourself on the calendar." },
 ];
 
 export default function Home() {
@@ -50,7 +75,7 @@ export default function Home() {
             </div>
             <p className="mt-5 text-sm text-slate-300">Free, with no account. Your plan stays in your browser.</p>
           </div>
-          <ExampleWeek />
+          <ExampleWeek {...exampleWeek()} />
         </div>
       </section>
 
@@ -70,10 +95,12 @@ export default function Home() {
         <h2 className="text-2xl font-semibold">Four-year plans by major</h2>
         <p className="mt-1 text-slate-600">Find any of {PROGRAMS.length} U-M programs. {PROGRAMS.filter(hasFullPlan).length} have full checklists and roadmaps so far, including:</p>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {PROGRAMS.filter(hasFullPlan).slice(0, 8).map((m) => (
-            <li key={m.id} className="rounded-md border border-slate-200 bg-white p-5">
-              <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{m.school}</div>
-              <div className="mt-1 font-display text-lg font-semibold">{m.name}</div>
+          {FEATURED.map(getProgram).filter((m): m is Program => m !== undefined && hasFullPlan(m)).map((m) => (
+            <li key={m.id}>
+              <Link href={`/degree?major=${m.id}`} className="block h-full rounded-md border border-slate-200 bg-white p-5 transition hover:border-michigan hover:shadow-sm">
+                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{m.school}</div>
+                <div className="mt-1 font-display text-lg font-semibold">{m.name}</div>
+              </Link>
             </li>
           ))}
         </ul>
@@ -92,27 +119,43 @@ export default function Home() {
   );
 }
 
-function ExampleWeek() {
-  const hours = LAST_HOUR - FIRST_HOUR;
+function ExampleWeek({ blocks, total, truncated }: { blocks: ExampleBlock[]; total: number; truncated: boolean }) {
+  if (blocks.length === 0) return null;
+  const first = Math.floor(Math.min(...blocks.map((b) => b.start)));
+  const last = Math.ceil(Math.max(...blocks.map((b) => b.end)));
+  const hours = last - first;
   return (
     <figure className="rounded-lg border border-white/15 bg-white/[0.07] p-4 backdrop-blur" aria-label={`Example ${CURRENT_TERM.label} schedule`}>
-      <figcaption className="mb-3 flex items-baseline justify-between text-xs text-slate-300">
+      <figcaption className="mb-3 flex items-baseline justify-between gap-2 text-xs text-slate-300">
         <span className="font-semibold text-white">Example week</span>
-        <span>1 of 119,946 valid schedules</span>
+        <span>
+          Best of {total.toLocaleString()}
+          {truncated ? "+" : ""} schedules for these 4 courses
+        </span>
       </figcaption>
-      <div className="grid grid-cols-5 gap-1 text-center text-[10px] text-slate-300">
+      <div className="grid grid-cols-[28px_repeat(5,minmax(0,1fr))] gap-1 text-center text-[10px] text-slate-300">
+        <div />
         {["Mon", "Tue", "Wed", "Thu", "Fri"].map((d) => <div key={d}>{d}</div>)}
       </div>
-      <div className="mt-1 grid grid-cols-5 gap-1" style={{ height: 300 }} aria-hidden="true">
+      <div className="mt-1 grid grid-cols-[28px_repeat(5,minmax(0,1fr))] gap-1" style={{ height: 320 }} aria-hidden="true">
+        <div className="relative text-right text-[9px] text-slate-400">
+          {Array.from({ length: hours }, (_, i) => first + i).map((h) => (
+            <div key={h} className="absolute right-1" style={{ top: `${((h - first) / hours) * 100}%` }}>
+              {h % 12 === 0 ? 12 : h % 12}
+              {h < 12 ? "a" : "p"}
+            </div>
+          ))}
+        </div>
         {[0, 1, 2, 3, 4].map((day) => (
           <div key={day} className="relative rounded bg-white/[0.04]">
-            {EXAMPLE.filter((b) => b.days.includes(day)).map((b) => (
+            {blocks.filter((b) => b.day === day).map((b) => (
               <div
-                key={b.code + b.kind}
-                className={`absolute inset-x-0.5 overflow-hidden rounded px-1 py-0.5 ${b.tone}`}
-                style={{ top: `${((b.start - FIRST_HOUR) / hours) * 100}%`, height: `${((b.end - b.start) / hours) * 100}%` }}
+                key={b.key}
+                className={`absolute inset-x-0.5 overflow-hidden rounded px-1 py-0.5 leading-tight ${b.tone}`}
+                style={{ top: `${((b.start - first) / hours) * 100}%`, height: `calc(${((b.end - b.start) / hours) * 100}% - 2px)` }}
               >
-                <div className="truncate font-mono text-[9px] font-semibold sm:text-[10px]">{b.code}</div>
+                <div className="font-mono text-[9px] font-semibold leading-none sm:truncate sm:text-[10px] sm:leading-tight">{b.code}</div>
+                <div className="truncate text-[9px] opacity-75">{b.kind}</div>
               </div>
             ))}
           </div>

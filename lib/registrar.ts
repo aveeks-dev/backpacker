@@ -237,3 +237,35 @@ export function parseScheduleCsv(text: string): ParseResult {
   }
   return { courses: sorted, rowCount: rows.length - 1, warnings };
 }
+
+export type SubjectInfo = { name: string; group: string };
+
+/**
+ * Each subject's full name and the academic group (school) that offers it,
+ * from the CSV's "Architecture (ARCH)" subject labels. A subject offered by
+ * several groups goes with the one listing the most of its rows.
+ */
+export function parseSubjectNames(text: string): Record<string, SubjectInfo> {
+  const rows = parseCsv(text.replace(/^﻿/, ""));
+  const header = rows[0]?.map((h) => h.trim().toLowerCase()) ?? [];
+  const subjectCol = header.indexOf("subject");
+  const groupCol = header.indexOf("acad group");
+  const names = new Map<string, string>();
+  const groups = new Map<string, Map<string, number>>();
+  for (const row of rows.slice(1)) {
+    const m = (row[subjectCol] ?? "").trim().match(/^(.*)\(([A-Z&]+)\)$/);
+    if (!m) continue;
+    const code = m[2];
+    names.set(code, m[1].trim());
+    const group = (row[groupCol] ?? "").trim();
+    const counts = groups.get(code) ?? new Map<string, number>();
+    counts.set(group, (counts.get(group) ?? 0) + 1);
+    groups.set(code, counts);
+  }
+  const out: Record<string, SubjectInfo> = {};
+  for (const code of [...names.keys()].sort()) {
+    const [group] = [...groups.get(code)!].sort((a, b) => b[1] - a[1])[0];
+    out[code] = { name: names.get(code)!, group };
+  }
+  return out;
+}

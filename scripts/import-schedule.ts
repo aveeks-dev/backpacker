@@ -11,7 +11,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseScheduleCsv } from "../lib/registrar.ts";
+import { parseScheduleCsv, parseSubjectNames, type SubjectInfo } from "../lib/registrar.ts";
 
 function usage(): never {
   console.error("Usage: npm run import:schedule -- <path/to/TERM.csv> [--term WN2027]");
@@ -46,6 +46,18 @@ const outDir = join(root, "data", "schedule");
 mkdirSync(outDir, { recursive: true });
 const outPath = join(outDir, `${termName}.json`);
 writeFileSync(outPath, JSON.stringify({ term: termName, courses }) + "\n");
+
+// Subject names and schools, merged so subjects from earlier terms keep theirs.
+const subjectsPath = join(root, "data", "subjects.json");
+let subjects: Record<string, SubjectInfo> = {};
+try {
+  subjects = JSON.parse(readFileSync(subjectsPath, "utf8"));
+} catch {
+  // The first import creates it.
+}
+const merged = { ...subjects, ...parseSubjectNames(text) };
+const sortedSubjects = Object.fromEntries(Object.keys(merged).sort().map((k) => [k, merged[k]]));
+writeFileSync(subjectsPath, JSON.stringify(sortedSubjects, null, 1) + "\n");
 
 const sectionCount = courses.reduce((n, c) => n + c.sections.length, 0);
 const timed = courses.reduce(

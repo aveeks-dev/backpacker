@@ -1,6 +1,11 @@
 // Student-facing resources, mapped per subject. Links are limited to
 // stable, official UMich destinations so they don't rot.
 
+import subjectData from "../data/subjects.json";
+
+// Names and offering schools from the Registrar's schedule CSV.
+const SUBJECTS: Record<string, { name: string; group: string }> = subjectData;
+
 export type Resource = {
   name: string;
   url: string;
@@ -192,20 +197,39 @@ const ENGINEERING_SET = new Set(SCHOOLS[0].depts);
 // Public API
 // ---------------------------------------------------------------------
 
+// The Registrar's academic group names, for subjects not listed in SCHOOLS.
+const GROUP_SCHOOLS: Record<string, { name: string; url: string }> = {
+  "Architecture & Urban Planning": { name: "Taubman College of Architecture & Urban Planning", url: "https://taubmancollege.umich.edu" },
+  Dentistry: { name: "School of Dentistry", url: "https://dent.umich.edu" },
+  "Dentistry (Dental Hygiene)": { name: "School of Dentistry", url: "https://dent.umich.edu" },
+  Engineering: { name: "College of Engineering", url: "https://www.engin.umich.edu" },
+  "Environment and Sustainability": { name: "School for Environment & Sustainability", url: "https://seas.umich.edu" },
+  Information: { name: "School of Information", url: "https://www.si.umich.edu" },
+  "Institute for Social Research": { name: "Institute for Social Research", url: "https://isr.umich.edu" },
+  Kinesiology: { name: "School of Kinesiology", url: "https://www.kines.umich.edu" },
+  "LSA Residential College": { name: "College of LSA", url: "https://lsa.umich.edu" },
+  Law: { name: "Law School", url: "https://michigan.law.umich.edu" },
+  "Literature, Sci, and the Arts": { name: "College of LSA", url: "https://lsa.umich.edu" },
+  "Marsal Family School of Educ": { name: "School of Education (Marsal)", url: "https://marsal.umich.edu" },
+  Medicine: { name: "Medical School", url: "https://medicine.umich.edu" },
+  "Music, Theatre & Dance": { name: "School of Music, Theatre & Dance", url: "https://smtd.umich.edu" },
+  Nursing: { name: "School of Nursing", url: "https://nursing.umich.edu" },
+  Pharmacy: { name: "College of Pharmacy", url: "https://pharmacy.umich.edu" },
+  "Public Health": { name: "School of Public Health", url: "https://sph.umich.edu" },
+  "Public Policy": { name: "Ford School of Public Policy", url: "https://fordschool.umich.edu" },
+  Rackham: { name: "Rackham Graduate School", url: "https://rackham.umich.edu" },
+  "Ross School of Business": { name: "Ross School of Business", url: "https://michiganross.umich.edu" },
+  "Social Work": { name: "School of Social Work", url: "https://ssw.umich.edu" },
+  "Stamps School of Art & Design": { name: "Stamps School of Art & Design", url: "https://stamps.umich.edu" },
+};
+
 export function getSchoolForDepartment(dept: string): Resource | null {
-  for (const school of SCHOOLS) {
-    if (school.depts.includes(dept)) {
-      return {
-        name: school.name,
-        url: school.url,
-        description: "The school or college that offers this subject.",
-      };
-    }
-  }
-  // LSA is the default home for everything else
+  const listed = SCHOOLS.find((school) => school.depts.includes(dept));
+  // LSA is the usual home for subjects missing from this term's CSV.
+  const school = listed ?? GROUP_SCHOOLS[SUBJECTS[dept]?.group] ?? GROUP_SCHOOLS["Literature, Sci, and the Arts"];
   return {
-    name: "College of LSA",
-    url: "https://lsa.umich.edu",
+    name: school.name,
+    url: school.url,
     description: "The school or college that offers this subject.",
   };
 }
@@ -217,7 +241,7 @@ export function getSubjectResources(dept: string): Resource[] {
 
   if (ENGINEERING_SET.has(dept)) {
     out.push(ENGIN_ADVISING, TBP);
-  } else if (!SCHOOLS.some((s) => s.depts.includes(dept))) {
+  } else if (school?.name === "College of LSA") {
     out.push(LSA_ADVISING);
   }
 
@@ -284,7 +308,9 @@ export const DEPT_NAMES: Record<string, string> = {
   CEE: "Civil & Environmental Engineering",
   CHE: "Chemical Engineering",
   CHEM: "Chemistry",
+  CLARCH: "Classical Archaeology",
   CLCIV: "Classical Civilization",
+  JAPANESE: "Japanese",
   CLIMATE: "Climate & Space Sciences",
   CMPLXSYS: "Complex Systems",
   COGSCI: "Cognitive Science",
@@ -404,5 +430,5 @@ export const DEPT_NAMES: Record<string, string> = {
 };
 
 export function getDeptName(dept: string): string {
-  return DEPT_NAMES[dept] ?? dept;
+  return DEPT_NAMES[dept] ?? SUBJECTS[dept]?.name ?? dept;
 }

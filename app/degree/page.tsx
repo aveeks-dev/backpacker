@@ -37,6 +37,15 @@ export default function DegreePage() {
   const [editing, setEditing] = useState<boolean | null>(null);
   const courses = useCourseSummaries(major);
 
+  // Links like /degree?major=cs-eng (from the home page) choose that major.
+  useEffect(() => {
+    if (!mounted) return;
+    const id = new URLSearchParams(window.location.search).get("major");
+    if (!id) return;
+    window.history.replaceState(null, "", "/degree");
+    if (getProgram(id) && id !== profile.majorId) setMajor(id);
+  }, [mounted, profile.majorId, setMajor]);
+
   if (!mounted) return <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12 text-sm text-slate-500">Loading…</main>;
 
   const showChecklist = major && (editing ?? profile.completed.length === 0);
@@ -117,7 +126,15 @@ function Steps({ step }: { step: number }) {
 
 function MajorPicker({ onPick }: { onPick: (id: string) => void }) {
   const [query, setQuery] = useState("");
-  const results = useMemo(() => searchPrograms(query), [query]);
+  const [school, setSchool] = useState<string | null>(null);
+  const results = useMemo(() => searchPrograms(query).filter((p) => !school || p.school === school), [query, school]);
+  const schools = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const p of PROGRAMS) counts.set(p.school, (counts.get(p.school) ?? 0) + 1);
+    return [...counts].sort((a, b) => b[1] - a[1]).map(([name]) => name);
+  }, []);
+  // Tracks students often search for that aren't majors at U-M.
+  const track = /\bpre[- ]?(med|health|dent|law|pharm|vet)|undeclared|undecided|exploring/i.test(query);
   return (
     <section>
       <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">What are you studying?</h1>
@@ -133,6 +150,26 @@ function MajorPicker({ onPick }: { onPick: (id: string) => void }) {
         placeholder={`Search ${PROGRAMS.length} majors and programs`}
         className="mt-6 w-full max-w-xl rounded-md border border-slate-300 bg-white px-4 py-3 placeholder:text-slate-400 focus:border-michigan focus:outline-none"
       />
+      <div className="mt-3 flex flex-wrap gap-1.5" role="group" aria-label="Filter by school">
+        {[null, ...schools].map((s) => (
+          <button
+            key={s ?? "all"}
+            onClick={() => setSchool(s)}
+            aria-pressed={school === s}
+            className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+              school === s ? "border-michigan bg-michigan text-white" : "border-slate-200 bg-white text-slate-600 hover:border-michigan hover:text-michigan"
+            }`}
+          >
+            {s ?? "All schools"}
+          </button>
+        ))}
+      </div>
+      {track && (
+        <p className="mt-4 max-w-2xl rounded-md border border-maize/60 bg-maize/10 px-4 py-3 text-sm text-slate-700">
+          Pre-health and pre-law are tracks at U-M, not majors, and undeclared students usually start in LSA. Pick the major
+          you&apos;re leaning toward. You can change it anytime.
+        </p>
+      )}
       {results.length === 0 ? (
         <p className="mt-6 text-sm text-slate-600">No matches. Try a shorter word, like &ldquo;bio&rdquo;.</p>
       ) : (
@@ -145,8 +182,8 @@ function MajorPicker({ onPick }: { onPick: (id: string) => void }) {
               >
                 <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{p.school}</span>
                 <span className="mt-1 font-display font-semibold text-michigan">{p.name}</span>
-                {hasFullPlan(p) && (
-                  <span className="mt-2 self-start rounded bg-maize/40 px-2 py-0.5 text-[11px] font-semibold text-michigan">Full plan available</span>
+                {!hasFullPlan(p) && (
+                  <span className="mt-2 self-start rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Official requirements link only</span>
                 )}
               </button>
             </li>

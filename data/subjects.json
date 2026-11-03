@@ -1,0 +1,1238 @@
+{
+ "AAS": {
+  "name": "Afroamerican & African Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ACC": {
+  "name": "Accounting",
+  "group": "Ross School of Business"
+ },
+ "ADABRD": {
+  "name": "Art and Design Study Abroad",
+  "group": "Stamps School of Art & Design"
+ },
+ "AERO": {
+  "name": "Air Force Officer Education Program",
+  "group": "Engaged Learning Programs"
+ },
+ "AEROSP": {
+  "name": "Aerospace Engineering",
+  "group": "Engineering"
+ },
+ "AES": {
+  "name": "Applied Exercise Science",
+  "group": "Kinesiology"
+ },
+ "ALA": {
+  "name": "Applied Liberal Arts",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "AMAS": {
+  "name": "Arab and Muslim American Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "AMCULT": {
+  "name": "American Culture",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ANATOMY": {
+  "name": "Anatomy",
+  "group": "Medicine"
+ },
+ "ANESTH": {
+  "name": "Anesthesia",
+  "group": "Medicine"
+ },
+ "ANTHRARC": {
+  "name": "Anthropological Archaeology",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ANTHRBIO": {
+  "name": "Anthropology,Biological",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ANTHRCUL": {
+  "name": "Anthropology,Cultural",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "APPPHYS": {
+  "name": "Applied Physics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ARABIC": {
+  "name": "Arabic Language",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ARCH": {
+  "name": "Architecture",
+  "group": "Architecture & Urban Planning"
+ },
+ "ARCHAM": {
+  "name": "Archaeology: Ancient Mediterranean",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ARMENIAN": {
+  "name": "Armenian Language",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ARTDES": {
+  "name": "Art and Design",
+  "group": "Stamps School of Art & Design"
+ },
+ "ARTSADMN": {
+  "name": "Arts Administration",
+  "group": "Music, Theatre & Dance"
+ },
+ "ASIAN": {
+  "name": "Asian Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ASIANLAN": {
+  "name": "Asian Languages",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ASIANPAM": {
+  "name": "Asian Pacific Island American Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ASTRO": {
+  "name": "Astronomy",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "AT": {
+  "name": "Athletic Training",
+  "group": "Kinesiology"
+ },
+ "AUTO": {
+  "name": "Automotive Engineering Program",
+  "group": "Engineering"
+ },
+ "BA": {
+  "name": "Business Administration",
+  "group": "Ross School of Business"
+ },
+ "BARCELLO": {
+  "name": "Baroque Cello",
+  "group": "Music, Theatre & Dance"
+ },
+ "BARFLUTE": {
+  "name": "Baroque Flute",
+  "group": "Music, Theatre & Dance"
+ },
+ "BASSOON": {
+  "name": "Bassoon",
+  "group": "Music, Theatre & Dance"
+ },
+ "BCOM": {
+  "name": "Business Communication",
+  "group": "Ross School of Business"
+ },
+ "BCS": {
+  "name": "Bosnian/Croatian/Serbian",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "BE": {
+  "name": "Business Economics And Public Policy",
+  "group": "Ross School of Business"
+ },
+ "BIOINF": {
+  "name": "Bioinformatics",
+  "group": "Medicine"
+ },
+ "BIOLCHEM": {
+  "name": "Biological Chemistry",
+  "group": "Medicine"
+ },
+ "BIOLOGY": {
+  "name": "Biology",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "BIOMATLS": {
+  "name": "Biomaterials",
+  "group": "Dentistry"
+ },
+ "BIOMEDE": {
+  "name": "Biomedical Engineering",
+  "group": "Engineering"
+ },
+ "BIOPHYS": {
+  "name": "Biophysics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "BIOSTAT": {
+  "name": "Biostatistics",
+  "group": "Public Health"
+ },
+ "BL": {
+  "name": "Business Law",
+  "group": "Ross School of Business"
+ },
+ "BUDDHST": {
+  "name": "Buddhist Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "BUSABRD": {
+  "name": "Business Abroad",
+  "group": "Ross School of Business"
+ },
+ "CANCBIO": {
+  "name": "Cancer Biology",
+  "group": "Medicine"
+ },
+ "CARILLON": {
+  "name": "Carillon",
+  "group": "Music, Theatre & Dance"
+ },
+ "CCS": {
+  "name": "Chinese Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CDB": {
+  "name": "Cell and Developmental Biology",
+  "group": "Medicine"
+ },
+ "CEE": {
+  "name": "Civil And Environmental Engineering",
+  "group": "Engineering"
+ },
+ "CELLO": {
+  "name": "Cello",
+  "group": "Music, Theatre & Dance"
+ },
+ "CHAMBER": {
+  "name": "Chamber Music",
+  "group": "Music, Theatre & Dance"
+ },
+ "CHE": {
+  "name": "Chemical Engineering",
+  "group": "Engineering"
+ },
+ "CHEM": {
+  "name": "Chemistry",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CHEMBIO": {
+  "name": "Chemical Biology",
+  "group": "Rackham"
+ },
+ "CJS": {
+  "name": "Japanese Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CLARINET": {
+  "name": "Clarinet",
+  "group": "Music, Theatre & Dance"
+ },
+ "CLCIV": {
+  "name": "Classical Civilization",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CLIMATE": {
+  "name": "Climate and Meteorology",
+  "group": "Engineering"
+ },
+ "CLLING": {
+  "name": "Classical Linguistics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CMBIOL": {
+  "name": "Cellular And Molecular Biology",
+  "group": "Medicine"
+ },
+ "CMPLXSYS": {
+  "name": "Complex Systems",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "COGSCI": {
+  "name": "Cognitive Science",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "COMM": {
+  "name": "Communication Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "COMP": {
+  "name": "Composition",
+  "group": "Music, Theatre & Dance"
+ },
+ "COMPFOR": {
+  "name": "Computation for Arts and Sciences",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "COMPLIT": {
+  "name": "Comparative Literature",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CONDUCT": {
+  "name": "Conducting",
+  "group": "Music, Theatre & Dance"
+ },
+ "CPTS": {
+  "name": "Clinical Pharmacy Translational Science",
+  "group": "Pharmacy"
+ },
+ "CSE": {
+  "name": "Computer Science and Engineering",
+  "group": "Engineering"
+ },
+ "CSP": {
+  "name": "Comprehensive Studies Program",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "CZECH": {
+  "name": "Czech",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "DANCE": {
+  "name": "Dance",
+  "group": "Music, Theatre & Dance"
+ },
+ "DATASCI": {
+  "name": "Data Science",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "DBLBASS": {
+  "name": "Double Bass",
+  "group": "Music, Theatre & Dance"
+ },
+ "DENT": {
+  "name": "Dentistry",
+  "group": "Dentistry"
+ },
+ "DENTED": {
+  "name": "Dental Education",
+  "group": "Dentistry"
+ },
+ "DENTHYG": {
+  "name": "Dental Hygiene",
+  "group": "Dentistry (Dental Hygiene)"
+ },
+ "DERM": {
+  "name": "Dermatology",
+  "group": "Medicine"
+ },
+ "DESCI": {
+  "name": "Design Science",
+  "group": "Engineering"
+ },
+ "DHYGRACK": {
+  "name": "Dental Hygiene",
+  "group": "Dentistry"
+ },
+ "DIGITAL": {
+  "name": "Digital Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "DUTCH": {
+  "name": "Dutch",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "EARLYMUS": {
+  "name": "Early Music",
+  "group": "Music, Theatre & Dance"
+ },
+ "EARTH": {
+  "name": "Earth and Environmental Sciences",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "EAS": {
+  "name": "Environment and Sustainability",
+  "group": "Environment and Sustainability"
+ },
+ "ECE": {
+  "name": "Electrical and Computer Engineering",
+  "group": "Engineering"
+ },
+ "ECON": {
+  "name": "Economics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "EDBEHAVR": {
+  "name": "Education C Behavioral Sciences In Education",
+  "group": "Marsal Family School of Educ"
+ },
+ "EDUC": {
+  "name": "Education",
+  "group": "Marsal Family School of Educ"
+ },
+ "EDUCONL": {
+  "name": "Education Online",
+  "group": "Marsal Family School of Educ"
+ },
+ "EEB": {
+  "name": "Ecology and Evolutionary Biology",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "EECS": {
+  "name": "Electrical Engineering And Computer Science",
+  "group": "Engineering"
+ },
+ "EER": {
+  "name": "Engineering Education Research",
+  "group": "Engineering"
+ },
+ "EHS": {
+  "name": "Environmental Health Sciences",
+  "group": "Public Health"
+ },
+ "ELI": {
+  "name": "English Language Institute",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "EMBA": {
+  "name": "Executive Master of Business Administration",
+  "group": "Ross School of Business"
+ },
+ "EMERGMED": {
+  "name": "Emergency Medicine",
+  "group": "Medicine"
+ },
+ "ENDODONT": {
+  "name": "Endodontics",
+  "group": "Dentistry"
+ },
+ "ENGLISH": {
+  "name": "English Language And Literature",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ENGR": {
+  "name": "Engineering",
+  "group": "Engineering"
+ },
+ "ENS": {
+  "name": "Ensemble",
+  "group": "Music, Theatre & Dance"
+ },
+ "ENSCEN": {
+  "name": "Environmental Sciences and Engineering",
+  "group": "Engineering"
+ },
+ "ENTR": {
+  "name": "Entrepreneurship",
+  "group": "Engineering"
+ },
+ "ENVIRON": {
+  "name": "Environment",
+  "group": "Environment and Sustainability"
+ },
+ "EPID": {
+  "name": "Epidemiology",
+  "group": "Public Health"
+ },
+ "ES": {
+  "name": "Entrepreneurial Studies",
+  "group": "Ross School of Business"
+ },
+ "ESENG": {
+  "name": "Energy Systems Engineering Program",
+  "group": "Engineering"
+ },
+ "EUPHBARI": {
+  "name": "Euphonium-Baritone",
+  "group": "Music, Theatre & Dance"
+ },
+ "FAMMED": {
+  "name": "Family Medicine",
+  "group": "Medicine"
+ },
+ "FIN": {
+  "name": "Finance",
+  "group": "Ross School of Business"
+ },
+ "FLUTE": {
+  "name": "Flute",
+  "group": "Music, Theatre & Dance"
+ },
+ "FPIANO": {
+  "name": "Fortepiano",
+  "group": "Music, Theatre & Dance"
+ },
+ "FRENCH": {
+  "name": "French",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "FRENHORN": {
+  "name": "French Horn",
+  "group": "Music, Theatre & Dance"
+ },
+ "FTVM": {
+  "name": "Film, Television, and Media",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "GEOG": {
+  "name": "Geography",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "GERMAN": {
+  "name": "German",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "GREEK": {
+  "name": "Greek",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "GREEKMOD": {
+  "name": "Modern Greek",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "GUITAR": {
+  "name": "Guitar",
+  "group": "Music, Theatre & Dance"
+ },
+ "HARP": {
+  "name": "Harp",
+  "group": "Music, Theatre & Dance"
+ },
+ "HARPSCH": {
+  "name": "Harpsichord",
+  "group": "Music, Theatre & Dance"
+ },
+ "HBEHED": {
+  "name": "Health Behavior And Health Education",
+  "group": "Public Health"
+ },
+ "HBHEQ": {
+  "name": "Health Behavior and Health Equity",
+  "group": "Public Health"
+ },
+ "HEBREW": {
+  "name": "Hebrew Language",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "HHCR": {
+  "name": "Health and Health Care Research",
+  "group": "Medicine"
+ },
+ "HISTART": {
+  "name": "History of Art",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "HISTORY": {
+  "name": "History",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "HMP": {
+  "name": "Health Management And Policy",
+  "group": "Public Health"
+ },
+ "HONORS": {
+  "name": "College Honors",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "HS": {
+  "name": "Health Sciences",
+  "group": "Nursing"
+ },
+ "HUMGEN": {
+  "name": "Human Genetics",
+  "group": "Medicine"
+ },
+ "HYGDCE": {
+  "name": "Dental Hygiene Degree Completion E-Learning",
+  "group": "Dentistry (Dental Hygiene)"
+ },
+ "IHS": {
+  "name": "Immunology, Health and Society",
+  "group": "Medicine"
+ },
+ "IMMUNO": {
+  "name": "Immunology",
+  "group": "Medicine"
+ },
+ "INFLXMED": {
+  "name": "Inteflex Medical School",
+  "group": "Medicine"
+ },
+ "INSTHUM": {
+  "name": "Institute For The Humanities",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "INTLRGN": {
+  "name": "International and Regional Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "INTLSTD": {
+  "name": "International Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "INTMED": {
+  "name": "Internal Medicine",
+  "group": "Medicine"
+ },
+ "INTPHARM": {
+  "name": "Integrated Pharmaceutical Sciences",
+  "group": "Pharmacy"
+ },
+ "IOE": {
+  "name": "Industrial And Operations Engineering",
+  "group": "Engineering"
+ },
+ "ISD": {
+  "name": "Integrative Systems and Design",
+  "group": "Engineering"
+ },
+ "ISLAM": {
+  "name": "Islamic Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ITALIAN": {
+  "name": "Italian",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "JAZZ": {
+  "name": "Jazz & Improvisational Studies",
+  "group": "Music, Theatre & Dance"
+ },
+ "JOUR": {
+  "name": "Journalism Research",
+  "group": "Engaged Learning Programs"
+ },
+ "JUDAIC": {
+  "name": "Judaic Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "KINESLGY": {
+  "name": "Kinesiology",
+  "group": "Kinesiology"
+ },
+ "KINSTUDY": {
+  "name": "Kinesiology Studies",
+  "group": "Kinesiology"
+ },
+ "KRSTD": {
+  "name": "Korean Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "LACS": {
+  "name": "Latin American And Caribbean Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "LATIN": {
+  "name": "Latin",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "LATINOAM": {
+  "name": "Latina/o American Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "LAW": {
+  "name": "Law",
+  "group": "Law"
+ },
+ "LHS": {
+  "name": "Learning Health Sciences",
+  "group": "Medicine"
+ },
+ "LING": {
+  "name": "Linguistics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "LSWA": {
+  "name": "Lloyd Scholars for Writing and the Arts",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MACROMOL": {
+  "name": "Macromolecular Science",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MATH": {
+  "name": "Mathematics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MATSCIE": {
+  "name": "Materials Science Engineering",
+  "group": "Engineering"
+ },
+ "MBAN": {
+  "name": "Business Analytics",
+  "group": "Ross School of Business"
+ },
+ "MCDB": {
+  "name": "Molecular, Cellular and Developmental Biology",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MECHENG": {
+  "name": "Mechanical Engineering",
+  "group": "Engineering"
+ },
+ "MEDADM": {
+  "name": "Medical School Administration",
+  "group": "Medicine"
+ },
+ "MEDCHEM": {
+  "name": "Medicinal Chemistry",
+  "group": "Pharmacy"
+ },
+ "MEDEDUC": {
+  "name": "Medical Education",
+  "group": "Medicine"
+ },
+ "MEDPREP": {
+  "name": "Post-Baccalaureate Premedical Program",
+  "group": "Medicine"
+ },
+ "MELANG": {
+  "name": "Middle East Languages",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MEMS": {
+  "name": "Medieval and Early Modern Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MENAS": {
+  "name": "Middle Eastern And North African Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MFG": {
+  "name": "Manufacturing",
+  "group": "Engineering"
+ },
+ "MICRBIOL": {
+  "name": "Microbiology",
+  "group": "Medicine"
+ },
+ "MIDEAST": {
+  "name": "Middle East Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MILSCI": {
+  "name": "Military Science",
+  "group": "Engaged Learning Programs"
+ },
+ "MKT": {
+  "name": "Marketing",
+  "group": "Ross School of Business"
+ },
+ "MO": {
+  "name": "Management and Organizations",
+  "group": "Ross School of Business"
+ },
+ "MOVESCI": {
+  "name": "Movement Science",
+  "group": "Kinesiology"
+ },
+ "MSP": {
+  "name": "Museum Studies",
+  "group": "Rackham"
+ },
+ "MUSED": {
+  "name": "Music Education",
+  "group": "Music, Theatre & Dance"
+ },
+ "MUSEUMS": {
+  "name": "Museums",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MUSIC": {
+  "name": "Music",
+  "group": "Music, Theatre & Dance"
+ },
+ "MUSICOL": {
+  "name": "Musicology",
+  "group": "Music, Theatre & Dance"
+ },
+ "MUSMETH": {
+  "name": "Museum Methods",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "MUSPERF": {
+  "name": "Music Performance",
+  "group": "Music, Theatre & Dance"
+ },
+ "MUSTHTRE": {
+  "name": "Musical Theatre",
+  "group": "Music, Theatre & Dance"
+ },
+ "NATIVEAM": {
+  "name": "Native American Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "NAVARCH": {
+  "name": "Naval Architecture And Marine Engineering",
+  "group": "Engineering"
+ },
+ "NAVSCI": {
+  "name": "Naval Science",
+  "group": "Engaged Learning Programs"
+ },
+ "NERS": {
+  "name": "Nuclear Engineering And Radiological Sciences",
+  "group": "Engineering"
+ },
+ "NEURO": {
+  "name": "Undergraduate Program in Neuroscience",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "NEUROL": {
+  "name": "Neurology",
+  "group": "Medicine"
+ },
+ "NEUROSCI": {
+  "name": "Neuroscience",
+  "group": "Medicine"
+ },
+ "NEUSURG": {
+  "name": "Neurosurgery",
+  "group": "Medicine"
+ },
+ "NURS": {
+  "name": "Nursing",
+  "group": "Nursing"
+ },
+ "NUTR": {
+  "name": "Nutritional Sciences",
+  "group": "Public Health"
+ },
+ "OBOE": {
+  "name": "Oboe",
+  "group": "Music, Theatre & Dance"
+ },
+ "OBSTGYN": {
+  "name": "Obstetrics and Gynecology",
+  "group": "Medicine"
+ },
+ "OPERA": {
+  "name": "Opera",
+  "group": "Music, Theatre & Dance"
+ },
+ "OPHTH": {
+  "name": "Ophthalmology",
+  "group": "Medicine"
+ },
+ "ORALBIOL": {
+  "name": "Oral Biology",
+  "group": "Dentistry"
+ },
+ "ORALDIAG": {
+  "name": "Oral Diagnosis",
+  "group": "Dentistry"
+ },
+ "ORALHEAL": {
+  "name": "Oral Health Sciences",
+  "group": "Dentistry"
+ },
+ "ORALPATH": {
+  "name": "Oral Pathology",
+  "group": "Dentistry"
+ },
+ "ORALSURG": {
+  "name": "Oral Surgery",
+  "group": "Dentistry"
+ },
+ "ORGAN": {
+  "name": "Organ",
+  "group": "Music, Theatre & Dance"
+ },
+ "ORGANLIT": {
+  "name": "Organ Literature",
+  "group": "Music, Theatre & Dance"
+ },
+ "ORGSTUDY": {
+  "name": "Organizational Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ORTHO": {
+  "name": "Orthodontics",
+  "group": "Dentistry"
+ },
+ "ORTHSURG": {
+  "name": "Orthopaedic Surgery",
+  "group": "Medicine"
+ },
+ "OTO": {
+  "name": "Otorhinolaryngology",
+  "group": "Medicine"
+ },
+ "PAT": {
+  "name": "Performing Arts & Technology",
+  "group": "Music, Theatre & Dance"
+ },
+ "PATH": {
+  "name": "Pathology",
+  "group": "Medicine"
+ },
+ "PEDDENT": {
+  "name": "Pediatric Dentistry",
+  "group": "Dentistry"
+ },
+ "PEDIAT": {
+  "name": "Pediatrics",
+  "group": "Medicine"
+ },
+ "PERCUSS": {
+  "name": "Percussion",
+  "group": "Music, Theatre & Dance"
+ },
+ "PERIODON": {
+  "name": "Periodontics",
+  "group": "Dentistry"
+ },
+ "PERSIAN": {
+  "name": "Persian Language",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PHARMACY": {
+  "name": "Pharmacy",
+  "group": "Pharmacy"
+ },
+ "PHARMSCI": {
+  "name": "Pharmaceutical Sciences",
+  "group": "Pharmacy"
+ },
+ "PHIL": {
+  "name": "Philosophy",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PHRMACOL": {
+  "name": "Pharmacology",
+  "group": "Medicine"
+ },
+ "PHYSED": {
+  "name": "Physical Education",
+  "group": "Kinesiology"
+ },
+ "PHYSICS": {
+  "name": "Physics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PHYSIOL": {
+  "name": "Physiology",
+  "group": "Medicine"
+ },
+ "PIANO": {
+  "name": "Piano",
+  "group": "Music, Theatre & Dance"
+ },
+ "PIANOLP": {
+  "name": "Piano Literature and Pedagogy",
+  "group": "Music, Theatre & Dance"
+ },
+ "PIBS": {
+  "name": "Biomedical Sciences",
+  "group": "Medicine"
+ },
+ "PMR": {
+  "name": "Physical Medicine & Rehabilitation",
+  "group": "Medicine"
+ },
+ "PNE": {
+  "name": "Professional Nursing Education",
+  "group": "Nursing"
+ },
+ "POLISH": {
+  "name": "Polish",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "POLSCI": {
+  "name": "Political Science",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PORTUG": {
+  "name": "Portuguese",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PPE": {
+  "name": "Philosophy, Politics and Economics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PROSTHOD": {
+  "name": "Prosthodontics",
+  "group": "Dentistry"
+ },
+ "PSYCH": {
+  "name": "Psychology",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "PSYCHIAT": {
+  "name": "Psychiatry",
+  "group": "Medicine"
+ },
+ "PUBHLTH": {
+  "name": "Public Health",
+  "group": "Public Health"
+ },
+ "PUBPOL": {
+  "name": "Public Policy",
+  "group": "Public Policy"
+ },
+ "QMSS": {
+  "name": "Quantitative Methods in the Social Sciences",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "RACKHAM": {
+  "name": "Rackham Graduate School",
+  "group": "Rackham"
+ },
+ "RADIOL": {
+  "name": "Radiology",
+  "group": "Medicine"
+ },
+ "RADONCO": {
+  "name": "Radiation Oncology",
+  "group": "Medicine"
+ },
+ "RAV": {
+  "name": "Robotics and Autonomous Vehicle Engineering",
+  "group": "Engineering"
+ },
+ "RCARTS": {
+  "name": "Visual Arts",
+  "group": "LSA Residential College"
+ },
+ "RCASL": {
+  "name": "American Sign Language",
+  "group": "LSA Residential College"
+ },
+ "RCCORE": {
+  "name": "Core Courses",
+  "group": "LSA Residential College"
+ },
+ "RCCWLIT": {
+  "name": "Creative Writing and Literature",
+  "group": "LSA Residential College"
+ },
+ "RCDRAMA": {
+  "name": "Drama",
+  "group": "LSA Residential College"
+ },
+ "RCHUMS": {
+  "name": "Humanities",
+  "group": "LSA Residential College"
+ },
+ "RCIDIV": {
+  "name": "Interdivisional",
+  "group": "LSA Residential College"
+ },
+ "RCLANG": {
+  "name": "Languages",
+  "group": "LSA Residential College"
+ },
+ "RCMUSIC": {
+  "name": "Music",
+  "group": "LSA Residential College"
+ },
+ "RCNSCI": {
+  "name": "Natural Sciences",
+  "group": "LSA Residential College"
+ },
+ "RCSID": {
+  "name": "Semester in Detroit",
+  "group": "LSA Residential College"
+ },
+ "RCSSCI": {
+  "name": "Social Sciences",
+  "group": "LSA Residential College"
+ },
+ "RCSTP": {
+  "name": "Social Theory and Practice",
+  "group": "LSA Residential College"
+ },
+ "REEES": {
+  "name": "Russian, East European and Eurasian Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "RELIGION": {
+  "name": "Religion",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "RESTORA": {
+  "name": "Restorative",
+  "group": "Dentistry"
+ },
+ "ROB": {
+  "name": "Robotics",
+  "group": "Engineering"
+ },
+ "ROMLANG": {
+  "name": "Romance Languages and Literatures",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "ROMLING": {
+  "name": "Romance Linguistics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "RUSSIAN": {
+  "name": "Russian",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SACREDMU": {
+  "name": "Sacred Music",
+  "group": "Music, Theatre & Dance"
+ },
+ "SAS": {
+  "name": "South Asian Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SAX": {
+  "name": "Saxophone",
+  "group": "Music, Theatre & Dance"
+ },
+ "SCAND": {
+  "name": "Scandinavian",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SEAS": {
+  "name": "Southeast Asian Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SI": {
+  "name": "Information",
+  "group": "Information"
+ },
+ "SIABRD": {
+  "name": "School of Information Study Abroad",
+  "group": "Information"
+ },
+ "SIADS": {
+  "name": "School of Information Applied Data Science",
+  "group": "Information"
+ },
+ "SIL": {
+  "name": "Social Impact Leadership",
+  "group": "Social Work"
+ },
+ "SLAVIC": {
+  "name": "Slavic",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SM": {
+  "name": "Sport Management",
+  "group": "Kinesiology"
+ },
+ "SOC": {
+  "name": "Sociology",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SPACE": {
+  "name": "Space Science and Engineering",
+  "group": "Engineering"
+ },
+ "SPANISH": {
+  "name": "Spanish",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "STATS": {
+  "name": "Statistics",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "STDABRD": {
+  "name": "Study Abroad",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "STDEXCH": {
+  "name": "Study Exchange",
+  "group": "Music, Theatre & Dance"
+ },
+ "STRATEGY": {
+  "name": "Strategy",
+  "group": "Ross School of Business"
+ },
+ "STS": {
+  "name": "Science, Technology, and Society",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "SURGERY": {
+  "name": "Surgery",
+  "group": "Medicine"
+ },
+ "SURVMETH": {
+  "name": "Survey Methodology",
+  "group": "Institute for Social Research"
+ },
+ "SW": {
+  "name": "Social Work",
+  "group": "Social Work"
+ },
+ "TCHNCLCM": {
+  "name": "Technical Communication",
+  "group": "Engineering"
+ },
+ "TCS": {
+  "name": "Transcultural Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "THEORY": {
+  "name": "Theory",
+  "group": "Music, Theatre & Dance"
+ },
+ "THTREMUS": {
+  "name": "Theatre & Drama",
+  "group": "Music, Theatre & Dance"
+ },
+ "TO": {
+  "name": "Technology and Operations",
+  "group": "Ross School of Business"
+ },
+ "TROMBONE": {
+  "name": "Trombone",
+  "group": "Music, Theatre & Dance"
+ },
+ "TURKISH": {
+  "name": "Turkish Language",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "UARTS": {
+  "name": "University Arts",
+  "group": "Engineering"
+ },
+ "UC": {
+  "name": "University Courses",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "UD": {
+  "name": "Urban Design",
+  "group": "Architecture & Urban Planning"
+ },
+ "UKR": {
+  "name": "Ukrainian",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "UROLOGY": {
+  "name": "Urology",
+  "group": "Medicine"
+ },
+ "URP": {
+  "name": "Urban and Regional Planning",
+  "group": "Architecture & Urban Planning"
+ },
+ "UT": {
+  "name": "Urban Technology",
+  "group": "Architecture & Urban Planning"
+ },
+ "VIOLA": {
+  "name": "Viola",
+  "group": "Music, Theatre & Dance"
+ },
+ "VIOLIN": {
+  "name": "Violin",
+  "group": "Music, Theatre & Dance"
+ },
+ "VOICE": {
+  "name": "Voice",
+  "group": "Music, Theatre & Dance"
+ },
+ "VOICELIT": {
+  "name": "Voice Literature",
+  "group": "Music, Theatre & Dance"
+ },
+ "WELLNESS": {
+  "name": "Wellness for Performing Arts",
+  "group": "Music, Theatre & Dance"
+ },
+ "WGS": {
+  "name": "Women's and Gender Studies",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "WMBA": {
+  "name": "Weekend Master of Business Administration",
+  "group": "Ross School of Business"
+ },
+ "WRITING": {
+  "name": "Gayle Morris Sweetland Center for Writing",
+  "group": "Literature, Sci, and the Arts"
+ },
+ "YIDDISH": {
+  "name": "Yiddish",
+  "group": "Literature, Sci, and the Arts"
+ }
+}

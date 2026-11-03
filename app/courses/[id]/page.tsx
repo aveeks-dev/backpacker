@@ -124,25 +124,6 @@ export default async function CourseDetailPage({
           <Fact tone="bg-emerald-100 text-emerald-950" label="Instructors" value={instructors.length ? String(instructors.length) : "—"} />
         </div>
 
-        <section className="mt-10">
-          <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-2xl font-semibold">Student ratings</h2>
-            <span className="rounded-full bg-maize/40 px-3 py-1 text-xs font-semibold">Coming soon</span>
-          </div>
-          <p className="mt-1 max-w-2xl text-sm text-slate-600">
-            Ratings from U-M students who use Backpacker will appear here, so you can see how a course really felt.
-          </p>
-          <ul className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-5">
-            {RATING_QUESTIONS.map((q) => (
-              <li key={q.label} className="flex flex-col items-center rounded-md border border-slate-200 bg-white p-4 text-center">
-                <span aria-hidden="true" className="grid h-16 w-16 place-items-center rounded-full border-[6px] border-slate-100 font-display text-lg font-semibold text-slate-400">—</span>
-                <span className="mt-3 font-display text-sm font-semibold">{q.label}</span>
-                <span className="mt-1 text-[11px] leading-snug text-slate-500">{q.detail}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           <section className="rounded-md border-l-4 border-maize bg-white p-5 shadow-sm">
             <h2 className="text-lg font-semibold">Prerequisites</h2>
@@ -225,6 +206,17 @@ export default async function CourseDetailPage({
               ))}
             </div>
           )}
+        </section>
+
+        <section className="mt-10 rounded-md border border-dashed border-slate-300 bg-white p-5">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="text-lg font-semibold">Student ratings</h2>
+            <span className="rounded-full bg-maize/40 px-3 py-1 text-xs font-semibold">Coming soon</span>
+          </div>
+          <p className="mt-1 max-w-2xl text-sm text-slate-600">
+            Ratings from U-M students who use Backpacker will appear here: {RATING_QUESTIONS.map((q) => q.label.toLowerCase()).join(", ")}.
+            {instructors.length > 0 && " Until then, instructor reviews are on Rate My Professors, linked above."}
+          </p>
         </section>
 
         <SimilarCourses similar={similar} />
