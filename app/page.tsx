@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { CURRENT_TERM, getAllCourses, getCourse, getDepartments, isOffered, type Course } from "@/lib/courses";
 import { PROGRAMS, getProgram, hasFullPlan, type Program } from "@/lib/major-directory";
-import { generateSchedules, toMinutes } from "@/lib/scheduler";
+import { generateSchedules, toMinutes, type GeneratedSchedule, type Interval } from "@/lib/scheduler";
 
-// The best Winter 2027 schedule for these courses, from the real generator.
-const EXAMPLE_COURSES = ["econ-101", "eecs-281", "math-215", "eecs-370"];
+// A typical first-year load, scheduled by the real generator between 9am and
+// 5pm, picking a week with time to walk between buildings.
+const EXAMPLE_COURSES = ["math-115", "econ-101", "psych-111", "english-125"];
+const MIN_BREAK = 60; // minutes between classes on the same day
+const MAX_PER_DAY = 3;
 const TONES = ["bg-maize text-michigan", "bg-white text-michigan", "bg-sky-200 text-michigan", "bg-emerald-200 text-michigan"];
 const SHORT: Record<string, string> = { LEC: "Lecture", DIS: "Discussion", LAB: "Lab", REC: "Recitation", SEM: "Seminar" };
 const DAY_INDEX: Record<string, number> = { M: 0, T: 1, W: 2, Th: 3, F: 4 };
@@ -13,8 +16,12 @@ type ExampleBlock = { key: string; code: string; kind: string; day: number; star
 
 function exampleWeek(): { blocks: ExampleBlock[]; total: number; truncated: boolean } {
   const courses = EXAMPLE_COURSES.map(getCourse).filter((c): c is Course => c !== undefined && c.sections.length > 0);
-  const result = generateSchedules(courses, { preferences: { preferLateStart: true, minimizeGaps: true }, maxExplored: 500_000, limit: 1 });
-  const best = result.schedules[0];
+  const result = generateSchedules(courses, {
+    preferences: { preferLateStart: true, earliestStart: "09:00", latestEnd: "17:00" },
+    maxExplored: 500_000,
+    limit: 5000,
+  });
+  const best = result.schedules.find(isSpreadOut) ?? result.schedules[0];
   const blocks: ExampleBlock[] = [];
   for (const bundle of best?.bundles ?? []) {
     const course = courses.find((c) => c.id === bundle.courseId)!;
@@ -35,6 +42,16 @@ function exampleWeek(): { blocks: ExampleBlock[]; total: number; truncated: bool
       );
   }
   return { blocks, total: result.explored, truncated: result.truncated };
+}
+
+/** No back-to-back classes and no overloaded days. */
+function isSpreadOut(schedule: GeneratedSchedule): boolean {
+  const byDay = new Map<string, Interval[]>();
+  for (const b of schedule.bundles) for (const iv of b.intervals) byDay.set(iv.day, [...(byDay.get(iv.day) ?? []), iv]);
+  return [...byDay.values()].every((ivs) => {
+    ivs.sort((a, b) => a.start - b.start);
+    return ivs.length <= MAX_PER_DAY && ivs.every((iv, i) => i === 0 || iv.start - ivs[i - 1].end >= MIN_BREAK);
+  });
 }
 
 // Some of the most common U-M majors, for the home page.
@@ -127,10 +144,10 @@ function ExampleWeek({ blocks, total, truncated }: { blocks: ExampleBlock[]; tot
   return (
     <figure className="rounded-lg border border-white/15 bg-white/[0.07] p-4 backdrop-blur" aria-label={`Example ${CURRENT_TERM.label} schedule`}>
       <figcaption className="mb-3 flex items-baseline justify-between gap-2 text-xs text-slate-300">
-        <span className="font-semibold text-white">Example week</span>
-        <span>
-          Best of {total.toLocaleString()}
-          {truncated ? "+" : ""} schedules for these 4 courses
+        <span className="font-semibold text-white">Example first-year week</span>
+        <span className="text-right">
+          Picked from {total.toLocaleString()}
+          {truncated ? "+" : ""} schedules that fit 9 to 5, for an hour between classes
         </span>
       </figcaption>
       <div className="grid grid-cols-[28px_repeat(5,minmax(0,1fr))] gap-1 text-center text-[10px] text-slate-300">
