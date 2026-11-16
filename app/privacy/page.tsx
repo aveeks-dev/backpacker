@@ -24,6 +24,12 @@ export default function PrivacyPage() {
           </p>
         </section>
         <section>
+          <h2 className="text-lg font-semibold text-michigan">Visit counts</h2>
+          <p className="mt-1">
+            Backpacker uses Vercel Web Analytics to count page views. It doesn&apos;t use cookies and doesn&apos;t identify you. It records the page you visited (without anything after a &ldquo;?&rdquo; in the address), the referring site, and your general location, browser, device type, and operating system. Your plan and searches aren&apos;t included.
+          </p>
+        </section>
+        <section>
           <h2 className="text-lg font-semibold text-michigan">Shared links</h2>
           <p className="mt-1">A shared plan link contains the course IDs in that plan. Anyone with the link can see them.</p>
         </section>

@@ -10,9 +10,11 @@
     "lint": "eslint",
     "test": "node --test \"lib/**/*.test.ts\"",
     "import:schedule": "node scripts/import-schedule.ts",
-    "scrape:catalog": "node scripts/scrape-atlas.ts"
+    "scrape:catalog": "node scripts/scrape-atlas.ts",
+    "bench": "node scripts/bench-scheduler.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"

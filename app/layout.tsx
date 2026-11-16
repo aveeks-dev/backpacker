@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteAnalytics } from "@/components/site-analytics";
 
 const sans = Instrument_Sans({
   variable: "--font-body",
@@ -43,6 +44,7 @@ export default function RootLayout({
         <SiteHeader />
         <div id="main-content" tabIndex={-1} className="flex flex-1 flex-col">{children}</div>
         <SiteFooter />
+        <SiteAnalytics />
       </body>
     </html>
   );
